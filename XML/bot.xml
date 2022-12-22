@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTeam xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Team>
+        <TeamName>Team1</TeamName>
+        <TeamCaptain>1234</TeamCaptain><TeamMembers>1234</TeamMembers><teamID>0</teamID><MMR>0</MMR><GameID>0</GameID></Team><Team><TeamName>Team2</TeamName><TeamCaptain>1235</TeamCaptain><TeamMembers>1235</TeamMembers><teamID>1</teamID><MMR>0</MMR><GameID>0</GameID></Team></ArrayOfTeam>

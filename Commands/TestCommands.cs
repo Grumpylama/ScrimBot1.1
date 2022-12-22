@@ -1,0 +1,45 @@
+using DSharpPlus;
+using DSharpPlus.CommandsNext;
+using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.EventArgs;
+using DSharpPlus.Interactivity;
+using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+
+
+public class TestCommands : BaseCommandModule
+{
+
+Random random = new Random();
+
+    [Command("ping")]
+    public async Task Ping(CommandContext ctx)
+    {
+        Console.WriteLine("Ping command was used by " + ctx.User.ToString());
+        await ctx.Channel.SendMessageAsync("Pong").ConfigureAwait(false);
+    }
+
+    [Command("gaytest")]
+    public async Task Gaytest(CommandContext ctx)
+    {       
+        Console.WriteLine("Gaytest command was used by " + ctx.User.ToString());
+        if(random.Next(0,2) == 1) await ctx.Channel.SendMessageAsync("You are gay").ConfigureAwait(false);
+        else await ctx.Channel.SendMessageAsync("You are not gay").ConfigureAwait(false);       
+    }
+    [Command("boobs")]
+    public async Task Boobs(CommandContext ctx)
+    {
+        Console.WriteLine("boobs command was ued by " + ctx.User.ToString());
+        await ctx.Channel.SendMessageAsync("https://google.com/search?q=boobs").ConfigureAwait(false);
+    }
+    [Command("add")]
+    public async Task Add(CommandContext ctx, int n1, int n2) 
+    {
+        Console.WriteLine("add command was used by" + ctx.User.ToString());
+        await ctx.Channel.SendMessageAsync((n1 + n2).ToString()).ConfigureAwait(false);       
+    }
+    
+}
