@@ -2,6 +2,9 @@ using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
+using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.Interactivity.EventHandling;
+using DSharpPlus.Entities;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
 using System.Net.Http;
@@ -34,10 +37,6 @@ namespace big
 
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
 
-            
-        
-
-
             var config = new DiscordConfiguration
             {
                 Token = configJson.Token,
@@ -48,6 +47,12 @@ namespace big
             Client = new DiscordClient(config);
             Client.Ready += OnClientReady;
 
+
+            Client.UseInteractivity(new InteractivityConfiguration
+            {
+                Timeout = TimeSpan.FromMinutes(2)
+            });
+            
 
             var CommandsConfig = new CommandsNextConfiguration
             {

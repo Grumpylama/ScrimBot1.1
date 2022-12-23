@@ -1,6 +1,10 @@
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Entities;
+using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.Interactivity.EventHandling;
+using DSharpPlus.Interactivity.Enums;   
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
 using Newtonsoft.Json;
@@ -64,7 +68,7 @@ namespace big
             }
             
             
-            Team.Teams.Add(new Team(TeamName, ctx.User.Id));
+            
             Bot.Conversations.Add(new Conversation(ctx.User.Id, ctx.Channel));
             string s = "What game will you be playing?";
             int i = 1;
@@ -75,6 +79,30 @@ namespace big
             }
             await ctx.RespondAsync(s);
 
+            
+            while(true)
+            {
+                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);            
+                if(Int32.TryParse(message.Result.Content, out i))
+                {
+                    if(i > 0 && i <= Game.Games.Count)
+                    {
+                        Team.Teams.Add(new Team(Game.Games[i - 1], TeamName, ctx.User.Id));
+                        await ctx.RespondAsync("Team named " + TeamName + " was created for game " + Game.Games[i - 1].GameName);
+                        return;
+                    }
+                    else
+                    {
+                        await ctx.RespondAsync("Please enter a valid number");
+                    }
+                }
+                else
+                {
+                    await ctx.RespondAsync("Please enter a valid number");
+                }
+            
+            }
+            
         }
 
         
