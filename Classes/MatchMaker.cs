@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace big
 {
-   /*
+   
    public class MatchMaker
    {
       public List<MatchMakingTeam> mmtList = new List<MatchMakingTeam>();
@@ -27,13 +27,12 @@ namespace big
       //Time threshhold nu time minus när man ska spela time (2h för att inte hamna i queue)
       //List to find a team to match it to
 
-      public void addToMatchMakingList(DateTime dt, Team t)
+      public void addToMatchMakingList(MatchMakingTeam temp)
       {
-         MatchMakingTeam temp = new MatchMakingTeam(dt, t);
          int tempus = 0;
-         for(int i = 0; i < mmtList; i++)
+         for(int i = 0; i < mmtList.Count; i++)
          {
-            if(mmtList[i].t.teamID == t.teamID) tempus++;
+            if(mmtList[i].t.teamID == temp.t.teamID) tempus++;
          }
          if(tempus == 0) mmtList.Add(temp);
       }
@@ -46,5 +45,5 @@ namespace big
 
       
    }
-   */
+   
 }

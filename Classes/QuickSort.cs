@@ -2,14 +2,14 @@ using System;
 
 namespace big
 {
-    /*
+    
     public class QuickSort
     {
-        private static void Quick_Sort(List<MatchMakingTeam> list, float left, float right) 
+        private static void Quick_Sort(List<MatchMakingTeam> list, int left, int right) 
         {
             if (left < right)
             {
-                float pivot = Partition(list, left, right);
+                int pivot = Partition(list, left, right);
 
                 if (pivot > 1) {
                     Quick_Sort(list, left, pivot - 1);
@@ -21,7 +21,7 @@ namespace big
         
         }
 
-        private static int Partition(List<MatchMakingTeam> list, float left, float right)
+        private static int Partition(List<MatchMakingTeam> list, int left, int right)
         {
             float pivot = list[left].t.MMR;
             while (true) 
@@ -54,5 +54,5 @@ namespace big
             }
         }
     }
-    */
+    
 }

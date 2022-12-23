@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace big
 {
-    /*
+    
     public class MatchMakerHandler
     {
         public static List<MatchMaker> matchMakers = new List<MatchMaker>();
@@ -14,7 +14,7 @@ namespace big
             
         }
 
-        private bool contains()
+        private bool contains(MatchMakingTeam temp)
         {
             foreach(MatchMaker m in matchMakers)
             {
@@ -28,5 +28,5 @@ namespace big
             return false;
         }
     }
-    */
+    
 }
