@@ -9,7 +9,8 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-public struct ConfigJson{
+public struct ConfigJson
+{
     [JsonProperty("token")]
     public string Token {get; private set;}
     [JsonProperty("prefix")]
