@@ -1,3 +1,9 @@
+using DSharpPlus;
+using DSharpPlus.CommandsNext;
+using DSharpPlus.EventArgs;
+using DSharpPlus.Interactivity;
+using DSharpPlus.Entities;
+
 namespace big
 {
     public class Team
@@ -6,7 +12,7 @@ namespace big
 
         public static int teamIDCounter = 0;   
         public string TeamName { get; set; }
-        public User TeamCaptain { get; set; }
+        public DiscordUser TeamCaptain { get; set; }
         
         public List<TeamUser> TeamMembers { get; set; }
 
@@ -15,21 +21,21 @@ namespace big
         public Game game { get; private set; }
 
         //Constructor for creating a team with members
-        public Team(Game game, string TeamName, ulong TeamCaptain, List<TeamUser> members)
+        public Team(Game game, string TeamName, DiscordUser TeamCaptain, List<TeamUser> members)
         {
             this.game = game;
             this.TeamName = TeamName;
-            this.TeamCaptain = SearchForUser(TeamCaptain);
+            this.TeamCaptain = TeamCaptain;
             this.TeamMembers = members;
             //Change this later to actual starting MMR
             this.MMR = 0;
             this.teamID = teamIDCounter;           
             teamIDCounter++;
         }
-        public Team(string TeamName, ulong TeamCaptain)
+        public Team(string TeamName, DiscordUser TeamCaptain)
         {
             this.TeamName = TeamName;
-            this.TeamCaptain = SearchForUser(TeamCaptain);
+            this.TeamCaptain = TeamCaptain;
             this.TeamMembers = new List<TeamUser>();
             //Change this later to actual starting MMR
             this.MMR = 0;
@@ -37,66 +43,43 @@ namespace big
 
             //Dummy game
             this.game = new Game();
-            teamIDCounter++;
+            teamIDCounter++;    
         }
         //Constructor for creating a team with no members
-        public Team(Game game, string TeamName, ulong TeamCaptain)
+        public Team(Game game, string TeamName, DiscordUser TeamCaptain)
         {
             this.TeamName = TeamName;
             this.game = game;
-            this.TeamCaptain = SearchForUser(TeamCaptain);    
+            this.TeamCaptain = TeamCaptain;    
             this.TeamMembers = new List<TeamUser>();    
             //Change this later to actual starting MMR
             this.MMR = 0;   
             this.teamID = teamIDCounter;        
             teamIDCounter++;
         }
-        //Dummy constructor for seralzation
-        //DO NOT USE!!!!
-        private Team()
-        {
-            this.game = new Game();
-            this.TeamName = "Default";
-            this.TeamCaptain = new User();       
-            this.TeamMembers = new List<TeamUser>(); 
-            //Change this later to actual starting MMR
-            this.MMR = 0;                 
-            this.teamID = teamIDCounter;
-            teamIDCounter++;
-        }
-        //Searces for a user in the user list should be moved to User class :))
-        private User SearchForUser(ulong UserDiscordID)
-        {
-            foreach (var item in User.Users)
-            {
-                if (item.DiscordID == UserDiscordID)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
+        
+        
 
         //Adds a member to the team
-        public void AddMember(User user, int roleID, string Position)
+        public void AddMember(DiscordUser user, int roleID, string Position)
         {
-            Console.WriteLine("Adding Member" + user.UserID + " to team " + teamID + " as " + Position);
+            Console.WriteLine("Adding Member" + user.Id + " to team " + teamID + " as " + Position);
             TeamMembers.Add(new TeamUser(user, teamID, roleID, Position));
         }
 
         // Overload for default position
-        public void AddMember(User user, int roleID)
+        public void AddMember(DiscordUser user, int roleID)
         {
-            Console.WriteLine("Adding Member" + user.UserID + " to team " + teamID);
+            Console.WriteLine("Adding Member" + user.ToString() + " to team " + teamID);
             TeamMembers.Add(new TeamUser(user, teamID, roleID, "Default"));
         }
 
-        public void RemoveMember(User user)
+        public void RemoveMember(DiscordUser user)
         {
-            Console.WriteLine("Removing Member" + user.UserID + " from team " + teamID);
+            Console.WriteLine("Removing Member" + user.Id + " from team " + teamID);
             foreach (var item in TeamMembers)
             {
-                if (item.user.UserID == user.UserID)
+                if (item.User.Id == user.Id)
                 {
                     TeamMembers.Remove(item);
                     break;

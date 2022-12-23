@@ -41,5 +41,23 @@ Random random = new Random();
         Console.WriteLine("add command was used by" + ctx.User.ToString());
         await ctx.Channel.SendMessageAsync((n1 + n2).ToString()).ConfigureAwait(false);       
     }
+    [Command("Stress")]
+    public async Task Stress(CommandContext ctx)
+    {
+        Console.WriteLine("Stressing Comemces");
+        for(int i = 0; i < 100000; i++)
+        {
+            for(int j = 0; j < 10000; j++)
+            {
+                
+                
+                Console.WriteLine(i + j);
+                
+            }
+            
+        }
+
+        Console.WriteLine("Stressing Complete");
+    }
     
 }

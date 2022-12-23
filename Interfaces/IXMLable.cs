@@ -59,10 +59,6 @@ namespace big
                     seralizer = new XmlSerializer(typeof(Team));
                     path = path + "Teams.xml";
                     break;
-                case "User":
-                    seralizer = new XmlSerializer(typeof(User));
-                    path = path + "Users.xml";
-                    break;
                 case "UserMMR":
                     seralizer = new XmlSerializer(typeof(UserMMR));
                     path = path + "UserMMR.xml";
@@ -102,10 +98,7 @@ namespace big
                     seralizer = new XmlSerializer(typeof(Team));
                     path = path + "Teams.xml";
                     break;
-                case "User":
-                    seralizer = new XmlSerializer(typeof(User));
-                    path = path + "Users.xml";
-                    break;
+                    
                 case "UserMMR":
                     seralizer = new XmlSerializer(typeof(UserMMR));
                     path = path + "UserMMR.xml";
