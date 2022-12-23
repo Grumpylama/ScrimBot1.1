@@ -9,12 +9,15 @@ namespace big
     {
         public DiscordUser user;
         public string hash;
+
+        public DiscordChannel channel;
        
 
-        public UserHash(DiscordUser user, string hash)
+        public UserHash(DiscordUser user, string hash, DiscordChannel channel)
         {
             this.user = user;
-            this.hash = hash;           
+            this.hash = hash;  
+            this.channel = channel;         
         }   
     }
      
