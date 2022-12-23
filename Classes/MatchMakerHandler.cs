@@ -11,7 +11,10 @@ namespace big
 
         public MatchMakerHandler(MatchMakingTeam temp)
         {
-            
+            //If the MatchMaker contains the dateTime already
+            //then it doesn't add 
+            contains(temp);
+
         }
 
         private bool contains(MatchMakingTeam temp)
@@ -27,6 +30,8 @@ namespace big
             matchMakers.Add(new MatchMaker(temp.dt));
             return false;
         }
+
+
     }
     
 }
