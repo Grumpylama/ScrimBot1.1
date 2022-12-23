@@ -41,15 +41,17 @@ namespace big
 
         
 
-        public static async Task<DiscordUser> GetUserFromHash(string hash)
+        public static async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHash(string hash)
         {
+            
             for (int i = 0; i < hashes.Count; i++)
             {
                 if (hashes[i].hash == hash)
                 {
                     DiscordUser returnUser = hashes[i].user;
+                    DiscordChannel returnChannel = hashes[i].channel;
                     hashes.Remove(hashes[i]);
-                    return returnUser;
+                    return new Tuple<DiscordUser, DiscordChannel>(returnUser, returnChannel);
                 }
             }
 
@@ -57,9 +59,9 @@ namespace big
         }
 
         
-        public static void AddUserHash(string hash , DiscordUser user)
+        public static void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)
         {
-            UserHash userHash = new UserHash(user, hash);
+            UserHash userHash = new UserHash(user, hash, channel);
             UserHash r = new UserHash();
             bool found = false;
             
