@@ -6,23 +6,38 @@ namespace big
 {
    public class MatchMaker
    {
-      public static Queue<MatchMakingTeam> matchmakingqueue = new Queue<MatchMakingTeam>();
+      public static List<MatchMakingTeam> matchmakinglist = new List<MatchMakingTeam>();
       //time, Team
       //Queue
       public MatchMaker()
       {
       }
 
-      public void addToMatchMakingQueue(DateTime dt, Team t)
+      //Tries to set up match based on sortBest()
+      //If teams don't respond within [setTimeLimit],
+      //the bot continues to the next index on list.
+      public void findMatch()
       {
-         MatchMakingTeam temp = new MatchMakingTeam(dt, t);
-         matchmakingqueue.Enqueue(temp);
+         
       }
 
-      public void removeFromMatchMakingQueue(Team t)
+      //Puts best matches in a list,
+      //sorted best - index 0, worst - last index.
+      private void sortBest()
       {
-         matchmakingqueue = new Queue<MatchMakingTeam>(matchmakingqueue.Where(
-            x => x.t.teamID != t.teamID));
+
+      }
+
+      public void addToMatchMakingList(DateTime dt, Team t)
+      {
+         MatchMakingTeam temp = new MatchMakingTeam(dt, t);
+         matchmakinglist.Add(temp);
+      }
+
+      public void removeFromMatchMakingList(Team t)
+      {
+         for(int i = 0; i < matchmakinglist.Count; i++)
+            if(matchmakinglist[i].t == t) matchmakinglist.Remove(matchmakinglist[i]);
       }
 
       
