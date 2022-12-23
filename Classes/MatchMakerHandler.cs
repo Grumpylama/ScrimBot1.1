@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace big
 {
+    /*
     public class MatchMakerHandler
     {
         public static List<MatchMaker> matchMakers = new List<MatchMaker>();
@@ -27,4 +28,5 @@ namespace big
             return false;
         }
     }
+    */
 }

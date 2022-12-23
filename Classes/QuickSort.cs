@@ -2,6 +2,7 @@ using System;
 
 namespace big
 {
+    /*
     public class QuickSort
     {
         private static void Quick_Sort(List<MatchMakingTeam> list, float left, float right) 
@@ -53,4 +54,5 @@ namespace big
             }
         }
     }
+    */
 }

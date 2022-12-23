@@ -21,6 +21,18 @@ namespace big
         public static List<Game> games = new List<Game>();
         public static List<DiscordUser> Users = new List<DiscordUser>();
 
+        public static async Task<DiscordUser> GetUserFromID(ulong id)
+        {
+            foreach (var v in Users)
+            {
+                if (v.Id == id)
+                {
+                    return v;
+                }
+            }
+            return null;
+        }
+
         
         //public InteractivityModule Interactivity = new InteractivityModule();
 
@@ -48,16 +60,23 @@ namespace big
         public static void AddUserHash(string hash , DiscordUser user)
         {
             UserHash userHash = new UserHash(user, hash);
-
+            UserHash r = new UserHash();
+            bool found = false;
+            
             foreach (var v in hashes)
             {
                 if(v.user.Id == user.Id)
                 {
-                    hashes.Remove(v);
+                    found = true;
+                    r = v;
                 }
                 
             }
-
+            if(found)
+            {
+                hashes.Remove(r);
+            }
+            
             hashes.Add(userHash);
             
         }

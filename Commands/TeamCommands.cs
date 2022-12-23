@@ -108,9 +108,101 @@ namespace big
         
         
         [Command("TransferCaptain")]
-        public async Task TransferCaptain(CommandContext ctx, DiscordUser reccepient)
+        public async Task TransferCaptain(CommandContext ctx)
         {
             Console.WriteLine("TransferCaptain command was used by " + ctx.User.ToString());
+            if (!CheckIfValid(ctx))
+            {
+                Console.WriteLine("User is not valid. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("Could not Transfer Captain! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+                return;
+            }
+
+            List<Team> teams = new List<Team>();
+            foreach(Team team in Team.Teams)
+            {
+                if(team.TeamCaptain.Id == ctx.User.Id)
+                {
+                    teams.Add(team);
+                }
+            }
+
+            if(teams.Count == 0)
+            {
+                await ctx.RespondAsync("You are not a captain of any team");
+                return;
+            }
+
+            string s = "Which team would you like to transfer captain of?";
+            int i = 1;
+            foreach(Team team in teams)
+            {
+                s += "\n" + i + ": " + team.TeamName;
+                i++;
+            }
+            await ctx.RespondAsync(s);
+
+            while (true)
+            {
+                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+                if(message.Result.Content.ToLower() == "cancel")
+                {
+                    await ctx.RespondAsync("Transfer captain canceled");
+                    return;
+                }
+
+                if (!Int32.TryParse(message.Result.Content, out i))
+                {
+                    await ctx.RespondAsync("Please enter a valid number");
+                    continue;
+                }
+
+                if (i <= 0 || i > teams.Count)
+                {
+                    await ctx.RespondAsync("Please enter a valid number");
+                    continue;
+                }
+
+                Team teamToTransfer = teams[i - 1];
+                while(true)
+                {
+                    await ctx.RespondAsync("Who would you like to transfer captain to?");
+                    var message2 = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+                    if(message.Result.Content.ToLower() == "cancel")
+                    {
+                    await ctx.RespondAsync("Transfer captain canceled");
+                    return;
+                    }
+                    bool succeed = ulong.TryParse(message2.Result.Content, out ulong id);
+                    if(!succeed)
+                    {
+                        await ctx.RespondAsync("Please enter a valid id");
+                        continue;
+                    }
+                    if(id == 0)
+                    {
+                        await ctx.RespondAsync("Please enter a valid id");
+                        continue;
+                    }
+
+                    DiscordUser userToTransfer = Dependecies.GetUserFromID(id).Result;
+
+                    if(userToTransfer == null)
+                    {
+                        await ctx.RespondAsync("User not registred");
+                        continue;
+                    }
+                    
+                    
+                }
+                
+
+
+
+                
+            }
+            
+
         }
 
         [Command("JoinTeam")]
@@ -132,6 +224,13 @@ namespace big
             string hash = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(now)));
 
             Console.WriteLine(hash);
+
+            Random r = new Random();
+            int i = r.Next(0, hash.Length - 10);
+            hash = hash.Substring(i, 10);
+           
+
+
             Dependecies.AddUserHash(hash, ctx.User);
             
             await ctx.RespondAsync("A captain can enter the following code to add you to a team: \n " + hash);
@@ -234,6 +333,8 @@ namespace big
 
         }
         
+
+
         
         //Helper Methods
         private bool CheckIfValid(CommandContext ctx)
