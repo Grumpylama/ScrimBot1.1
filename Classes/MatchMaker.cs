@@ -6,11 +6,13 @@ namespace big
 {
    public class MatchMaker
    {
-      public static List<MatchMakingTeam> matchmakinglist = new List<MatchMakingTeam>();
-      //time, Team
+      public List<MatchMakingTeam> mmtList = new List<MatchMakingTeam>();
+      public DateTime matchStart;
+      //There needs to be a datetime of when match starts
       //Queue
-      public MatchMaker()
+      public MatchMaker(DateTime dt)
       {
+         matchStart = dt;
       }
 
       //Tries to set up match based on sortBest()
@@ -21,23 +23,24 @@ namespace big
          
       }
 
-      //Puts best matches in a list,
-      //sorted best - index 0, worst - last index.
-      private void sortBest()
-      {
-
-      }
+      //Time threshhold nu time minus när man ska spela time (2h för att inte hamna i queue)
+      //List to find a team to match it to
 
       public void addToMatchMakingList(DateTime dt, Team t)
       {
          MatchMakingTeam temp = new MatchMakingTeam(dt, t);
-         matchmakinglist.Add(temp);
+         int tempus = 0;
+         for(int i = 0; i < mmtList; i++)
+         {
+            if(mmtList[i].t.teamID == t.teamID) tempus++;
+         }
+         if(tempus == 0) mmtList.Add(temp);
       }
 
       public void removeFromMatchMakingList(Team t)
       {
-         for(int i = 0; i < matchmakinglist.Count; i++)
-            if(matchmakinglist[i].t == t) matchmakinglist.Remove(matchmakinglist[i]);
+         for(int i = 0; i < mmtList.Count; i++)
+            if(mmtList[i].t == t) mmtList.Remove(mmtList[i]);
       }
 
       
