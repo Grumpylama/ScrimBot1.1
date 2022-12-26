@@ -53,7 +53,9 @@ namespace big
             }
 
             Console.WriteLine("Registering user");
-            Dependecies.Users.Add(ctx.User);           
+            
+            Dependecies.Users.Add(ctx.User);   
+            Dependecies.DMChannel.Add(ctx.User, ctx.Channel);       
             await ctx.Channel.SendMessageAsync("You are now registered!").ConfigureAwait(false);           
             
         }
@@ -164,9 +166,55 @@ namespace big
         public async Task TransferCaptain(CommandContext ctx)
         {
             
+            Console.WriteLine("TransferCaptain command was used by " + ctx.User.ToString());
+            if (!CheckIfValid(ctx))
+            {
+                Console.WriteLine("User is not valid. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("Could not Transfer Captain! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+                return;
+            }
 
+            //Getting all teams that user is captain of
+            List<Team> teams = GetUsersTeams(ctx.User);
+            if (teams == null)
+            {
+                Console.WriteLine("User has no teams. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("You have no teams!").ConfigureAwait(false);
+                return;
+            }
+
+            Team TeamToTransfer = await ChooseTeam(ctx, teams);
+
+            if (TeamToTransfer == null)
+            {
+                Console.WriteLine("User did not choose a team. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }
+
+            //Getting all users that are not captain of the team
+            List<DiscordUser> otherMembers = GetUsersNotCaptain(TeamToTransfer);
+
+            if(otherMembers.Count() == 0)
+            {
+                Console.WriteLine("User is the only member of the team. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("You are the only member of the team!").ConfigureAwait(false);
+                return;
+            }
+
+            DiscordUser newCaptain = await ChooseUser(ctx, otherMembers);
+
+            if(newCaptain == null)
+            {
+                Console.WriteLine("User did not choose a user. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }
             
-
+            TeamToTransfer.TeamCaptain = newCaptain;
+            ctx.Client.SendMessageAsync(Dependecies.DMChannel[newCaptain], "You are now the captain of " + TeamToTransfer.TeamName);
+            await ctx.Channel.SendMessageAsync("Captain was transfered!").ConfigureAwait(false);
+            return;
         }
 
         [Command("JoinTeam")]
@@ -311,7 +359,7 @@ namespace big
                     UsersTeams.Add(team);
                 }
             }
-            
+
             if(UsersTeams.Count == 0)
             {
                 Console.WriteLine("User is not a captain of any teams");
@@ -319,6 +367,20 @@ namespace big
             }
 
             return UsersTeams;
+        }
+
+        private List<DiscordUser> GetUsersNotCaptain(Team t)
+        {
+            List<DiscordUser> users = new List<DiscordUser>();
+            foreach (TeamUser member in t.TeamMembers)
+            {
+                if (member.User != t.TeamCaptain)
+                {
+                    users.Add(member.User);
+                }
+            }
+            return users;
+            
         }
 
         private async Task<Team> ChooseTeam(CommandContext ctx, List<Team> Teams)
@@ -372,6 +434,44 @@ namespace big
             return false;
         }
         
+
+        private async Task<DiscordUser> ChooseUser(CommandContext ctx, List<DiscordUser> users)
+        {
+            string s = "Choose a user";
+            int i = 1;
+            foreach (DiscordUser user in users)
+            {
+                s += "\n" + i + ": " + user.Username + "#" + user.Discriminator;
+                i++;
+            }
+            await ctx.RespondAsync(s);
+
+            while(true)
+            {
+                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+                if(message.Result.Content.ToLower().Contains("cancel"))
+                {
+                    return null;
+                }
+
+                if (Int32.TryParse(message.Result.Content, out i))
+                {
+                    if (i > 0 && i <= users.Count)
+                    {
+                        return users[i - 1];
+                    }
+                    else
+                    {
+                        await ctx.RespondAsync("Please enter a valid number");
+                    }
+                }
+                else
+                {
+                    await ctx.RespondAsync("Please enter a valid number");
+                }
+            }
+        }
+
+
     }
-        
 }

@@ -21,7 +21,14 @@ namespace big
         public static List<Game> games = new List<Game>();
         public static List<DiscordUser> Users = new List<DiscordUser>();
 
-        public static async Task<DiscordUser> GetUserFromID(ulong id)
+        public static Dictionary<DiscordUser, DiscordChannel> DMChannel = new Dictionary<DiscordUser, DiscordChannel>();
+        
+        
+        
+        
+        
+        
+        public static DiscordUser GetUserFromID(ulong id)
         {
             foreach (var v in Users)
             {
@@ -32,6 +39,20 @@ namespace big
             }
             return null;
         }
+
+        public static async Task<DiscordChannel> GetDMChannel(DiscordUser user)
+        {
+            if (DMChannel.ContainsKey(user))
+            {
+                return DMChannel[user];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        
 
         
         //public InteractivityModule Interactivity = new InteractivityModule();

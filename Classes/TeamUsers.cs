@@ -16,6 +16,8 @@ namespace big
         //Position of the user in the team (Top, Jungle, Mid, ADC, Support)
         public string Position {get; set;}
 
+        
+
 
         public TeamUser(DiscordUser user, int teamID, int roleID, string Position)
         {
@@ -24,6 +26,8 @@ namespace big
             this.roleID = roleID;
             this.Position = Position;
         }
+
+        
         
     }
 }

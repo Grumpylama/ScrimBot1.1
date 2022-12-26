@@ -41,7 +41,7 @@ namespace big
             {
                 Token = configJson.Token,
                 TokenType = TokenType.Bot,
-
+                
             };
 
             Client = new DiscordClient(config);
