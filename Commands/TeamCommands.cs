@@ -234,7 +234,7 @@ namespace big
 
 
             Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, 0, "Member"));
-            ctx.Client.SendMessageAsync(channel, "You were added to the team: " + Team.TeamName).ConfigureAwait(false);
+            ctx.Client.SendMessageAsync(channel, "You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator).ConfigureAwait(false);
             await ctx.RespondAsync("User was added to team: " + Team.TeamName);
       
         }
