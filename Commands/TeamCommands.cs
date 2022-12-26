@@ -59,6 +59,24 @@ namespace big
         }
 
 
+        [Command("DeleteTeam")]
+        public async Task DeleteTeam(CommandContext ctx, string TeamName)
+        {
+            Console.WriteLine("DeleteTeam command was used by " + ctx.User.ToString());
+            if (!CheckIfValid(ctx))
+            {
+                Console.WriteLine("User is not valid. Canceling DeleteTeam");
+                await ctx.Channel.SendMessageAsync("Could not Delete Team! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+                return;
+            }
+
+
+
+            
+
+            
+        }
+
         [Command("CreateTeam")]
         public async Task CreateTeam(CommandContext ctx, string TeamName)
         {
@@ -111,7 +129,7 @@ namespace big
         public async Task TransferCaptain(CommandContext ctx)
         {
             
-            
+
             
 
         }
@@ -182,14 +200,7 @@ namespace big
 
             Console.WriteLine("User is not trying to add himself/herself to a team");
 
-            List<Team> UsersTeams = new List<Team>();
-            foreach(Team team in Team.Teams)
-            {
-                if(team.TeamCaptain.Id == ctx.User.Id)
-                {
-                    UsersTeams.Add(team);
-                }
-            }
+            List<Team> UsersTeams = GetUsersTeams(ctx.User);
 
             Console.WriteLine("User has " + UsersTeams.Count + " teams");
             if(UsersTeams.Count == 0)
@@ -207,44 +218,25 @@ namespace big
                 i++;
             }
 
-            
+            Console.WriteLine("Getting team from user");
+            Team Team = await ChooseTeam(ctx, UsersTeams);
+            if (ChooseTeam == null)
+                return;
 
-            while (true)
+            //Check if user is already in team
+            if (isInTeam(userToAdd, Team))
             {
-                await ctx.RespondAsync(s);
-                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
-                if (Int32.TryParse(message.Result.Content, out i))
-                {
-                    if (i > 0 && i <= UsersTeams.Count)
-                    {
-                        foreach(TeamUser tu in UsersTeams[i-1].TeamMembers)
-                        {
-                            if(tu.User.Id == userToAdd.Id)
-                            {
-                                await ctx.RespondAsync(userToAdd.Username + " is already on team " + UsersTeams[i - 1].TeamName);
-                                return;
-                            }
-                        }
-                     
-
-                        UsersTeams[i - 1].AddMember(userToAdd, 0);
-                        await ctx.Client.SendMessageAsync(channel, "You were added to the team: " + UsersTeams[i - 1].TeamName).ConfigureAwait(false);
-                        await ctx.RespondAsync(userToAdd.Username + " was added to team " + UsersTeams[i - 1].TeamName).ConfigureAwait(false);
-                        return;
-                    }
-                    else
-                    {
-                        await ctx.RespondAsync("Please enter a valid number");
-                    }
-                }
-                else
-                {
-                    await ctx.RespondAsync("Please enter a valid number");
-                }
-
+                await ctx.RespondAsync("User is already in team");
+                return;
             }
+            
+            Console.WriteLine("Adding user to team");
 
 
+            Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, 0, "Member"));
+            ctx.Client.SendMessageAsync(channel, "You were added to the team: " + Team.TeamName).ConfigureAwait(false);
+            await ctx.RespondAsync("User was added to team: " + Team.TeamName);
+      
         }
         
 
@@ -274,6 +266,71 @@ namespace big
             return false;
         }
 
+        private List<Team> GetUsersTeams(DiscordUser user)
+        {
+            List<Team> UsersTeams = new List<Team>();
+            foreach (Team team in Team.Teams)
+            {
+                if (team.TeamCaptain.Id == user.Id)
+                {
+                    UsersTeams.Add(team);
+                }
+            }
 
+            return UsersTeams;
+        }
+
+        private async Task<Team> ChooseTeam(CommandContext ctx, List<Team> Teams)
+        {
+            string s = "Which team would you like to join?";
+            int i = 1;
+            foreach (Team team in Teams)
+            {
+                s += "\n" + i + ": " + team.TeamName;
+                i++;
+            }
+
+            while (true)
+            {
+                await ctx.RespondAsync(s);
+                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+                if (message.Result.Content.ToLower().Contains("cancel"))
+                {
+                    await ctx.RespondAsync("Canceled");
+                    return null;
+                }
+                if (Int32.TryParse(message.Result.Content, out i))
+                {
+                    if (i > 0 && i <= Teams.Count)
+                    {
+                        return Teams[i - 1];
+                    }
+                    else
+                    {
+                        await ctx.RespondAsync("Please enter a valid number");
+                    }
+                }
+                else
+                {
+                    await ctx.RespondAsync("Please enter a valid number");
+                }
+
+            }
+        }
+
+        private bool isInTeam(DiscordUser user, Team team)
+        {
+            foreach (TeamUser tu in team.TeamMembers)
+            {
+                if (tu.User.Id == user.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
     }
+        
 }
