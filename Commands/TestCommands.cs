@@ -1,19 +1,9 @@
-using DSharpPlus;
-using DSharpPlus.CommandsNext;
-using DSharpPlus.CommandsNext.Attributes;
-using DSharpPlus.EventArgs;
-using DSharpPlus.Interactivity;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 
 public class TestCommands : BaseCommandModule
 {
 
-Random random = new Random();
+    Random random = new Random();
 
     [Command("ping")]
     public async Task Ping(CommandContext ctx)
