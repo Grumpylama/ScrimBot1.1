@@ -60,7 +60,7 @@ namespace big
 
 
         [Command("DeleteTeam")]
-        public async Task DeleteTeam(CommandContext ctx, string TeamName)
+        public async Task DeleteTeam(CommandContext ctx)
         {
             Console.WriteLine("DeleteTeam command was used by " + ctx.User.ToString());
             if (!CheckIfValid(ctx))
@@ -71,9 +71,44 @@ namespace big
             }
 
 
+            //Getting all teams that user is captain of
+            List<Team> teams = GetUsersTeams(ctx.User);
+            if(teams == null)
+            {
+                Console.WriteLine("User has no teams. Canceling DeleteTeam");
+                await ctx.Channel.SendMessageAsync("You have no teams!").ConfigureAwait(false);
+                return;
+            }
 
-            
 
+            //Chosing what team to delete
+            Team team = await ChooseTeam(ctx, teams);
+
+            if(team == null)
+            {
+                Console.WriteLine("User did not choose a team. Canceling DeleteTeam");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            } 
+
+
+            //Confirming deletion
+            await ctx.Channel.SendMessageAsync("Are you sure you want to delete " + team.TeamName + "? \n To confirm write \"CONFIRM\"").ConfigureAwait(false);
+            var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+
+            if (message.Result.Content == "CONFIRM")
+            {
+                Console.WriteLine("User confirmed deletion of team");
+                Team.Teams.Remove(team);
+                await ctx.Channel.SendMessageAsync("Team deleted!").ConfigureAwait(false);
+                return;
+            }            
+
+
+            //Canceling deletion        
+            Console.WriteLine("User did not confirm deletion of team");
+            await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);   
+            return;         
             
         }
 
@@ -276,13 +311,19 @@ namespace big
                     UsersTeams.Add(team);
                 }
             }
+            
+            if(UsersTeams.Count == 0)
+            {
+                Console.WriteLine("User is not a captain of any teams");
+                return null;
+            }
 
             return UsersTeams;
         }
 
         private async Task<Team> ChooseTeam(CommandContext ctx, List<Team> Teams)
         {
-            string s = "Which team would you like to join?";
+            string s = "Which team?";
             int i = 1;
             foreach (Team team in Teams)
             {
