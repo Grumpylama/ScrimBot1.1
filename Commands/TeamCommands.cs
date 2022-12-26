@@ -210,7 +210,7 @@ namespace big
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
                 return;
             }
-            
+
             TeamToTransfer.TeamCaptain = newCaptain;
             ctx.Client.SendMessageAsync(Dependecies.DMChannel[newCaptain], "You are now the captain of " + TeamToTransfer.TeamName);
             await ctx.Channel.SendMessageAsync("Captain was transfered!").ConfigureAwait(false);
@@ -322,7 +322,50 @@ namespace big
       
         }
         
+        [Command("LeaveTeam")]
+        public async Task LeaveTeam(CommandContext ctx)
+        {
+            Console.WriteLine("LeaveTeam command was used by " + ctx.User.ToString());
+            if (!CheckIfValid(ctx))
+            {
+                Console.WriteLine("User is not valid. Canceling LeaveTeam");
+                await ctx.Channel.SendMessageAsync("Could not Leave Team! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+                return;
+            }
 
+            //Getting all the teams the user is in
+            var teams = GetMemberTeams(ctx.User);
+            if(teams.Count == 0)
+            {
+                await ctx.RespondAsync("You are not in any teams");
+                return;
+            }
+
+            //Getting what team the user wants to leave
+            Team team = await ChooseTeam(ctx, teams);
+            if (team == null)
+                return;
+            if(team.TeamCaptain.Id == ctx.User.Id)
+            {
+                await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
+                return;
+            }
+
+            //Getting confirmation from user
+            await ctx.RespondAsync("Are you sure you want to leave the team: " + team.TeamName + "?" + "\n Type \"CONFIRM\" to leave the team");
+            var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id);
+            if(message.Result.Content != "CONFIRM")
+            {
+                await ctx.RespondAsync("You did not type \"CONFIRM\". Cancelling LeaveTeam");
+                return;
+            }
+
+            //Removing user from team and notifying Captain
+            team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
+            ctx.Client.SendMessageAsync(Dependecies.DMChannel[team.TeamCaptain], ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
+            await ctx.RespondAsync("You have left the team: " + team.TeamName);
+            return;
+        }
 
         
         //Helper Methods
@@ -434,7 +477,22 @@ namespace big
             return false;
         }
         
+        private List<Team> GetMemberTeams(DiscordUser user)
+        {
+            List<Team> teams = new List<Team>();
+            foreach (Team team in Team.Teams)
+            {
+                foreach (TeamUser tu in team.TeamMembers)
+                {
+                    if (tu.User.Id == user.Id)
+                    {
+                        teams.Add(team);
+                    }
+                }
+            }
 
+            return teams;
+        }
         private async Task<DiscordUser> ChooseUser(CommandContext ctx, List<DiscordUser> users)
         {
             string s = "Choose a user";
