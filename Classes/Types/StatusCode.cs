@@ -1,4 +1,4 @@
-struct StatusCode
+public struct StatusCode
 {
     bool success;
     string message;
