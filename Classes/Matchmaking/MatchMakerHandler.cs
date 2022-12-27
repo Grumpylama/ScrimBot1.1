@@ -12,17 +12,22 @@ namespace big
         public MatchMakerHandler()
         {
         }
+
+        public async Task findMatch()
+        {
+
+        }
         
-        public void addMatchMakingTeam(MatchMakingTeam temp)
+        public StatusCode addMatchMakingTeam(MatchMakingTeam temp)
         {
             if(contains(temp))
             {
-                //Meddela kaptenen om att ett lag har matchats
-                //Fråga om de vill acceptera elr inte (visa public MMR av andra laget)
+                return new StatusCode(true, "You're team has been added to a matchmaker. \n You will be notified when you have been matchmade!");
             }
             else
             {
                 addMatchMaker(new MatchMaker(temp));
+                return new StatusCode(false, "You have been added to the matchmaking queue. \n You will be notified when you have been matchmade!");
             }
         }
 
