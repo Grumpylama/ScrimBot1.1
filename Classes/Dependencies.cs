@@ -17,6 +17,8 @@ namespace big
     public static class Dependecies
     {
         public static DiscordClient Client;
+
+        public static MatchMakerHandler MatchMakerHandler = new MatchMakerHandler();
         public static List<Team> Teams = new List<Team>();
         public static List<Game> Games = new List<Game>();
         public static List<DiscordUser> Users = new List<DiscordUser>();
@@ -42,6 +44,11 @@ namespace big
             {
                 return null;
             }
+        }
+
+        public static async Task LoadGames(List<Game> games)
+        {
+            Games = games;
         }
 
         public async static Task<DiscordUser> GetDiscordUserFromID(ulong id)

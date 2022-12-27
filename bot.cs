@@ -70,6 +70,7 @@ namespace big
 
             await Client.ConnectAsync();
             Dependecies.Client = Client;
+
             await FileManager.StartUp();
             
             Console.WriteLine("Bot is set up and running");

@@ -20,6 +20,25 @@ namespace big
         public float MMR { get; set; }
         public Game game { get; private set; }
 
+
+        public SaveableTeam ToSavable()
+        {
+            SaveableTeam savableTeam = new SaveableTeam();
+            savableTeam.ID = this.teamID;
+            savableTeam.CaptainID = this.TeamCaptain.Id;
+            savableTeam.MMR = this.MMR;
+            savableTeam.gameID = this.game.GameID;
+            savableTeam.TeamName = this.TeamName;
+
+            foreach (TeamUser teamUser in this.TeamMembers)
+            {
+                savableTeam.TeamMembers.Add(teamUser.User.Id);
+            }
+
+            return savableTeam;
+        }
+
+
         //Constructor for creating a team with members
         public Team(Game game, string TeamName, DiscordUser TeamCaptain, List<TeamUser> members)
         {
@@ -27,7 +46,7 @@ namespace big
             this.TeamName = TeamName;
             this.TeamCaptain = TeamCaptain;
             this.TeamMembers = members;
-            
+
             //Change this later to actual starting MMR
             this.MMR = 0;
             this.teamID = teamIDCounter;           
