@@ -3,9 +3,9 @@ using System;
 namespace big
 {
     
-    public class QuickSort
+    public class Sort
     {
-        private static void Quick_Sort(List<MatchMakingTeam> list, int left, int right) 
+        public static void Quick_Sort(List<MatchMakingTeam> list, int left, int right) 
         {
             if (left < right)
             {
@@ -50,6 +50,19 @@ namespace big
                 else 
                 {
                     return right;
+                }
+            }
+        }
+
+        public static void InsertionSort(List<MatchMakingTeam> list)
+        {
+            for(int i = 1; i < list.Count; i++)
+            {
+                if(list[i-1].t.MMR > list[i].t.MMR)
+                {
+                    MatchMakingTeam temp = list[i-1];
+                    list[i-1] = list[i];
+                    list[i] = temp;
                 }
             }
         }
