@@ -11,9 +11,9 @@ namespace big
       public DateTime matchStart;
       //There needs to be a datetime of when match starts
       //Queue
-      public MatchMaker(DateTime dt)
+      public MatchMaker(MatchMakingTeam dt)
       {
-         matchStart = dt;
+         matchStart = dt.dt;
       }
 
       //Tries to set up match based on sortBest()
@@ -35,6 +35,7 @@ namespace big
             if(mmtList[i].t.teamID == temp.t.teamID) tempus++;
          }
          if(tempus == 0) mmtList.Add(temp);
+         Sort.InsertionSort(mmtList);
       }
 
       public void removeFromMatchMakingList(Team t)
@@ -42,8 +43,6 @@ namespace big
          for(int i = 0; i < mmtList.Count; i++)
             if(mmtList[i].t == t) mmtList.Remove(mmtList[i]);
       }
-
-      
    }
    
 }

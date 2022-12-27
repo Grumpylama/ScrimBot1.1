@@ -7,11 +7,22 @@ namespace big
     {
         public DateTime dt;
         public Team t;
+        public bool active = true;
 
         public MatchMakingTeam(DateTime dt, Team t)
         {
             this.dt = dt;
             this.t = t;
+        }
+
+        public void setInactive()
+        {
+            active = false;
+        }
+
+        public void setActive()
+        {
+            active = true;
         }
     }
 }

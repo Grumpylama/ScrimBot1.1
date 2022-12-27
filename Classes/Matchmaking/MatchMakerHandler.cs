@@ -13,25 +13,35 @@ namespace big
         {
             //If the MatchMaker contains the dateTime already
             //then it doesn't add 
-            contains(temp);
-
+            if(!contains(temp))
+            {
+                addMatchMaker(new MatchMaker(temp));
+            }
         }
 
         private bool contains(MatchMakingTeam temp)
         {
-            foreach(MatchMaker m in matchMakers)
+            if(temp.active == true)
             {
-                if(m.matchStart == temp.dt) 
+                foreach(MatchMaker m in matchMakers)
                 {
-                    m.addToMatchMakingList(temp);
-                    return true;
+                    if(m.mmtList.BinarySearch(temp) > 0)
+                    {
+                        if(m.matchStart == temp.dt) 
+                        {
+                            m.addToMatchMakingList(temp);
+                            return true;
+                        }
+                    }
                 }
             }
-            matchMakers.Add(new MatchMaker(temp.dt));
             return false;
         }
 
-
+        private void addMatchMaker(MatchMaker temp)
+        {
+            matchMakers.Add(temp);
+        }
     }
     
 }
