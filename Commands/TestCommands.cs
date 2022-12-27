@@ -9,6 +9,7 @@ public class TestCommands : BaseCommandModule
     public async Task Ping(CommandContext ctx)
     {
         Console.WriteLine("Ping command was used by " + ctx.User.ToString());
+        
         await ctx.Channel.SendMessageAsync("Pong").ConfigureAwait(false);
     }
 

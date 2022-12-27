@@ -81,7 +81,7 @@ namespace big
             if (message.Result.Content == "CONFIRM")
             {
                 Console.WriteLine("User confirmed deletion of team");
-                Team.Teams.Remove(team);
+                Dependecies.Teams.Remove(team);
                 await ctx.Channel.SendMessageAsync("Team deleted!").ConfigureAwait(false);
                 return;
             }            
@@ -122,7 +122,7 @@ namespace big
                 {
                     if(i > 0 && i <= Game.Games.Count)
                     {
-                        Team.Teams.Add(new Team(Game.Games[i - 1], TeamName, ctx.User));
+                        Dependecies.Teams.Add(new Team(Game.Games[i - 1], TeamName, ctx.User));
                         await ctx.RespondAsync("Team named " + TeamName + " was created for game " + Game.Games[i - 1].GameName);
                         return;
                     }
@@ -373,7 +373,7 @@ namespace big
         private List<Team> GetUsersTeams(DiscordUser user)
         {
             List<Team> UsersTeams = new List<Team>();
-            foreach (Team team in Team.Teams)
+            foreach (Team team in Dependecies.Teams)
             {
                 if (team.TeamCaptain.Id == user.Id)
                 {
@@ -458,7 +458,7 @@ namespace big
         private List<Team> GetMemberTeams(DiscordUser user)
         {
             List<Team> teams = new List<Team>();
-            foreach (Team team in Team.Teams)
+            foreach (Team team in Dependecies.Teams)
             {
                 foreach (TeamUser tu in team.TeamMembers)
                 {

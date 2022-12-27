@@ -16,6 +16,13 @@ namespace big
             this.GameAPI = GameAPI;
         }
 
+        public Game(string GameName, int GameID, string? GameAPI)
+        {
+            this.GameName = GameName;
+            this.GameID = GameID;
+            this.GameAPI = GameAPI;
+        }
+
 
         //Empty Constructor for default values in case of error and so it can be seralized
         public Game()

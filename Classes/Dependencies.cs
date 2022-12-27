@@ -17,9 +17,11 @@ namespace big
     public static class Dependecies
     {
         
-        public static List<Team> teams = new List<Team>();
-        public static List<Game> games = new List<Game>();
+        public static List<Team> Teams = new List<Team>();
+        public static List<Game> Games = new List<Game>();
         public static List<DiscordUser> Users = new List<DiscordUser>();
+
+        public static List<SaveableUser> UserIDs = new List<SaveableUser>();
 
         public static Dictionary<DiscordUser, DiscordChannel> DMChannel = new Dictionary<DiscordUser, DiscordChannel>();
         

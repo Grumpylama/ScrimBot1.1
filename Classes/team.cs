@@ -8,7 +8,7 @@ namespace big
 {
     public class Team
     {
-        public static List<Team> Teams = new List<Team>();
+        
 
         public static int teamIDCounter = 0;   
         public string TeamName { get; set; }
