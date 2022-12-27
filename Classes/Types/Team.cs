@@ -27,6 +27,7 @@ namespace big
             this.TeamName = TeamName;
             this.TeamCaptain = TeamCaptain;
             this.TeamMembers = members;
+            
             //Change this later to actual starting MMR
             this.MMR = 0;
             this.teamID = teamIDCounter;           

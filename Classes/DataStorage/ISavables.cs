@@ -20,30 +20,21 @@ namespace big
     {
         public int ID { get; set; }
         public ulong CaptainID { get; set; }
-        public List<ulong> TeamMembers = new List<ulong>();
-        public float MMR;
-        public int gameID;
-        public string TeamName;
+        public List<ulong> TeamMembers { get; set; }
+        public float MMR { get; set; }
+        public int gameID { get; set; }
+        public string TeamName { get; set;}
 
-        public SaveableTeam(){}
-
-
-    }
-
-    public class SavableGame : ISavable 
-    {
-        string gameName;
-
-        public int ID;
-
-        public string GameAPI;
-
-        public SavableGame()
+        public SaveableTeam()
         {
-            
+
+            TeamMembers = new List<ulong>();
         }
 
+
     }
+
+    
 
     public class SavableTeamUser : ISavable 
     {

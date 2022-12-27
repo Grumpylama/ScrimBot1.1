@@ -16,7 +16,7 @@ namespace big
     
     public static class Dependecies
     {
-        
+        public static DiscordClient Client;
         public static List<Team> Teams = new List<Team>();
         public static List<Game> Games = new List<Game>();
         public static List<DiscordUser> Users = new List<DiscordUser>();
@@ -30,17 +30,7 @@ namespace big
         
         
         
-        public static DiscordUser GetUserFromID(ulong id)
-        {
-            foreach (var v in Users)
-            {
-                if (v.Id == id)
-                {
-                    return v;
-                }
-            }
-            return null;
-        }
+        
 
         public static async Task<DiscordChannel> GetDMChannel(DiscordUser user)
         {
@@ -53,6 +43,28 @@ namespace big
                 return null;
             }
         }
+
+        public async static Task<DiscordUser> GetDiscordUserFromID(ulong id)
+        {
+            return await Client.GetUserAsync(id);
+        }
+
+        public static async Task LoadUsers(List<SaveableUser> users)
+        {
+            List<Task<DiscordUser>> tasks = new List<Task<DiscordUser>>();
+            foreach (var user in users)
+            {
+                tasks.Add(GetDiscordUserFromID(user.ID));
+            }
+
+            foreach(var task in tasks)
+            {
+                Users.Add(await task);
+            }
+
+            
+        }
+        
 
         
 
