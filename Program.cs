@@ -24,13 +24,15 @@ namespace big
         public static void Main(string[] args)
         {
 
-            FileManager.StartUp();
+            
 
-            var bot = new Bot();
+            var bot = new Bot();            
+            
+            bot.runAsync().GetAwaiter().GetResult();
 
             
 
-
+            Console.WriteLine("Bot is ready to go!");
             List<Team> teams = new List<Team>();
             Dependecies.Games.Add(new Game("Game1", null));
             Dependecies.Games.Add(new Game("Game2", null));
@@ -48,7 +50,7 @@ namespace big
 
 
 
-            bot.runAsync().GetAwaiter().GetResult();
+            
 
         }
     }

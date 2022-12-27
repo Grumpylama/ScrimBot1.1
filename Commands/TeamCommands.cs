@@ -508,6 +508,14 @@ namespace big
             }
         }
 
+        private bool ValidResponse(string response)
+        {
+            if(response.StartsWith("!"))
+            {
+                return false;
+            }
+            return true;
+        }
 
     }
 }

@@ -4,9 +4,11 @@ namespace big
     {
         
         public string GameName { get; set; }
-        public int GameID { get; set; }
-        public static int GameIDCounter = 0;
+        public int GameID { get; set; }   
+        public static int GameIDCounter = 0;     
         public string? GameAPI { get; set; }
+
+        
 
         public Game(string GameName, string? GameAPI)
         {

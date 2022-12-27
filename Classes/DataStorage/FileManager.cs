@@ -2,20 +2,35 @@ namespace big
 {
     public class FileManager
     {
-        public static void StartUp()
+        public static async Task StartUp()
         {
             string startpath = Environment.CurrentDirectory;
+
             Console.WriteLine(startpath);
 
-            //Load All files
 
+            List<Task> tasks = new List<Task>();
+            //Load All files
+            
             //Load Users
+            tasks.Add(Dependecies.LoadUsers(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
+            //tasks.Add(Dependecies.LoadGames(GenericTextFileProcessor.LoadFromTextFile<SavableGame>(startpath + "/Data/Games.csv")));
+            List<TeamUser> teamUsers = new List<TeamUser>();
+            //tasks.Add(Dependecies.LoadTeams(GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv")));
+
+
+            await Task.WhenAll(tasks);
+
+
+            
 
 
             //Load Games
             //Load Teams
 
         }
+
+       
 
 
 
@@ -24,6 +39,8 @@ namespace big
 
             string startpath = Environment.CurrentDirectory + "\\Data";
             Console.WriteLine(startpath);
+
+
             Console.WriteLine("Saving All Files");
             //Save All files
             //Saving Users
@@ -34,7 +51,7 @@ namespace big
             }
 
             Console.WriteLine(saveableUsers.Count);
-            GenericTextFileProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.txt");
+            GenericTextFileProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
 
 
 

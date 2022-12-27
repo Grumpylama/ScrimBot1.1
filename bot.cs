@@ -29,6 +29,8 @@ namespace big
         
         public async Task runAsync()
         {
+            
+            
 
             var json = String.Empty;
             using (var fs = File.OpenRead("BotConfig.json"))
@@ -67,6 +69,9 @@ namespace big
             Commands.RegisterCommands<TeamCommands>();
 
             await Client.ConnectAsync();
+            Dependecies.Client = Client;
+            await FileManager.StartUp();
+            
             Console.WriteLine("Bot is set up and running");
             await Task.Delay(-1);
 
@@ -84,6 +89,10 @@ namespace big
         //    var response = await httpclient.GetAsync("https://google.com");
         //    Console.WriteLine(response.StatusCode);
         //}
+
+
+
+         
 
     }
 }
