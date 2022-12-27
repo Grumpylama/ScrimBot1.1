@@ -4,7 +4,8 @@ namespace big
     {
         public static void StartUp()
         {
-
+            string startpath = Environment.CurrentDirectory;
+            Console.WriteLine(startpath);
 
             //Load All files
 
@@ -20,13 +21,20 @@ namespace big
 
         public static void SaveAll()
         {
+
+            string startpath = Environment.CurrentDirectory + "\\Data";
+            Console.WriteLine(startpath);
+            Console.WriteLine("Saving All Files");
             //Save All files
             //Saving Users
+            List<SaveableUser> saveableUsers = new List<SaveableUser>();
             foreach (var u in Dependecies.Users)
             {
-                Dependecies.UserIDs.Add(new SaveableUser(u.Id));
+                saveableUsers.Add(new SaveableUser(u.Id));
             }
-            GenericTextFileProcessor.SaveToTextFile<SaveableUser>(Dependecies.UserIDs, "Users.txt");
+
+            Console.WriteLine(saveableUsers.Count);
+            GenericTextFileProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.txt");
 
 
 

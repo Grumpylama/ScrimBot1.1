@@ -4,7 +4,7 @@ namespace big
 {
     public class SaveableUser : ISavable
     {
-        public ulong ID;
+        public ulong ID { get; set; }
         public SaveableUser(ulong ID)
         {
             this.ID = ID;
@@ -18,8 +18,8 @@ namespace big
 
     public class SaveableTeam : ISavable
     {
-        public int ID;
-        public ulong CaptainID;
+        public int ID { get; set; }
+        public ulong CaptainID { get; set; }
         public List<ulong> TeamMembers = new List<ulong>();
         public float MMR;
         public int gameID;

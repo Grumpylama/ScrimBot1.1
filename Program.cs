@@ -23,7 +23,12 @@ namespace big
     {
         public static void Main(string[] args)
         {
+
+            FileManager.StartUp();
+
             var bot = new Bot();
+
+            
 
 
             List<Team> teams = new List<Team>();
@@ -32,7 +37,17 @@ namespace big
             Dependecies.Games.Add(new Game("Game3", null));
             Dependecies.Games.Add(new Game("Game4", null));
 
-            
+            SaveableUser user = new SaveableUser(123);
+            SaveableUser user2 = new SaveableUser(124);
+            SaveableUser user3 = new SaveableUser(125);
+            SaveableUser user4 = new SaveableUser(126);
+            SaveableUser user5 = new SaveableUser(127);
+
+            var cols = user.GetType().GetProperties();
+
+
+
+
             bot.runAsync().GetAwaiter().GetResult();
 
         }
