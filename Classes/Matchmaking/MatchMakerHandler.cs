@@ -9,11 +9,18 @@ namespace big
     {
         public static List<MatchMaker> matchMakers = new List<MatchMaker>();
 
-        public MatchMakerHandler(MatchMakingTeam temp)
+        public MatchMakerHandler()
         {
-            //If the MatchMaker contains the dateTime already
-            //then it doesn't add 
-            if(!contains(temp))
+        }
+        
+        public void addMatchMakingTeam(MatchMakingTeam temp)
+        {
+            if(contains(temp))
+            {
+                //Meddela kaptenen om att ett lag har matchats
+                //Fråga om de vill acceptera elr inte (visa public MMR av andra laget)
+            }
+            else
             {
                 addMatchMaker(new MatchMaker(temp));
             }
@@ -41,6 +48,11 @@ namespace big
         private void addMatchMaker(MatchMaker temp)
         {
             matchMakers.Add(temp);
+        }
+
+        private void removeMatchMaker(MatchMaker temp)
+        {
+
         }
     }
     
