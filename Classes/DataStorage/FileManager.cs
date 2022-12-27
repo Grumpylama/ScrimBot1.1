@@ -12,21 +12,20 @@ namespace big
             List<Task> tasks = new List<Task>();
             //Load All files
             
-            //Load Users
+            //Starts userloading
             tasks.Add(Dependecies.LoadUsers(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
-            //tasks.Add(Dependecies.LoadGames(GenericTextFileProcessor.LoadFromTextFile<SavableGame>(startpath + "/Data/Games.csv")));
+
+            //tasks.Add(Dependecies.LoadGames(GenericTextFileProcessor.LoadFromTextFile<Game>(startpath + "/Data/Games.csv")));
             List<TeamUser> teamUsers = new List<TeamUser>();
             //tasks.Add(Dependecies.LoadTeams(GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv")));
 
 
+            //Wait for all tasks to finish before returning
             await Task.WhenAll(tasks);
-
+           
+            return;
 
             
-
-
-            //Load Games
-            //Load Teams
 
         }
 
@@ -50,7 +49,7 @@ namespace big
                 saveableUsers.Add(new SaveableUser(u.Id));
             }
 
-            Console.WriteLine(saveableUsers.Count);
+            GenericTextFileProcessor.SaveToTextFile<Game>(Dependecies.Games, startpath + "/Games.csv");
             GenericTextFileProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
 
 

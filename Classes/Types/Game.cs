@@ -1,6 +1,6 @@
 namespace big
 {
-    public class Game
+    public class Game : ISavable
     {
         
         public string GameName { get; set; }
