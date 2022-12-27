@@ -107,7 +107,7 @@ namespace big
                                       
             string s = "What game will you be playing?";
             int i = 1;
-            foreach(Game game in Game.Games)
+            foreach(Game game in Dependecies.Games)
             {
                 s += "\n" + i + ": " + game.GameName;
                 i++;
@@ -120,10 +120,10 @@ namespace big
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);            
                 if(Int32.TryParse(message.Result.Content, out i))
                 {
-                    if(i > 0 && i <= Game.Games.Count)
+                    if(i > 0 && i <= Dependecies.Games.Count)
                     {
-                        Dependecies.Teams.Add(new Team(Game.Games[i - 1], TeamName, ctx.User));
-                        await ctx.RespondAsync("Team named " + TeamName + " was created for game " + Game.Games[i - 1].GameName);
+                        Dependecies.Teams.Add(new Team(Dependecies.Games[i - 1], TeamName, ctx.User));
+                        await ctx.RespondAsync("Team named " + TeamName + " was created for game " + Dependecies.Games[i - 1].GameName);
                         return;
                     }
                     else

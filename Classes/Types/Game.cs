@@ -2,7 +2,7 @@ namespace big
 {
     public class Game
     {
-        public static List<Game> Games = new List<Game>();
+        
         public string GameName { get; set; }
         public int GameID { get; set; }
         public static int GameIDCounter = 0;

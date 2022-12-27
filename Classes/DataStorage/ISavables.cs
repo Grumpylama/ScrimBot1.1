@@ -1,3 +1,5 @@
+
+
 namespace big
 {
     public class SaveableUser : ISavable
@@ -6,6 +8,11 @@ namespace big
         public SaveableUser(ulong ID)
         {
             this.ID = ID;
+        }
+
+        public SaveableUser()
+        {
+            
         }
     }
 
@@ -18,6 +25,23 @@ namespace big
         public int gameID;
         public string TeamName;
 
+        public SaveableTeam(){}
+
+
+    }
+
+    public class SavableGame : ISavable 
+    {
+        string gameName;
+
+        public int ID;
+
+        public string GameAPI;
+
+        public SavableGame()
+        {
+            
+        }
 
     }
 
@@ -44,5 +68,7 @@ namespace big
     }
 
     
+
+
     
 }

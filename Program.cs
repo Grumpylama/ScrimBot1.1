@@ -27,10 +27,10 @@ namespace big
 
 
             List<Team> teams = new List<Team>();
-            Game.Games.Add(new Game("Game1", null));
-            Game.Games.Add(new Game("Game2", null));
-            Game.Games.Add(new Game("Game3", null));
-            Game.Games.Add(new Game("Game4", null));
+            Dependecies.Games.Add(new Game("Game1", null));
+            Dependecies.Games.Add(new Game("Game2", null));
+            Dependecies.Games.Add(new Game("Game3", null));
+            Dependecies.Games.Add(new Game("Game4", null));
 
             
             bot.runAsync().GetAwaiter().GetResult();
