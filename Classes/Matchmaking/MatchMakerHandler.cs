@@ -52,7 +52,7 @@ namespace big
 
         private void removeMatchMaker(MatchMaker temp)
         {
-
+            matchMakers.Remove(temp);
         }
     }
     
