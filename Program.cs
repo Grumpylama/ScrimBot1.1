@@ -25,32 +25,9 @@ namespace big
         {
 
             
-
             var bot = new Bot();            
             
             bot.runAsync().GetAwaiter().GetResult();
-
-            
-
-            Console.WriteLine("Bot is ready to go!");
-            List<Team> teams = new List<Team>();
-            Dependecies.Games.Add(new Game("Game1", null));
-            Dependecies.Games.Add(new Game("Game2", null));
-            Dependecies.Games.Add(new Game("Game3", null));
-            Dependecies.Games.Add(new Game("Game4", null));
-
-            SaveableUser user = new SaveableUser(123);
-            SaveableUser user2 = new SaveableUser(124);
-            SaveableUser user3 = new SaveableUser(125);
-            SaveableUser user4 = new SaveableUser(126);
-            SaveableUser user5 = new SaveableUser(127);
-
-            var cols = user.GetType().GetProperties();
-
-
-
-
-            
 
         }
     }

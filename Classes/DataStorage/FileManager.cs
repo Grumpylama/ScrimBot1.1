@@ -20,6 +20,12 @@ namespace big
             //tasks.Add(Dependecies.LoadTeams(GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv")));
 
 
+            Dependecies.Games.Add(new Game("Overwatch 2", null));
+            Dependecies.Games.Add(new Game("Valorant", null));
+            Dependecies.Games.Add(new Game("Leauge Of Legends", null));
+            Dependecies.Games.Add(new Game("Dota 2", null));
+
+            
             //Wait for all tasks to finish before returning
             await Task.WhenAll(tasks);
            

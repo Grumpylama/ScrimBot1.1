@@ -66,7 +66,7 @@ namespace big
             Commands = Client.UseCommandsNext(CommandsConfig);
 
             Commands.RegisterCommands<TestCommands>();
-            Commands.RegisterCommands<TeamCommands>();
+            Commands.RegisterCommands<Commands>();
 
             await Client.ConnectAsync();
             Dependecies.Client = Client;
