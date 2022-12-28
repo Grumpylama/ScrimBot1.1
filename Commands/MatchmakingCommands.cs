@@ -16,7 +16,11 @@ namespace big
         [Command("matchmake")]
         public async Task Matchmake(CommandContext ctx)
         {
-            return;
+            
+            
+            Team teamTomatchMake = await ChooseTeam(ctx, GetMemberTeams(ctx.User));
+            
+
         }
     }
 }
