@@ -12,7 +12,7 @@ namespace big
             }
 
             //Check if user is registered
-            foreach (var user in Dependecies.Users)
+            foreach (var user in d.Users)
             {
                 if (user.Id == ctx.User.Id)
                 {
@@ -28,7 +28,7 @@ namespace big
         private List<Team> GetUsersTeams(DiscordUser user)
         {
             List<Team> UsersTeams = new List<Team>();
-            foreach (Team team in Dependecies.Teams)
+            foreach (Team team in d.Teams)
             {
                 if (team.TeamCaptain.Id == user.Id)
                 {
@@ -113,7 +113,7 @@ namespace big
         private List<Team> GetMemberTeams(DiscordUser user)
         {
             List<Team> teams = new List<Team>();
-            foreach (Team team in Dependecies.Teams)
+            foreach (Team team in d.Teams)
             {
                 foreach (TeamUser tu in team.TeamMembers)
                 {

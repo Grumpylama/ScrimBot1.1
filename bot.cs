@@ -69,9 +69,10 @@ namespace big
             Commands.RegisterCommands<Commands>();
 
             await Client.ConnectAsync();
-            Dependecies.Client = Client;
+            Dependecies d = new Dependecies();
+            d.Client = Client;
 
-            await FileManager.StartUp();
+            await FileManager.StartUp(d);
             
             Console.WriteLine("Bot is set up and running");
             await Task.Delay(-1);

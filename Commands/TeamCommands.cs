@@ -5,12 +5,11 @@ namespace big
 {
     public partial class Commands : BaseCommandModule
     {
+        Dependecies d;
 
         [Command("Register")]
         public async Task Register(CommandContext ctx)
         {
-
-            
             Console.WriteLine("Register command was used by " + ctx.User.ToString());
 
             //Check if user is a bot
@@ -22,7 +21,7 @@ namespace big
             }
 
             //Check if user is already registered
-            foreach (var user in Dependecies.Users)
+            foreach (var user in d.Users)
             {
                 if (user.Id == ctx.User.Id)
                 {
@@ -34,8 +33,8 @@ namespace big
 
             Console.WriteLine("Registering user");
             
-            Dependecies.Users.Add(ctx.User);   
-            Dependecies.DMChannel.Add(ctx.User, ctx.Channel);       
+            d.Users.Add(ctx.User);   
+            d.DMChannel.Add(ctx.User, ctx.Channel);       
             await ctx.Channel.SendMessageAsync("You are now registered!").ConfigureAwait(false);           
             
         }
@@ -81,7 +80,7 @@ namespace big
             if (message.Result.Content == "CONFIRM")
             {
                 Console.WriteLine("User confirmed deletion of team");
-                Dependecies.Teams.Remove(team);
+                d.Teams.Remove(team);
                 await ctx.Channel.SendMessageAsync("Team deleted!").ConfigureAwait(false);
                 return;
             }            
@@ -107,7 +106,7 @@ namespace big
                                       
             string s = "What game will you be playing?";
             int i = 1;
-            foreach(Game game in Dependecies.Games)
+            foreach(Game game in d.Games)
             {
                 s += "\n" + i + ": " + game.GameName;
                 i++;
@@ -120,10 +119,10 @@ namespace big
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);            
                 if(Int32.TryParse(message.Result.Content, out i))
                 {
-                    if(i > 0 && i <= Dependecies.Games.Count)
+                    if(i > 0 && i <= d.Games.Count)
                     {
-                        Dependecies.Teams.Add(new Team(Dependecies.Games[i - 1], TeamName, ctx.User));
-                        await ctx.RespondAsync("Team named " + TeamName + " was created for game " + Dependecies.Games[i - 1].GameName);
+                        d.Teams.Add(new Team(d.Games[i - 1], TeamName, ctx.User));
+                        await ctx.RespondAsync("Team named " + TeamName + " was created for game " + d.Games[i - 1].GameName);
                         return;
                     }
                     else
@@ -190,8 +189,9 @@ namespace big
             }
 
             TeamToTransfer.TeamCaptain = newCaptain;
-            ctx.Client.SendMessageAsync(Dependecies.DMChannel[newCaptain], "You are now the captain of " + TeamToTransfer.TeamName);
+            var t = ctx.Client.SendMessageAsync(d.DMChannel[newCaptain], "You are now the captain of " + TeamToTransfer.TeamName);
             await ctx.Channel.SendMessageAsync("Captain was transfered!").ConfigureAwait(false);
+            await t;
             return;
         }
 
@@ -221,7 +221,7 @@ namespace big
            
 
 
-            Dependecies.AddUserHash(hash, ctx.User, ctx.Channel);
+            d.AddUserHash(hash, ctx.User, ctx.Channel);
             
             await ctx.RespondAsync("A captain can enter the following code to add you to a team: \n " + hash);
         }
@@ -240,7 +240,7 @@ namespace big
             }
             
             Console.WriteLine("User is valid trying to get user from provided hash");
-            var ToAdd = await Dependecies.GetUserFromHash(hash);
+            var ToAdd = await d.GetUserFromHash(hash);
             DiscordUser userToAdd = ToAdd.Item1;
             DiscordChannel channel = ToAdd.Item2;
 
@@ -295,8 +295,9 @@ namespace big
 
 
             Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, 0, "Member"));
-            ctx.Client.SendMessageAsync(channel, "You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator).ConfigureAwait(false);
+            var t = ctx.Client.SendMessageAsync(channel, "You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator).ConfigureAwait(false);
             await ctx.RespondAsync("User was added to team: " + Team.TeamName);
+            await t;
       
         }
         
@@ -340,9 +341,18 @@ namespace big
 
             //Removing user from team and notifying Captain
             team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
-            ctx.Client.SendMessageAsync(Dependecies.DMChannel[team.TeamCaptain], ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
+            var t = ctx.Client.SendMessageAsync(d.DMChannel[team.TeamCaptain], ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
             await ctx.RespondAsync("You have left the team: " + team.TeamName);
+            await t;
             return;
+        }
+
+        [Command("Kill")]
+        public async Task Kill(CommandContext ctx)
+        {
+            Console.WriteLine("Kill command recceived. Killing application");
+            big.FileManager.SaveAll(d);
+            Environment.Exit(1);
         }
 
         

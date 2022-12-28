@@ -53,13 +53,7 @@ public class TestCommands : BaseCommandModule
         Console.WriteLine("Stressing Complete");
     }
 
-    [Command("Kill")]
-    public async Task Kill(CommandContext ctx)
-    {
-        Console.WriteLine("Kill command recceived. Killing application");
-        big.FileManager.SaveAll();
-        Environment.Exit(1);
-    }
+    
     
     
 }

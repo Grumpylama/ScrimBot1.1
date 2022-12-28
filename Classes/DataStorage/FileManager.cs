@@ -2,7 +2,7 @@ namespace big
 {
     public class FileManager
     {
-        public static async Task StartUp()
+        public static async Task StartUp(Dependecies d)
         {
             string startpath = Environment.CurrentDirectory;
 
@@ -13,17 +13,17 @@ namespace big
             //Load All files
             
             //Starts userloading
-            tasks.Add(Dependecies.LoadUsers(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
+            tasks.Add(d.LoadUsers(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
 
            
             
             //tasks.Add(Dependecies.LoadTeams(GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv")));
 
 
-            Dependecies.Games.Add(new Game("Overwatch 2", null));
-            Dependecies.Games.Add(new Game("Valorant", null));
-            Dependecies.Games.Add(new Game("Leauge Of Legends", null));
-            Dependecies.Games.Add(new Game("Dota 2", null));
+            d.Games.Add(new Game("Overwatch 2", null));
+            d.Games.Add(new Game("Valorant", null));
+            d.Games.Add(new Game("Leauge Of Legends", null));
+            d.Games.Add(new Game("Dota 2", null));
 
 
             //Wait for all tasks to finish before returning
@@ -32,14 +32,14 @@ namespace big
             List<SaveableTeam> SvTs = GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv");
             foreach (var team in SvTs)
             {
-                Dependecies.Teams.Add(team.ToTeam());
+                d.Teams.Add(team.ToTeam(d));
             }
 
 
             List<SavableTeamUser> SvTUs = GenericTextFileProcessor.LoadFromTextFile<SavableTeamUser>(startpath + "/Data/TeamUsers.csv");
             foreach (var user in SvTUs)
             {
-                Dependecies.GetTeamFromID(user.TeamID).TeamMembers.Add(user.ToTeamUser());
+                d.GetTeamFromID(user.TeamID).TeamMembers.Add(user.ToTeamUser(d));
                 
             }
             return;
@@ -52,7 +52,7 @@ namespace big
 
 
 
-        public static void SaveAll()
+        public static void SaveAll(Dependecies d)
         {
 
             string startpath = Environment.CurrentDirectory + "\\Data";
@@ -63,17 +63,17 @@ namespace big
             //Save All files
             //Saving Users
             List<SaveableUser> saveableUsers = new List<SaveableUser>();
-            foreach (var u in Dependecies.Users)
+            foreach (var u in d.Users)
             {
                 saveableUsers.Add(new SaveableUser(u.Id));
             }
             List<SaveableTeam> saveableTeams = new List<SaveableTeam>();
-            foreach (var t in Dependecies.Teams)
+            foreach (var t in d.Teams)
             {
                 saveableTeams.Add(t.ToSavable());
             }
             List<SavableTeamUser> savableTeamUsers = new List<SavableTeamUser>();
-            foreach (Team t in Dependecies.Teams)
+            foreach (Team t in d.Teams)
             {
                 foreach (TeamUser tu in t.TeamMembers)
                 {

@@ -14,23 +14,24 @@ using DSharpPlus.Interactivity.Extensions;
 namespace big
 {
     
-    public static class Dependecies
+    public class Dependecies
     {
-        public static DiscordClient Client;
+        public DiscordClient Client;
 
-        public static MatchMakerHandler MatchMakerHandler = new MatchMakerHandler();
-        public static List<Team> Teams = new List<Team>();
-        public static List<Game> Games = new List<Game>();
-        public static List<DiscordUser> Users = new List<DiscordUser>();
 
-        public static List<SaveableUser> UserIDs = new List<SaveableUser>();
+        public MatchMakerHandler MatchMakerHandler = new MatchMakerHandler();
+        public List<Team> Teams = new List<Team>();
+        public List<Game> Games = new List<Game>();
+        public List<DiscordUser> Users = new List<DiscordUser>();
 
-        public static Dictionary<DiscordUser, DiscordChannel> DMChannel = new Dictionary<DiscordUser, DiscordChannel>();
+        public List<SaveableUser> UserIDs = new List<SaveableUser>();
+
+        public Dictionary<DiscordUser, DiscordChannel> DMChannel = new Dictionary<DiscordUser, DiscordChannel>();
         
         
         
         
-        public static DiscordUser GetUserFromID(ulong id)
+        public DiscordUser GetUserFromID(ulong id)
         {
             foreach (var user in Users)
             {
@@ -44,7 +45,7 @@ namespace big
         }
 
 
-        public static Team GetTeamFromID(int id)
+        public Team GetTeamFromID(int id)
         {
             foreach (var team in Teams)
             {
@@ -57,7 +58,7 @@ namespace big
             return null;
         }
 
-        public static Game GetGameFromID(int id)
+        public Game GetGameFromID(int id)
         {
             foreach (var game in Games)
             {
@@ -72,7 +73,7 @@ namespace big
         
         
 
-        public static async Task<DiscordChannel> GetDMChannel(DiscordUser user)
+        public async Task<DiscordChannel> GetDMChannel(DiscordUser user)
         {
             if (DMChannel.ContainsKey(user))
             {
@@ -84,17 +85,17 @@ namespace big
             }
         }
 
-        public static async Task LoadGames(List<Game> games)
+        public async Task LoadGames(List<Game> games)
         {
             Games = games;
         }
 
-        public async static Task<DiscordUser> GetDiscordUserFromID(ulong id)
+        public async Task<DiscordUser> GetDiscordUserFromID(ulong id)
         {
             return await Client.GetUserAsync(id);
         }
 
-        public static async Task LoadUsers(List<SaveableUser> users)
+        public async Task LoadUsers(List<SaveableUser> users)
         {
             List<Task<DiscordUser>> tasks = new List<Task<DiscordUser>>();
             foreach (var user in users)
@@ -117,11 +118,11 @@ namespace big
         //public InteractivityModule Interactivity = new InteractivityModule();
 
 
-        public static List<UserHash> hashes = new List<UserHash>();
+        public List<UserHash> hashes = new List<UserHash>();
 
         
 
-        public static async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHash(string hash)
+        public async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHash(string hash)
         {
             
             for (int i = 0; i < hashes.Count; i++)
@@ -139,7 +140,7 @@ namespace big
         }
 
         
-        public static void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)
+        public void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)
         {
             UserHash userHash = new UserHash(user, hash, channel);
             UserHash r = new UserHash();
