@@ -65,13 +65,16 @@ namespace big
             };
             Commands = Client.UseCommandsNext(CommandsConfig);
 
+            Dependecies d = new Dependecies();
             Commands.RegisterCommands<TestCommands>();
             Commands.RegisterCommands<Commands>();
+            
+            
 
             await Client.ConnectAsync();
-            Dependecies d = new Dependecies();
+            
             d.Client = Client;
-
+            big.Commands.d = d;
             await FileManager.StartUp(d);
             
             Console.WriteLine("Bot is set up and running");

@@ -65,7 +65,7 @@ namespace big
             int i = 1;
             foreach (Team team in Teams)
             {
-                s += "\n" + i + ": " + team.TeamName;
+                s += "\n" + i + ": " + team.TeamName + " Playing " + team.game.GameName;
                 i++;
             }
 

@@ -5,12 +5,15 @@ namespace big
 {
     public partial class Commands : BaseCommandModule
     {
-        Dependecies d;
+        public static Dependecies d;
+
+        
 
         [Command("Register")]
         public async Task Register(CommandContext ctx)
         {
             Console.WriteLine("Register command was used by " + ctx.User.ToString());
+
 
             //Check if user is a bot
             if(ctx.User.IsBot)

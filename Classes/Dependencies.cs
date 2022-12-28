@@ -1,14 +1,4 @@
-using DSharpPlus.Interactivity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using DSharpPlus;
-using DSharpPlus.EventArgs;
-using DSharpPlus.CommandsNext;
-using DSharpPlus.CommandsNext.Attributes;
-using DSharpPlus.Entities;
-using DSharpPlus.Interactivity.Extensions;
+
 
 
 namespace big
@@ -17,7 +7,6 @@ namespace big
     public class Dependecies
     {
         public DiscordClient Client;
-
 
         public MatchMakerHandler MatchMakerHandler = new MatchMakerHandler();
         public List<Team> Teams = new List<Team>();
