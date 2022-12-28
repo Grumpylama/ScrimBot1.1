@@ -16,11 +16,13 @@ namespace big
         }
     }
 
+    
+
     public class SaveableTeam : ISavable
     {
         public int ID { get; set; }
         public ulong CaptainID { get; set; }
-        public List<ulong> TeamMembers { get; set; }
+        
         public float MMR { get; set; }
         public int gameID { get; set; }
         public string TeamName { get; set;}
@@ -28,7 +30,16 @@ namespace big
         public SaveableTeam()
         {
 
-            TeamMembers = new List<ulong>();
+            
+        }
+
+        public Team ToTeam()
+        {
+            Team team = new Team(Dependecies.GetGameFromID(this.gameID), this.TeamName, Dependecies.GetUserFromID(this.CaptainID));
+            team.MMR = this.MMR;
+            team.teamID = this.ID;
+
+            return team;
         }
 
 
@@ -38,11 +49,11 @@ namespace big
 
     public class SavableTeamUser : ISavable 
     {
-        public int ID;
-        public ulong UserID;
-        public int TeamID;
-        public int roleID;
-        public string Position;
+        public int ID { get; set; }
+        public ulong UserID { get; set; }
+        public int TeamID { get; set; }
+        public int roleID { get; set; }
+        public string Position { get; set; }
 
         public SavableTeamUser(ulong UserID, int TeamID, int roleID, string Position)
         {
@@ -55,6 +66,13 @@ namespace big
         public SavableTeamUser()
         {
             
+        }
+
+        public TeamUser ToTeamUser()
+        {
+            TeamUser teamUser = new TeamUser(Dependecies.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position);
+            teamUser.teamID = this.TeamID;
+            return teamUser;
         }
     }
 

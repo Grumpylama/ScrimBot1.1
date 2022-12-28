@@ -17,7 +17,16 @@ namespace big
         public string Position {get; set;}
 
         
-
+        public SavableTeamUser ToSavable()
+        {
+            SavableTeamUser savableTeamUser = new SavableTeamUser();
+            savableTeamUser.ID = this.teamID;
+            savableTeamUser.UserID = this.User.Id;
+            savableTeamUser.TeamID = this.teamID;
+            savableTeamUser.roleID = this.roleID;
+            savableTeamUser.Position = this.Position;
+            return savableTeamUser;
+        }
 
         public TeamUser(DiscordUser user, int teamID, int roleID, string Position)
         {

@@ -30,7 +30,45 @@ namespace big
         
         
         
-        
+        public static DiscordUser GetUserFromID(ulong id)
+        {
+            foreach (var user in Users)
+            {
+                if (user.Id == id)
+                {
+                    return user;
+                }
+            }
+
+            return null;
+        }
+
+
+        public static Team GetTeamFromID(int id)
+        {
+            foreach (var team in Teams)
+            {
+                if (team.teamID == id)
+                {
+                    return team;
+                }
+            }
+
+            return null;
+        }
+
+        public static Game GetGameFromID(int id)
+        {
+            foreach (var game in Games)
+            {
+                if (game.GameID == id)
+                {
+                    return game;
+                }
+            }
+
+            return null;
+        }
         
         
 

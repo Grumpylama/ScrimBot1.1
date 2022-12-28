@@ -11,10 +11,12 @@ using DSharpPlus.Interactivity.Enums;
 namespace big
 {
     public partial class Commands : BaseCommandModule
-    {
-        
+    {        
 
         [Command("matchmake")]
-        public async Task Matchmake(Command)
+        public async Task Matchmake(CommandContext ctx)
+        {
+            return;
+        }
     }
 }

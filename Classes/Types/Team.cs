@@ -30,10 +30,7 @@ namespace big
             savableTeam.gameID = this.game.GameID;
             savableTeam.TeamName = this.TeamName;
 
-            foreach (TeamUser teamUser in this.TeamMembers)
-            {
-                savableTeam.TeamMembers.Add(teamUser.User.Id);
-            }
+            
 
             return savableTeam;
         }
