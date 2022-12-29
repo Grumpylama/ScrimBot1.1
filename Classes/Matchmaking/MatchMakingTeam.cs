@@ -5,24 +5,24 @@ namespace big
     //them into queue for matchmaking
     public class MatchMakingTeam
     {
-        public DateTime dt;
-        public Team t;
-        public bool active = true;
+        public DateTime Dt;
+        public Team T;
+        public bool Active = true;
 
         public MatchMakingTeam(DateTime dt, Team t)
         {
-            this.dt = dt;
-            this.t = t;
+            this.Dt = dt;
+            this.T = t;
         }
 
         public void setInactive()
         {
-            active = false;
+            Active = false;
         }
 
         public void setActive()
         {
-            active = true;
+            Active = true;
         }
     }
 }
