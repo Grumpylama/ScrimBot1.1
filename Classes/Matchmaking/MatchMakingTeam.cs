@@ -5,11 +5,11 @@ namespace big
     //them into queue for matchmaking
     public class MatchMakingTeam
     {
-        public DateTime Dt;
+        public EDate Dt;
         public Team T;
         public bool Active = true;
 
-        public MatchMakingTeam(DateTime dt, Team t)
+        public MatchMakingTeam(EDate dt, Team t)
         {
             this.Dt = dt;
             this.T = t;

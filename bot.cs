@@ -78,6 +78,8 @@ namespace big
             await FileManager.StartUp(d);
             
             Console.WriteLine("Bot is set up and running");
+
+            Console.WriteLine("Starting Matchmaker");
             await Task.Delay(-1);
 
         }

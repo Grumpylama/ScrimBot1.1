@@ -182,7 +182,7 @@ namespace big
 
         
 
-        private async Task<Nullable<EDate>> GetDate(CommandContext ctx)
+        private async Task<Nullable<EDate>> PromtDate(CommandContext ctx)
         {
             
             while(true)
