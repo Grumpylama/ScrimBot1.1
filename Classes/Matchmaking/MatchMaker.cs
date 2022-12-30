@@ -7,13 +7,13 @@ namespace big
    
    public class MatchMaker
    {
-      public List<MatchMakingTeam> mmtList = new List<MatchMakingTeam>();
+      public List<MatchMakingTeam> MMTList = new List<MatchMakingTeam>();
       public DateTime matchStart;
       //There needs to be a datetime of when match starts
       //Queue
       public MatchMaker(MatchMakingTeam dt)
       {
-         matchStart = dt.dt;
+         matchStart = dt.Dt;
       }
 
       //Tries to set up match based on sortBest()
@@ -30,18 +30,18 @@ namespace big
       public void addToMatchMakingList(MatchMakingTeam temp)
       {
          int tempus = 0;
-         for(int i = 0; i < mmtList.Count; i++)
+         for(int i = 0; i < MMTList.Count; i++)
          {
-            if(mmtList[i].t.teamID == temp.t.teamID) tempus++;
+            if(MMTList[i].T.teamID == temp.T.teamID) tempus++;
          }
-         if(tempus == 0) mmtList.Add(temp);
-         Sort.InsertionSort(mmtList);
+         if(tempus == 0) MMTList.Add(temp);
+         Sort.InsertionSort(MMTList);
       }
 
       public void removeFromMatchMakingList(Team t)
       {
-         for(int i = 0; i < mmtList.Count; i++)
-            if(mmtList[i].t == t) mmtList.Remove(mmtList[i]);
+         for(int i = 0; i < MMTList.Count; i++)
+            if(MMTList[i].T == t) MMTList.Remove(MMTList[i]);
       }
    }
    

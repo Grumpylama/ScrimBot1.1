@@ -7,6 +7,7 @@ namespace big
         public int GameID { get; set; }   
         public static int GameIDCounter = 0;     
         public string? GameAPI { get; set; }
+        public int TeamSize {get; set;} //Behövs för matchmaking delen perhaps
 
         
 
@@ -18,11 +19,12 @@ namespace big
             this.GameAPI = GameAPI;
         }
 
-        public Game(string GameName, int GameID, string? GameAPI)
+        public Game(string GameName, int GameID, int TeamSize, string? GameAPI)
         {
             this.GameName = GameName;
             this.GameID = GameID;
             this.GameAPI = GameAPI;
+            this.TeamSize = TeamSize;
         }
 
 

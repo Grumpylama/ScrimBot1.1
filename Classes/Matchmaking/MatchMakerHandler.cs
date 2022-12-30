@@ -9,14 +9,11 @@ namespace big
     {
         public static List<MatchMaker> matchMakers = new List<MatchMaker>();
 
+        public Game game;
+
         public MatchMakerHandler()
         {
             
-        }
-
-        public async Task findMatch()
-        {
-
         }
         
         public StatusCode addMatchMakingTeam(MatchMakingTeam temp)
@@ -32,15 +29,18 @@ namespace big
             }
         }
 
+        //If the matchmaker for the specific time and game already exists
+        //then add the Team to the matchmaker
+        //Otherwise create a new matchmaker.
         private bool contains(MatchMakingTeam temp)
         {
-            if(temp.active == true)
+            if(temp.Active == true)
             {
                 foreach(MatchMaker m in matchMakers)
                 {
-                    if(m.mmtList.BinarySearch(temp) > 0)
+                    if(m.MMTList.BinarySearch(temp) > 0)
                     {
-                        if(m.matchStart == temp.dt) 
+                        if(m.matchStart == temp.Dt) 
                         {
                             m.addToMatchMakingList(temp);
                             return true;
