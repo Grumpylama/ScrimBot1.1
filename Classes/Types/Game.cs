@@ -19,11 +19,12 @@ namespace big
             this.GameAPI = GameAPI;
         }
 
-        public Game(string GameName, int GameID, string? GameAPI)
+        public Game(string GameName, int GameID, int TeamSize, string? GameAPI)
         {
             this.GameName = GameName;
             this.GameID = GameID;
             this.GameAPI = GameAPI;
+            this.TeamSize = TeamSize;
         }
 
 

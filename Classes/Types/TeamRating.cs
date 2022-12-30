@@ -12,11 +12,11 @@ namespace big
         //nE is the total number of games that has decided the rating for each team
         public void Elo(float rt1, float rt2, float kfactor, bool t1win)
         {
-            preElo(rt1, rt2, kfactor, t1win);
+            eloHelper(rt1, rt2, kfactor, t1win);
         }
 
         //K is elo constant
-        public void preElo(float rT1, float rT2, float K, bool T1win)
+        private void eloHelper(float rT1, float rT2, float K, bool T1win)
         {
             float pT1 = probability(rT1, rT2);
 
