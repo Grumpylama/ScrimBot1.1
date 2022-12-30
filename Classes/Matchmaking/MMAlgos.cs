@@ -4,58 +4,58 @@ namespace big
 {
     public class MMAlgos
     {
-        //When there are 2 hours left to matchStart
-        public async Task FindMatch(MatchMaker m)
-        {
-            bool NotFound = true;
-            int i = 1;
-            MatchMakingTeam temp = m.MMTList[0];
-            int index = 0;
-            //Since the list is sorted from highest MMR to lowest MMR
-
-            while(NotFound)
-            {
-                index = Sort.FindBestMatch(m.MMTList, temp);
-
-                //send message to both temp and m.MMTList[i]
-                //If temp doesn't answer or refuses, make m.MMTList[i] the new temp - set temp as inactive
-                //If m.MMTList[i] doesn't answer or refuses, move on to the next i (i++) - set m.MMTList[i] as inactive
-                //If neither answer or both refuse then just move up one step each - set both to inactive
-                //IF both answer then break loop
-                if(false)
-                {
-                    //temp.setInactive();
-                    m.MMTList.Remove(temp);
-                    temp = m.MMTList[index];
-                    i++;
-                }
-                if(false)
-                {
-                    //m.MMTList[index].setInactive();
-                    m.MMTList.Remove(m.MMTList[index]);
-                    i++;
-                }
-                if(false)
-                {
-                    //temp.setInactive();
-                    //m.MMTList[index].setInactive();
-                    
-                    m.MMTList.Remove(temp);
-                    m.MMTList.Remove(m.MMTList[index]);
-                    temp = m.MMTList[index];
-                    i++;
-                }
-                if(true)
-                {
-                    NotFound = true;
-                }
-            }
-        }
 
         //When there is 30 minutes left to matchStart
         public void StressFindMatch()
         {
 
+        }
+
+        //When there are 2 hours left to matchStart
+        public bool FindMatch(MatchMaker m)
+        {
+            if(m.MMTList.Count > 1) 
+            {
+                MatchFindHelper(m); 
+                return true;
+            }
+            return false;
+        }
+        //How long do we wait for the answer? D:
+        private void MatchFindHelper(MatchMaker m)
+        {
+            int index = Sort.FindLowestMMRDiff(m.MMTList, m.MMTList[0]);
+            //If [0] team doesn't answer or refuses, 
+            //Set temp as inactive
+            //Replace [0] team with team 'index'
+            //Call the function
+            if(false)
+                {
+                    //m.MMT[0].setInactive();
+                    m.MMTList[0] = m.MMTList[index];
+                    m.MMTList.RemoveAt(index);
+                    MatchFindHelper(m);
+                }
+            //If m.MMTList[i] doesn't answer or refuses
+            //Remove it and call the function
+            if(false)
+                {
+                    //m.MMT[index].setInactive();
+                    m.MMTList.RemoveAt(index);
+                    MatchFindHelper(m);
+                }
+            //If neither answer or both refuse
+            //Set both inactive AND remove both
+            //Call function
+            if(false)
+                {
+                    //m.MMTList[0].setInactive();
+                    //m.MMTList[index].setInactive();
+                    MatchMakingTeam temp = m.MMTList[index];
+                    m.MMTList.RemoveAt(0);
+                    m.MMTList.Remove(temp);
+                    MatchFindHelper(m);
+                }
         }
     }
 }

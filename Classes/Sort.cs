@@ -67,7 +67,14 @@ namespace big
             }
         }
 
-        public static int FindBestMatch(List<MatchMakingTeam> list, MatchMakingTeam teamski)
+        /// <summary>
+        /// Method <c>FindBestMatch()<c> finds the best match for a <c>MatchMakingTeam<c> in a list of type <c>MatchMakingTeam<c>.
+        /// It finds the best based on the least MMR difference.
+        /// </summary>
+        /// <returns>
+        /// The index of the best team, in the list, to match against.
+        /// </returns>
+        public static int FindLowestMMRDiff(List<MatchMakingTeam> list, MatchMakingTeam teamski)
         {
             int index = 0;
             float diff = (list[0].T.MMR - list[1].T.MMR)*(-1);
