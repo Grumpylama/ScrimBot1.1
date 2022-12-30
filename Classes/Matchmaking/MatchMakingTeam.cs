@@ -9,6 +9,8 @@ namespace big
         public Team T;
         public bool Active = true;
 
+        public bool hasActiveRequest = false;
+
         public MatchMakingTeam(EDate dt, Team t)
         {
             this.Dt = dt;

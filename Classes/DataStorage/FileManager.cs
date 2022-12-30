@@ -2,7 +2,7 @@ namespace big
 {
     public class FileManager
     {
-        public static async Task StartUp(Dependecies d)
+        public static async Task StartUpAsync(Dependecies d)
         {
             string startpath = Environment.CurrentDirectory;
 
@@ -13,7 +13,7 @@ namespace big
             //Load All files
             
             //Starts userloading
-            tasks.Add(d.LoadUsers(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
+            tasks.Add(d.LoadUsersAsync(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
 
            
             

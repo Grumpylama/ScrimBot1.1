@@ -59,7 +59,7 @@ namespace big
             
         }
 
-        private async Task<Team> ChooseTeam(CommandContext ctx, List<Team> Teams)
+        private async Task<Team> ChooseTeamAsync(CommandContext ctx, List<Team> Teams)
         {
             string s = "Which team?";
             int i = 1;
@@ -126,7 +126,7 @@ namespace big
 
             return teams;
         }
-        private async Task<DiscordUser> ChooseUser(CommandContext ctx, List<DiscordUser> users)
+        private async Task<DiscordUser> ChooseUserAsync(CommandContext ctx, List<DiscordUser> users)
         {
             string s = "Choose a user";
             int i = 1;
@@ -182,7 +182,7 @@ namespace big
 
         
 
-        private async Task<Nullable<EDate>> PromtDate(CommandContext ctx)
+        private async Task<Nullable<EDate>> PromtDateAsync(CommandContext ctx)
         {
             
             while(true)

@@ -75,7 +75,7 @@ namespace big
             
             d.Client = Client;
             big.Commands.d = d;
-            await FileManager.StartUp(d);
+            await FileManager.StartUpAsync(d);
             
             Console.WriteLine("Bot is set up and running");
 

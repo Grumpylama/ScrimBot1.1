@@ -8,7 +8,7 @@ namespace big
    public class MatchMaker
    {
       public List<MatchMakingTeam> MMTList = new List<MatchMakingTeam>();
-      public DateTime matchStart;
+      public EDate matchStart;
       //There needs to be a datetime of when match starts
       //Queue
       public MatchMaker(MatchMakingTeam dt)

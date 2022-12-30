@@ -66,7 +66,7 @@ namespace big
 
 
             //Chosing what team to delete
-            Team team = await ChooseTeam(ctx, teams);
+            Team team = await ChooseTeamAsync(ctx, teams);
 
             if(team == null)
             {
@@ -163,7 +163,7 @@ namespace big
                 return;
             }
 
-            Team TeamToTransfer = await ChooseTeam(ctx, teams);
+            Team TeamToTransfer = await ChooseTeamAsync(ctx, teams);
 
             if (TeamToTransfer == null)
             {
@@ -182,7 +182,7 @@ namespace big
                 return;
             }
 
-            DiscordUser newCaptain = await ChooseUser(ctx, otherMembers);
+            DiscordUser newCaptain = await ChooseUserAsync(ctx, otherMembers);
 
             if(newCaptain == null)
             {
@@ -243,7 +243,7 @@ namespace big
             }
             
             Console.WriteLine("User is valid trying to get user from provided hash");
-            var ToAdd = await d.GetUserFromHash(hash);
+            var ToAdd = await d.GetUserFromHashAsync(hash);
             DiscordUser userToAdd = ToAdd.Item1;
             DiscordChannel channel = ToAdd.Item2;
 
@@ -283,8 +283,8 @@ namespace big
             }
 
             Console.WriteLine("Getting team from user");
-            Team Team = await ChooseTeam(ctx, UsersTeams);
-            if (ChooseTeam == null)
+            Team Team = await ChooseTeamAsync(ctx, UsersTeams);
+            if (ChooseTeamAsync == null)
                 return;
 
             //Check if user is already in team
@@ -324,7 +324,7 @@ namespace big
             }
 
             //Getting what team the user wants to leave
-            Team team = await ChooseTeam(ctx, teams);
+            Team team = await ChooseTeamAsync(ctx, teams);
             if (team == null)
                 return;
             if(team.TeamCaptain.Id == ctx.User.Id)

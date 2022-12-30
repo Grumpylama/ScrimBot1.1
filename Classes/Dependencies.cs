@@ -62,7 +62,7 @@ namespace big
         
         
 
-        public async Task<DiscordChannel> GetDMChannel(DiscordUser user)
+        public async Task<DiscordChannel> GetDMChannelAsync(DiscordUser user)
         {
             if (DMChannel.ContainsKey(user))
             {
@@ -74,22 +74,22 @@ namespace big
             }
         }
 
-        public async Task LoadGames(List<Game> games)
+        public async Task LoadGamesAsync(List<Game> games)
         {
             Games = games;
         }
 
-        public async Task<DiscordUser> GetDiscordUserFromID(ulong id)
+        public async Task<DiscordUser> GetDiscordUserFromIDAsync(ulong id)
         {
             return await Client.GetUserAsync(id);
         }
 
-        public async Task LoadUsers(List<SaveableUser> users)
+        public async Task LoadUsersAsync(List<SaveableUser> users)
         {
             List<Task<DiscordUser>> tasks = new List<Task<DiscordUser>>();
             foreach (var user in users)
             {
-                tasks.Add(GetDiscordUserFromID(user.ID));
+                tasks.Add(GetDiscordUserFromIDAsync(user.ID));
             }
 
             foreach(var task in tasks)
@@ -111,7 +111,7 @@ namespace big
 
         
 
-        public async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHash(string hash)
+        public async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHashAsync(string hash)
         {
             
             for (int i = 0; i < hashes.Count; i++)

@@ -40,7 +40,7 @@ namespace big
                 {
                     if(m.MMTList.BinarySearch(temp) > 0)
                     {
-                        if(m.matchStart == temp.Dt) 
+                        if(m.matchStart.Date == temp.Dt.Date) 
                         {
                             m.addToMatchMakingList(temp);
                             return true;

@@ -18,7 +18,7 @@ namespace big
         {
             
             
-            Team teamTomatchMake = await ChooseTeam(ctx, GetMemberTeams(ctx.User));
+            Team teamTomatchMake = await ChooseTeamAsync(ctx, GetMemberTeams(ctx.User));
             
 
             //d.MatchMakerHandler.addMatchMakingTeam(new MatchMakingTeam());

@@ -12,29 +12,35 @@ namespace big
         }
 
         //When there are 2 hours left to matchStart
-        public bool FindMatch(MatchMaker m)
+        public async Task<bool> FindMatchAsync(Dependecies d, MatchMaker m)
         {
             if(m.MMTList.Count > 1) 
             {
-                MatchFindHelper(m); 
+                MatchFindHelperAsync(d, m);
                 return true;
             }
             return false;
         }
         //How long do we wait for the answer? D:
-        private void MatchFindHelper(MatchMaker m)
+        private async Task MatchFindHelperAsync(Dependecies d, MatchMaker m)
         {
-            int index = Sort.FindLowestMMRDiff(m.MMTList, m.MMTList[0]);
-            //If [0] team doesn't answer or refuses, 
+            int index = Sort.FindLowestMMRDiff(m.MMTList);
+            Tuple<ScrimResponse, ScrimResponse> Answer = await PromtCaptains(d, m.MMTList[0], m.MMTList[index], 60);
+
+            m.MMTList[0].hasActiveRequest = true;
+            m.MMTList[index].hasActiveRequest = true;
+
+
+            //If [0] team doesn't answer or refuses,
             //Set temp as inactive
             //Replace [0] team with team 'index'
             //Call the function
-            if(false)
+            if(Answer.Item1 == ScrimResponse.Accept)
                 {
                     //m.MMT[0].setInactive();
                     m.MMTList[0] = m.MMTList[index];
                     m.MMTList.RemoveAt(index);
-                    MatchFindHelper(m);
+                    MatchFindHelperAsync(m);
                 }
             //If m.MMTList[i] doesn't answer or refuses
             //Remove it and call the function
@@ -42,7 +48,7 @@ namespace big
                 {
                     //m.MMT[index].setInactive();
                     m.MMTList.RemoveAt(index);
-                    MatchFindHelper(m);
+                    MatchFindHelperAsync(m);
                 }
             //If neither answer or both refuse
             //Set both inactive AND remove both
@@ -54,7 +60,7 @@ namespace big
                     MatchMakingTeam temp = m.MMTList[index];
                     m.MMTList.RemoveAt(0);
                     m.MMTList.Remove(temp);
-                    MatchFindHelper(m);
+                    MatchFindHelperAsync(m);
                 }
         }
 
@@ -76,7 +82,7 @@ namespace big
                      
             DateTime RequestTime = DateTime.Now;
               
-            var Channel = await d.GetDMChannel(m1.T.TeamCaptain);
+            var Channel = await d.GetDMChannelAsync(m1.T.TeamCaptain);
             
             await d.Client.SendMessageAsync(Channel, "You have been matched with " + m2.T.TeamName + " at " + m2.Dt.ToString() + ". Do you accept?");
             while(true)
