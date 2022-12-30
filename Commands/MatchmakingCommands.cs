@@ -21,6 +21,8 @@ namespace big
             Team teamTomatchMake = await ChooseTeam(ctx, GetMemberTeams(ctx.User));
             
 
+            //d.MatchMakerHandler.addMatchMakingTeam(new MatchMakingTeam());
+
         }
     }
 }
