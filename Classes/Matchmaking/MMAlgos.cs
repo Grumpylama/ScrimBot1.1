@@ -116,10 +116,13 @@ namespace big
                 await d.Client.SendMessageAsync(Channel, "Please respond with either 'yes' or 'no'.");
 
             }
-           
-           
-            //If timeout, return false
+                //If timeout, return false
             
+        }
+
+        private int SecondstillStart(DateTime dt)
+        {
+            return (int)(dt - DateTime.Now).TotalSeconds;
         }
     }
 }
