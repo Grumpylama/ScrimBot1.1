@@ -8,8 +8,8 @@ namespace big
         public EDate Dt;
         public Team T;
         public bool Active = true;
-
         public bool hasActiveRequest = false;
+        List<MatchMakingTeam> HasDeclined = new List<MatchMakingTeam>();
 
         public MatchMakingTeam(EDate dt, Team t)
         {

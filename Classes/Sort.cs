@@ -74,20 +74,27 @@ namespace big
         /// <returns>
         /// The index of the best team, in the list, to match against.
         /// </returns>
-        public static int FindLowestMMRDiff(List<MatchMakingTeam> list)
+        public static Tuple<int, int> FindLowestMMRDiff(List<MatchMakingTeam> list)
         {
             int index = 0;
-            float diff = (list[0].T.MMR - list[1].T.MMR)*(-1);
+            float diff = Math.Abs((list[0].T.MMR - list[1].T.MMR));
             MatchMakingTeam temp = list[0];
             for(int i = 1; i < list.Count; i++)
             {
-                float mmrdiff = (temp.T.MMR - list[i].T.MMR)*(-1);
-                if(mmrdiff < diff)
+                if(temp.hasActiveRequest == true)
                 {
-                    index = i;
+                    if(list[i].hasActiveRequest == false)
+                    {
+                        float mmrdiff = Math.Abs((temp.T.MMR - list[i].T.MMR));
+                        if(mmrdiff < diff)
+                        {
+                            index = i;
+                        }
+                    }
                 }
+                else temp = list[i];
             }
-            return index;
+            return new (list.IndexOf(temp), index);
         }
     }
     
