@@ -14,7 +14,7 @@ namespace big
     {        
 
         [Command("matchmake")]
-        public async Task Matchmake(CommandContext ctx)
+        public async Task MatchmakeAsync(CommandContext ctx)
         {
             
             
