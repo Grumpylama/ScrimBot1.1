@@ -8,6 +8,8 @@ namespace big
    public class MatchMaker
    {
       public List<MatchMakingTeam> MMTList = new List<MatchMakingTeam>();
+
+      public List<Tuple<MatchMakingTeam, MatchMakingTeam>> MatchList = new List<Tuple<MatchMakingTeam, MatchMakingTeam>>();
       public EDate matchStart;
       //There needs to be a datetime of when match starts
       //Queue

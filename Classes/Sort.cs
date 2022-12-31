@@ -96,6 +96,22 @@ namespace big
             }
             return new (list.IndexOf(temp), index);
         }
+
+        public static MatchMakingTeam FindBestMatch(MatchMakingTeam mt, List<MatchMakingTeam> l)        
+        {
+            MatchMakingTeam bestmatch = new MatchMakingTeam();
+
+            foreach(MatchMakingTeam mmt in l)
+            {
+                //If the MMR difference is less than the current best match, and the team doesn't have an active request, and the team isn't the same team.
+                if(Math.Abs((mt.T.MMR - mmt.T.MMR)) < Math.Abs((mt.T.MMR - bestmatch.T.MMR)) && mmt.hasActiveRequest == false && mmt.T.teamID != mt.T.teamID)
+                {
+                    bestmatch = mmt;
+                }
+            }
+            return bestmatch;
+
+        }
     }
     
 }

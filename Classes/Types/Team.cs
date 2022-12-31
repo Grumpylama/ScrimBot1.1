@@ -74,6 +74,18 @@ namespace big
             this.teamID = teamIDCounter;        
             teamIDCounter++;
         }
+
+        public Team()
+        {
+            this.TeamName = "Default";
+            
+            this.TeamMembers = new List<TeamUser>();
+            //Change this later to actual starting MMR
+            this.MMR = 0;
+            this.teamID = teamIDCounter;
+            this.game = new Game();
+            teamIDCounter++;
+        }
         
         
 

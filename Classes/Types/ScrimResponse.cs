@@ -10,10 +10,10 @@ namespace big
 
     public struct ScrimResponse
     {
-        ScrimResponseCode Code;
-        Team T;
+        public ScrimResponseCode Code;
+        public MatchMakingTeam T;
 
-        public ScrimResponse(ScrimResponseCode code, Team t)
+        public ScrimResponse(ScrimResponseCode code, MatchMakingTeam t)
         {
             Code = code;
             T = t;

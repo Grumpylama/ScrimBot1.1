@@ -5,6 +5,7 @@ namespace big
     //them into queue for matchmaking
     public class MatchMakingTeam
     {
+        public bool Dummy = false;
         public EDate Dt;
         public Team T;
         public bool Active = true;
@@ -15,6 +16,11 @@ namespace big
         {
             this.Dt = dt;
             this.T = t;
+        }
+        public MatchMakingTeam()
+        {
+            this.Dt = new EDate();
+            this.T = new Team();
         }
 
         public void setInactive()
