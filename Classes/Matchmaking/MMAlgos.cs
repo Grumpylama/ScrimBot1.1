@@ -26,49 +26,51 @@ namespace big
             List<Task<ScrimResponse>> tasks = new List<Task<ScrimResponse>>();
             foreach(MatchMakingTeam mmt in m.MMTList)
             {
-                Tuple<int, int> indexes = Sort.FindLowestMMRDiff(m.MMTList);
-                var Answer = PromtCaptains(d, m.MMTList[indexes.Item1], m.MMTList[indexes.Item2], 60);
-                
-            }
+                if(mmt.hasActiveRequest == false)
+                {
+                    Tuple<int, int> indexes = Sort.FindLowestMMRDiff(m.MMTList);
+                    var Answer = PromtCaptains(d, m.MMTList[indexes.Item1], m.MMTList[indexes.Item2], 60);
 
-            m.MMTList[indexes.Item1].hasActiveRequest = true;
-            m.MMTList[indexes.Item2].hasActiveRequest = true;
+                    m.MMTList[indexes.Item1].hasActiveRequest = true;
+                    m.MMTList[indexes.Item2].hasActiveRequest = true;
 
-            //If [0] team doesn't answer or refuses,
-            //Set temp as inactive
-            //Replace [0] team with team 'index'
-            //Call the function
-            if(Answer.Item1 == ScrimResponse.NoResponse)
-            {
-                m.MMTList[indexes.Item1].setInactive();
-                m.MMTList[indexes.Item1] = m.MMTList[indexes.Item2];
-                m.MMTList.RemoveAt(indexes.Item2);
-            }
-            //If m.MMTList[i] doesn't answer or refuses
-            //Remove it and call the function
-            if(Answer.Item2 == ScrimResponse.NoResponse)
-            {
-                m.MMTList[indexes.Item2].setInactive();
-                m.MMTList.RemoveAt(indexes.Item2);
-            }
-            //If neither answer or both refuse
-            //Set both inactive AND remove both
-            //Call function
-            if(Answer.Item1 == ScrimResponse.Decline)//3 declines fixa
-            {
-                m.MMTList[indexes.Item1].setInactive();
-                m.MMTList[indexes.Item1] = m.MMTList[indexes.Item2];
-                m.MMTList.RemoveAt(indexes.Item2);
-            }
-            if(Answer.Item2 == ScrimResponse.Decline)//3 declines fixa
-            {
-                m.MMTList[indexes.Item2].setInactive();
-                m.MMTList.RemoveAt(indexes.Item2);
-            }
-            if(Answer.Item1 == ScrimResponse.Accept && Answer.Item2 == ScrimResponse.Accept)
-            {
-                m.MMTList.RemoveAt(indexes.Item1);
-                m.MMTList.RemoveAt(indexes.Item2);
+                    //If [0] team doesn't answer or refuses,
+                    //Set temp as inactive
+                    //Replace [0] team with team 'index'
+                    //Call the function
+                    if(Answer.Item1 == ScrimResponse.NoResponse)
+                    {
+                        m.MMTList[indexes.Item1].setInactive();
+                        m.MMTList[indexes.Item1] = m.MMTList[indexes.Item2];
+                        m.MMTList.RemoveAt(indexes.Item2);
+                    }
+                    //If m.MMTList[i] doesn't answer or refuses
+                    //Remove it and call the function
+                    if(Answer.Item2 == ScrimResponse.NoResponse)
+                    {
+                        m.MMTList[indexes.Item2].setInactive();
+                        m.MMTList.RemoveAt(indexes.Item2);
+                    }
+                    //If neither answer or both refuse
+                    //Set both inactive AND remove both
+                    //Call function
+                    if(Answer.Item1 == ScrimResponse.Decline)//3 declines fixa
+                    {
+                        m.MMTList[indexes.Item1].setInactive();
+                        m.MMTList[indexes.Item1] = m.MMTList[indexes.Item2];
+                        m.MMTList.RemoveAt(indexes.Item2);
+                    }
+                    if(Answer.Item2 == ScrimResponse.Decline)//3 declines fixa
+                    {
+                        m.MMTList[indexes.Item2].setInactive();
+                        m.MMTList.RemoveAt(indexes.Item2);
+                    }
+                    if(Answer.Item1 == ScrimResponse.Accept && Answer.Item2 == ScrimResponse.Accept)
+                    {
+                        m.MMTList.RemoveAt(indexes.Item1);
+                        m.MMTList.RemoveAt(indexes.Item2);
+                    }
+                }
             }
         }
 
