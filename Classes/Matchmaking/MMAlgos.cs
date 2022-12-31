@@ -98,20 +98,20 @@ namespace big
                 var t = timeout - (DateTime.Now - RequestTime).TotalSeconds;
                 if(t <= 0)
                 {
-                    return ScrimResponse.NoResponse;
+                    return new ScrimResponse(ScrimResponseCode.Decline , m1.T);
                 }
                 var message = await d.Client.GetInteractivity().WaitForMessageAsync(m => m.Author.Id == m1.T.TeamCaptain.Id && m.ChannelId == Channel.Id, TimeSpan.FromSeconds(t));
                 if(message.TimedOut)
                 {
-                    return ScrimResponse.NoResponse;
+                    return new ScrimResponse(ScrimResponseCode.NoResponse , m1.T);
                 }
                 if(message.Result.Content.ToLower() == "yes")
                 {
-                    return ScrimResponse.Accept;
+                    return new ScrimResponse(ScrimResponseCode.Accept , m1.T);
                 }
                 if(message.Result.Content.ToLower() == "no")
                 {
-                    return ScrimResponse.Decline;
+                    return new ScrimResponse(ScrimResponseCode.Decline , m1.T);
                 }
                 await d.Client.SendMessageAsync(Channel, "Please respond with either 'yes' or 'no'.");
 
