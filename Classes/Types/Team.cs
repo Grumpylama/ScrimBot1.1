@@ -9,7 +9,6 @@ namespace big
     public class Team
     {
         
-
         public static int teamIDCounter = 0;   
         public string TeamName { get; set; }
         public DiscordUser TeamCaptain { get; set; }
