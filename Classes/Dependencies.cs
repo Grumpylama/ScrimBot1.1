@@ -78,80 +78,8 @@ namespace big
         {
             Games = games;
         }
-
-        public async Task<DiscordUser> GetDiscordUserFromIDAsync(ulong id)
-        {
-            return await Client.GetUserAsync(id);
-        }
-
-        public async Task LoadUsersAsync(List<SaveableUser> users)
-        {
-            List<Task<DiscordUser>> tasks = new List<Task<DiscordUser>>();
-            foreach (var user in users)
-            {
-                tasks.Add(GetDiscordUserFromIDAsync(user.ID));
-            }
-
-            foreach(var task in tasks)
-            {
-                Users.Add(await task);
-            }
-
-            
-        }
-        
-
-        
-
         
         //public InteractivityModule Interactivity = new InteractivityModule();
-
-
-        public List<UserHash> hashes = new List<UserHash>();
-
-        
-
-        public async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHashAsync(string hash)
-        {
-            
-            for (int i = 0; i < hashes.Count; i++)
-            {
-                if (hashes[i].hash == hash)
-                {
-                    DiscordUser returnUser = hashes[i].user;
-                    DiscordChannel returnChannel = hashes[i].channel;
-                    hashes.Remove(hashes[i]);
-                    return new Tuple<DiscordUser, DiscordChannel>(returnUser, returnChannel);
-                }
-            }
-
-            return null;
-        }
-
-        
-        public void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)
-        {
-            UserHash userHash = new UserHash(user, hash, channel);
-            UserHash r = new UserHash();
-            bool found = false;
-            
-            foreach (var v in hashes)
-            {
-                if(v.user.Id == user.Id)
-                {
-                    found = true;
-                    r = v;
-                }
-                
-            }
-            if(found)
-            {
-                hashes.Remove(r);
-            }
-            
-            hashes.Add(userHash);
-            
-        }
         
     }
 }

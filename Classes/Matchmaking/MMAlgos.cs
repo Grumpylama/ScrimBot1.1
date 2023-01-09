@@ -37,6 +37,7 @@ namespace big
             //Waits for when all promts are done.
             //Will be within the timeout time limit or sooner
             var responses = await Task.WhenAll(tasks);
+
             foreach(var r in responses)
             {
                 switch(r.Item1.Code, r.Item2.Code)
@@ -46,13 +47,49 @@ namespace big
                         //Set both teams as inactive
                         m.MMTList.Find(x => x == r.Item1.T).setInactive();
                         m.MMTList.Find(x => x == r.Item2.T).setInactive();
+                        m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                        m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
                         break;
-                    case (ScrimResponseCode.NoResponse, ScrimResponseCode.Decline):
-                    break;
+                    case (ScrimResponseCode.NoResponse, ScrimResponseCode):
+                        //If the first team doesn't answer
+                        //Set the first team as inactive
+                        m.MMTList.Find(x => x == r.Item1.T).setInactive();
+                        m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                        m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+                        
+                        break;
+                    case (ScrimResponseCode, ScrimResponseCode.NoResponse):
+                        //If the second team doesn't answer
+                        //Set the second team as inactive
+                        m.MMTList.Find(x => x == r.Item2.T).setInactive();
+                        m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                        m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+                        break;
+                    case (ScrimResponseCode.Accept, ScrimResponseCode.Accept):
+                        //If both teams accept
+                        //Create a match
+                        //Set both teams as inactive
+                        m.MMTList.Find(x => x == r.Item1.T).setInactive();
+                        m.MMTList.Find(x => x == r.Item2.T).setInactive();
+                        
+                        break;
+                    
+                    case (ScrimResponseCode.Decline, ScrimResponseCode.Accept):
+                        //If the first team declines and the second team accepts
+                        //add the second team to the first team's avoid list
+                        m.MMTList.Find(x => x == r.Item1.T).addAvoid(m.MMTList.Find(x => x == r.Item2.T));
+                        break;
+                    case(ScrimResponseCode.Accept, ScrimResponseCode.Decline):
+                        //If the first team accepts and the second team declines
+                        
+                        //Add the first team to the second team's avoid list
+
+                        m.MMTList.Find(x => x == r.Item2.T).addAvoid(m.MMTList.Find(x => x == r.Item1.T));
+                        break;
                 }
 
 
-
+                
 
                 if(r.Item1.T.Dummy == true)
                 {
@@ -110,7 +147,7 @@ namespace big
             //If neither answer or both refuse
             //Set both inactive AND remove both
             //Call function
-            if(Answer.Item1 == ScrimResponse.Decline)//3 declines fixa
+            if(Answer.Item1 == ScrimResponseCode.Decline)//3 declines fixa
             {
                 m.MMTList[indexes.Item1].setInactive();
                 m.MMTList[indexes.Item1] = m.MMTList[indexes.Item2];

@@ -8,6 +8,7 @@ namespace big
         NoResponse
     }
 
+
     public struct ScrimResponse
     {
         public ScrimResponseCode Code;

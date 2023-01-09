@@ -80,7 +80,7 @@ namespace big
             await ctx.Channel.SendMessageAsync("Are you sure you want to delete " + team.TeamName + "? \n To confirm write \"CONFIRM\"").ConfigureAwait(false);
             var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
 
-            if (message.Result.Content == "CONFIRM")
+            if (await StandardInteractivityHandler.GetConfirmation(ctx, "Are you sure you want to delete your team: " + team.TeamName + " playing: " + team.game.GameName + "? \n To confirm write \"CONFIRM\"" ))
             {
                 Console.WriteLine("User confirmed deletion of team");
                 d.Teams.Remove(team);
@@ -221,7 +221,7 @@ namespace big
             Random r = new Random();
             int i = r.Next(0, hash.Length - 10);
             hash = hash.Substring(i, 10);
-           
+          
 
 
             d.AddUserHash(hash, ctx.User, ctx.Channel);

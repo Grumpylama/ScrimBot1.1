@@ -19,9 +19,10 @@ namespace big
         {
             string s = StandardStringBuilder.BuildTeamListString(teams);
             await ctx.RespondAsync(s);
-            return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);
-            
+            return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);            
         }
+
+        
 
 
         

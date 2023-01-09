@@ -10,12 +10,16 @@ namespace big
         public Team T;
         public bool Active = true;
         public bool hasActiveRequest = false;
-        List<MatchMakingTeam> HasDeclined = new List<MatchMakingTeam>();
+        List<MatchMakingTeam> HasAvoided = new List<MatchMakingTeam>();
 
         public MatchMakingTeam(EDate dt, Team t)
         {
             this.Dt = dt;
             this.T = t;
+        }
+        public void addAvoid(MatchMakingTeam mmt)
+        {
+            HasAvoided.Add(mmt);
         }
         public MatchMakingTeam()
         {
