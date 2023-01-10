@@ -4,17 +4,15 @@ namespace big
     {
         public static List<DiscordUser> Users = new List<DiscordUser>();
 
-
-
+        
         public static void RegisterUser(DiscordUser user, CommandContext ctx)
         {
             if (!Users.Contains(user))
             {
                 Users.Add(user);
                 Console.WriteLine("User registered");
-
-                
-
+                ctx.Client.SendMessageAsync(ctx.Channel, "Since you were not part of our system before you have been registered. In order for the system to work correctly you will need to stay in the discord server"); 
+                 
             }
 
 
@@ -49,9 +47,9 @@ namespace big
             
         }
 
-        public static async Task<DiscordUser> GetDiscordUserFromIDAsync(ulong id, Dependecies d)
+        public static async Task<DiscordUser> GetDiscordUserFromIDAsync(ulong id)
         {
-            return await d.Client.GetUserAsync(id);
+            return await DiscordInterface.Client.GetUserAsync(id);
         }
 
         public static List<UserHash> hashes = new List<UserHash>();

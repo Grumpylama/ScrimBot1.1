@@ -1,19 +1,4 @@
-using DSharpPlus;
-using DSharpPlus.CommandsNext;
-using DSharpPlus.EventArgs;
-using DSharpPlus.Interactivity;
-using DSharpPlus.Interactivity.Extensions;
-using DSharpPlus.Interactivity.EventHandling;
-using DSharpPlus.Entities;
-using Newtonsoft.Json;
-using System.Net.Http.Json;
-using System.Net.Http;
-using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Xml.Linq;
+
 
 namespace big
 {
@@ -73,9 +58,9 @@ namespace big
 
             await Client.ConnectAsync();
             
-            d.Client = Client;
-            big.Commands.d = d;
-            await FileManager.StartUpAsync(d);
+            big.DiscordInterface.Client = Client;
+            
+            await FileManager.StartUpAsync();
             
             Console.WriteLine("Bot is set up and running");
 

@@ -11,17 +11,17 @@ namespace big
         }
 
         //When there are 2 hours left to matchStart
-        public async Task<bool> FindMatchAsync(Dependecies d, MatchMaker m)
+        public async Task<bool> FindMatchAsync( MatchMaker m)
         {
             if(m.MMTList.Count > 1) 
             {
-                await MatchFindHelperAsync(d, m);
+                await MatchFindHelperAsync(m);
                 return true;
             }
             return false;
         }
         //How long do we wait for the answer? D:
-        private async Task MatchFindHelperAsync(Dependecies d, MatchMaker m)
+        private async Task MatchFindHelperAsync( MatchMaker m)
         {
             List<Task<Tuple<ScrimResponse, ScrimResponse>>> tasks = new List<Task<Tuple<ScrimResponse, ScrimResponse>>>();
             foreach(MatchMakingTeam mmt in m.MMTList)
@@ -30,7 +30,7 @@ namespace big
                 if(mmt.hasActiveRequest == false && mmt.Active == true)
                 {
                     //Finds best match for first mmt in list and sends a promt to it and the other team
-                    tasks.Add(PromtCaptains(d, mmt, Sort.FindBestMatch(mmt, m.MMTList), timeout));       
+                    //tasks.Add(PromtCaptains(d, mmt, Sort.FindBestMatch(mmt, m.MMTList), timeout));       
                 }                               
             }
 
@@ -90,7 +90,12 @@ namespace big
 
 
                 
+            }
+                /*
 
+                Quite sure this code is obsolete
+
+                
                 if(r.Item1.T.Dummy == true)
                 {
                     m.MMTList.Remove(r.Item1.T);
@@ -163,10 +168,13 @@ namespace big
                 m.MMTList.RemoveAt(indexes.Item1);
                 m.MMTList.RemoveAt(indexes.Item2);
             }
+
+            */
         }
+        
 
-
-        private async Task<Tuple<ScrimResponse, ScrimResponse>> PromtCaptains(Dependecies d, MatchMakingTeam m1, MatchMakingTeam m2, int timeout)
+        /*
+        private async Task<Tuple<ScrimResponse, ScrimResponse>> PromtCaptains(MatchMakingTeam m1, MatchMakingTeam m2, int timeout)
         {
             
             List<Task<ScrimResponse>> tasks = new List<Task<ScrimResponse>>();
@@ -177,8 +185,8 @@ namespace big
             return new Tuple<ScrimResponse, ScrimResponse>(responses[0], responses[1]);
 
         }
-
-        private async Task<ScrimResponse> PromtCaptain(Dependecies d, MatchMakingTeam m1, MatchMakingTeam m2, int timeout)
+        
+        private async Task<ScrimResponse> PromtCaptain(MatchMakingTeam m1, MatchMakingTeam m2, int timeout)
         {
                      
             DateTime RequestTime = DateTime.Now;
@@ -212,6 +220,7 @@ namespace big
                 //If timeout, return false
             
         }
+        */
 
         private int SecondstillStart(DateTime dt)
         {

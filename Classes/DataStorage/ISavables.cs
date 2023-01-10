@@ -33,9 +33,9 @@ namespace big
             
         }
 
-        public Team ToTeam(Dependecies d)
+        public Team ToTeam()
         {
-            Team team = new Team(d.GetGameFromID(this.gameID), this.TeamName, d.GetUserFromID(this.CaptainID));
+            Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, UserHandler.GetUserFromID(this.CaptainID));
             team.MMR = this.MMR;
             team.teamID = this.ID;
 
@@ -68,9 +68,9 @@ namespace big
             
         }
 
-        public TeamUser ToTeamUser(Dependecies d)
+        public TeamUser ToTeamUser()
         {
-            TeamUser teamUser = new TeamUser(d.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position);
+            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position);
             teamUser.teamID = this.TeamID;
             return teamUser;
         }

@@ -9,10 +9,10 @@ namespace big
             await ctx.RespondAsync(message);
         }
 
-        public static async Task SendDMAsync(Dependecies d, DiscordUser user, string message)
+        public static async Task SendDMAsync(DiscordUser user, string message)
         {
-            var Channnel = await d.GetDMChannelAsync(user);
-            await d.Client.SendMessageAsync(Channnel, message);
+            var Channnel = await DiscordInterface.GetDMChannelAsync(user);
+            await DiscordInterface.Client.SendMessageAsync(Channnel, message);
         }
 
         public static async Task<Team> ChooseTeamAsync(CommandContext ctx, List<Team> teams)
