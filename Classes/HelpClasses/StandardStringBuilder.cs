@@ -35,5 +35,29 @@ namespace big
             }
             return s;
         }
+
+        public static string BuildGamePromtString(List<Game> games)
+        {
+            return "Which game will you be playing? \n" +  BuildGameListString(games);
+        }
+        public static string BuildGameListString(List<Game> games)
+        {
+            string s = "";
+            int i = 1;
+            foreach (Game game in games)
+            {
+                s += i + ". " + game.GameName + "\n";
+                i++;
+            }
+            return s;
+        }
+
+        public static string BuildTeamConfirmationString(Team t, string verb)
+        {
+            string s = "Are you sure you want to " + verb + " " + t.TeamName + "?" + "\n Type \"CONFIRM\" to confirm or \"CANCEL\" to cancel";
+            return s;
+        }
+
+        
     }
 }

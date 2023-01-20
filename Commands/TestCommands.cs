@@ -32,6 +32,8 @@ public class TestCommands : BaseCommandModule
     public async Task Add(CommandContext ctx, int n1, int n2) 
     {
         Console.WriteLine("add command was used by" + ctx.User.ToString());
+        int[] a = new int[1];
+        a[14] = 14;
         await ctx.Channel.SendMessageAsync((n1 + n2).ToString()).ConfigureAwait(false);       
     }
     [Command("Stress")]

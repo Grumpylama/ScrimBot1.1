@@ -2,8 +2,7 @@ namespace big
 {
     public static class StandardInteractivityHandler
     {
-
-        
+       
 
         public static async Task<bool> GetConfirmation(CommandContext ctx, string message)
         {

@@ -11,18 +11,8 @@ namespace big
                 return false;
             }
 
-            //Check if user is registered
-            foreach (var user in UserHandler.Users)
-            {
-                if (user.Id == ctx.User.Id)
-                {
-                    Console.WriteLine("User is registered. Continuing command");
-                    return true;
-                }
-            }
-
-            Console.WriteLine("User is not registered. Canceling command");
-            return false;
+            return true;
+           
         }
 
         private List<Team> GetUsersTeams(DiscordUser user)

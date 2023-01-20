@@ -17,5 +17,15 @@ namespace big
                 return null;
             }
         }
+
+        public static void AddDmChannel(DiscordUser user, DiscordChannel channel)
+        {
+            if (!DMChannel.ContainsKey(user))
+            {
+                DMChannel.Add(user, channel);
+            }
+        }
+
+        
     }
 }

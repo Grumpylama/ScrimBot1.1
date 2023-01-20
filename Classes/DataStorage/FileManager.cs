@@ -2,6 +2,7 @@ namespace big
 {
     public class FileManager
     {
+        public static DateTime LastSave;
         public static async Task StartUpAsync()
         {
             string startpath = Environment.CurrentDirectory;
@@ -54,7 +55,7 @@ namespace big
 
         public static void SaveAll()
         {
-
+            
             string startpath = Environment.CurrentDirectory + "\\Data";
             Console.WriteLine(startpath);
 
@@ -83,6 +84,8 @@ namespace big
             GenericTextFileProcessor.SaveToTextFile<SavableTeamUser>(savableTeamUsers, startpath + "/TeamUsers.csv");
             GenericTextFileProcessor.SaveToTextFile<SaveableTeam>(saveableTeams, startpath + "/Teams.csv");
             GenericTextFileProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
+
+            LastSave = DateTime.Now;
 
 
 

@@ -16,10 +16,9 @@ namespace big
         public async Task DeleteTeam(CommandContext ctx)
         {
             Console.WriteLine("DeleteTeam command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {
-                Console.WriteLine("User is not valid. Canceling DeleteTeam");
-                await ctx.Channel.SendMessageAsync("Could not Delete Team! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
                 return;
             }
 
@@ -68,46 +67,31 @@ namespace big
         [Command("CreateTeam")]
         public async Task CreateTeam(CommandContext ctx, string TeamName)
         {
+
+
             Console.WriteLine("CreateTeam command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
-            {
-                Console.WriteLine("User is not valid. Canceling CreateTeam");
-                await ctx.Channel.SendMessageAsync("Could not Create Team! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+            {  
                 return;
             }
-                                      
-            string s = "What game will you be playing?";
-            int i = 1;
-            foreach(Game game in GameHandler.Games)
-            {
-                s += "\n" + i + ": " + game.GameName;
-                i++;
-            }
-            await ctx.RespondAsync(s);
 
-            
-            while(true)
+            if(TeamHandler.IsTeamNameTaken(TeamName))
             {
-                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);            
-                if(Int32.TryParse(message.Result.Content, out i))
-                {
-                    if(i > 0 && i <= GameHandler.Games.Count)
-                    {
-                        TeamHandler.Teams.Add(new Team(GameHandler.Games[i - 1], TeamName, ctx.User));
-                        await ctx.RespondAsync("Team named " + TeamName + " was created for game " + GameHandler.Games[i - 1].GameName);
-                        return;
-                    }
-                    else
-                    {
-                        await ctx.RespondAsync("Please enter a valid number");
-                    }
-                }
-                else
-                {
-                    await ctx.RespondAsync("Please enter a valid number");
-                }
-            
+                Console.WriteLine("Team name is taken. Canceling CreateTeam");
+                await ctx.Channel.SendMessageAsync("Team name is taken!").ConfigureAwait(false);
+                return;
             }
+
+
+            Game g = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
+            if(g == null)
+            {
+                Console.WriteLine("User did not choose a game. Canceling CreateTeam");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }              
+            TeamHandler.Teams.Add(new Team(g , TeamName, ctx.User));
             
         }
        
@@ -116,10 +100,10 @@ namespace big
         {
             
             Console.WriteLine("TransferCaptain command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {
-                Console.WriteLine("User is not valid. Canceling TransferCaptain");
-                await ctx.Channel.SendMessageAsync("Could not Transfer Captain! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+                
                 return;
             }
 
@@ -170,11 +154,11 @@ namespace big
         [Command("JoinTeam")]
         public async Task JoinTeam(CommandContext ctx)
         {
-
+            
+            UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {
-                Console.WriteLine("User is not valid. Canceling JoinTeam");
-                await ctx.Channel.SendMessageAsync("Could not Join Team! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
+                
                 return;
             }
             Console.WriteLine("JoinTeam command was used by " + ctx.User.ToString());
@@ -203,18 +187,17 @@ namespace big
         {
             Console.WriteLine("AddToTeam command was used by " + ctx.User.ToString());
             
+            UserHandler.CheckIfRegistred(ctx);
             if(!CheckIfValid(ctx))
-            {
-                Console.WriteLine("User is not valid. Canceling AddToTeam");
-                await ctx.Channel.SendMessageAsync("Could not Add to Team! Are you registred? \n Try again or register using !register")
-                .ConfigureAwait(false);
+            {          
+
                 return;
             }
             
             Console.WriteLine("User is valid trying to get user from provided hash");
-            var ToAdd = await UserHandler.GetUserFromHashAsync(hash);
-            DiscordUser userToAdd = ToAdd.Item1;
-            DiscordChannel channel = ToAdd.Item2;
+            DiscordUser userToAdd = UserHandler.GetUserFromHashAsync(hash);
+            
+            
 
             if(userToAdd == null)
             {
@@ -233,7 +216,7 @@ namespace big
 
             Console.WriteLine("User is not trying to add himself/herself to a team");
 
-            List<Team> UsersTeams = GetUsersTeams(ctx.User);
+            List<Team> UsersTeams = ctx.User.GetTeams();
 
             Console.WriteLine("User has " + UsersTeams.Count + " teams");
             if(UsersTeams.Count == 0)
@@ -243,21 +226,14 @@ namespace big
             }
             
             Console.WriteLine("Asking user which team to add to");
-            string s = "Which team would you like to add " + userToAdd.Username + " to?";
-            int i = 1;
-            foreach(Team team in UsersTeams)
-            {
-                s += "\n" + i + ": " + team.TeamName;
-                i++;
-            }
-
+            
             Console.WriteLine("Getting team from user");
             Team Team = await ChooseTeamAsync(ctx, UsersTeams);
-            if (ChooseTeamAsync == null)
+            if (Team == null)
                 return;
 
             //Check if user is already in team
-            if (isInTeam(userToAdd, Team))
+            if (userToAdd.IsInTeam(Team))
             {
                 await ctx.RespondAsync("User is already in team");
                 return;
@@ -267,25 +243,30 @@ namespace big
 
 
             Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, 0, "Member"));
-            var t = ctx.Client.SendMessageAsync(channel, "You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator).ConfigureAwait(false);
+            var t = userToAdd.SendDMAsync("You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator);
             await ctx.RespondAsync("User was added to team: " + Team.TeamName);
-            await t;
-      
+            if(!await t)
+            {
+                Console.WriteLine("Could not send DM to user");
+                await ctx.Channel.SendMessageAsync("Could not send DM to, " + userToAdd.Username + "#" + userToAdd.Discriminator + " please make sure they have DMs enabled, and is a member of the server. They were still added to your team");
+                return;
+
+            }
+            return;
         }
         
         [Command("LeaveTeam")]
         public async Task LeaveTeam(CommandContext ctx)
         {
             Console.WriteLine("LeaveTeam command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {
-                Console.WriteLine("User is not valid. Canceling LeaveTeam");
-                await ctx.Channel.SendMessageAsync("Could not Leave Team! Are you registred? \n Try again or register using !register").ConfigureAwait(false);
                 return;
             }
 
             //Getting all the teams the user is in
-            var teams = GetMemberTeams(ctx.User);
+            var teams = ctx.User.GetTeams();
             if(teams.Count == 0)
             {
                 await ctx.RespondAsync("You are not in any teams");
@@ -303,25 +284,27 @@ namespace big
             }
 
             //Getting confirmation from user
-            await ctx.RespondAsync("Are you sure you want to leave the team: " + team.TeamName + "?" + "\n Type \"CONFIRM\" to leave the team");
-            var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id);
-            if(message.Result.Content != "CONFIRM")
-            {
-                await ctx.RespondAsync("You did not type \"CONFIRM\". Cancelling LeaveTeam");
-                return;
-            }
+            if(!await StandardInteractivityHandler.GetConfirmation(ctx, StandardStringBuilder.BuildTeamConfirmationString(team, "Leave")))           
+            return;
+            
 
             //Removing user from team and notifying Captain
             team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
-            var t = ctx.Client.SendMessageAsync(DiscordInterface.DMChannel[team.TeamCaptain], ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
+            
+            var t = team.TeamCaptain.SendDMAsync(ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
             await ctx.RespondAsync("You have left the team: " + team.TeamName);
             await t;
             return;
         }
 
         [Command("Kill")]
-        public async Task Kill(CommandContext ctx)
+        public async Task Kill(CommandContext ctx, string password)
         {
+            if(password != "SuperIdol")
+            {
+                await ctx.RespondAsync("Incorrect password");
+                return;
+            }
             Console.WriteLine("Kill command recceived. Killing application");
             big.FileManager.SaveAll();
             Environment.Exit(1);

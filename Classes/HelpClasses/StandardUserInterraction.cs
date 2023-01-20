@@ -22,8 +22,12 @@ namespace big
             return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);            
         }
 
-        
-
+        public static async Task<Game> ChooseGameAsync(CommandContext ctx, List<Game> games)
+        {
+            string s = StandardStringBuilder.BuildGamePromtString(games);
+            await ctx.Client.SendMessageAsync(ctx.Channel, s);
+            return await StandardInteractivityHandler.ChooseByNumber<Game>(ctx, games);
+        }
 
         
     }

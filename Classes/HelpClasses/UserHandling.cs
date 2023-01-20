@@ -4,19 +4,38 @@ namespace big
     {
         public static List<DiscordUser> Users = new List<DiscordUser>();
 
-        
-        public static void RegisterUser(DiscordUser user, CommandContext ctx)
+        public static void AddUser(DiscordUser u)
         {
-            if (!Users.Contains(user))
-            {
-                Users.Add(user);
-                Console.WriteLine("User registered");
-                ctx.Client.SendMessageAsync(ctx.Channel, "Since you were not part of our system before you have been registered. In order for the system to work correctly you will need to stay in the discord server"); 
-                 
-            }
-
-
+            if(!Users.Contains(u))
+                Users.Add(u);
+            
         }
+
+        public static bool CheckIfRegistred(CommandContext ctx)
+        {
+            if(CheckIfRegistred(ctx.User))
+            {
+                return true;
+            }
+            else
+            {
+                UserRegistration.RegisterUser(ctx.User, ctx);
+                return false;
+            }
+        }
+
+        private static bool CheckIfRegistred(DiscordUser user)
+        {
+            if (Users.Contains(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
 
         public static DiscordUser GetUserFromID(ulong id)
         {
@@ -52,48 +71,61 @@ namespace big
             return await DiscordInterface.Client.GetUserAsync(id);
         }
 
-        public static List<UserHash> hashes = new List<UserHash>();
+        
 
-        public static async Task<Tuple<DiscordUser, DiscordChannel>> GetUserFromHashAsync(string hash)
+        public static Dictionary<String, DiscordUser> hashes = new Dictionary<String, DiscordUser>();
+
+        public static DiscordUser GetUserFromHashAsync(string hash)
         {
             
-            for (int i = 0; i < hashes.Count; i++)
+            if(hashes.ContainsKey(hash))
             {
-                if (hashes[i].hash == hash)
-                {
-                    DiscordUser returnUser = hashes[i].user;
-                    DiscordChannel returnChannel = hashes[i].channel;
-                    hashes.Remove(hashes[i]);
-                    return new Tuple<DiscordUser, DiscordChannel>(returnUser, returnChannel);
-                }
+                var ReturnUser = hashes[hash];
+                hashes.Remove(hash);
+                return ReturnUser;
             }
+            
 
             return null;
         }
 
         public static void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)
-        {
-            UserHash userHash = new UserHash(user, hash, channel);
-            UserHash r = new UserHash();
-            bool found = false;
+        {       
             
-            foreach (var v in hashes)
+            if(!hashes.ContainsKey(hash))
             {
-                if(v.user.Id == user.Id)
-                {
-                    found = true;
-                    r = v;
-                }
-                
+                hashes.Remove(hash);
             }
-            if(found)
-            {
-                hashes.Remove(r);
-            }
-            
-            hashes.Add(userHash);
-            
+            hashes.Add(hash, user);            
         }
 
     }
+
+    public static class UserRegistration
+    {
+        public static void RegisterUser(DiscordUser user, CommandContext ctx)
+        {
+            if(!UserHandler.Users.Contains(user))
+            {
+                UserHandler.AddUser(user);
+                DiscordInterface.AddDmChannel(user, ctx.Channel);
+                Console.WriteLine(user + " Registered");
+                ctx.Client.SendMessageAsync(ctx.Channel, "Since you were not part of our system before you have been registered. In order for the system to work correctly you will need to stay in the discord server");            
+            }
+        
+        }
+
+        public static void RegisterUser(CommandContext ctx)
+        {
+            if(!UserHandler.Users.Contains(ctx.User))
+            {
+                UserHandler.AddUser(ctx.User);
+                DiscordInterface.AddDmChannel(ctx.User, ctx.Channel);
+                Console.WriteLine(ctx.User + " Registered");
+                ctx.Client.SendMessageAsync(ctx.Channel, "Since you were not part of our system before you have been registered. In order for the system to work correctly you will need to stay in the discord server");            
+            }
+        
+        }
+    }
+    
 }
