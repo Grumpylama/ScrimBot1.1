@@ -71,5 +71,26 @@ namespace big
 
             return teams;
         }
+
+        public static async Task<bool> SendMessageAsync(this DiscordUser user, string message)
+        {
+            if (DiscordInterface.DMChannel.ContainsKey(user))
+            {
+                await DiscordInterface.DMChannel[user].SendMessageAsync(message);
+                return true;
+            }
+            else return false;
+        }
+
+        public static async Task<bool> SendMessageAsync(this DiscordUser user, string message, int timeout)
+        {
+            if (DiscordInterface.DMChannel.ContainsKey(user))
+            {
+                await DiscordInterface.DMChannel[user].SendMessageAsync(message);
+                
+                return true;
+            }
+            else return false;
+        }
     }
 }

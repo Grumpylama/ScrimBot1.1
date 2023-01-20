@@ -36,5 +36,10 @@ namespace big
         {
             Active = true;
         }
+
+        public async Task<ScrimResponse> PromtCaptainForScrimAsync(MatchMakingTeam opponent)
+        {
+            throw new NotImplementedException();
+        } 
     }
 }

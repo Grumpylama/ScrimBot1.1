@@ -92,6 +92,7 @@ namespace big
                 return;
             }              
             TeamHandler.Teams.Add(new Team(g , TeamName, ctx.User));
+            await ctx.Client.SendMessageAsync(ctx.Channel, "Team named " + TeamName + " playing " + g.GameName + " created!").ConfigureAwait(false);
             
         }
        

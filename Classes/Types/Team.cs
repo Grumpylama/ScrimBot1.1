@@ -34,6 +34,16 @@ namespace big
             return savableTeam;
         }
 
+        public async Task<bool> DMCaptainAsync(string message)
+        {
+            return await this.TeamCaptain.SendMessageAsync(message);
+        }
+
+        public async Task<bool> DMCaptainAsync(string message, int timeout)
+        {
+            return await this.TeamCaptain.SendMessageAsync(message, timeout);
+        }
+
 
         //Constructor for creating a team with members
         public Team(Game game, string TeamName, DiscordUser TeamCaptain, List<TeamUser> members)

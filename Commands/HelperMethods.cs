@@ -175,6 +175,7 @@ namespace big
         private async Task<Nullable<EDate>> PromtDateAsync(CommandContext ctx)
         {
             
+            
             while(true)
             {
                 await ctx.RespondAsync("What day will you be playing? \n 1:Tonight \n 2:Tomorrow \n 3:Other");
