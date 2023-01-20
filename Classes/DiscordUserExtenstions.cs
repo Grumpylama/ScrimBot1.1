@@ -57,5 +57,19 @@ namespace big
 
             return false;
         }
+
+        public static List<Team> GetOwnedTeams(this DiscordUser user)
+        {
+            List<Team> teams = new List<Team>();
+            foreach (Team team in TeamHandler.Teams)
+            {
+                if (team.TeamCaptain.Id == user.Id)
+                {
+                    teams.Add(team);
+                }
+            }
+
+            return teams;
+        }
     }
 }
