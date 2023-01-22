@@ -18,11 +18,19 @@ global using System.Security.Cryptography;
 global using System.Linq;
 global using System.Timers;
 global using System.Threading;
+global using Serilog.Sinks.SystemConsole;
+global using Serilog;
+global using Serilog.Sinks.File;
+
+
+
+
 
 namespace big
 {
     public class Program
     {
+        
         
         public static void Main(string[] args)
         {
@@ -30,10 +38,18 @@ namespace big
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
 
+            var logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+
             //Registering the save timer
             var saveTimer = new System.Timers.Timer(900000); // 900000 milliseconds = 15 minutes
             saveTimer.Elapsed += TimerSave;
             saveTimer.Start();
+            logger.Information("Save timer started");
 
 
             //Create a new bot

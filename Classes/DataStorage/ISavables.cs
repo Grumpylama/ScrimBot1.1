@@ -54,7 +54,7 @@ namespace big
 
     public class SavableTeamUser : ISavable 
     {
-        public int ID { get; set; }
+        
         public ulong UserID { get; set; }
         public int TeamID { get; set; }
         public int roleID { get; set; }

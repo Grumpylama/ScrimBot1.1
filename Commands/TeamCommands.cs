@@ -122,7 +122,8 @@ namespace big
             }
 
             //Getting all users that are not captain of the team
-            List<DiscordUser> otherMembers = TeamToTransfer.GetNonCaptainMembers().ForEach(item => item.GetUser());
+            var otherMembers = TeamToTransfer.GetNonCaptainMembers().Select(x => x.User).ToList();
+            
 
             if(otherMembers.Count() == 0)
             {
@@ -132,7 +133,7 @@ namespace big
             }
 
             DiscordUser newCaptain = await ChooseUserAsync(ctx, otherMembers);
-
+            
             if(newCaptain == null)
             {
                 Console.WriteLine("User did not choose a user. Canceling TransferCaptain");
@@ -141,7 +142,7 @@ namespace big
             }
 
             TeamToTransfer.TeamCaptain = newCaptain;
-            var t = ctx.Client.SendMessageAsync(DiscordInterface.DMChannel[newCaptain], "You are now the captain of " + TeamToTransfer.TeamName);
+            var t = newCaptain.SendDMAsync("You are now the captain of " + TeamToTransfer.TeamName);    
             await ctx.Channel.SendMessageAsync("Captain was transfered!").ConfigureAwait(false);
             await t;
             return;
