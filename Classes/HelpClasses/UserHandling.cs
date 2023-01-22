@@ -52,23 +52,32 @@ namespace big
 
         public static async Task LoadUsersAsync(List<SaveableUser> users)
         {
-            List<Task<DiscordUser>> tasks = new List<Task<DiscordUser>>();
+            List<Tuple<Task<DiscordUser>, Task<DiscordChannel>>> UserGetTasks = new List<Tuple<Task<DiscordUser>, Task<DiscordChannel>>>();
+            
             foreach (var user in users)
             {
-                tasks.Add(GetDiscordUserFromIDAsync(user.ID));
+                var T = new Tuple<Task<DiscordUser>, Task<DiscordChannel>>(GetDiscordUserFromIDAsync(user.ID), GetDiscordChannelFromIDAsync(user.DMChannelID));
+                UserGetTasks.Add(T);
             }
 
-            foreach(var task in tasks)
+            foreach (var task in UserGetTasks)
             {
-                Users.Add(await task);
+                var user = await task.Item1;
+                var channel = await task.Item2;
+                AddUser(user);
+                DiscordInterface.AddDmChannel(user, channel);
             }
-
             
         }
 
         public static async Task<DiscordUser> GetDiscordUserFromIDAsync(ulong id)
         {
             return await DiscordInterface.Client.GetUserAsync(id);
+        }
+
+        public static async Task<DiscordChannel> GetDiscordChannelFromIDAsync(ulong id)
+        {
+            return await DiscordInterface.Client.GetChannelAsync(id);
         }
 
         

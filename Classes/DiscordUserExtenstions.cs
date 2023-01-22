@@ -60,16 +60,21 @@ namespace big
 
         public static List<Team> GetOwnedTeams(this DiscordUser user)
         {
-            List<Team> teams = new List<Team>();
+            List<Team> UsersTeams = new List<Team>();
             foreach (Team team in TeamHandler.Teams)
             {
                 if (team.TeamCaptain.Id == user.Id)
                 {
-                    teams.Add(team);
+                    UsersTeams.Add(team);
                 }
             }
 
-            return teams;
+            if(UsersTeams.Count == 0)
+            {
+                Console.WriteLine("User is not a captain of any teams");
+                return null;
+            }
+            return UsersTeams;
         }
 
         public static async Task<bool> SendMessageAsync(this DiscordUser user, string message)
@@ -91,6 +96,11 @@ namespace big
                 return true;
             }
             else return false;
+        }
+
+        public static SaveableUser ToSavableUser(this DiscordUser user)
+        {
+            return new SaveableUser(user.Id, user.GetDMChannel().Id);
         }
     }
 }

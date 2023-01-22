@@ -6,11 +6,7 @@ namespace big
     public partial class Commands : BaseCommandModule
     {
         
-
         
-
-        
-
 
         [Command("DeleteTeam")]
         public async Task DeleteTeam(CommandContext ctx)
@@ -24,7 +20,7 @@ namespace big
 
 
             //Getting all teams that user is captain of
-            List<Team> teams = GetUsersTeams(ctx.User);
+            List<Team> teams = ctx.User.GetOwnedTeams();
             if(teams == null)
             {
                 Console.WriteLine("User has no teams. Canceling DeleteTeam");
@@ -68,7 +64,6 @@ namespace big
         public async Task CreateTeam(CommandContext ctx, string TeamName)
         {
 
-
             Console.WriteLine("CreateTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
@@ -109,7 +104,7 @@ namespace big
             }
 
             //Getting all teams that user is captain of
-            List<Team> teams = GetUsersTeams(ctx.User);
+            List<Team> teams = ctx.User.GetOwnedTeams();
             if (teams == null)
             {
                 Console.WriteLine("User has no teams. Canceling TransferCaptain");
@@ -127,7 +122,7 @@ namespace big
             }
 
             //Getting all users that are not captain of the team
-            List<DiscordUser> otherMembers = GetUsersNotCaptain(TeamToTransfer);
+            List<DiscordUser> otherMembers = TeamToTransfer.GetNonCaptainMembers().ForEach(item => item.GetUser());
 
             if(otherMembers.Count() == 0)
             {
@@ -217,7 +212,7 @@ namespace big
 
             Console.WriteLine("User is not trying to add himself/herself to a team");
 
-            List<Team> UsersTeams = ctx.User.GetTeams();
+            List<Team> UsersTeams = ctx.User.GetOwnedTeams();
 
             Console.WriteLine("User has " + UsersTeams.Count + " teams");
             if(UsersTeams.Count == 0)
@@ -265,7 +260,7 @@ namespace big
             {
                 return;
             }
-
+            
             //Getting all the teams the user is in
             var teams = ctx.User.GetTeams();
             if(teams.Count == 0)
@@ -274,10 +269,12 @@ namespace big
                 return;
             }
 
+
             //Getting what team the user wants to leave
-            Team team = await ChooseTeamAsync(ctx, teams);
+            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
             if (team == null)
                 return;
+
             if(team.TeamCaptain.Id == ctx.User.Id)
             {
                 await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
@@ -308,6 +305,19 @@ namespace big
             }
             Console.WriteLine("Kill command recceived. Killing application");
             big.FileManager.SaveAll();
+            Environment.Exit(1);
+        }
+
+        [Command("Die")]
+        public async Task Die(CommandContext ctx, string password)
+        {
+            if(password != "SuperIdol")
+            {
+                await ctx.RespondAsync("Incorrect password");
+                return;
+            }
+            Console.WriteLine("Kill command recceived. Killing application");
+            
             Environment.Exit(1);
         }
 

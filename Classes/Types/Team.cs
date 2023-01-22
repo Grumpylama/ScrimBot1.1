@@ -124,6 +124,24 @@ namespace big
                 }
             }
         }
+
+        public List<TeamUser> GetMembers()
+        {
+            return TeamMembers;
+        }
+
+        public List<TeamUser> GetNonCaptainMembers()
+        {
+            List<TeamUser> nonCaptainMembers = new List<TeamUser>();
+            foreach (var item in TeamMembers)
+            {
+                if (item.User.Id != TeamCaptain.Id)
+                {
+                    nonCaptainMembers.Add(item);
+                }
+            }
+            return nonCaptainMembers;
+        }
     }
 }
 

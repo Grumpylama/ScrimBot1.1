@@ -14,8 +14,13 @@ namespace big
             //Load All files
             
             //Starts userloading
-            tasks.Add(UserHandler.LoadUsersAsync(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
+            try{
+                 tasks.Add(UserHandler.LoadUsersAsync(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
 
+            }
+            catch {
+                Console.WriteLine("Error Loading Users");
+            }
            
             
             //tasks.Add(Dependecies.LoadTeams(GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv")));
@@ -29,20 +34,61 @@ namespace big
 
             //Wait for all tasks to finish before returning
             await Task.WhenAll(tasks);
-
-            List<SaveableTeam> SvTs = GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv");
-            foreach (var team in SvTs)
+            List<SaveableTeam> SvTs = new List<SaveableTeam>();
+            try
             {
-                TeamHandler.Teams.Add(team.ToTeam());
+                SvTs = GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv");
+            }
+            catch 
+            {
+                Console.WriteLine("Error Loading Teams");
+            }
+            try 
+            {
+                foreach (var team in SvTs)
+                {   
+                    TeamHandler.Teams.Add(team.ToTeam());
+                }
+            }
+            catch 
+            {
+                Console.WriteLine("Error Converting Teams");
             }
 
-
-            List<SavableTeamUser> SvTUs = GenericTextFileProcessor.LoadFromTextFile<SavableTeamUser>(startpath + "/Data/TeamUsers.csv");
-            foreach (var user in SvTUs)
+            List<SavableTeamUser> SvTUs = new List<SavableTeamUser>();
+            try
             {
-                TeamHandler.GetTeamFromID(user.TeamID).TeamMembers.Add(user.ToTeamUser());
-                
+                SvTUs = GenericTextFileProcessor.LoadFromTextFile<SavableTeamUser>(startpath + "/Data/TeamUsers.csv");
             }
+            catch 
+            {
+                Console.WriteLine("Error Loading TeamUsers");
+            }
+            try
+            {
+                Console.WriteLine("Converting TeamUsers");
+                Console.WriteLine("TeamUsers Count: " + SvTUs.Count);
+                foreach (var user in SvTUs)
+                {
+                    Console.WriteLine("Trying to add " + user.UserID + " to " + TeamHandler.GetTeamFromID(user.TeamID).TeamName);
+                    TeamHandler.GetTeamFromID(user.TeamID).TeamMembers.Add(user.ToTeamUser());
+                    
+                }
+                Console.WriteLine("Done Converting TeamUsers");
+                foreach (var team in TeamHandler.Teams)
+                {
+                    Console.WriteLine("Team: " + team.TeamName);
+                    foreach (var user in team.TeamMembers)
+                    {
+                        Console.WriteLine("User: " + user.User.Username);
+                    }
+                }
+            }
+            catch 
+            {
+                Console.WriteLine("Error Converting TeamUsers");
+            }
+            
             return;
 
             
@@ -66,13 +112,14 @@ namespace big
             List<SaveableUser> saveableUsers = new List<SaveableUser>();
             foreach (var u in UserHandler.Users)
             {
-                saveableUsers.Add(new SaveableUser(u.Id));
+                saveableUsers.Add(u.ToSavableUser());
             }
             List<SaveableTeam> saveableTeams = new List<SaveableTeam>();
             foreach (var t in TeamHandler.Teams)
             {
                 saveableTeams.Add(t.ToSavable());
             }
+
             List<SavableTeamUser> savableTeamUsers = new List<SavableTeamUser>();
             foreach (Team t in TeamHandler.Teams)
             {

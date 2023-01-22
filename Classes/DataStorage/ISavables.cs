@@ -5,10 +5,15 @@ namespace big
     public class SaveableUser : ISavable
     {
         public ulong ID { get; set; }
-        public SaveableUser(ulong ID)
+
+        public ulong DMChannelID { get; set; }
+        
+        public SaveableUser(ulong ID, ulong DMChannelID)
         {
             this.ID = ID;
+            this.DMChannelID = DMChannelID;
         }
+        
 
         public SaveableUser()
         {

@@ -28,7 +28,7 @@ namespace big
         {
             //Registering the unhandled exception handler
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
 
             //Registering the save timer
             var saveTimer = new System.Timers.Timer(900000); // 900000 milliseconds = 15 minutes
@@ -70,9 +70,11 @@ namespace big
             try{
                 FileManager.SaveAll();
             }
-            catch{
+            catch(Exception ex)
+            {
                 Console.WriteLine("Failed to save data");
                 Console.WriteLine("Last Save: " + FileManager.LastSave);
+                Console.WriteLine(ex);
             }
             
             // Code to run when the application exits

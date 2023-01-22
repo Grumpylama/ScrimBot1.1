@@ -8,6 +8,7 @@ namespace big
     {
         public static List<T> LoadFromTextFile<T>(string filePath) where T : ISavable, new()
         {
+            
             var lines = System.IO.File.ReadAllLines(filePath).ToList();
             List<T> output = new List<T>();
             T entry = new T();
@@ -18,6 +19,7 @@ namespace big
             {
                 throw new IndexOutOfRangeException("The file was either empty or missing.");
             }
+
 
             // Splits the header into one column header per entry
             var headers = lines[0].Split(',');
