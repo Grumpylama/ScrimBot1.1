@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace big
 {
+    private static readonly string FilePath = "MatchMakerHandler.cs";
     
     public class MatchMakerHandler
     {
-
         private static readonly string FilePath = "MatchMakerHandler.cs";   
         public static List<MatchMaker> matchMakers = new List<MatchMaker>();
 
@@ -20,13 +20,16 @@ namespace big
         
         public StatusCode addMatchMakingTeam(MatchMakingTeam temp)
         {
+            StandardLogging.LogInfo.LogInfo(FilePath + " Adding team " + temp.Name + " to a matching matchMaker");
             if(contains(temp))
             {
                 return new StatusCode(true, "You're team has been added to a matchmaker. \n You will be notified when you have been matchmade!");
             }
             else
             {
-                addMatchMaker(new MatchMaker(temp));
+                MatchMaker newTeam = new MatchMaker(temp);
+                addMatchMaker(newTeam);
+                StandardLogging.LogInfo.LogInfo(FilePath + " Team has been added to a new matchmaker, specified above.");
                 return new StatusCode(false, "You have been added to the matchmaking queue. \n You will be notified when you have been matchmade!");
             }
         }
@@ -45,6 +48,7 @@ namespace big
                         if(m.matchStart.Date == temp.Dt.Date) 
                         {
                             m.addToMatchMakingList(temp);
+                            StandardLogging.LogInfo.LogInfo(FilePath + " Team " + temp.Name + " has been successfully added to " + m.ToString);
                             return true;
                         }
                     }
@@ -61,6 +65,12 @@ namespace big
         private void removeMatchMaker(MatchMaker temp)
         {
             matchMakers.Remove(temp);
+        }
+
+        private string toString()
+        {
+            string s = matchMakers.Count;
+            return s;
         }
     }
     
