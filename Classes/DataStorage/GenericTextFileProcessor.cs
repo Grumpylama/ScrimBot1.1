@@ -9,7 +9,7 @@ namespace big
     public static class GenericTextFileProcessor
     {
 
-        private static readonly string FilePath = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+        private static readonly string FilePath = "GenericTextFileProcessor.cs";
 
         public static List<T> LoadFromTextFile<T>(string filePath) where T : ISavable, new()
         {

@@ -11,6 +11,7 @@ namespace big
             {
                 s += member.User.Username + ", ";
             }
+            StandardLogging.LogInfo(FilePath, "BuildTeamString: Built team string: " + s);
             return s;
         }
 
@@ -23,6 +24,7 @@ namespace big
                 s += i + ". " + t.TeamName + "\n";
                 i++;
             }
+            StandardLogging.LogInfo(FilePath, "BuildTeamListString: Built team list string: " + s);
             return s;
         }
 
@@ -35,12 +37,15 @@ namespace big
                 s += i + ". " + user.Username + "#" + user.Discriminator + "\n";
                 i++;
             }
+            StandardLogging.LogInfo(FilePath, "BuildUserListString: Built user list string: " + s);
             return s;
         }
 
         public static string BuildGamePromtString(List<Game> games)
         {
-            return "Which game will you be playing? \n" +  BuildGameListString(games);
+            string s = "Which game will you be playing? \n" +  BuildGameListString(games);
+            StandardLogging.LogInfo(FilePath, "BuildGamePromtString: Built game promt string: " + s);
+            return s;
         }
         public static string BuildGameListString(List<Game> games)
         {
@@ -51,12 +56,14 @@ namespace big
                 s += i + ". " + game.GameName + "\n";
                 i++;
             }
+            StandardLogging.LogInfo(FilePath, "BuildGameListString: Built game list string: " + s);
             return s;
         }
 
         public static string BuildTeamConfirmationString(Team t, string verb)
         {
             string s = "Are you sure you want to " + verb + " " + t.TeamName + "?" + "\n Type \"CONFIRM\" to confirm or \"CANCEL\" to cancel";
+            StandardLogging.LogInfo(FilePath, "BuildTeamConfirmationStrng: Built confirmation string: " + s);
             return s;
         }
 

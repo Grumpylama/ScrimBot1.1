@@ -143,6 +143,13 @@ namespace big
             }
             return nonCaptainMembers;
         }
+        
+
+
+        public override string ToString()
+        {
+            return $"{TeamName} playing {game.GameName}";
+        }
     }
 }
 

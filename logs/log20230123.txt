@@ -28,3 +28,127 @@
 2023-01-23 01:55:33.469 +01:00 [INF] [ScrimBot1.1.dll] Columns: 2
 2023-01-23 01:55:33.469 +01:00 [INF] [ScrimBot1.1.dll] Lines: 0
 2023-01-23 01:55:33.471 +01:00 [INF] [ScrimBot1.1.dll] Saved 3 entries to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/Users.csv
+2023-01-23 19:08:44.564 +01:00 [INF] [Program.cs] Save timer started
+2023-01-23 19:08:44.606 +01:00 [INF] [Program.cs] Bot created
+2023-01-23 19:08:44.607 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-23 19:08:44.951 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:08:44.952 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-23 19:08:45.020 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-23 19:08:45.022 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:08:45.066 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-23 19:08:45.209 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-23 19:08:45.210 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-23 19:08:45.220 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-23 19:08:45.257 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-23 19:08:45.257 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-23 19:08:45.268 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-23 19:08:46.629 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-23 19:08:46.634 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:08:46.648 +01:00 [INF] [ScrimBot1.1.dll] Columns: 2
+2023-01-23 19:08:46.650 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 19:08:46.652 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:08:46.971 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:08:46.980 +01:00 [INF] [ScrimBot1.1.dll] Columns: 5
+2023-01-23 19:08:46.981 +01:00 [INF] [ScrimBot1.1.dll] Lines: 2
+2023-01-23 19:08:46.982 +01:00 [INF] [ScrimBot1.1.dll] Loaded 1 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:08:46.985 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-23 19:08:46.985 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:08:46.986 +01:00 [INF] [ScrimBot1.1.dll] Columns: 4
+2023-01-23 19:08:46.987 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 19:08:46.988 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:08:46.990 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:08:46.991 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:08:47.013 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-23 19:09:41.544 +01:00 [INF] [Program.cs] Save timer started
+2023-01-23 19:09:41.615 +01:00 [INF] [Program.cs] Bot created
+2023-01-23 19:09:41.616 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-23 19:09:41.628 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:09:41.628 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-23 19:09:41.747 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-23 19:09:41.749 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:09:41.795 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-23 19:09:41.996 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-23 19:09:41.997 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-23 19:09:42.013 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-23 19:09:42.074 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-23 19:09:42.075 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-23 19:09:42.098 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-23 19:09:43.383 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-23 19:09:43.389 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:09:43.391 +01:00 [INF] [ScrimBot1.1.dll] Columns: 2
+2023-01-23 19:09:43.393 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 19:09:43.396 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:09:43.703 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-23 19:09:43.832 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:09:43.834 +01:00 [INF] [ScrimBot1.1.dll] Columns: 5
+2023-01-23 19:09:43.835 +01:00 [INF] [ScrimBot1.1.dll] Lines: 2
+2023-01-23 19:09:43.836 +01:00 [INF] [ScrimBot1.1.dll] Loaded 1 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:09:43.839 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-23 19:09:43.840 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:09:43.842 +01:00 [INF] [ScrimBot1.1.dll] Columns: 4
+2023-01-23 19:09:43.842 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 19:09:43.844 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:09:43.847 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:09:43.890 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:13:18.411 +01:00 [INF] [Program.cs] Save timer started
+2023-01-23 19:13:18.472 +01:00 [INF] [Program.cs] Bot created
+2023-01-23 19:13:18.473 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-23 19:13:18.482 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:13:18.483 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-23 19:13:18.608 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-23 19:13:18.610 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:13:18.661 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-23 19:13:18.860 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-23 19:13:18.861 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-23 19:13:18.879 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-23 19:13:18.950 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-23 19:13:18.951 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-23 19:13:18.974 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-23 19:13:20.374 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-23 19:13:20.383 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:13:20.387 +01:00 [INF] [ScrimBot1.1.dll] Columns: 2
+2023-01-23 19:13:20.389 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 19:13:20.392 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:13:20.712 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-23 19:13:20.757 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:13:20.760 +01:00 [INF] [ScrimBot1.1.dll] Columns: 5
+2023-01-23 19:13:20.761 +01:00 [INF] [ScrimBot1.1.dll] Lines: 2
+2023-01-23 19:13:20.763 +01:00 [INF] [ScrimBot1.1.dll] Loaded 1 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:13:20.767 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-23 19:13:20.777 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:13:20.779 +01:00 [INF] [ScrimBot1.1.dll] Columns: 4
+2023-01-23 19:13:20.780 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 19:13:20.783 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:13:20.794 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:13:20.795 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:14:37.166 +01:00 [INF] [Program.cs] Save timer started
+2023-01-23 19:14:37.240 +01:00 [INF] [Program.cs] Bot created
+2023-01-23 19:14:37.242 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-23 19:14:37.252 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:14:37.253 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-23 19:14:37.360 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-23 19:14:37.361 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-23 19:14:37.412 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-23 19:14:37.600 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-23 19:14:37.601 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-23 19:14:37.616 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-23 19:14:37.681 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-23 19:14:37.683 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-23 19:14:37.702 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-23 19:14:39.015 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-23 19:14:39.020 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:14:39.022 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-23 19:14:39.023 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-23 19:14:39.024 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Users.csv
+2023-01-23 19:14:39.314 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-23 19:14:39.333 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:14:39.334 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-23 19:14:39.336 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 2
+2023-01-23 19:14:39.339 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 1 entries from text file: C:\laragon\www\ScrimBot1.1/Data/Teams.csv
+2023-01-23 19:14:39.342 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-23 19:14:39.343 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:14:39.344 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-23 19:14:39.345 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-23 19:14:39.347 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\laragon\www\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 19:14:39.351 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
+2023-01-23 19:14:39.353 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: big.TeamUser
