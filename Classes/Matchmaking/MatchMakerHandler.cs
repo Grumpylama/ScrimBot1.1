@@ -7,6 +7,8 @@ namespace big
     
     public class MatchMakerHandler
     {
+
+        private static readonly string FilePath = "MatchMakerHandler.cs";   
         public static List<MatchMaker> matchMakers = new List<MatchMaker>();
 
         public Game game;

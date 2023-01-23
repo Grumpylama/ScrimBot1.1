@@ -4,6 +4,9 @@ namespace big
 {
     public class TeamUser
     {
+
+        private static readonly string FilePath = "TeamUser.cs";
+
         //Refrence To a user Instance
         public DiscordUser User { get; set; }
 

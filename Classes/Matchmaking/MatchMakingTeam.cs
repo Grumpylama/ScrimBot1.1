@@ -5,6 +5,8 @@ namespace big
     //them into queue for matchmaking
     public class MatchMakingTeam
     {
+
+        private static readonly string FilePath = "MatchMakingTeam.cs";
         public bool Dummy = false;
         public EDate Dt;
         public Team T;

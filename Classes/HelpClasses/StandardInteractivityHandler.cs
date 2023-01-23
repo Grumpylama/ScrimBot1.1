@@ -2,6 +2,8 @@ namespace big
 {
     public static class StandardInteractivityHandler
     {
+
+        private static readonly string FilePath = "StandardInteractivityHandler.cs";
        
 
         public static async Task<bool> GetConfirmation(CommandContext ctx, string message)

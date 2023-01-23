@@ -2,6 +2,8 @@ namespace big
 {
     public static class StandardStringBuilder
     {
+        private static readonly string FilePath = "StandardStringBuilder.cs";
+
         public static string BuildTeamString(Team t)
         {
             string s = "Team: " + t.TeamName + "\nCaptain: " + t.TeamCaptain.Username + "\nMembers: ";

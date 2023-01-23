@@ -3,6 +3,8 @@ namespace big
     public class FileManager
     {
         public static DateTime LastSave;
+
+        public static string FilePath = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
         public static async Task StartUpAsync()
         {
             string startpath = Environment.CurrentDirectory;

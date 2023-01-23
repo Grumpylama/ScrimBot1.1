@@ -2,6 +2,10 @@ namespace big
 {
     public static class DiscordUserExtensions
     {
+
+
+        private static readonly string FilePath = "DiscordUserExtensions.cs";
+        #pragma warning disable CS8603
         public static DiscordChannel GetDMChannel(this DiscordUser user)
         {
             if (DiscordInterface.DMChannel.ContainsKey(user))

@@ -2,6 +2,8 @@ namespace big
 {
     public static class UserHandler
     {
+
+        private static readonly string FilePath = "UserHandler.cs";
         public static List<DiscordUser> Users = new List<DiscordUser>();
 
         public static void AddUser(DiscordUser u)

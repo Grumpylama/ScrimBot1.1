@@ -2,6 +2,8 @@ namespace big
 {
     public static class DiscordInterface
     {
+
+        private static readonly string FilePath = "DiscordInterface.cs";
         public static DiscordClient Client;
         public static Dictionary<DiscordUser, DiscordChannel> DMChannel = new Dictionary<DiscordUser, DiscordChannel>();
         

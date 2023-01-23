@@ -2,6 +2,9 @@ namespace big
 {
     public partial class Commands : BaseCommandModule
     {
+
+        private static readonly string FilePath = "Commands.cs";
+        #pragma warning disable CS8603
         private bool CheckIfValid(CommandContext ctx)
         {
             //Check if user is a bot

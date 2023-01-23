@@ -4,6 +4,8 @@ namespace big
 {
     public class SaveableUser : ISavable
     {
+
+        public static string FilePath = "SaveableUser.cs.SaveableUser";
         public ulong ID { get; set; }
 
         public ulong DMChannelID { get; set; }
@@ -12,6 +14,7 @@ namespace big
         {
             this.ID = ID;
             this.DMChannelID = DMChannelID;
+            StandardLogging.LogInfo(FilePath, "User saved: " + ID + " " + DMChannelID);
         }
         
 
@@ -21,10 +24,14 @@ namespace big
         }
     }
 
+
+    #pragma warning disable CS8618
     
 
     public class SaveableTeam : ISavable
     {
+
+        public static string FilePath = "SaveableUser.cs.SavableTeam";
         public int ID { get; set; }
         public ulong CaptainID { get; set; }
         
@@ -43,7 +50,7 @@ namespace big
             Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, UserHandler.GetUserFromID(this.CaptainID));
             team.MMR = this.MMR;
             team.teamID = this.ID;
-
+            StandardLogging.LogInfo(FilePath, "Team loaded: " + team.ToString());
             return team;
         }
 
@@ -54,6 +61,8 @@ namespace big
 
     public class SavableTeamUser : ISavable 
     {
+
+        public static string FilePath = "SaveableUser.cs.SavableTeamUser";
         
         public ulong UserID { get; set; }
         public int TeamID { get; set; }
@@ -66,6 +75,8 @@ namespace big
             this.TeamID = TeamID;
             this.roleID = roleID;
             this.Position = Position;
+            StandardLogging.LogInfo(FilePath, "TeamUser saved: " + UserID + " " + TeamID + " " + roleID + " " + Position);
+
         }
 
         public SavableTeamUser()
@@ -77,6 +88,7 @@ namespace big
         {
             TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position);
             teamUser.teamID = this.TeamID;
+            StandardLogging.LogInfo(FilePath, "TeamUser loaded: " + teamUser.ToString());
             return teamUser;
         }
     }

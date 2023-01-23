@@ -2,6 +2,8 @@ namespace big
 {
     public class MatchFindingHelp
     {
+
+        private static readonly string FilePath = "MatchFindingHelp.cs";
         //When there is 30 minutes left to matchStart
         public void StressFindMatch()
         {

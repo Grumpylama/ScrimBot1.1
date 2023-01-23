@@ -6,7 +6,7 @@ namespace big
     public partial class Commands : BaseCommandModule
     {
         
-        
+        private static readonly string FilePath = "Commands.cs";
 
         [Command("DeleteTeam")]
         public async Task DeleteTeam(CommandContext ctx)
@@ -133,7 +133,7 @@ namespace big
             }
 
             DiscordUser newCaptain = await ChooseUserAsync(ctx, otherMembers);
-            
+            #pragma warning disable CS8625
             if(newCaptain == null)
             {
                 Console.WriteLine("User did not choose a user. Canceling TransferCaptain");
@@ -286,7 +286,7 @@ namespace big
             if(!await StandardInteractivityHandler.GetConfirmation(ctx, StandardStringBuilder.BuildTeamConfirmationString(team, "Leave")))           
             return;
             
-
+            #pragma warning disable CS8604
             //Removing user from team and notifying Captain
             team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
             

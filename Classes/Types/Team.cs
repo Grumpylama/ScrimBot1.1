@@ -9,6 +9,7 @@ namespace big
     public class Team
     {
         
+        private static readonly string FilePath = "Team.cs";
         public static int teamIDCounter = 0;   
         public string TeamName { get; set; }
         public DiscordUser TeamCaptain { get; set; }

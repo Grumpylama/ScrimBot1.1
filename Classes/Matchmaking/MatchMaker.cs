@@ -7,6 +7,8 @@ namespace big
    
    public class MatchMaker
    {
+
+        private static readonly string FilePath = "MatchMaker.cs";
       public List<MatchMakingTeam> MMTList = new List<MatchMakingTeam>();
 
       public List<Tuple<MatchMakingTeam, MatchMakingTeam>> MatchList = new List<Tuple<MatchMakingTeam, MatchMakingTeam>>();

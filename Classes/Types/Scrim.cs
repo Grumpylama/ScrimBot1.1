@@ -4,6 +4,8 @@ namespace big
 
     public class Scrim
     {
+
+        private static readonly string FilePath = "Scrim.cs";
         public Team Team1;
         public Team Team2;
         public Game Game;

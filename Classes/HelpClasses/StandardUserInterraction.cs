@@ -2,6 +2,8 @@ namespace big
 {
     public static class StandardUserInteraction
     {
+
+        private static readonly string FilePath = "StandardUserInteraction.cs";
         
         
         public static async Task RespondAsync(CommandContext ctx, string message)

@@ -1,24 +1,37 @@
 
 
+
+
 namespace big
 {
         
     
     public static class GenericTextFileProcessor
     {
+
+        private static readonly string FilePath = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+
         public static List<T> LoadFromTextFile<T>(string filePath) where T : ISavable, new()
         {
-            
+            StandardLogging.LogInfo(FilePath, "Loading from text file: " + filePath);
             var lines = System.IO.File.ReadAllLines(filePath).ToList();
             List<T> output = new List<T>();
             T entry = new T();
+
+
             var cols = entry.GetType().GetProperties();
+            StandardLogging.LogInfo(FilePath, "Columns: " + cols.Length);
+
+
+            
 
             // Checks to be sure we have at least one header row and one data row
             if (lines.Count < 2)
             {
+                StandardLogging.LogError(FilePath, "The file was either empty or missing.");
                 throw new IndexOutOfRangeException("The file was either empty or missing.");
             }
+            StandardLogging.LogInfo(FilePath, "Lines: " + lines.Count);
 
 
             // Splits the header into one column header per entry
@@ -56,20 +69,27 @@ namespace big
 
                 output.Add(entry);
             }
-
+            StandardLogging.LogInfo(FilePath, "Loaded " + output.Count + " entries from text file: " + filePath);
             return output;
         }
 
         public static void SaveToTextFile<T>(List<T> data, string filePath) where T : ISavable
         {
+
+            StandardLogging.LogInfo(FilePath, "Saving to text file: " + filePath);
             List<string> lines = new List<string>();
             StringBuilder line = new StringBuilder();
 
+
+
             if (data == null || data.Count == 0)
             {
+                StandardLogging.LogError(FilePath, "You must populate the data parameter with at least one value.");
                 throw new ArgumentNullException("data", "You must populate the data parameter with at least one value.");
             }
             var cols = data[0].GetType().GetProperties();
+
+            StandardLogging.LogInfo(FilePath, "Columns: " + cols.Length);
 
             // Loops through each column and gets the name so it can comma 
             // separate it into the header row.
@@ -78,6 +98,8 @@ namespace big
                 line.Append(col.Name);
                 line.Append(",");
             }
+
+            StandardLogging.LogInfo(FilePath, "Lines: " + lines.Count);
 
             // Adds the column header entries to the first line (removing
             // the last comma from the end first).
@@ -99,6 +121,7 @@ namespace big
             }
 
             System.IO.File.WriteAllLines(filePath, lines);
+            StandardLogging.LogInfo(FilePath, "Saved " + lines.Count + " entries to text file: " + filePath);
         }
     }
 }

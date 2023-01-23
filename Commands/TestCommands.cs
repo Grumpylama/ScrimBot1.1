@@ -36,6 +36,8 @@ public class TestCommands : BaseCommandModule
         a[14] = 14;
         await ctx.Channel.SendMessageAsync((n1 + n2).ToString()).ConfigureAwait(false);       
     }
+
+    #pragma warning disable CS1998
     [Command("Stress")]
     public async Task Stress(CommandContext ctx)
     {

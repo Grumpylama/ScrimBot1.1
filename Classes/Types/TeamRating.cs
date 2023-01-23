@@ -2,6 +2,8 @@ namespace big
 {
     public class TeamRating
     {
+
+        private static readonly string FilePath = "TeamRating.cs";
         public const float kfactor = 32; //Subject for change
         public TeamRating()
         {

@@ -10,49 +10,88 @@ namespace big
 
         public CommandsNextExtension Commands { get; private set; }
 
-
+        private static readonly string FilePath = "Bot.cs";
         
         public async Task runAsync()
         {
             
             
-
+            StandardLogging.LogInfo(FilePath, "Starting Bot");
+            
+            StandardLogging.LogInfo(FilePath, "Loading Config");
             var json = String.Empty;
-            using (var fs = File.OpenRead("BotConfig.json"))
+            using (var fs = File.OpenRead("BotConfig.json"))            
             using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
                 json = await sr.ReadToEndAsync().ConfigureAwait(false);
 
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
-
+            
+            
             var config = new DiscordConfiguration
             {
                 Token = configJson.Token,
                 TokenType = TokenType.Bot,
                 
             };
+            StandardLogging.LogInfo(FilePath, "Config Loaded");
+            StandardLogging.LogInfo(FilePath, "Starting Bot");
+            try{
+                Client = new DiscordClient(config);
+            }
+            catch(Exception e)
+            {
+                StandardLogging.LogFatal(FilePath, $"Error while starting bot with config: {config} {e}");
+            }
+            StandardLogging.LogInfo(FilePath, "Bot Started");
 
-            Client = new DiscordClient(config);
             Client.Ready += OnClientReady;
-
+            
 
             Client.UseInteractivity(new InteractivityConfiguration
             {
                 Timeout = TimeSpan.FromMinutes(2)
             });
             
+            StandardLogging.LogInfo(FilePath, "Interactivity is ready");
+
+            StandardLogging.LogInfo(FilePath, "Starting Commands");
 
             var CommandsConfig = new CommandsNextConfiguration
-            {
+            {    
                 StringPrefixes = new string[] { configJson.Prefix },
                 EnableMentionPrefix = true,
                 EnableDms = true
 
             };
-            Commands = Client.UseCommandsNext(CommandsConfig);
 
-            Dependecies d = new Dependecies();
-            Commands.RegisterCommands<TestCommands>();
-            Commands.RegisterCommands<Commands>();
+            StandardLogging.LogInfo(FilePath, $"Command Config is as follows: {CommandsConfig}" );
+
+            try
+            {
+                Commands = Client.UseCommandsNext(CommandsConfig);
+            }
+            catch(Exception e)
+            {
+                StandardLogging.LogFatal(FilePath, $"Error while starting commands: {e}");
+                StandardLogging.LogFatal(FilePath, $"Command Config is as follows: {CommandsConfig}" );
+            }
+
+            StandardLogging.LogInfo(FilePath, "Commands are ready");
+
+
+            StandardLogging.LogInfo(FilePath, "Registering Commands");
+            try
+            {
+                Commands.RegisterCommands<TestCommands>();
+                Commands.RegisterCommands<Commands>();
+            }
+            catch(Exception e)
+            {
+                StandardLogging.LogError(FilePath, $"Error while registering commands: {e}");
+            }
+            
+
+            StandardLogging.LogInfo(FilePath, "Commands are registered");
             
             
 
@@ -60,18 +99,19 @@ namespace big
             
             big.DiscordInterface.Client = Client;
             
+            StandardLogging.LogInfo(FilePath, "Attempting to start FileManager");
             await FileManager.StartUpAsync();
             
-            Console.WriteLine("Bot is set up and running");
+            
 
-            Console.WriteLine("Starting Matchmaker");
+            
             await Task.Delay(-1);
 
         }
 
         private Task OnClientReady(object sender, ReadyEventArgs e)
         {
-            Console.WriteLine("Bot is ready");
+            StandardLogging.LogInfo(FilePath, "Bot is ready");
             return Task.CompletedTask;
 
         }

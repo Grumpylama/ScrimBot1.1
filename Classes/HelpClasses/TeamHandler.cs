@@ -2,6 +2,8 @@ namespace big
 {
     public static class TeamHandler
     {
+
+        private static readonly string FilePath = "TeamHandler.cs";
         public static List<Team> Teams = new List<Team>();
 
 

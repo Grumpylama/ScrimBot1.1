@@ -1,0 +1,30 @@
+2023-01-23 00:59:56.546 +01:00 [INF] Save timer started
+2023-01-23 01:40:34.749 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot\ScrimBot1.1/Data/Users.csv
+2023-01-23 01:40:34.770 +01:00 [INF] [ScrimBot1.1.dll] Columns: 2
+2023-01-23 01:40:34.771 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 01:40:34.772 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot\ScrimBot1.1/Data/Users.csv
+2023-01-23 01:40:35.077 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot\ScrimBot1.1/Data/Teams.csv
+2023-01-23 01:40:35.078 +01:00 [INF] [ScrimBot1.1.dll] Columns: 5
+2023-01-23 01:40:35.079 +01:00 [INF] [ScrimBot1.1.dll] Lines: 2
+2023-01-23 01:40:35.079 +01:00 [INF] [ScrimBot1.1.dll] Loaded 1 entries from text file: C:\laragon\www\ScrimBot\ScrimBot1.1/Data/Teams.csv
+2023-01-23 01:40:35.081 +01:00 [INF] [ScrimBot1.1.dll] Team loaded: big.Team
+2023-01-23 01:40:35.081 +01:00 [INF] [ScrimBot1.1.dll] Loading from text file: C:\laragon\www\ScrimBot\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 01:40:35.082 +01:00 [INF] [ScrimBot1.1.dll] Columns: 4
+2023-01-23 01:40:35.083 +01:00 [INF] [ScrimBot1.1.dll] Lines: 3
+2023-01-23 01:40:35.084 +01:00 [INF] [ScrimBot1.1.dll] Loaded 2 entries from text file: C:\laragon\www\ScrimBot\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-23 01:40:35.085 +01:00 [INF] [ScrimBot1.1.dll] TeamUser loaded: big.TeamUser
+2023-01-23 01:40:35.086 +01:00 [INF] [ScrimBot1.1.dll] TeamUser loaded: big.TeamUser
+2023-01-23 01:55:33.460 +01:00 [INF] [ScrimBot1.1.dll] User saved: 244135683537502208 1027408240260165662
+2023-01-23 01:55:33.461 +01:00 [INF] [ScrimBot1.1.dll] User saved: 1054751237242880000 1055862546843844639
+2023-01-23 01:55:33.462 +01:00 [INF] [ScrimBot1.1.dll] Saving to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-23 01:55:33.463 +01:00 [INF] [ScrimBot1.1.dll] Columns: 4
+2023-01-23 01:55:33.463 +01:00 [INF] [ScrimBot1.1.dll] Lines: 0
+2023-01-23 01:55:33.465 +01:00 [INF] [ScrimBot1.1.dll] Saved 3 entries to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-23 01:55:33.465 +01:00 [INF] [ScrimBot1.1.dll] Saving to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/Teams.csv
+2023-01-23 01:55:33.466 +01:00 [INF] [ScrimBot1.1.dll] Columns: 5
+2023-01-23 01:55:33.467 +01:00 [INF] [ScrimBot1.1.dll] Lines: 0
+2023-01-23 01:55:33.468 +01:00 [INF] [ScrimBot1.1.dll] Saved 2 entries to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/Teams.csv
+2023-01-23 01:55:33.468 +01:00 [INF] [ScrimBot1.1.dll] Saving to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/Users.csv
+2023-01-23 01:55:33.469 +01:00 [INF] [ScrimBot1.1.dll] Columns: 2
+2023-01-23 01:55:33.469 +01:00 [INF] [ScrimBot1.1.dll] Lines: 0
+2023-01-23 01:55:33.471 +01:00 [INF] [ScrimBot1.1.dll] Saved 3 entries to text file: C:\laragon\www\ScrimBot\ScrimBot1.1\Data/Users.csv
