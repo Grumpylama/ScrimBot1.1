@@ -63,7 +63,8 @@ namespace big
 
         private static void TimerSave(object sender, ElapsedEventArgs e)
         {
-            Console.WriteLine("Timersave, Saving data");
+            
+            StandardLogging.LogInfo(FilePath, "Timersave, Saving data");
             FileManager.SaveAll();
         }
 
@@ -74,7 +75,8 @@ namespace big
                 UserHandler.GetUserFromID(244135683537502208).SendDMAsync(e.ToString()).GetAwaiter().GetResult();
             }
             catch{
-                Console.WriteLine("Failed to send notification message");
+                
+                StandardLogging.LogError(FilePath, "Failed to send notification message");
             }
 
             
@@ -82,14 +84,15 @@ namespace big
 
         private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
         {
+            StandardLogging.LogInfo(FilePath, "Process exit, saving data");
             try{
                 FileManager.SaveAll();
             }
             catch(Exception ex)
             {
-                Console.WriteLine("Failed to save data");
-                Console.WriteLine("Last Save: " + FileManager.LastSave);
-                Console.WriteLine(ex);
+                StandardLogging.LogError(FilePath, "Failed to save data");
+                StandardLogging.LogError(FilePath, "Last Save: " + FileManager.LastSave);
+                StandardLogging.LogError(FilePath, ex.ToString());
             }
             
             // Code to run when the application exits

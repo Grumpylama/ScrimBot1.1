@@ -21,8 +21,6 @@ namespace big
 
             var cols = entry.GetType().GetProperties();
             StandardLogging.LogInfo(FilePath, "Columns: " + cols.Length);
-
-
             
 
             // Checks to be sure we have at least one header row and one data row

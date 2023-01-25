@@ -114,13 +114,15 @@ namespace big
 
     public static class UserRegistration
     {
+        private static readonly string filepath = "UserRegistration.cs";
         public static void RegisterUser(DiscordUser user, CommandContext ctx)
         {
             if(!UserHandler.Users.Contains(user))
             {
                 UserHandler.AddUser(user);
                 DiscordInterface.AddDmChannel(user, ctx.Channel);
-                Console.WriteLine(user + " Registered");
+             
+                StandardLogging.LogInfo(filepath,  user + " Registered");
                 ctx.Client.SendMessageAsync(ctx.Channel, "Since you were not part of our system before you have been registered. In order for the system to work correctly you will need to stay in the discord server");            
             }
         
@@ -132,7 +134,8 @@ namespace big
             {
                 UserHandler.AddUser(ctx.User);
                 DiscordInterface.AddDmChannel(ctx.User, ctx.Channel);
-                Console.WriteLine(ctx.User + " Registered");
+                
+                StandardLogging.LogInfo(filepath,  ctx.User + " Registered");
                 ctx.Client.SendMessageAsync(ctx.Channel, "Since you were not part of our system before you have been registered. In order for the system to work correctly you will need to stay in the discord server");            
             }
         

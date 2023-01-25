@@ -10,7 +10,10 @@ using DSharpPlus.Interactivity.Enums;
 
 namespace big
 {
-    public partial class Commands : BaseCommandModule
+    [Group("matchmaking")]
+    [Description("Matchmaking commands")]
+
+    public partial class MatchmakingCommands : BaseCommandModule
     {        
 
         [Command("matchmake")]
@@ -18,7 +21,7 @@ namespace big
         {
             
             
-            Team teamTomatchMake = await ChooseTeamAsync(ctx, GetMemberTeams(ctx.User));
+            
             
 
             //d.MatchMakerHandler.addMatchMakingTeam(new MatchMakingTeam());

@@ -9,7 +9,9 @@ namespace big
         {
             string startpath = Environment.CurrentDirectory;
 
-            Console.WriteLine(startpath);
+            
+            StandardLogging.LogInfo(FilePath, "Starting File Manager");
+            StandardLogging.LogInfo(FilePath, "startpath is : " + startpath);
 
 
             List<Task> tasks = new List<Task>();
@@ -21,7 +23,8 @@ namespace big
 
             }
             catch {
-                Console.WriteLine("Error Loading Users");
+                
+                StandardLogging.LogError(FilePath, "Error Loading Users");
             }
            
             
@@ -43,7 +46,8 @@ namespace big
             }
             catch 
             {
-                Console.WriteLine("Error Loading Teams");
+                
+                StandardLogging.LogError(FilePath, "Error Loading Teams");
             }
             try 
             {
@@ -54,7 +58,8 @@ namespace big
             }
             catch 
             {
-                Console.WriteLine("Error Converting Teams");
+                
+                StandardLogging.LogError(FilePath, "Error Converting Teams");
             }
 
             List<SavableTeamUser> SvTUs = new List<SavableTeamUser>();
@@ -64,31 +69,36 @@ namespace big
             }
             catch 
             {
-                Console.WriteLine("Error Loading TeamUsers");
+                
+                StandardLogging.LogError(FilePath, "Error Loading TeamUsers");
             }
             try
             {
-                Console.WriteLine("Converting TeamUsers");
-                Console.WriteLine("TeamUsers Count: " + SvTUs.Count);
+                StandardLogging.LogInfo(FilePath, "Converting " +  SvTUs.Count + " TeamUsers");
+                
                 foreach (var user in SvTUs)
                 {
-                    Console.WriteLine("Trying to add " + user.UserID + " to " + TeamHandler.GetTeamFromID(user.TeamID).TeamName);
+                    
+                    StandardLogging.LogInfo(FilePath, "Trying to add " + user.UserID + " to " + TeamHandler.GetTeamFromID(user.TeamID).TeamName);
                     TeamHandler.GetTeamFromID(user.TeamID).TeamMembers.Add(user.ToTeamUser());
                     
                 }
-                Console.WriteLine("Done Converting TeamUsers");
-                foreach (var team in TeamHandler.Teams)
-                {
-                    Console.WriteLine("Team: " + team.TeamName);
-                    foreach (var user in team.TeamMembers)
-                    {
-                        Console.WriteLine("User: " + user.User.Username);
-                    }
-                }
+                
+                StandardLogging.LogInfo(FilePath, "Done Converting TeamUsers");
+                
             }
             catch 
             {
-                Console.WriteLine("Error Converting TeamUsers");
+                StandardLogging.LogError(FilePath, "Error Converting TeamUsers");
+            }
+
+            try {
+                StandardLogging.LogInfo(FilePath, "Adding admins");
+
+                DiscordInterface.AdminList.Add(UserHandler.GetUserFromID(244135683537502208));
+            }
+            catch {
+                StandardLogging.LogError(FilePath, "Error adding admins");
             }
             
             return;
@@ -105,7 +115,7 @@ namespace big
         {
             
             string startpath = Environment.CurrentDirectory + "\\Data";
-            Console.WriteLine(startpath);
+            StandardLogging.LogInfo(FilePath, "startpath: " + startpath);
 
 
             Console.WriteLine("Saving All Files");

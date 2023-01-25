@@ -11,7 +11,8 @@ namespace big
         [Command("DeleteTeam")]
         public async Task DeleteTeam(CommandContext ctx)
         {
-            Console.WriteLine("DeleteTeam command was used by " + ctx.User.ToString());
+            
+            StandardLogging.LogInfo(FilePath, "DeleteTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {
@@ -23,7 +24,8 @@ namespace big
             List<Team> teams = ctx.User.GetOwnedTeams();
             if(teams == null)
             {
-                Console.WriteLine("User has no teams. Canceling DeleteTeam");
+                
+                StandardLogging.LogInfo(FilePath, "User has no teams. Canceling DeleteTeam");
                 await ctx.Channel.SendMessageAsync("You have no teams!").ConfigureAwait(false);
                 return;
             }
@@ -34,7 +36,8 @@ namespace big
 
             if(team == null)
             {
-                Console.WriteLine("User did not choose a team. Canceling DeleteTeam");
+                
+                StandardLogging.LogInfo(FilePath, "User did not choose a team. Canceling DeleteTeam");
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
                 return;
             } 
@@ -46,7 +49,8 @@ namespace big
 
             if (await StandardInteractivityHandler.GetConfirmation(ctx, "Are you sure you want to delete your team: " + team.TeamName + " playing: " + team.game.GameName + "? \n To confirm write \"CONFIRM\"" ))
             {
-                Console.WriteLine("User confirmed deletion of team");
+                
+                StandardLogging.LogInfo(FilePath, "Team " + team.TeamName + " deleted by " + ctx.User.ToString());
                 TeamHandler.Teams.Remove(team);
                 await ctx.Channel.SendMessageAsync("Team deleted!").ConfigureAwait(false);
                 return;
@@ -54,7 +58,8 @@ namespace big
 
 
             //Canceling deletion        
-            Console.WriteLine("User did not confirm deletion of team");
+            
+            StandardLogging.LogInfo(FilePath, "User did not confirm deletion of team");
             await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);   
             return;         
             
@@ -64,7 +69,8 @@ namespace big
         public async Task CreateTeam(CommandContext ctx, string TeamName)
         {
 
-            Console.WriteLine("CreateTeam command was used by " + ctx.User.ToString());
+            
+            StandardLogging.LogInfo(FilePath, "CreateTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {  
@@ -73,7 +79,8 @@ namespace big
 
             if(TeamHandler.IsTeamNameTaken(TeamName))
             {
-                Console.WriteLine("Team name is taken. Canceling CreateTeam");
+                
+                StandardLogging.LogInfo(FilePath, "Team name is taken. Canceling CreateTeam");
                 await ctx.Channel.SendMessageAsync("Team name is taken!").ConfigureAwait(false);
                 return;
             }
@@ -82,7 +89,8 @@ namespace big
             Game g = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
             if(g == null)
             {
-                Console.WriteLine("User did not choose a game. Canceling CreateTeam");
+
+                StandardLogging.LogInfo(FilePath, "User did not choose a game. Canceling CreateTeam");
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
                 return;
             }              
@@ -169,7 +177,8 @@ namespace big
                 
                 return;
             }
-            Console.WriteLine("JoinTeam command was used by " + ctx.User.ToString());
+            
+            StandardLogging.LogInfo(FilePath, "JoinTeam command was used by " + ctx.User.ToString());
             HashAlgorithm sha = SHA256.Create();
 
             string now = DateTime.Now.ToString("HH::mm::ss:ffffff");
@@ -217,7 +226,8 @@ namespace big
                 return;
             }
 
-            Console.WriteLine("User to add is " + userToAdd.ToString());
+            
+
 
             //Check if user is trying to add himself/herself to a team
             if(userToAdd.Id == ctx.User.Id)
@@ -276,7 +286,8 @@ namespace big
         [Command("LeaveTeam")]
         public async Task LeaveTeam(CommandContext ctx)
         {
-            Console.WriteLine("LeaveTeam command was used by " + ctx.User.ToString());
+            
+            StandardLogging.LogInfo(FilePath, "LeaveTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
             if (!CheckIfValid(ctx))
             {
@@ -318,31 +329,9 @@ namespace big
             return;
         }
 
-        [Command("Kill")]
-        public async Task Kill(CommandContext ctx, string password)
-        {
-            if(password != "SuperIdol")
-            {
-                await ctx.RespondAsync("Incorrect password");
-                return;
-            }
-            Console.WriteLine("Kill command recceived. Killing application");
-            big.FileManager.SaveAll();
-            Environment.Exit(1);
-        }
+        
 
-        [Command("Die")]
-        public async Task Die(CommandContext ctx, string password)
-        {
-            if(password != "SuperIdol")
-            {
-                await ctx.RespondAsync("Incorrect password");
-                return;
-            }
-            Console.WriteLine("Kill command recceived. Killing application");
-            
-            Environment.Exit(1);
-        }
+        
 
         
         //Helper Methods

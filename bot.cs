@@ -38,7 +38,7 @@ namespace big
                 
             };
             StandardLogging.LogInfo(FilePath, "Config Loaded");
-            StandardLogging.LogInfo(FilePath, "Starting Bot");
+            
             try{
                 Client = new DiscordClient(config);
             }
@@ -86,8 +86,10 @@ namespace big
             StandardLogging.LogInfo(FilePath, "Registering Commands");
             try
             {
-                Commands.RegisterCommands<TestCommands>();
+                //Commands.RegisterCommands<AdminCommands>();
+                Commands.RegisterCommands<AdminCommands>();
                 Commands.RegisterCommands<Commands>();
+                
             }
             catch(Exception e)
             {
@@ -120,12 +122,7 @@ namespace big
 
         }
 
-        //private async Task SendHttpRequestAsync(string URL, )
-        //{
-        //    var response = await httpclient.GetAsync("https://google.com");
-        //    Console.WriteLine(response.StatusCode);
-        //}
-
+       
 
 
          

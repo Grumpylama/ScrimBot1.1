@@ -10,7 +10,8 @@ namespace big
             //Check if user is a bot
             if (ctx.User.IsBot)
             {
-                Console.WriteLine("User is a bot. Canceling command");
+                
+                StandardLogging.LogInfo(FilePath, "User is a bot. Canceling command");
                 return false;
             }
 
@@ -31,7 +32,8 @@ namespace big
 
             if(UsersTeams.Count == 0)
             {
-                Console.WriteLine("User is not a captain of any teams");
+               
+                StandardLogging.LogInfo(FilePath, "User is not a captain of any teams");
                 return null;
             }
 

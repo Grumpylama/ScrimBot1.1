@@ -48,7 +48,7 @@ namespace big
                         if(m.matchStart.Date == temp.Dt.Date) 
                         {
                             m.addToMatchMakingList(temp);
-                            StandardLogging.LogInfo(FilePath , " Team " + temp.T.TeamName + " has been successfully added to " + m.ToString);
+                            StandardLogging.LogInfo(FilePath , " Team " + temp.T.TeamName + " has been successfully added to " + m.ToString());
                             return true;
                         }
                     }

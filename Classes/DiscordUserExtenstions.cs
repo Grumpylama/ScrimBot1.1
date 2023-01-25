@@ -75,7 +75,7 @@ namespace big
 
             if(UsersTeams.Count == 0)
             {
-                Console.WriteLine("User is not a captain of any teams");
+                StandardLogging.LogInfo(FilePath, "User is not a captain of any teams");
                 return null;
             }
             return UsersTeams;
@@ -105,6 +105,15 @@ namespace big
         public static SaveableUser ToSavableUser(this DiscordUser user)
         {
             return new SaveableUser(user.Id, user.GetDMChannel().Id);
+        }
+
+        public static bool IsAdmin(this DiscordUser user)
+        {
+            if (DiscordInterface.AdminList.Contains(user))
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

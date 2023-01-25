@@ -23,5 +23,13 @@ namespace big
         {
             Games = games;
         }
+
+        public static void VarDump()
+        {
+            foreach (var game in Games)
+            {
+                StandardLogging.LogInfo(FilePath, "Game: " + game.GameName);
+            }
+        }
     }
 }

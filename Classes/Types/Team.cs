@@ -102,20 +102,23 @@ namespace big
         //Adds a member to the team
         public void AddMember(DiscordUser user, int roleID, string Position)
         {
-            Console.WriteLine("Adding Member" + user.Id + " to team " + teamID + " as " + Position);
+           
+            StandardLogging.LogInfo(FilePath, "Adding Member" + user.Id + " to team " + teamID + " as " + Position);
             TeamMembers.Add(new TeamUser(user, teamID, roleID, Position));
         }
 
         // Overload for default position
         public void AddMember(DiscordUser user, int roleID)
         {
-            Console.WriteLine("Adding Member" + user.ToString() + " to team " + teamID);
+            
+            StandardLogging.LogInfo(FilePath, "Adding Member" + user.Id + " to team " + teamID + " as Default");
             TeamMembers.Add(new TeamUser(user, teamID, roleID, "Default"));
         }
 
         public void RemoveMember(DiscordUser user)
         {
-            Console.WriteLine("Removing Member" + user.Id + " from team " + teamID);
+        
+            StandardLogging.LogInfo(FilePath, "Removing Member" + user.Id + " from team " + teamID);
             foreach (var item in TeamMembers)
             {
                 if (item.User.Id == user.Id)

@@ -33,5 +33,17 @@ namespace big
 
             return false;
         }
+
+        public static void VarDump()
+        {
+            foreach (var team in Teams)
+            {
+                StandardLogging.LogInfo(FilePath, "Team: " + team.TeamName + " with ID " + team.teamID + " and game " + team.game.GameName + " with Captain " + team.TeamCaptain);
+                foreach (var user in team.TeamMembers)
+                {
+                    StandardLogging.LogInfo(FilePath, "     User: " + user.User + " with role " + user.roleID + " and position " + user.Position );
+                }
+            }
+        }
     }
 }
