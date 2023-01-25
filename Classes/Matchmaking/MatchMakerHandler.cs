@@ -13,9 +13,9 @@ namespace big
 
         public Game game;
 
-        public MatchMakerHandler()
+        public MatchMakerHandler(Game game)
         {
-            
+            this.game = game;
         }
         
         public StatusCode addMatchMakingTeam(MatchMakingTeam temp)
