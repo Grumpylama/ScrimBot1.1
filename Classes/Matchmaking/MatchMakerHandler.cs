@@ -20,7 +20,7 @@ namespace big
         
         public StatusCode addMatchMakingTeam(MatchMakingTeam temp)
         {
-            StandardLogging.LogInfo.LogInfo(FilePath + " Adding team " + temp.Name + " to a matching matchMaker");
+            StandardLogging.LogInfo(FilePath , " Adding team " + temp.T.TeamName + " to a matching matchMaker");
             if(contains(temp))
             {
                 return new StatusCode(true, "You're team has been added to a matchmaker. \n You will be notified when you have been matchmade!");
@@ -29,7 +29,7 @@ namespace big
             {
                 MatchMaker newTeam = new MatchMaker(temp);
                 addMatchMaker(newTeam);
-                StandardLogging.LogInfo.LogInfo(FilePath + " Team has been added to a new matchmaker, specified above.");
+                StandardLogging.LogInfo(FilePath , " Team has been added to a new matchmaker, specified above.");
                 return new StatusCode(false, "You have been added to the matchmaking queue. \n You will be notified when you have been matchmade!");
             }
         }
@@ -48,7 +48,7 @@ namespace big
                         if(m.matchStart.Date == temp.Dt.Date) 
                         {
                             m.addToMatchMakingList(temp);
-                            StandardLogging.LogInfo.LogInfo(FilePath + " Team " + temp.Name + " has been successfully added to " + m.ToString);
+                            StandardLogging.LogInfo(FilePath , " Team " + temp.T.TeamName + " has been successfully added to " + m.ToString);
                             return true;
                         }
                     }
@@ -69,8 +69,8 @@ namespace big
 
         private string toString()
         {
-            string s = matchMakers.Count;
-            return s;
+            return matchMakers.Count.ToString();
+            
         }
     }
     
