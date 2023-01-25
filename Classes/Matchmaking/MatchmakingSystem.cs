@@ -5,7 +5,7 @@ namespace big
 
         private static readonly string FilePath = "MatchMakingSystem.cs";
 
-        public static MatchMakerHandler MatchMakerHandlers = new MatchMakerHandler();
+        public static MatchMakerHandler Overwatch_2 = new MatchMakerHandler(new Game("Overwatch 2", null));
 
         
     }
