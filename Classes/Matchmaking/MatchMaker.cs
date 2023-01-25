@@ -13,7 +13,10 @@ namespace big
 
       public List<Tuple<MatchMakingTeam, MatchMakingTeam>> MatchList = new List<Tuple<MatchMakingTeam, MatchMakingTeam>>();
       public EDate matchStart;
-      public string toString = MMTList.Count;
+      public override string ToString()
+      {
+        return $"MatchMaker: {MMTList.Count} teams in queue";
+      }
       //There needs to be a datetime of when match starts
       //Queue
       public MatchMaker(MatchMakingTeam dt)

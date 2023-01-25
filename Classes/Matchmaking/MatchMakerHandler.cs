@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace big
 {
-    private static readonly string FilePath = "MatchMakerHandler.cs";
+    
     
     public class MatchMakerHandler
     {

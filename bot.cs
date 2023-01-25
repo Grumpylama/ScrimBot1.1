@@ -26,6 +26,10 @@ namespace big
 
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
             
+
+
+            
+
             
             var config = new DiscordConfiguration
             {
