@@ -115,5 +115,23 @@ namespace big
             }
             else return false;
         }
+
+        public static List<Team> GetTeamsWithTrustLevel(this DiscordUser user, int TrustLevel)
+        {
+            List<Team> teams = new List<Team>();
+            foreach (Team team in TeamHandler.Teams)
+            {
+                foreach (TeamUser tu in team.TeamMembers)
+                {
+                    if (tu.User.Id == user.Id && tu.TrustLevel >= TrustLevel)
+                    {
+                        teams.Add(team);
+                    }
+                }
+            }
+
+            return teams;
+
+        } 
     }
 }

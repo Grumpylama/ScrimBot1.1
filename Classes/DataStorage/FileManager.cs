@@ -96,7 +96,10 @@ namespace big
                 StandardLogging.LogInfo(FilePath, "Adding admins");
 
                 DiscordInterface.AdminList.Add(UserHandler.GetUserFromID(244135683537502208));
+                DiscordInterface.AdminList.Add(UserHandler.GetUserFromID(214158487712694273));
+
             }
+        
             catch {
                 StandardLogging.LogError(FilePath, "Error adding admins");
             }
