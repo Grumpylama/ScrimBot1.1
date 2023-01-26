@@ -1,20 +1,27 @@
 namespace big
 {
-    public class MatchFindingHelp
+    public class AutomaticMatchMaker
     {
 
         private static readonly string FilePath = "MatchFindingHelp.cs";
-        //When there is 30 minutes left to matchStart
-        public void StressFindMatch()
-        {
-
-        }
 
         //When there are 2 hours left to matchStart
+        //Less time left till match means less time to respond to the matchmaking
+        //for the team captains
         public async Task<bool> FindMatchAsync( MatchMaker m)
         {
             if(m.MMTList.Count > 1) 
             {
+                DateTime dt1 = DateTime.Now;
+                DateTime dt2 = m.matchStart.Date;
+                //Current time in milliseconds
+                var t1 = dt1.Second * 1000;
+                //2 hours is 7,200,000 milliseconds
+                var t2 = (dt2.Second * 1000) - 7200000;
+                //Wait until 2 hours before matchStart
+                await Task.Delay(t2 - t1);
+
+                //Start the MatchMaking
                 await MatchFindHelperAsync(m);
                 return true;
             }
@@ -33,6 +40,8 @@ namespace big
                     //tasks.Add(PromtCaptains(d, mmt, Sort.FindBestMatch(mmt, m.MMTList), timeout));       
                 }                               
             }
+
+            
 
             //Waits for when all promts are done.
             //Will be within the timeout time limit or sooner

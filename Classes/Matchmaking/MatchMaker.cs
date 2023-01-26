@@ -89,19 +89,19 @@ namespace big
                 }
             }
             
+            
             // send DMs to the team captains to ask if they want to accept the match
             //var accept = await SendMatchAcceptDM(team1, team2);
             //if (!accept) {
             //    continue;
             //}
             // if the team captain accept the match, remove the team from matchmaking list
-            MMTList.Remove(team1);
-            MMTList.Remove(team2);
+            removeFromMatchMakingList(team1);
+            removeFromMatchMakingList(team2);
         }
         //return true;
       }
 
-      //Time threshhold nu time minus när man ska spela time (2h för att inte hamna i queue)
       //List to find a team to match it to
 
       public void addToMatchMakingList(MatchMakingTeam temp)
@@ -115,10 +115,10 @@ namespace big
          Sort.InsertionSort(MMTList);
       }
 
-      public void removeFromMatchMakingList(Team t)
+      public void removeFromMatchMakingList(MatchMakingTeam temp)
       {
          for(int i = 0; i < MMTList.Count; i++)
-            if(MMTList[i].T == t) MMTList.Remove(MMTList[i]);
+            if(MMTList[i].T == temp.T) MMTList.Remove(MMTList[i]);
       }
    }
    
