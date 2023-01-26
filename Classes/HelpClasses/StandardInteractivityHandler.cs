@@ -43,7 +43,11 @@ namespace big
                         await ctx.RespondAsync("Please enter a valid number");
                     }
                 }
-                else
+                else if (message.Result.Content.ToLower() == "cancel")
+                {
+                    return default(T);
+                }
+                else 
                 {
                     await ctx.RespondAsync("Please enter a valid number");
                 }

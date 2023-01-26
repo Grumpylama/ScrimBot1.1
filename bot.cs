@@ -89,6 +89,7 @@ namespace big
                 //Commands.RegisterCommands<AdminCommands>();
                 Commands.RegisterCommands<AdminCommands>();
                 Commands.RegisterCommands<Commands>();
+                //Commands.RegisterCommands<QuickCommands>();
                 
             }
             catch(Exception e)

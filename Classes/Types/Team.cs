@@ -73,12 +73,17 @@ namespace big
             teamIDCounter++;    
         }
         //Constructor for creating a team with no members
-        public Team(Game game, string TeamName, DiscordUser TeamCaptain)
+        public Team(Game game, string TeamName, DiscordUser TeamCaptain, bool AddCaptain = true) 
         {
             this.TeamName = TeamName;
             this.game = game;
             this.TeamCaptain = TeamCaptain;    
-            this.TeamMembers = new List<TeamUser>();    
+            this.TeamMembers = new List<TeamUser>();  
+            if (AddCaptain)
+            {
+                TeamMembers.Add(new TeamUser(TeamCaptain, teamID, 0, "Captain", TrustLevel.TeamCaptain));  
+            }
+            
             //Change this later to actual starting MMR
             this.MMR = 0;   
             this.teamID = teamIDCounter;        
@@ -108,7 +113,7 @@ namespace big
         }
 
         // Overload for default position
-        public void AddMember(DiscordUser user, int roleID)
+        public void AddMember(DiscordUser user, int roleID = 0)
         {
             
             StandardLogging.LogInfo(FilePath, "Adding Member" + user.Id + " to team " + teamID + " as Default");
@@ -154,6 +159,8 @@ namespace big
             return $"{TeamName} playing {game.GameName}";
         }
     }
+
+    
 }
 
     

@@ -4,7 +4,7 @@ namespace big
     {
         public static DateTime LastSave;
 
-        public static string FilePath = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+        public static string FilePath ="FileManager.cs";
         public static async Task StartUpAsync()
         {
             string startpath = Environment.CurrentDirectory;
@@ -118,10 +118,10 @@ namespace big
         {
             
             string startpath = Environment.CurrentDirectory + "\\Data";
-            StandardLogging.LogInfo(FilePath, "startpath: " + startpath);
+            StandardLogging.LogInfo(FilePath, "saving all files with startpath: " + startpath);
+            
 
-
-            Console.WriteLine("Saving All Files");
+            
             //Save All files
             //Saving Users
             List<SaveableUser> saveableUsers = new List<SaveableUser>();

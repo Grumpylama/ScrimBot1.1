@@ -20,7 +20,8 @@ namespace big
         public string Position {get; set;}
 
         //Trust level of the user, 0 = Normal member 1 = Can matchmake 2 = Can add members 3 = Can remove members 4 = Can edit team 
-        public int TrustLevel {get; set;}
+        // 5 = Can edit Trust Level 6 = TeamCaptain
+        public TrustLevel TrustLevel {get; set;}
 
         public override string ToString()
         {
@@ -35,13 +36,13 @@ namespace big
             savableTeamUser.TeamID = this.teamID;
             savableTeamUser.roleID = this.roleID;
             savableTeamUser.Position = this.Position;
-            savableTeamUser.TrustLevel = this.TrustLevel;
+            savableTeamUser.TrustLevel = getIntFromTrustLevel(this.TrustLevel);
             return savableTeamUser;
         }
 
 
 
-        public TeamUser(DiscordUser user, int teamID, int roleID, string Position, int TrustLevel = 0)
+        public TeamUser(DiscordUser user, int teamID, int roleID, string Position, TrustLevel TrustLevel = 0)
         {
             this.User = user;
             this.teamID = teamID;
@@ -57,7 +58,45 @@ namespace big
             return this.User;
         }
 
+        private int getIntFromTrustLevel(TrustLevel tl)
+        {
+            switch (tl)
+            {
+                case TrustLevel.Member:
+                    return 0;
+                case TrustLevel.CanMatchMake:
+                    return 1;
+                case TrustLevel.CanAddMembers:
+                    return 2;
+                case TrustLevel.CanRemoveMembers:
+                    return 3;
+                case TrustLevel.CanEditTeam:
+                    return 4;
+                case TrustLevel.CanEditTrustLevel:
+                    return 5;
+                case TrustLevel.TeamCaptain:
+                    return 6;
+                default:
+                    return 0;
+            }
+        }
+
         
         
+    }
+
+
+    public enum TrustLevel
+    {
+        Member = 0,
+        CanMatchMake = 1,
+        CanAddMembers = 2,
+        CanRemoveMembers = 3,
+        CanEditTeam = 4,
+        CanEditTrustLevel = 5,
+        TeamCaptain = 6
+
+        
+
     }
 }
