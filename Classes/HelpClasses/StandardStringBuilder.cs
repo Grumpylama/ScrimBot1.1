@@ -67,6 +67,21 @@ namespace big
             return s;
         }
 
+        public static string BuildTeamUserListString(List<TeamUser> users)
+        {
+            string s = "";
+            int i = 1;
+            foreach (TeamUser user in users)
+            {
+                s += i + ". " + user.User.Username + "#" + user.User.Discriminator + "\n";
+                i++;
+            }
+            StandardLogging.LogInfo(FilePath, "BuildTeamUserListString: Built team user list string: \n" + s);
+            return s;
+        }
+        
+        
+
         
     }
 }

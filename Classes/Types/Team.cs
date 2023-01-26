@@ -81,7 +81,7 @@ namespace big
             this.TeamMembers = new List<TeamUser>();  
             if (AddCaptain)
             {
-                TeamMembers.Add(new TeamUser(TeamCaptain, teamID, 0, "Captain", TrustLevel.TeamCaptain));  
+                TeamMembers.Add(new TeamUser(TeamCaptain, teamID, "Captain", TrustLevel.TeamCaptain));  
             }
             
             //Change this later to actual starting MMR
@@ -105,19 +105,19 @@ namespace big
         
 
         //Adds a member to the team
-        public void AddMember(DiscordUser user, int roleID, string Position)
+        public void AddMember(DiscordUser user, string Position)
         {
            
             StandardLogging.LogInfo(FilePath, "Adding Member" + user.Id + " to team " + teamID + " as " + Position);
-            TeamMembers.Add(new TeamUser(user, teamID, roleID, Position));
+            TeamMembers.Add(new TeamUser(user, teamID, Position));
         }
 
         // Overload for default position
-        public void AddMember(DiscordUser user, int roleID = 0)
+        public void AddMember(DiscordUser user)
         {
             
             StandardLogging.LogInfo(FilePath, "Adding Member" + user.Id + " to team " + teamID + " as Default");
-            TeamMembers.Add(new TeamUser(user, teamID, roleID, "Default"));
+            TeamMembers.Add(new TeamUser(user, teamID, "Member"));
         }
 
         public void RemoveMember(DiscordUser user)

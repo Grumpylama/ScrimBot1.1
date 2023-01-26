@@ -160,8 +160,14 @@ namespace big
 
             TeamToTransfer.TeamCaptain = newCaptain;
 
-            TeamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User).TrustLevel = TrustLevel.Member;
-            TeamToTransfer.GetMembers().Find(x => x.User == newCaptain).TrustLevel = TrustLevel.TeamCaptain;
+            var oldCaptainTU = TeamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User);
+            oldCaptainTU.TrustLevel = TrustLevel.Member;
+            oldCaptainTU.Position = "Member";
+            
+            var newCaptainTU = TeamToTransfer.GetMembers().Find(x => x.User == newCaptain);
+            newCaptainTU.TrustLevel = TrustLevel.TeamCaptain;
+            newCaptainTU.Position = "Team Captain";
+            
 
             StandardLogging.LogInfo(FilePath, $"User {ctx.User.ToString()} transfered captainship of {TeamToTransfer} to {TeamToTransfer.TeamCaptain.ToString()}");
             var t = newCaptain.SendDMAsync("You are now the captain of " + TeamToTransfer);    
@@ -276,7 +282,7 @@ namespace big
            
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is adding " + userToAdd.ToString() + " to team " + Team);
 
-            Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, 0, "Member"));
+            Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, "Member"));
             var t = userToAdd.SendDMAsync("You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator);
             await ctx.RespondAsync("User was added to team: " + Team.TeamName);
             if(!await t)
@@ -362,7 +368,60 @@ namespace big
                 await ctx.RespondAsync("Ping!");
             else
                 await ctx.RespondAsync("Pong!");
-        }     
+        } 
+
+        [Command("ManageMembers")]
+        public async Task ManageMembers(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, "ManageTeam command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
+            if (!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+
+            //Getting all the teams where the user has permission to manage
+            var teams = ctx.User.GetTeamsWithTrustLevel(TrustLevel.CanEditTrustLevels);
+
+            if (teams.Count == 0)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to manage any teams");
+                await ctx.RespondAsync("You do not have permission to manage any teams");
+                return;
+            }
+
+            //Getting what team the user wants to manage
+            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            if (team == null)
+                return;
+
+            //Getting what user the user wants to manage
+            List<TeamUser> teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
+            StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is managing " + teamUsers.Count + " users in team " + team.TeamName);
+
+            if (teamUsers.Count == 0)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to manage any users in team " + team.TeamName);
+                await ctx.RespondAsync("You do not have permission to manage any users in this team");
+                return;
+            }
+
+            //Getting what user the user wants to manage
+            TeamUser userToManage = await StandardUserInteraction.ChooseTeamUserAsync(ctx, teamUsers);
+            if (userToManage == null)
+                return;
+            
+            
+            
+            
+
+            TeamUser teamUser = await StandardUserInteraction.ChooseTeamUserAsync(ctx, team.TeamMembers);
+            if (teamUser == null)
+                return;
+
+
+
+        }    
 
     }
 }

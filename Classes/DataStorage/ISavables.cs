@@ -66,19 +66,19 @@ namespace big
         
         public ulong UserID { get; set; }
         public int TeamID { get; set; }
-        public int roleID { get; set; }
+       
         public string Position { get; set; }
 
         public int TrustLevel { get; set; }
 
-        public SavableTeamUser(ulong UserID, int TeamID, int roleID, string Position, int TrustLevel = 0)
+        public SavableTeamUser(ulong UserID, int TeamID, string Position, int TrustLevel = 0)
         {
             this.UserID = UserID;
             this.TeamID = TeamID;
-            this.roleID = roleID;
+            
             this.Position = Position;
             this.TrustLevel = TrustLevel;
-            StandardLogging.LogInfo(FilePath, "TeamUser saved: " + UserID + " " + TeamID + " " + roleID + " " + Position);
+            StandardLogging.LogInfo(FilePath, "TeamUser saved: " + UserID + " " + TeamID + " " + Position);
 
         }
 
@@ -89,7 +89,7 @@ namespace big
 
         public TeamUser ToTeamUser()
         {
-            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position, GetTrustLevel(this.TrustLevel));
+            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.Position, GetTrustLevel(this.TrustLevel));
             teamUser.teamID = this.TeamID;
             StandardLogging.LogInfo(FilePath, "TeamUser loaded: " + teamUser.ToString());
             return teamUser;
@@ -110,7 +110,7 @@ namespace big
                 case 4:
                     return big.TrustLevel.CanEditTeam;
                 case 5:
-                    return big.TrustLevel.CanEditTrustLevel;
+                    return big.TrustLevel.CanEditTrustLevels;
                 case 6:
                     return big.TrustLevel.TeamCaptain;
                 default:

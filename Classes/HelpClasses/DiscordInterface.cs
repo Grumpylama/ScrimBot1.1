@@ -35,7 +35,7 @@ namespace big
         {
             foreach (var user in DMChannel)
             {
-                StandardLogging.LogInfo(FilePath, "User: " + user.Key.Username + " with channel " + user.Value.Name);
+                StandardLogging.LogInfo(FilePath, "User: " + user.Key.Username + " with channel " + user.Value.Id);
             }
         }
 

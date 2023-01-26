@@ -83,6 +83,13 @@ namespace big
             return await StandardInteractivityHandler.ChooseByNumber<DiscordUser>(ctx, users);
         }
 
+        public static async Task<TeamUser> ChooseTeamUserAsync(CommandContext ctx, List<TeamUser> users)
+        {
+            string s = StandardStringBuilder.BuildTeamUserListString(users);
+            await ctx.Client.SendMessageAsync(ctx.Channel, s);
+            return await StandardInteractivityHandler.ChooseByNumber<TeamUser>(ctx, users);
+        }
+
 
         private static DateTime GetNearestHour(DateTime dt)
         {

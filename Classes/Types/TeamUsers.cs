@@ -10,6 +10,17 @@ namespace big
         //Refrence To a user Instance
         public DiscordUser User { get; set; }
 
+        public static List<PropertyInfo> GetProperties()
+        {
+            List<PropertyInfo> properties = new List<PropertyInfo>();
+            properties.Add(typeof(TeamUser).GetProperty("User"));
+            properties.Add(typeof(TeamUser).GetProperty("teamID"));
+            properties.Add(typeof(TeamUser).GetProperty("roleID"));
+            properties.Add(typeof(TeamUser).GetProperty("Position"));
+            properties.Add(typeof(TeamUser).GetProperty("TrustLevel"));
+            return properties;
+        }
+
         //What team the user is in, Team will include a list of this class so usually won't be necessary
         public int teamID { get; set; }
 
@@ -25,7 +36,7 @@ namespace big
 
         public override string ToString()
         {
-            return "TeamUser: " + this.User.Username + " " + this.teamID + " " + this.roleID + " " + this.Position;
+            return "TeamUser: " + this.User.Username + " " + TeamHandler.GetTeamFromID(this.teamID) + " " + this.Position;
         }
 
         
@@ -34,7 +45,6 @@ namespace big
             SavableTeamUser savableTeamUser = new SavableTeamUser();
             savableTeamUser.UserID = this.User.Id;
             savableTeamUser.TeamID = this.teamID;
-            savableTeamUser.roleID = this.roleID;
             savableTeamUser.Position = this.Position;
             savableTeamUser.TrustLevel = getIntFromTrustLevel(this.TrustLevel);
             return savableTeamUser;
@@ -42,11 +52,10 @@ namespace big
 
 
 
-        public TeamUser(DiscordUser user, int teamID, int roleID, string Position, TrustLevel TrustLevel = 0)
+        public TeamUser(DiscordUser user, int teamID, string Position, TrustLevel TrustLevel = 0)
         {
             this.User = user;
             this.teamID = teamID;
-            this.roleID = roleID;
             this.Position = Position;
             this.TrustLevel = TrustLevel;
 
@@ -72,7 +81,7 @@ namespace big
                     return 3;
                 case TrustLevel.CanEditTeam:
                     return 4;
-                case TrustLevel.CanEditTrustLevel:
+                case TrustLevel.CanEditTrustLevels:
                     return 5;
                 case TrustLevel.TeamCaptain:
                     return 6;
@@ -93,7 +102,7 @@ namespace big
         CanAddMembers = 2,
         CanRemoveMembers = 3,
         CanEditTeam = 4,
-        CanEditTrustLevel = 5,
+        CanEditTrustLevels = 5,
         TeamCaptain = 6
 
         
