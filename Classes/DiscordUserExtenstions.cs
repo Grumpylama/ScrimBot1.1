@@ -133,5 +133,19 @@ namespace big
             return teams;
 
         } 
+
+        public static bool CheckIfValid(this DiscordUser user)
+        {
+            //Check if user is a bot
+            if (user.IsBot)
+            {
+                StandardLogging.LogInfo(FilePath, "User is a bot. Canceling command");
+                return false;
+            }
+
+            return true;
+        }
+
+       
     }
 }

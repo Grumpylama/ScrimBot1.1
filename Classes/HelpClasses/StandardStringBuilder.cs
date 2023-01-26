@@ -11,7 +11,7 @@ namespace big
             {
                 s += member.User.Username + ", ";
             }
-            StandardLogging.LogInfo(FilePath, "BuildTeamString: Built team string: " + s);
+            StandardLogging.LogInfo(FilePath, "BuildTeamString: Built team string: \n" + s);
             return s;
         }
 
@@ -24,7 +24,7 @@ namespace big
                 s += i + ". " + t.TeamName + "\n";
                 i++;
             }
-            StandardLogging.LogInfo(FilePath, "BuildTeamListString: Built team list string: " + s);
+            StandardLogging.LogInfo(FilePath, "BuildTeamListString: Built team list string: \n" + s);
             return s;
         }
 
@@ -37,14 +37,14 @@ namespace big
                 s += i + ". " + user.Username + "#" + user.Discriminator + "\n";
                 i++;
             }
-            StandardLogging.LogInfo(FilePath, "BuildUserListString: Built user list string: " + s);
+            StandardLogging.LogInfo(FilePath, "BuildUserListString: Built user list string: \n" + s);
             return s;
         }
 
         public static string BuildGamePromtString(List<Game> games)
         {
             string s = "Which game will you be playing? \n" +  BuildGameListString(games);
-            StandardLogging.LogInfo(FilePath, "BuildGamePromtString: Built game promt string: " + s);
+            StandardLogging.LogInfo(FilePath, "BuildGamePromtString: Built game promt string: \n" + s);
             return s;
         }
         public static string BuildGameListString(List<Game> games)
@@ -56,7 +56,7 @@ namespace big
                 s += i + ". " + game.GameName + "\n";
                 i++;
             }
-            StandardLogging.LogInfo(FilePath, "BuildGameListString: Built game list string: " + s);
+            StandardLogging.LogInfo(FilePath, "BuildGameListString: Built game list string: \n" + s);
             return s;
         }
 

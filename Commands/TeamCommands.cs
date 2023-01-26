@@ -14,7 +14,7 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "DeleteTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
-            if (!CheckIfValid(ctx))
+            if (!ctx.User.CheckIfValid())
             {
                 return;
             }
@@ -32,7 +32,7 @@ namespace big
 
 
             //Chosing what team to delete
-            Team team = await ChooseTeamAsync(ctx, teams);
+            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
             if(team == null)
             {
@@ -72,7 +72,7 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "CreateTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
-            if (!CheckIfValid(ctx))
+            if (!ctx.User.CheckIfValid())
             {  
                 return;
             }
@@ -107,7 +107,7 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "TransferCaptain command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
-            if (!CheckIfValid(ctx))
+            if (!ctx.User.CheckIfValid())
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is a bot Canceling TransferCaptain");
                 return;
@@ -145,7 +145,7 @@ namespace big
             }
 
 
-            DiscordUser newCaptain = await ChooseUserAsync(ctx, otherMembers);
+            DiscordUser newCaptain = await StandardUserInteraction.ChooseUserAsync(ctx, otherMembers);
 
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " chose " + newCaptain.ToString() + " as new captain of " + TeamToTransfer.TeamName);
 
@@ -172,7 +172,7 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "JoinTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
-            if (!CheckIfValid(ctx))
+            if (!ctx.User.CheckIfValid())
             {
                 
                 return;
@@ -208,7 +208,7 @@ namespace big
             StandardLogging.LogInfo(FilePath, "AddToTeam command was used by " + ctx.User.ToString());
             
             UserHandler.CheckIfRegistred(ctx);
-            if(!CheckIfValid(ctx))
+            if(!ctx.User.CheckIfValid())
             {          
 
                 return;
@@ -252,7 +252,7 @@ namespace big
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is a captain of " + UsersTeams.Count + " teams");
             
             
-            Team Team = await ChooseTeamAsync(ctx, UsersTeams);
+            Team Team = await StandardUserInteraction.ChooseTeamAsync(ctx, UsersTeams);
             if (Team == null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AddToTeam");
@@ -289,7 +289,7 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "LeaveTeam command was used by " + ctx.User.ToString());
             UserHandler.CheckIfRegistred(ctx);
-            if (!CheckIfValid(ctx))
+            if (!ctx.User.CheckIfValid())
             {
                 return;
             }
@@ -334,7 +334,7 @@ namespace big
         
 
         
-        //Helper Methods
+      
         
 
     }
