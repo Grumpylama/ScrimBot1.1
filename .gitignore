@@ -3,6 +3,7 @@
 
 ### DotnetCore ###
 # .NET Core build folders
+*.log
 bin/
 obj/
 
@@ -10,6 +11,6 @@ obj/
 /node_modules
 /wwwroot/node_modules
 
-.log
+
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
