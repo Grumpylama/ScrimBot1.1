@@ -116,7 +116,7 @@ namespace big
             else return false;
         }
 
-        public static List<Team> GetTeamsWithTrustLevel(this DiscordUser user, int TrustLevel)
+        public static List<Team> GetTeamsWithTrustLevel(this DiscordUser user, TrustLevel TrustLevel)
         {
             List<Team> teams = new List<Team>();
             foreach (Team team in TeamHandler.Teams)

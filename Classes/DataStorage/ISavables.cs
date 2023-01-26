@@ -89,10 +89,35 @@ namespace big
 
         public TeamUser ToTeamUser()
         {
-            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position, this.TrustLevel);
+            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position, GetTrustLevel(this.TrustLevel));
             teamUser.teamID = this.TeamID;
             StandardLogging.LogInfo(FilePath, "TeamUser loaded: " + teamUser.ToString());
             return teamUser;
+        }
+
+        private TrustLevel GetTrustLevel(int trustLevel)
+        {
+            switch (trustLevel)
+            {
+                case 0:
+                    return big.TrustLevel.Member;
+                case 1:
+                    return big.TrustLevel.CanMatchMake;
+                case 2:
+                    return big.TrustLevel.CanAddMembers;
+                case 3:
+                    return big.TrustLevel.CanRemoveMembers;
+                case 4:
+                    return big.TrustLevel.CanEditTeam;
+                case 5:
+                    return big.TrustLevel.CanEditTrustLevel;
+                case 6:
+                    return big.TrustLevel.TeamCaptain;
+                default:
+                    return big.TrustLevel.Member;
+
+            
+            }
         }
     }
 

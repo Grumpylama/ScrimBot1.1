@@ -203,7 +203,7 @@ namespace big
         }
 
         [Command("AddToTeam")]
-        public async Task AddToTeam(CommandContext ctx, string hash)
+        public async Task AddToTeam(CommandContext ctx, string hash, string TeamName = "")
         {
             StandardLogging.LogInfo(FilePath, "AddToTeam command was used by " + ctx.User.ToString());
             
@@ -213,6 +213,8 @@ namespace big
 
                 return;
             }
+
+
             
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is trying to add a user with hash " + hash);
             DiscordUser userToAdd = UserHandler.GetUserFromHashAsync(hash);
@@ -329,13 +331,35 @@ namespace big
             return;
         }
 
-        
+        [Command("ManageTrust")]
+        public async Task ManageTrust(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, "ManageTrust command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
+            if (!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+            
+            //Getting all the teams the user is in
+            var teams = ctx.User.GetTeams();
+            if (teams.Count == 0)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
+                await ctx.RespondAsync("You are not in any teams");
+                return;
+            }
+        } 
 
-        
-
-        
-      
-        
+        [Command("Ping")] 
+        public async Task Ping(CommandContext ctx, string s = "")
+        {
+            StandardLogging.LogInfo(FilePath, "Ping command was used by " + ctx.User.ToString());
+            if(s == "pong")
+                await ctx.RespondAsync("Ping!");
+            else
+                await ctx.RespondAsync("Pong!");
+        }     
 
     }
 }

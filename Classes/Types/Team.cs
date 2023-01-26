@@ -108,7 +108,7 @@ namespace big
         }
 
         // Overload for default position
-        public void AddMember(DiscordUser user, int roleID)
+        public void AddMember(DiscordUser user, int roleID = 0)
         {
             
             StandardLogging.LogInfo(FilePath, "Adding Member" + user.Id + " to team " + teamID + " as Default");

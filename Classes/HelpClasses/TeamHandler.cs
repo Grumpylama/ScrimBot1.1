@@ -45,5 +45,20 @@ namespace big
                 }
             }
         }
+
+        public static Team GetTeamFromName(string name)
+        {
+            foreach (var team in Teams)
+            {
+                if (team.TeamName == name)
+                {
+                    return team;
+                }
+            }
+
+            return null;
+        }
+
+        
     }
 }

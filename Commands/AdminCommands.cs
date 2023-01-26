@@ -80,8 +80,51 @@ namespace big
             StandardLogging.LogInfo(FilePath, "VarDump done");
             await ctx.RespondAsync("VarDump done");
 
-            
         }
+
+        [Command("Sudo")]
+        [Description("Runs a command as another user")]
+        [Hidden]
+        public async Task Sudo(CommandContext ctx, [Description("Member to execute as.")] ulong memberID, [RemainingText, Description("Command text to execute.")] string command)
+        {
+            StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User);
+
+            if( ctx.User.IsAdmin() == false)
+            {
+                await ctx.RespondAsync("You are not an admin");
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User + " is not an admin caneling Sudo");
+                return;
+            }
+            // note the [RemainingText] attribute on the argument.
+            // it will capture all the text passed to the command
+            
+            // let's trigger a typing indicator to let
+            // users know we're working
+            await ctx.TriggerTypingAsync();
+
+            var member = UserHandler.GetUserFromID(memberID);
+            StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member);
+
+            // get the command service, we need this for
+            // sudo purposes
+            var cmds = ctx.CommandsNext;
+
+            // retrieve the command and its arguments from the given string
+            var cmd = cmds.FindCommand(command, out var customArgs);
+
+            StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " with command " + cmd);
+
+            // create a fake CommandContext
+            var fakeContext = cmds.CreateFakeContext(member, ctx.Channel, command, ctx.Prefix, cmd, customArgs);
+
+            StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " with command " + cmd + " with fakeContext " + fakeContext);
+
+            // and perform the sudo
+            await cmds.ExecuteCommandAsync(fakeContext);
+
+
+        }
+
     }
 }
 

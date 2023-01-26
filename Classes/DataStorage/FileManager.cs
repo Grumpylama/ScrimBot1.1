@@ -4,7 +4,7 @@ namespace big
     {
         public static DateTime LastSave;
 
-        public static string FilePath = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+        public static string FilePath ="FileManager.cs";
         public static async Task StartUpAsync()
         {
             string startpath = Environment.CurrentDirectory;
