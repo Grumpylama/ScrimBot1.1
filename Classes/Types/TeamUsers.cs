@@ -19,6 +19,14 @@ namespace big
         //Position of the user in the team (Top, Jungle, Mid, ADC, Support)
         public string Position {get; set;}
 
+        //Trust level of the user, 0 = Normal member 1 = Can matchmake 2 = Can add members 3 = Can remove members 4 = Can edit team 
+        public int TrustLevel {get; set;}
+
+        public override string ToString()
+        {
+            return "TeamUser: " + this.User.Username + " " + this.teamID + " " + this.roleID + " " + this.Position;
+        }
+
         
         public SavableTeamUser ToSavable()
         {
@@ -27,18 +35,22 @@ namespace big
             savableTeamUser.TeamID = this.teamID;
             savableTeamUser.roleID = this.roleID;
             savableTeamUser.Position = this.Position;
+            savableTeamUser.TrustLevel = this.TrustLevel;
             return savableTeamUser;
         }
 
 
 
-        public TeamUser(DiscordUser user, int teamID, int roleID, string Position)
+        public TeamUser(DiscordUser user, int teamID, int roleID, string Position, int TrustLevel = 0)
         {
             this.User = user;
             this.teamID = teamID;
             this.roleID = roleID;
             this.Position = Position;
+            this.TrustLevel = TrustLevel;
+
         }
+        
 
         public DiscordUser GetUser()
         {

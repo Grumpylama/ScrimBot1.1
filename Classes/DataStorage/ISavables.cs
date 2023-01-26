@@ -69,12 +69,15 @@ namespace big
         public int roleID { get; set; }
         public string Position { get; set; }
 
-        public SavableTeamUser(ulong UserID, int TeamID, int roleID, string Position)
+        public int TrustLevel { get; set; }
+
+        public SavableTeamUser(ulong UserID, int TeamID, int roleID, string Position, int TrustLevel = 0)
         {
             this.UserID = UserID;
             this.TeamID = TeamID;
             this.roleID = roleID;
             this.Position = Position;
+            this.TrustLevel = TrustLevel;
             StandardLogging.LogInfo(FilePath, "TeamUser saved: " + UserID + " " + TeamID + " " + roleID + " " + Position);
 
         }
@@ -86,7 +89,7 @@ namespace big
 
         public TeamUser ToTeamUser()
         {
-            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position);
+            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.roleID, this.Position, this.TrustLevel);
             teamUser.teamID = this.TeamID;
             StandardLogging.LogInfo(FilePath, "TeamUser loaded: " + teamUser.ToString());
             return teamUser;

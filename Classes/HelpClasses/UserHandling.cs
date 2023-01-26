@@ -140,6 +140,23 @@ namespace big
             }
         
         }
+
+        public static bool RegisterUser(DiscordUser user, DiscordChannel channel)
+        {
+            if(!UserHandler.Users.Contains(user))
+            {
+                UserHandler.AddUser(user);
+                DiscordInterface.AddDmChannel(user, channel);
+                
+                StandardLogging.LogInfo(filepath,  user + " Registered");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        
+        }
     }
     
 }

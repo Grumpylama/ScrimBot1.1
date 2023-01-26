@@ -41,7 +41,7 @@ namespace big
                 StandardLogging.LogInfo(FilePath, "Team: " + team.TeamName + " with ID " + team.teamID + " and game " + team.game.GameName + " with Captain " + team.TeamCaptain);
                 foreach (var user in team.TeamMembers)
                 {
-                    StandardLogging.LogInfo(FilePath, "     User: " + user.User + " with role " + user.roleID + " and position " + user.Position );
+                    StandardLogging.LogInfo(FilePath, "     User: " + user.User + " with role " + user.roleID + " and position " + user.Position + " and trust " + user.TrustLevel);
                 }
             }
         }

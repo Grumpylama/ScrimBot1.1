@@ -71,7 +71,8 @@ namespace big
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             // Code to run when an unhandled exception occurs
-            try{
+            try
+            {
                 UserHandler.GetUserFromID(244135683537502208).SendDMAsync(e.ToString()).GetAwaiter().GetResult();
             }
             catch{

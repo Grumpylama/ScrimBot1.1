@@ -15,6 +15,7 @@ namespace big
         [Command("shutdown")]
         [Description("Shuts down the bot")]
         [Aliases("exit" , "stop")]
+        [Hidden]
         public async Task Shutdown(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "Shutdown used by " + ctx.User);
@@ -31,6 +32,7 @@ namespace big
 
         [Command("save")]
         [Description("Saves all data")]
+        [Hidden]
         public async Task Save(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "Save used by " + ctx.User);
@@ -46,6 +48,7 @@ namespace big
 
         [Command("CheckIfMatchmaking")]
         [Description("Checks if the user is in matchmaking")]
+        [Hidden]
         public async Task CheckIfMatchmaking(CommandContext ctx, DiscordUser user)
         {
             StandardLogging.LogInfo(FilePath, "CheckIfMatchmaking used by " + ctx.User);
@@ -61,6 +64,7 @@ namespace big
 
         [Command("VarDump")]
         [Description("Dumps all variables")]
+        [Hidden]
         public async Task VarDump(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "VarDump used by " + ctx.User);

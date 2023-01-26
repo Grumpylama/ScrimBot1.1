@@ -1,0 +1,619 @@
+2023-01-26 00:31:10.131 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 00:34:02.068 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 00:34:02.074 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 00:34:02.080 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 00:34:02.086 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 00:34:02.092 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 00:34:02.110 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 00:34:02.117 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 00:34:02.127 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 00:34:02.138 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 00:34:02.145 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 00:34:02.153 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 00:34:02.161 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 00:34:02.167 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 00:34:02.176 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 00:34:02.182 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 00:34:02.188 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 00:49:02.066 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 00:49:02.073 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 00:49:02.078 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 00:49:02.085 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 00:49:02.092 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 00:49:02.098 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 00:49:02.106 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 00:49:02.116 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 00:49:02.125 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 00:49:02.132 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 00:49:02.140 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 00:49:02.154 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 00:49:02.162 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 00:49:02.168 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 00:49:02.174 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 00:49:02.180 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:04:02.066 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 01:04:02.075 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 01:04:02.083 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 01:04:02.091 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 01:04:02.097 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:04:02.105 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 01:04:02.111 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:04:02.122 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:04:02.127 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:04:02.134 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 01:04:02.141 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:04:02.154 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:04:02.161 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:04:02.170 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 01:04:02.177 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:04:02.184 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:19:02.059 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 01:19:02.062 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 01:19:02.065 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 01:19:02.066 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 01:19:02.068 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:19:02.075 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 01:19:02.092 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:19:02.108 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:19:02.124 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:19:02.125 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 01:19:02.135 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:19:02.139 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:19:02.156 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:19:02.169 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 01:19:02.172 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:19:02.176 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:34:02.061 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 01:34:02.064 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 01:34:02.066 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 01:34:02.069 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 01:34:02.071 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:34:02.073 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 01:34:02.078 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:34:02.089 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:34:02.094 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:34:02.096 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 01:34:02.098 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:34:02.104 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:34:02.107 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:34:02.109 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 01:34:02.114 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:34:02.117 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:49:02.061 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 01:49:02.064 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 01:49:02.067 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 01:49:02.072 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 01:49:02.078 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:49:02.087 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 01:49:02.088 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:49:02.090 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 01:49:02.098 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:49:02.101 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 01:49:02.103 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:49:02.110 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 01:49:02.116 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 01:49:02.120 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 01:49:02.122 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 01:49:02.126 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 02:04:02.062 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 02:04:02.069 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 02:04:02.079 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 02:04:02.087 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 02:04:02.094 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 02:04:02.100 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 02:04:02.105 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 02:04:02.114 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 02:04:02.120 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 02:04:02.126 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 02:04:02.132 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 02:04:02.141 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 02:04:02.147 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 02:04:02.153 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 02:04:02.160 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 02:04:02.171 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 02:19:02.063 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 02:19:02.065 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 02:19:02.068 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 02:19:02.070 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 02:19:02.080 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 02:19:02.083 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 02:19:02.088 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 02:19:02.097 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 02:19:02.101 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 02:19:02.102 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 02:19:02.111 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 02:19:02.116 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 02:19:02.133 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 02:19:02.143 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 02:19:02.148 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 02:19:02.151 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 06:06:19.729 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 06:19:49.343 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 06:19:49.350 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 06:19:49.355 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 06:19:49.358 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 06:19:49.361 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 06:19:49.364 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 06:19:49.366 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:19:49.374 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 06:19:49.376 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 06:19:49.379 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 06:19:49.381 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:19:49.386 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 06:19:49.390 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 06:19:49.393 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 06:19:49.396 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:19:49.403 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 06:34:49.343 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 06:34:49.348 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 06:34:49.352 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 06:34:49.357 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 06:34:49.361 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 06:34:49.364 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 06:34:49.366 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:34:49.370 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 06:34:49.372 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 06:34:49.375 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 06:34:49.378 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:34:49.381 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 06:34:49.383 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 06:34:49.385 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 06:34:49.388 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:34:49.392 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 06:49:49.340 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 06:49:49.348 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 06:49:49.354 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 06:49:49.357 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 06:49:49.360 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 06:49:49.363 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 06:49:49.366 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:49:49.371 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 06:49:49.374 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 06:49:49.377 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 06:49:49.379 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:49:49.384 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 06:49:49.386 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 06:49:49.389 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 06:49:49.392 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 06:49:49.397 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:04:49.338 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 07:04:49.341 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 07:04:49.344 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 07:04:49.346 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 07:04:49.350 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:04:49.353 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 07:04:49.356 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:04:49.360 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:04:49.362 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:04:49.365 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 07:04:49.368 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:04:49.372 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:04:49.373 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:04:49.376 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 07:04:49.378 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:04:49.381 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:19:49.340 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 07:19:49.346 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 07:19:49.351 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 07:19:49.354 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 07:19:49.357 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:19:49.359 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 07:19:49.362 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:19:49.367 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:19:49.370 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:19:49.373 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 07:19:49.376 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:19:49.380 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:19:49.382 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:19:49.384 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 07:19:49.387 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:19:49.392 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:34:49.340 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 07:34:49.346 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 07:34:49.351 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 07:34:49.354 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 07:34:49.357 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:34:49.360 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 07:34:49.362 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:34:49.366 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:34:49.369 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:34:49.373 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 07:34:49.375 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:34:49.380 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:34:49.382 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:34:49.385 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 07:34:49.389 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:34:49.393 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:49:49.344 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 07:49:49.346 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 07:49:49.347 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 07:49:49.348 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 07:49:49.349 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:49:49.350 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 07:49:49.351 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:49:49.353 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 07:49:49.355 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:49:49.357 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 07:49:49.359 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:49:49.364 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 07:49:49.368 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 07:49:49.371 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 07:49:49.374 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 07:49:49.378 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 08:04:49.344 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 08:04:49.346 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 08:04:49.349 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 08:04:49.350 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 08:04:49.352 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 08:04:49.355 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 08:04:49.356 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:04:49.362 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 08:04:49.365 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 08:04:49.368 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 08:04:49.370 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:04:49.374 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 08:04:49.376 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 08:04:49.379 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 08:04:49.381 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:04:49.385 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 08:19:49.350 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 08:19:49.374 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 08:19:49.381 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 08:19:49.383 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 08:19:49.384 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 08:19:49.388 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 08:19:49.391 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:19:49.394 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 08:19:49.397 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 08:19:49.399 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 08:19:49.401 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:19:49.404 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 08:19:49.407 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 08:19:49.409 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 08:19:49.411 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:19:49.415 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 08:34:49.342 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 08:34:49.345 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 08:34:49.348 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 08:34:49.349 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 08:34:49.350 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 08:34:49.351 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 08:34:49.352 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:34:49.356 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 08:34:49.357 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 08:34:49.358 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 08:34:49.359 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:34:49.361 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 08:34:49.362 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 08:34:49.363 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 08:34:49.364 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 08:34:49.366 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 12:32:01.972 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 12:32:01.974 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 12:32:01.983 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 12:32:01.987 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 12:32:01.995 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 12:32:01.997 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 12:32:01.999 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 12:32:02.003 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 12:32:02.012 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 12:32:02.017 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 12:32:02.022 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 12:32:02.026 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 12:32:02.031 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 12:32:02.036 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 12:32:02.039 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 12:32:02.043 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 12:32:26.949 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 12:47:01.954 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 12:47:01.956 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 12:47:01.958 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 12:47:01.959 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 12:47:01.960 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 12:47:01.961 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 12:47:01.963 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 12:47:01.966 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 12:47:01.968 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 12:47:01.969 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 12:47:01.971 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 12:47:01.974 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 12:47:01.975 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 12:47:01.977 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 12:47:01.979 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 12:47:01.982 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:02:01.946 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 13:02:01.950 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 13:02:01.953 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 13:02:01.956 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 13:02:01.958 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:02:01.960 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 13:02:01.962 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:02:01.965 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:02:01.967 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:02:01.968 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 13:02:01.970 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:02:01.974 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:02:01.976 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:02:01.977 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 13:02:01.979 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:02:01.982 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:17:01.958 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 13:17:01.961 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 13:17:01.964 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 13:17:01.966 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 13:17:01.968 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:17:01.970 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 13:17:01.973 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:17:01.977 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:17:01.979 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:17:01.981 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 13:17:01.983 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:17:01.985 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:17:01.987 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:17:01.990 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 13:17:01.992 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:17:01.996 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:32:01.961 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 13:32:01.966 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 13:32:01.969 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 13:32:01.971 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 13:32:01.973 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:32:01.975 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 13:32:01.978 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:32:01.983 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:32:01.987 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:32:01.990 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 13:32:01.992 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:32:01.994 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:32:01.995 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:32:01.997 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 13:32:01.999 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:32:02.002 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:47:01.954 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 13:47:01.961 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 13:47:01.968 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 13:47:01.974 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 13:47:01.980 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:47:01.986 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 13:47:01.991 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:47:01.994 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 13:47:01.997 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:47:01.999 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 13:47:02.001 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:47:02.003 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 13:47:02.007 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 13:47:02.010 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 13:47:02.012 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 13:47:02.015 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 14:02:01.955 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 14:02:01.960 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 14:02:01.965 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 14:02:01.970 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 14:02:01.973 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 14:02:01.976 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 14:02:01.979 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 14:02:01.984 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 14:02:01.987 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 14:02:01.990 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 14:02:01.995 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 14:02:02.003 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 14:02:02.008 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 14:02:02.012 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 14:02:02.014 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 14:02:02.020 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 15:16:32.105 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 15:22:06.159 +01:00 [INF] [Program.cs] Timersave, Saving data
+2023-01-26 15:22:06.167 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 15:22:06.175 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 15:22:06.181 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 15:22:06.185 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 15:22:06.189 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 15:22:06.191 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 15:22:06.197 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 15:22:06.200 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 15:22:06.203 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:22:06.205 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 15:22:06.209 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 15:22:06.212 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 15:22:06.214 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 15:22:06.218 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 15:22:06.223 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 15:31:47.386 +01:00 [INF] [Program.cs] Save timer started
+2023-01-26 15:31:47.423 +01:00 [INF] [Program.cs] Bot created
+2023-01-26 15:31:47.426 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-26 15:31:48.099 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-26 15:31:48.103 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-26 15:31:48.185 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-26 15:31:48.221 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-26 15:31:48.360 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-26 15:31:48.364 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-26 15:31:48.383 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-26 15:31:48.433 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-26 15:31:48.435 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-26 15:31:48.447 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-26 15:31:49.882 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-26 15:31:49.892 +01:00 [INF] [ScrimBot1.1.dll] Starting File Manager
+2023-01-26 15:31:49.900 +01:00 [INF] [ScrimBot1.1.dll] startpath is : C:\Users\Oscar\Documents\GitHub\ScrimBot1.1
+2023-01-26 15:31:49.910 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:31:49.919 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 15:31:49.925 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:31:49.930 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:31:50.273 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:31:50.280 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:31:50.286 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 2
+2023-01-26 15:31:50.293 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 1 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:31:50.296 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-26 15:31:50.298 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:31:50.300 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:31:50.301 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:31:50.304 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:31:50.306 +01:00 [INF] [ScrimBot1.1.dll] Converting 2 TeamUsers
+2023-01-26 15:31:50.309 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 1054751237242880000 to 4
+2023-01-26 15:31:50.311 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Donker 0 0 Member
+2023-01-26 15:31:50.312 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 244135683537502208 to 4
+2023-01-26 15:31:50.312 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 15:31:50.313 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Grumpylama 0 0 Member
+2023-01-26 15:31:50.315 +01:00 [INF] [ScrimBot1.1.dll] Done Converting TeamUsers
+2023-01-26 15:31:50.317 +01:00 [INF] [ScrimBot1.1.dll] Adding admins
+2023-01-26 15:32:03.919 +01:00 [INF] [AdminCommands.cs] Shutdown used by User 244135683537502208; Grumpylama#0130
+2023-01-26 15:32:03.924 +01:00 [INF] [AdminCommands.cs] Shutting down bot
+2023-01-26 15:32:04.483 +01:00 [INF] [Program.cs] Process exit, saving data
+2023-01-26 15:32:04.487 +01:00 [INF] [ScrimBot1.1.dll] startpath: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data
+2023-01-26 15:32:04.494 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 244135683537502208 1027408240260165662
+2023-01-26 15:32:04.498 +01:00 [INF] [SaveableUser.cs.SaveableUser] User saved: 1054751237242880000 1055862546843844639
+2023-01-26 15:32:04.503 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 15:32:04.504 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:32:04.509 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 15:32:04.517 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/TeamUsers.csv
+2023-01-26 15:32:04.520 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 15:32:04.524 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:32:04.527 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 15:32:04.531 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 2 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Teams.csv
+2023-01-26 15:32:04.532 +01:00 [INF] [GenericTextFileProcessor.cs] Saving to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 15:32:04.535 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 15:32:04.537 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 0
+2023-01-26 15:32:04.540 +01:00 [INF] [GenericTextFileProcessor.cs] Saved 3 entries to text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1\Data/Users.csv
+2023-01-26 15:33:41.946 +01:00 [INF] [Program.cs] Save timer started
+2023-01-26 15:33:41.992 +01:00 [INF] [Program.cs] Bot created
+2023-01-26 15:33:41.994 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-26 15:33:42.006 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-26 15:33:42.007 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-26 15:33:42.109 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-26 15:33:42.140 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-26 15:33:42.272 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-26 15:33:42.274 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-26 15:33:42.289 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-26 15:33:42.361 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-26 15:33:42.363 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-26 15:33:42.377 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-26 15:33:43.843 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-26 15:33:43.848 +01:00 [INF] [ScrimBot1.1.dll] Starting File Manager
+2023-01-26 15:33:43.853 +01:00 [INF] [ScrimBot1.1.dll] startpath is : C:\Users\Oscar\Documents\GitHub\ScrimBot1.1
+2023-01-26 15:33:43.858 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:33:43.861 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 15:33:43.863 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:33:43.868 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:33:44.189 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 15:33:44.232 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:33:44.237 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:33:44.238 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 2
+2023-01-26 15:33:44.239 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 1 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:33:44.242 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-26 15:33:44.244 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:33:44.246 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:33:44.247 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:33:44.248 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:33:44.249 +01:00 [INF] [ScrimBot1.1.dll] Converting 2 TeamUsers
+2023-01-26 15:33:44.252 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 1054751237242880000 to 4
+2023-01-26 15:33:44.254 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Donker 0 0 Member
+2023-01-26 15:33:44.256 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 244135683537502208 to 4
+2023-01-26 15:33:44.259 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Grumpylama 0 0 Member
+2023-01-26 15:33:44.261 +01:00 [INF] [ScrimBot1.1.dll] Done Converting TeamUsers
+2023-01-26 15:33:44.262 +01:00 [INF] [ScrimBot1.1.dll] Adding admins
+2023-01-26 15:33:52.087 +01:00 [INF] [AdminCommands.cs] VarDump used by User 244135683537502208; Grumpylama#0130
+2023-01-26 15:33:52.092 +01:00 [INF] [TeamHandler.cs] Team: 4 with ID 0 and game Overwatch 2 with Captain User 244135683537502208; Grumpylama#0130
+2023-01-26 15:33:52.097 +01:00 [INF] [TeamHandler.cs]      User: User 1054751237242880000; Donker#4818 with role 0 and position Member
+2023-01-26 15:33:52.101 +01:00 [INF] [TeamHandler.cs]      User: User 244135683537502208; Grumpylama#0130 with role 0 and position Member
+2023-01-26 15:33:52.103 +01:00 [INF] [DiscordInterface.cs] User: Grumpylama with channel 
+2023-01-26 15:33:52.105 +01:00 [INF] [DiscordInterface.cs] User: Donker with channel 
+2023-01-26 15:33:52.107 +01:00 [INF] [GameHandler.cs] Game: Overwatch 2
+2023-01-26 15:33:52.109 +01:00 [INF] [GameHandler.cs] Game: Leauge Of Legends
+2023-01-26 15:33:52.109 +01:00 [INF] [GameHandler.cs] Game: Dota 2
+2023-01-26 15:33:52.110 +01:00 [INF] [GameHandler.cs] Game: Valorant
+2023-01-26 15:33:52.111 +01:00 [INF] [AdminCommands.cs] VarDump done
+2023-01-26 15:36:02.945 +01:00 [INF] [Program.cs] Save timer started
+2023-01-26 15:36:02.988 +01:00 [INF] [Program.cs] Bot created
+2023-01-26 15:36:02.990 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-26 15:36:02.997 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-26 15:36:03.000 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-26 15:36:03.078 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-26 15:36:03.110 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-26 15:36:03.225 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-26 15:36:03.227 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-26 15:36:03.238 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-26 15:36:03.283 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-26 15:36:03.288 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-26 15:36:03.302 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-26 15:36:04.648 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-26 15:36:04.659 +01:00 [INF] [ScrimBot1.1.dll] Starting File Manager
+2023-01-26 15:36:04.666 +01:00 [INF] [ScrimBot1.1.dll] startpath is : C:\Users\Oscar\Documents\GitHub\ScrimBot1.1
+2023-01-26 15:36:04.676 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:36:04.684 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 15:36:04.690 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:36:04.697 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:36:04.989 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 15:36:05.058 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:36:05.065 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:36:05.070 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 2
+2023-01-26 15:36:05.077 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 1 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:36:05.084 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-26 15:36:05.091 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:36:05.099 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:36:05.105 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:36:05.111 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:36:05.117 +01:00 [INF] [ScrimBot1.1.dll] Converting 2 TeamUsers
+2023-01-26 15:36:05.119 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 1054751237242880000 to 4
+2023-01-26 15:36:05.123 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Donker 0 0 Member
+2023-01-26 15:36:05.127 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 244135683537502208 to 4
+2023-01-26 15:36:05.129 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Grumpylama 0 0 Member
+2023-01-26 15:36:05.131 +01:00 [INF] [ScrimBot1.1.dll] Done Converting TeamUsers
+2023-01-26 15:36:05.132 +01:00 [INF] [ScrimBot1.1.dll] Adding admins
+2023-01-26 15:36:13.379 +01:00 [INF] [AdminCommands.cs] VarDump used by User 244135683537502208; Grumpylama#0130
+2023-01-26 15:36:13.382 +01:00 [INF] [TeamHandler.cs] Team: 4 with ID 0 and game Overwatch 2 with Captain User 244135683537502208; Grumpylama#0130
+2023-01-26 15:36:13.383 +01:00 [INF] [TeamHandler.cs]      User: User 1054751237242880000; Donker#4818 with role 0 and position Member and trust 0
+2023-01-26 15:36:13.384 +01:00 [INF] [TeamHandler.cs]      User: User 244135683537502208; Grumpylama#0130 with role 0 and position Member and trust 6
+2023-01-26 15:36:13.386 +01:00 [INF] [DiscordInterface.cs] User: Grumpylama with channel 
+2023-01-26 15:36:13.389 +01:00 [INF] [DiscordInterface.cs] User: Donker with channel 
+2023-01-26 15:36:13.398 +01:00 [INF] [GameHandler.cs] Game: Overwatch 2
+2023-01-26 15:36:13.398 +01:00 [INF] [GameHandler.cs] Game: Leauge Of Legends
+2023-01-26 15:36:13.399 +01:00 [INF] [GameHandler.cs] Game: Dota 2
+2023-01-26 15:36:13.400 +01:00 [INF] [GameHandler.cs] Game: Valorant
+2023-01-26 15:36:13.401 +01:00 [INF] [AdminCommands.cs] VarDump done
+2023-01-26 15:36:43.943 +01:00 [INF] [Program.cs] Save timer started
+2023-01-26 15:36:43.983 +01:00 [INF] [Program.cs] Bot created
+2023-01-26 15:36:43.984 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-26 15:36:44.571 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-26 15:36:44.574 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-26 15:36:44.654 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-26 15:36:44.687 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-26 15:36:44.816 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-26 15:36:44.818 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-26 15:36:44.834 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-26 15:36:44.874 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-26 15:36:44.876 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-26 15:36:44.884 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-26 15:36:46.319 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-26 15:36:46.322 +01:00 [INF] [ScrimBot1.1.dll] Starting File Manager
+2023-01-26 15:36:46.324 +01:00 [INF] [ScrimBot1.1.dll] startpath is : C:\Users\Oscar\Documents\GitHub\ScrimBot1.1
+2023-01-26 15:36:46.326 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:36:46.334 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 15:36:46.336 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:36:46.338 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 15:36:46.714 +01:00 [INF] [Bot.cs] Bot is ready
+2023-01-26 15:36:46.733 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:36:46.741 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:36:46.742 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 2
+2023-01-26 15:36:46.744 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 1 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 15:36:46.747 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-26 15:36:46.750 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:36:46.751 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 15:36:46.753 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 15:36:46.755 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 15:36:46.756 +01:00 [INF] [ScrimBot1.1.dll] Converting 2 TeamUsers
+2023-01-26 15:36:46.757 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 1054751237242880000 to 4
+2023-01-26 15:36:46.760 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Donker 0 0 Member
+2023-01-26 15:36:46.762 +01:00 [INF] [ScrimBot1.1.dll] Trying to add 244135683537502208 to 4
+2023-01-26 15:36:46.763 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Grumpylama 0 0 Member
+2023-01-26 15:36:46.765 +01:00 [INF] [ScrimBot1.1.dll] Done Converting TeamUsers
+2023-01-26 15:36:46.766 +01:00 [INF] [ScrimBot1.1.dll] Adding admins
+2023-01-26 15:36:57.623 +01:00 [INF] [AdminCommands.cs] VarDump used by User 244135683537502208; Grumpylama#0130
+2023-01-26 15:36:57.626 +01:00 [INF] [TeamHandler.cs] Team: 4 with ID 0 and game Overwatch 2 with Captain User 244135683537502208; Grumpylama#0130
+2023-01-26 15:36:57.627 +01:00 [INF] [TeamHandler.cs]      User: User 1054751237242880000; Donker#4818 with role 0 and position Member and trust 0
+2023-01-26 15:36:57.628 +01:00 [INF] [TeamHandler.cs]      User: User 244135683537502208; Grumpylama#0130 with role 0 and position Member and trust 4
+2023-01-26 15:36:57.630 +01:00 [INF] [DiscordInterface.cs] User: Grumpylama with channel 
+2023-01-26 15:36:57.630 +01:00 [INF] [DiscordInterface.cs] User: Donker with channel 
+2023-01-26 15:36:57.631 +01:00 [INF] [GameHandler.cs] Game: Overwatch 2
+2023-01-26 15:36:57.632 +01:00 [INF] [GameHandler.cs] Game: Leauge Of Legends
+2023-01-26 15:36:57.633 +01:00 [INF] [GameHandler.cs] Game: Dota 2
+2023-01-26 15:36:57.634 +01:00 [INF] [GameHandler.cs] Game: Valorant
+2023-01-26 15:36:57.635 +01:00 [INF] [AdminCommands.cs] VarDump done

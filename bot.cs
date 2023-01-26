@@ -108,9 +108,9 @@ namespace big
             StandardLogging.LogInfo(FilePath, "Attempting to start FileManager");
             await FileManager.StartUpAsync();
             
-            
+            Client.GuildMemberAdded += EventListners.OnGuildMemberAdded;
 
-            
+            //Wait infinitely so the bot stays connected
             await Task.Delay(-1);
 
         }
