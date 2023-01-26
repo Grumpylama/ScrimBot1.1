@@ -159,6 +159,10 @@ namespace big
             }
 
             TeamToTransfer.TeamCaptain = newCaptain;
+
+            TeamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User).TrustLevel = TrustLevel.Member;
+            TeamToTransfer.GetMembers().Find(x => x.User == newCaptain).TrustLevel = TrustLevel.TeamCaptain;
+
             StandardLogging.LogInfo(FilePath, $"User {ctx.User.ToString()} transfered captainship of {TeamToTransfer} to {TeamToTransfer.TeamCaptain.ToString()}");
             var t = newCaptain.SendDMAsync("You are now the captain of " + TeamToTransfer);    
             await ctx.Channel.SendMessageAsync($"Captain was transfered!  {TeamToTransfer.TeamCaptain.ToString() } is now the new captain of {TeamToTransfer.TeamName}").ConfigureAwait(false);
@@ -174,7 +178,6 @@ namespace big
             UserHandler.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
-                
                 return;
             }
             

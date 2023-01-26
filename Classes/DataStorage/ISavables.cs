@@ -47,7 +47,7 @@ namespace big
 
         public Team ToTeam()
         {
-            Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, UserHandler.GetUserFromID(this.CaptainID));
+            Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, UserHandler.GetUserFromID(this.CaptainID), false);
             team.MMR = this.MMR;
             team.teamID = this.ID;
             StandardLogging.LogInfo(FilePath, "Team loaded: " + team.ToString());
