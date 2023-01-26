@@ -1,0 +1,37 @@
+2023-01-26 21:33:42.783 +01:00 [INF] [Program.cs] Save timer started
+2023-01-26 21:33:42.812 +01:00 [INF] [Program.cs] Bot created
+2023-01-26 21:33:42.813 +01:00 [INF] [Program.cs] Attempting to run bot
+2023-01-26 21:33:42.820 +01:00 [INF] [Bot.cs] Starting Bot
+2023-01-26 21:33:42.821 +01:00 [INF] [Bot.cs] Loading Config
+2023-01-26 21:33:42.872 +01:00 [INF] [Bot.cs] Config Loaded
+2023-01-26 21:33:42.894 +01:00 [INF] [Bot.cs] Bot Started
+2023-01-26 21:33:42.975 +01:00 [INF] [Bot.cs] Interactivity is ready
+2023-01-26 21:33:42.976 +01:00 [INF] [Bot.cs] Starting Commands
+2023-01-26 21:33:42.982 +01:00 [INF] [Bot.cs] Command Config is as follows: DSharpPlus.CommandsNext.CommandsNextConfiguration
+2023-01-26 21:33:43.008 +01:00 [INF] [Bot.cs] Commands are ready
+2023-01-26 21:33:43.009 +01:00 [INF] [Bot.cs] Registering Commands
+2023-01-26 21:33:43.015 +01:00 [INF] [Bot.cs] Commands are registered
+2023-01-26 21:33:43.954 +01:00 [INF] [Bot.cs] Attempting to start FileManager
+2023-01-26 21:33:43.957 +01:00 [INF] [FileManager.cs] Starting File Manager
+2023-01-26 21:33:43.958 +01:00 [INF] [FileManager.cs] startpath is : C:\Users\Oscar\Documents\GitHub\ScrimBot1.1
+2023-01-26 21:33:43.959 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 21:33:43.960 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 2
+2023-01-26 21:33:43.960 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 4
+2023-01-26 21:33:43.961 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 3 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Users.csv
+2023-01-26 21:33:44.321 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 21:33:44.323 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 5
+2023-01-26 21:33:44.324 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 2
+2023-01-26 21:33:44.325 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 1 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/Teams.csv
+2023-01-26 21:33:44.327 +01:00 [INF] [SaveableUser.cs.SavableTeam] Team loaded: 4 playing Overwatch 2
+2023-01-26 21:33:44.327 +01:00 [INF] [GenericTextFileProcessor.cs] Loading from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 21:33:44.328 +01:00 [INF] [GenericTextFileProcessor.cs] Columns: 4
+2023-01-26 21:33:44.328 +01:00 [INF] [GenericTextFileProcessor.cs] Lines: 3
+2023-01-26 21:33:44.329 +01:00 [INF] [GenericTextFileProcessor.cs] Loaded 2 entries from text file: C:\Users\Oscar\Documents\GitHub\ScrimBot1.1/Data/TeamUsers.csv
+2023-01-26 21:33:44.330 +01:00 [INF] [FileManager.cs] Converting 2 TeamUsers
+2023-01-26 21:33:44.331 +01:00 [INF] [FileManager.cs] Trying to add 244135683537502208 to 4
+2023-01-26 21:33:44.333 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Grumpylama 4 playing Overwatch 2 Team Captain
+2023-01-26 21:33:44.334 +01:00 [INF] [FileManager.cs] Trying to add 1054751237242880000 to 4
+2023-01-26 21:33:44.335 +01:00 [INF] [SaveableUser.cs.SavableTeamUser] TeamUser loaded: TeamUser: Donker 4 playing Overwatch 2 Member
+2023-01-26 21:33:44.336 +01:00 [INF] [FileManager.cs] Done Converting TeamUsers
+2023-01-26 21:33:44.337 +01:00 [INF] [FileManager.cs] Adding admins
+2023-01-26 21:33:44.338 +01:00 [INF] [Bot.cs] Bot is ready

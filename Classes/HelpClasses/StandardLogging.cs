@@ -8,7 +8,7 @@ namespace big
         private static readonly Serilog.Core.Logger logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
-                .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("logs/log.log", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
 
