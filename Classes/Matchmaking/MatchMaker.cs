@@ -47,7 +47,7 @@ namespace big
 
             // set the initial difference to the maximum value
             float minDifference = float.MaxValue;
-            MatchMakingTeam team2 = null;
+            MatchMakingTeam team2 = new MatchMakingTeam();
 
             // compare the team to all other teams
             for (int i = 1; i < MMTList.Count; i++)

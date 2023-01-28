@@ -8,10 +8,8 @@ namespace big
         //When there are 2 hours left to matchStart
         //Less time left till match means less time to respond to the matchmaking
         //for the team captains
-        public async Task<bool> FindMatchAsync( MatchMaker m)
+        public static async Task<bool> FindMatchAsync( MatchMaker m)
         {
-            if(m.MMTList.Count > 1) 
-            {
                 DateTime dt1 = DateTime.Now;
                 DateTime dt2 = m.matchStart.Date;
                 //Current time in milliseconds
@@ -20,28 +18,23 @@ namespace big
                 var t2 = (dt2.Second * 1000) - 7200000;
                 //Wait until 2 hours before matchStart
                 await Task.Delay(t2 - t1);
-
+            if(m.MMTList.Count > 1) 
+            {
                 //Start the MatchMaking
                 await MatchFindHelperAsync(m);
                 return true;
             }
             return false;
         }
-        //How long do we wait for the answer? D:
-        private async Task MatchFindHelperAsync( MatchMaker m)
+        
+        private static async Task MatchFindHelperAsync( MatchMaker m)
         {
             List<Task<Tuple<ScrimResponse, ScrimResponse>>> tasks = new List<Task<Tuple<ScrimResponse, ScrimResponse>>>();
-            foreach(MatchMakingTeam mmt in m.MMTList)
-            {
-                int timeout = 300;
-                if(mmt.hasActiveRequest == false && mmt.Active == true)
-                {
-                    //Finds best match for first mmt in list and sends a promt to it and the other team
-                    //tasks.Add(PromtCaptains(d, mmt, Sort.FindBestMatch(mmt, m.MMTList), timeout));       
-                }                               
-            }
 
-            
+            int timeout = 300;
+            m.findMatch(); //Make the function so it returns a list of scrimresponses to make tasks equal to it
+            //Also make it so that it checks if the mmt is active and has activeRequest                   
+
 
             //Waits for when all promts are done.
             //Will be within the timeout time limit or sooner

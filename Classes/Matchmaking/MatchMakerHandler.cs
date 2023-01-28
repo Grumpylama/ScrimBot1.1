@@ -17,6 +17,18 @@ namespace big
         {
             this.game = game;
         }
+
+        public async void MatchMake()
+        {
+            bool t = true;
+            while(t)
+            {
+                foreach(MatchMaker m in matchMakers)
+                {
+                    await AutomaticMatchMaker.FindMatchAsync(m);
+                }
+            }
+        }
         
         public StatusCode addMatchMakingTeam(MatchMakingTeam temp)
         {
