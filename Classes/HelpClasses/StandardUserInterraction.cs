@@ -97,6 +97,7 @@ namespace big
             {
                 if (trustLevel <= maxTrustLevel)
                 {
+                    if(trustLevel != TrustLevel.TeamCaptain)
                     trustLevels.Add(trustLevel);
                 }
             }

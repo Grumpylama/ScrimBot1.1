@@ -6,6 +6,13 @@ namespace big
         private static readonly string FilePath = "UserHandler.cs";
         public static List<DiscordUser> Users = new List<DiscordUser>();
 
+
+        public static DiscordUser GetDiscordUserFromUsername(string username)
+        {
+            string name = username.Split('#')[0];
+            string discriminator = username.Split('#')[1];
+            return Users.Find(x => x.Username == name && discriminator == x.Discriminator);
+        }
         public static void AddUser(DiscordUser u)
         {
             if(!Users.Contains(u))
@@ -157,6 +164,8 @@ namespace big
             }
         
         }
+
+        
     }
     
 }

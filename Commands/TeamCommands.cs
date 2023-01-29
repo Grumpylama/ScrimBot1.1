@@ -390,13 +390,28 @@ namespace big
                 return;
             }
 
+            
             //Getting what team the user wants to manage
             Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
             if (team == null)
                 return;
 
             //Getting what user the user wants to manage
-            List<TeamUser> teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
+            TeamUser callUser;
+            callUser = team.TeamMembers.Find(x => x.User.Id == ctx.User.Id);
+            List<TeamUser> teamUsers;
+
+            if(callUser.TrustLevel == TrustLevel.TeamCaptain)
+            {
+                teamUsers = team.GetNonCaptainMembers();
+            }
+            else
+            {
+                teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
+            }
+            
+            
+            
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is managing " + teamUsers.Count + " users in team " + team.TeamName);
 
             if (teamUsers.Count == 0)
@@ -412,7 +427,7 @@ namespace big
                 return;
 
 
-            TeamUser callUser = team.TeamMembers.Find(x => x.User.Id == ctx.User.Id);
+            
 
             //Getting what trust level the user wants to give the user
             TrustLevel trustLevel = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser.TrustLevel);

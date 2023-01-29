@@ -36,7 +36,7 @@ namespace big
 
         public override string ToString()
         {
-            return "TeamUser: " + this.User.Username + " " + TeamHandler.GetTeamFromID(this.teamID) + " " + this.Position;
+            return this.User.Username + " " + TeamHandler.GetTeamFromID(this.teamID) + " " + this.Position;
         }
 
         
