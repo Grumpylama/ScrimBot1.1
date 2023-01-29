@@ -10,7 +10,7 @@ namespace big
     {
         
         private static readonly string FilePath = "Team.cs";
-        public static int teamIDCounter = 0;   
+        private static int teamIDCounter = 0;   
         public string TeamName { get; set; }
         public DiscordUser TeamCaptain { get; set; }
         
@@ -79,6 +79,8 @@ namespace big
             this.game = game;
             this.TeamCaptain = TeamCaptain;    
             this.TeamMembers = new List<TeamUser>();  
+            this.teamID = teamIDCounter;        
+            teamIDCounter++;
             if (AddCaptain)
             {
                 TeamMembers.Add(new TeamUser(TeamCaptain, teamID, "Captain", TrustLevel.TeamCaptain));  
@@ -86,8 +88,13 @@ namespace big
             
             //Change this later to actual starting MMR
             this.MMR = 0;   
-            this.teamID = teamIDCounter;        
-            teamIDCounter++;
+            
+        }
+
+        public static void SetStaticID(int id)
+        {
+            StandardLogging.LogInfo(FilePath, "Setting Static ID to " + id);
+            teamIDCounter = id;
         }
 
         public Team()

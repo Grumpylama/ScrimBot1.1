@@ -40,6 +40,9 @@ namespace big
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
 
             
+            
+
+            
 
 
             //Registering the save timer

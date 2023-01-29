@@ -103,6 +103,10 @@ namespace big
             catch {
                 StandardLogging.LogError(FilePath, "Error adding admins");
             }
+
+
+            //Set Static ID's
+            Team.SetStaticID(TeamHandler.Teams.Select(x => x.teamID).Max() + 1);
             
             return;
 

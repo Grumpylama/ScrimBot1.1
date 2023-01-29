@@ -119,6 +119,54 @@ namespace big
             
             }
         }
+
+        
+    }
+
+    public class SavableScrim : ISavable
+    {
+
+        private static readonly string FilePath = "SaveableScrim.cs";
+
+        public ulong ID { get; set; }
+        public int Team1ID { get; set; }
+        public int Team2ID { get; set; }
+        public int GameID { get; set; }
+        public int Team1Score { get; set; }
+        public int Team2Score { get; set; }
+        public DateTime Date { get; set; }
+        public bool IsFinished { get; set; }
+
+        public Scrim ToScrim()
+        {
+            Scrim scrim = new Scrim(TeamHandler.GetTeamFromID(this.Team1ID), TeamHandler.GetTeamFromID(this.Team2ID), GameHandler.GetGameFromID(this.GameID), this.Date);
+            scrim.Team1Score = this.Team1Score;
+            scrim.Team2Score = this.Team2Score;
+            scrim.Finished = this.IsFinished;
+            scrim.ID = this.ID;
+            StandardLogging.LogInfo(FilePath, "Scrim loaded: " + scrim.ToString());
+            return scrim;
+        }
+
+        public SavableScrim(Scrim scrim)
+        {
+            this.ID = scrim.ID;
+            this.Team1ID = scrim.Team1.teamID;
+            this.Team2ID = scrim.Team2.teamID;
+            this.GameID = scrim.Game.GameID;
+            this.Team1Score = scrim.Team1Score;
+            this.Team2Score = scrim.Team2Score;
+            this.Date = scrim.Date;
+            this.IsFinished = scrim.Finished;
+            StandardLogging.LogInfo(FilePath, "Scrim saved: " + scrim.ToString());
+        }
+
+        public SavableScrim()
+        {
+            
+        }
+
+
     }
 
     

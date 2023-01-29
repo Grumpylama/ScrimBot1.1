@@ -125,6 +125,43 @@ namespace big
 
         }
 
+        [Command("TestScrim")]
+        [Description("Tests the scrim command")]
+        [Hidden]
+        public async Task TestScrim(CommandContext ctx, string team1name, string team2name)
+        {
+            StandardLogging.LogInfo(FilePath, "TestScrim used by " + ctx.User);
+            if( ctx.User.IsAdmin() == false)
+            {
+                await ctx.RespondAsync("You are not an admin");
+                return;
+            }
+
+           
+
+
+            var team1 = TeamHandler.GetTeamFromName(team1name);
+            var team2 = TeamHandler.GetTeamFromName(team2name);
+
+            if(team1 == null)
+            {
+                await ctx.RespondAsync("Team " + team1name + " does not exist");
+                return;
+            }
+            if(team2 == null)
+            {
+                await ctx.RespondAsync("Team " + team2name + " does not exist");
+                return;
+            }
+
+            await ctx.RespondAsync("Starting scrim between " + team1 + " and " + team2);
+
+            ScrimHandler.RegisterScrim(new Scrim(team1, team2, team1.game, DateTime.Now));
+            await ScrimHandler.ForceScrimsToDisk();
+
+        }
+        
+
     }
 }
 

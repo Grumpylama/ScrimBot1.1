@@ -410,14 +410,19 @@ namespace big
             TeamUser userToManage = await StandardUserInteraction.ChooseTeamUserAsync(ctx, teamUsers);
             if (userToManage == null)
                 return;
+
+
+            TeamUser callUser = team.TeamMembers.Find(x => x.User.Id == ctx.User.Id);
+
+            //Getting what trust level the user wants to give the user
+            TrustLevel trustLevel = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser.TrustLevel);
             
             
-            
+            userToManage.TrustLevel = trustLevel;
+            await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevel}");
             
 
-            TeamUser teamUser = await StandardUserInteraction.ChooseTeamUserAsync(ctx, team.TeamMembers);
-            if (teamUser == null)
-                return;
+            
 
 
 

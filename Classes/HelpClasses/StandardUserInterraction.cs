@@ -90,6 +90,21 @@ namespace big
             return await StandardInteractivityHandler.ChooseByNumber<TeamUser>(ctx, users);
         }
 
+        public static async Task<TrustLevel> ChooseTrustLevelAsync(CommandContext ctx, TrustLevel maxTrustLevel)
+        {
+            List<TrustLevel> trustLevels = new List<TrustLevel>();
+            foreach (TrustLevel trustLevel in Enum.GetValues(typeof(TrustLevel)))
+            {
+                if (trustLevel <= maxTrustLevel)
+                {
+                    trustLevels.Add(trustLevel);
+                }
+            }
+            string s = StandardStringBuilder.BuildTrustLevelListString(trustLevels);
+            await ctx.Client.SendMessageAsync(ctx.Channel, s);
+            return await StandardInteractivityHandler.ChooseByNumber<TrustLevel>(ctx, trustLevels);
+        }
+
 
         private static DateTime GetNearestHour(DateTime dt)
         {

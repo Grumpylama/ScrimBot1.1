@@ -79,6 +79,20 @@ namespace big
             StandardLogging.LogInfo(FilePath, "BuildTeamUserListString: Built team user list string: \n" + s);
             return s;
         }
+
+
+        public static string BuildTrustLevelListString(List<TrustLevel> trustLevels)
+        {
+            string s = "";
+            int i = 1;
+            foreach (TrustLevel trustLevel in trustLevels)
+            {
+                s += i + ". " + trustLevel + "\n";
+                i++;
+            }
+            StandardLogging.LogInfo(FilePath, "BuildTrustLevelListString: Built trust level list string: \n" + s);
+            return s;
+        }
         
         
 
