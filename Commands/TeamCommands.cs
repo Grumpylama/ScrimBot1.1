@@ -436,12 +436,40 @@ namespace big
             userToManage.TrustLevel = trustLevel;
             await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevel}");
             
+            return;
+
+        }  
+
+
+        [Command("ViewTeam")]
+        public async Task ViewTeam(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, "ViewTeam command was used by " + ctx.User.ToString());
+            UserHandler.CheckIfRegistred(ctx);
+            if (!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+
+            //Getting all the teams the user is in
+            var teams = ctx.User.GetTeams();
+            if (teams.Count == 0)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
+                await ctx.RespondAsync("You are not in any teams");
+                return;
+            }
+
+            //Getting what team the user wants to view
+            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            if (team == null)
+                return;
 
             
 
-
-
-        }    
+            await ctx.Client.SendMessageAsync(ctx.Channel, team.ToDiscordString());
+            return;
+        }  
 
     }
 }

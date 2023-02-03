@@ -42,6 +42,24 @@ namespace big
             logger.Verbose("[" + filepath + "] " + message);
         }
 
+        public static void VarDump()
+        {
+            logger.Information("VarDumping");
+
+
+            logger.Information("Teams:");
+            TeamHandler.VarDump();
+            logger.Information("Games:");
+            GameHandler.VarDump();
+            logger.Information("Users:");
+            DiscordInterface.VarDump();
+            logger.Information("Scrim:");
+            ScrimHandler.VarDump();
+            logger.Information("Matchmaking:");
+            MatchMakingSystem.varDump();
+            logger.Information("VarDumping done");
+        }
+
 
     }
 }

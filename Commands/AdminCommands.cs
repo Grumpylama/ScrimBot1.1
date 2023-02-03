@@ -74,10 +74,7 @@ namespace big
                 return;
             }
 
-            TeamHandler.VarDump();
-            DiscordInterface.VarDump();
-            GameHandler.VarDump();
-            StandardLogging.LogInfo(FilePath, "VarDump done");
+            StandardLogging.VarDump();
             await ctx.RespondAsync("VarDump done");
 
         }

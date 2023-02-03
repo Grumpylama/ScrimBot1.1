@@ -76,7 +76,7 @@ namespace big
             // Code to run when an unhandled exception occurs
             try
             {
-                UserHandler.GetUserFromID(244135683537502208).SendDMAsync(e.ToString()).GetAwaiter().GetResult();
+                UserHandler.GetUserFromID(244135683537502208).SendDMAsync(e.ExceptionObject.ToString()).GetAwaiter().GetResult();
             }
             catch{
                 
@@ -90,13 +90,14 @@ namespace big
         {
             StandardLogging.LogInfo(FilePath, "Process exit, saving data");
             try{
+                StandardLogging.VarDump();
                 FileManager.SaveAll();
             }
             catch(Exception ex)
             {
                 StandardLogging.LogError(FilePath, "Failed to save data");
                 StandardLogging.LogError(FilePath, "Last Save: " + FileManager.LastSave);
-                StandardLogging.LogError(FilePath, ex.ToString());
+                StandardLogging.LogError(FilePath, ex.Message);
             }
             
             // Code to run when the application exits

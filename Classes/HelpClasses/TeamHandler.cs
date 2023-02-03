@@ -38,10 +38,10 @@ namespace big
         {
             foreach (var team in Teams)
             {
-                StandardLogging.LogInfo(FilePath, "Team: " + team.TeamName + " with ID " + team.teamID + " and game " + team.game.GameName + " with Captain " + team.TeamCaptain);
+                StandardLogging.LogInfo(FilePath, "Team: " + team.TeamName + " with ID " + team.teamID + " and game " + team.game.GameName + " with Captain " + team.TeamCaptain + " Created at " + team.CreationTime );
                 foreach (var user in team.TeamMembers)
                 {
-                    StandardLogging.LogInfo(FilePath, "     User: " + user.User + " with position " + user.Position + " and trust " + user.TrustLevel);
+                    StandardLogging.LogInfo(FilePath, "     User: " + user.User + " with position " + user.Position + " and trust " + user.TrustLevel + " and joined at " + user.JoinDate );
                 }
             }
         }

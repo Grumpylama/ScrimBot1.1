@@ -39,6 +39,8 @@ namespace big
         public int gameID { get; set; }
         public string TeamName { get; set;}
 
+        public DateTime CreationTime { get; set; }
+
         public SaveableTeam()
         {
 
@@ -50,6 +52,7 @@ namespace big
             Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, UserHandler.GetUserFromID(this.CaptainID), false);
             team.MMR = this.MMR;
             team.teamID = this.ID;
+            team.CreationTime = this.CreationTime;
             StandardLogging.LogInfo(FilePath, "Team loaded: " + team.ToString());
             return team;
         }
@@ -71,6 +74,8 @@ namespace big
 
         public int TrustLevel { get; set; }
 
+        public DateTime JoinDate { get; set; }
+
         public SavableTeamUser(ulong UserID, int TeamID, string Position, int TrustLevel = 0)
         {
             this.UserID = UserID;
@@ -89,7 +94,7 @@ namespace big
 
         public TeamUser ToTeamUser()
         {
-            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.Position, GetTrustLevel(this.TrustLevel));
+            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.Position, GetTrustLevel(this.TrustLevel), this.JoinDate);
             teamUser.teamID = this.TeamID;
             StandardLogging.LogInfo(FilePath, "TeamUser loaded: " + teamUser.ToString());
             return teamUser;

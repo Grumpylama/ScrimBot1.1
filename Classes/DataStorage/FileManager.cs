@@ -18,13 +18,16 @@ namespace big
             //Load All files
             
             //Starts userloading
-            try{
+            try
+            {
                  tasks.Add(UserHandler.LoadUsersAsync(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
 
             }
-            catch {
+            catch(Exception e) 
+            {
                 
                 StandardLogging.LogError(FilePath, "Error Loading Users");
+                StandardLogging.LogError(FilePath, e.Message);
             }
            
             
@@ -44,10 +47,11 @@ namespace big
             {
                 SvTs = GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv");
             }
-            catch 
+            catch(Exception e)
             {
                 
                 StandardLogging.LogError(FilePath, "Error Loading Teams");
+                StandardLogging.LogError(FilePath, e.Message);
             }
             try 
             {
@@ -56,21 +60,24 @@ namespace big
                     TeamHandler.Teams.Add(team.ToTeam());
                 }
             }
-            catch 
+            catch(Exception e)
             {
                 
                 StandardLogging.LogError(FilePath, "Error Converting Teams");
+                StandardLogging.LogError(FilePath, e.Message);
             }
+            
 
             List<SavableTeamUser> SvTUs = new List<SavableTeamUser>();
             try
             {
                 SvTUs = GenericTextFileProcessor.LoadFromTextFile<SavableTeamUser>(startpath + "/Data/TeamUsers.csv");
             }
-            catch 
+            catch(Exception e)
             {
                 
                 StandardLogging.LogError(FilePath, "Error Loading TeamUsers");
+                StandardLogging.LogError(FilePath, e.Message);
             }
             try
             {
@@ -87,9 +94,10 @@ namespace big
                 StandardLogging.LogInfo(FilePath, "Done Converting TeamUsers");
                 
             }
-            catch 
+            catch(Exception e)
             {
                 StandardLogging.LogError(FilePath, "Error Converting TeamUsers");
+                StandardLogging.LogError(FilePath, e.Message);
             }
 
             try {
@@ -100,8 +108,10 @@ namespace big
 
             }
         
-            catch {
+            catch(Exception e)
+            {
                 StandardLogging.LogError(FilePath, "Error adding admins");
+                StandardLogging.LogError(FilePath, e.Message);
             }
 
 

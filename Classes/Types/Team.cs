@@ -20,6 +20,8 @@ namespace big
         public float MMR { get; set; }
         public Game game { get; private set; }
 
+        public DateTime CreationTime { get; set; }
+
 
         public SaveableTeam ToSavable()
         {
@@ -29,6 +31,7 @@ namespace big
             savableTeam.MMR = this.MMR;
             savableTeam.gameID = this.game.GameID;
             savableTeam.TeamName = this.TeamName;
+            savableTeam.CreationTime = this.CreationTime;
 
             
 
@@ -46,40 +49,22 @@ namespace big
         }
 
 
-        //Constructor for creating a team with members
-        public Team(Game game, string TeamName, DiscordUser TeamCaptain, List<TeamUser> members)
-        {
-            this.game = game;
-            this.TeamName = TeamName;
-            this.TeamCaptain = TeamCaptain;
-            this.TeamMembers = members;
-
-            //Change this later to actual starting MMR
-            this.MMR = 0;
-            this.teamID = teamIDCounter;           
-            teamIDCounter++;
-        }
-        public Team(string TeamName, DiscordUser TeamCaptain)
-        {
-            this.TeamName = TeamName;
-            this.TeamCaptain = TeamCaptain;
-            this.TeamMembers = new List<TeamUser>();
-            //Change this later to actual starting MMR
-            this.MMR = 0;
-            this.teamID = teamIDCounter;
-
-            //Dummy game
-            this.game = new Game();
-            teamIDCounter++;    
-        }
+        
+        
+        
         //Constructor for creating a team with no members
-        public Team(Game game, string TeamName, DiscordUser TeamCaptain, bool AddCaptain = true) 
+        public Team(Game game, string TeamName, DiscordUser TeamCaptain, bool AddCaptain = true, DateTime CreationTime = default) 
         {
             this.TeamName = TeamName;
             this.game = game;
             this.TeamCaptain = TeamCaptain;    
             this.TeamMembers = new List<TeamUser>();  
-            this.teamID = teamIDCounter;        
+            this.teamID = teamIDCounter;
+
+            if(CreationTime == default)
+                this.CreationTime = DateTime.Now;
+            else
+                this.CreationTime = CreationTime;
             teamIDCounter++;
             if (AddCaptain)
             {
@@ -91,16 +76,12 @@ namespace big
             
         }
 
-        public static void SetStaticID(int id)
-        {
-            StandardLogging.LogInfo(FilePath, "Setting Static ID to " + id);
-            teamIDCounter = id;
-        }
+        
 
         public Team()
         {
             this.TeamName = "Default";
-            
+            this.CreationTime = DateTime.Now;
             this.TeamMembers = new List<TeamUser>();
             //Change this later to actual starting MMR
             this.MMR = 0;
@@ -111,6 +92,11 @@ namespace big
         
         
 
+        public static void SetStaticID(int id)
+        {
+            StandardLogging.LogInfo(FilePath, "Setting Static ID to " + id);
+            teamIDCounter = id;
+        }
         //Adds a member to the team
         public void AddMember(DiscordUser user, string Position)
         {
@@ -164,6 +150,19 @@ namespace big
         public override string ToString()
         {
             return $"{TeamName} playing {game.GameName}";
+        }
+
+        public string ToDiscordString()
+        {
+            string returnString = $" ```{TeamName} playing {game.GameName} Created { CreationTime.ToShortDateString() }\n \n";
+            returnString += $"| Name | Position | Trustlevel | ";
+            foreach (var item in TeamMembers)
+            {
+                if(item.User.Id != TeamCaptain.Id)
+                returnString += $" \n{item.User.Username}#{item.User.Discriminator}";
+            }
+            returnString += " ```";
+            return returnString;
         }
     }
 
