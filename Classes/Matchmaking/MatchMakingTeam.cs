@@ -43,5 +43,12 @@ namespace big
         {
             throw new NotImplementedException();
         } 
+
+        public void VarDump()
+        {
+            StandardLogging.LogInfo(FilePath, "Team" + T.TeamName + "matchmade at " + Dt.Date + 
+            ". Has active request: " + hasActiveRequest + 
+            ". Is active: " + Active);
+        }
     }
 }

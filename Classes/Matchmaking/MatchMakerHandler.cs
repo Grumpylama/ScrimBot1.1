@@ -84,6 +84,14 @@ namespace big
             return matchMakers.Count.ToString();
             
         }
+
+        public void VarDump()
+        {
+            foreach(MatchMaker m in matchMakers)
+            {
+                m.VarDump();
+            }
+        }
     }
     
 }

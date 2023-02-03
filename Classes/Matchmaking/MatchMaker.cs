@@ -120,7 +120,15 @@ namespace big
          for(int i = 0; i < MMTList.Count; i++)
             if(MMTList[i].T == temp.T) MMTList.Remove(MMTList[i]);
       }
+
+      public void VarDump()
+      {
+        StandardLogging.LogInfo(FilePath, "This matchmaker was created for date: " + matchStart);
+        foreach(MatchMakingTeam m in MMTList)
+        {
+            m.VarDump();
+        }
+      }
    }
-   
 }
 
