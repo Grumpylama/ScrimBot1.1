@@ -22,6 +22,8 @@ namespace big
 
 <<<<<<< Updated upstream
         public DateTime CreationTime { get; set; }
+=======
+        public DiscordChannel CaptainChannel { get; set; }
 >>>>>>> Stashed changes
 
 
