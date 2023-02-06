@@ -20,7 +20,9 @@ namespace big
         public float MMR { get; set; }
         public Game game { get; private set; }
 
+<<<<<<< Updated upstream
         public DateTime CreationTime { get; set; }
+>>>>>>> Stashed changes
 
 
         public SaveableTeam ToSavable()
@@ -38,6 +40,23 @@ namespace big
             return savableTeam;
         }
 
+        public bool ChangeCaptain(DiscordUser newCaptain)
+        {
+            if (this.TeamMembers.Exists(x => x.User.Id == newCaptain.Id))
+            {
+                var oldCaptain = this.TeamCaptain;
+                this.TeamCaptain = newCaptain;
+                this.CaptainChannel = newCaptain.GetDMChannel();
+
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> DMCaptainAsync(string message)
         {
             return await this.TeamCaptain.SendMessageAsync(message);
@@ -48,10 +67,82 @@ namespace big
             return await this.TeamCaptain.SendMessageAsync(message, timeout);
         }
 
+        public async Task<DSharpPlus.Interactivity.InteractivityResult<DSharpPlus.Entities.DiscordMessage>> ListenToCaptainAsync(double timeout = 0)
+        {
+            DiscordClient client = DiscordInterface.Client;
+            InteractivityExtension interactivity = client.GetInteractivity();
+            if(timeout != 0)
+            {
+                return await interactivity.WaitForMessageAsync(x => x.Author.Id == this.TeamCaptain.Id && x.ChannelId == this.CaptainChannel.Id, TimeSpan.FromSeconds(timeout)); 
+            }
+            else
+            {
+                return await interactivity.WaitForMessageAsync(x => x.Author.Id == this.TeamCaptain.Id && x.ChannelId == this.CaptainChannel.Id);
+                
+            }
+            
+        }
 
+
+<<<<<<< Updated upstream
         
         
         
+=======
+        //Constructor for creating a team with members
+        public Team(Game game, string TeamName, DiscordUser TeamCaptain, List<TeamUser> members)
+        {
+            this.game = game;
+            this.TeamName = TeamName;
+            this.TeamCaptain = TeamCaptain;
+            this.TeamMembers = members;
+
+            //Change this later to actual starting MMR
+            this.MMR = 0;
+            this.teamID = teamIDCounter;           
+            teamIDCounter++;
+            CaptainChannel = TeamCaptain.GetDMChannel();
+        }
+        public Team(string TeamName, DiscordUser TeamCaptain)
+        {
+            this.TeamName = TeamName;
+            this.TeamCaptain = TeamCaptain;
+            this.TeamMembers = new List<TeamUser>();
+            //Change this later to actual starting MMR
+            this.MMR = 0;
+            this.teamID = teamIDCounter;
+            //Dummy game
+            this.game = new Game();
+            teamIDCounter++;    
+            CaptainChannel = TeamCaptain.GetDMChannel();
+        }
+
+        public bool changeTrustlevel(DiscordUser user, TrustLevel newTrustLevel)
+        {
+            if (this.TeamMembers.Exists(x => x.User.Id == user.Id))
+            {
+                this.TeamMembers.Find(x => x.User.Id == user.Id).TrustLevel = newTrustLevel;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool changeTrustlevel(TeamUser user, TrustLevel newTrustLevel)
+        {
+            if (this.TeamMembers.Exists(x => x.User.Id == user.User.Id))
+            {
+                this.TeamMembers.Find(x => x.User.Id == user.User.Id).TrustLevel = newTrustLevel;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+>>>>>>> Stashed changes
         //Constructor for creating a team with no members
         public Team(Game game, string TeamName, DiscordUser TeamCaptain, bool AddCaptain = true, DateTime CreationTime = default) 
         {
@@ -72,7 +163,8 @@ namespace big
             }
             
             //Change this later to actual starting MMR
-            this.MMR = 0;   
+            this.MMR = 0;
+            CaptainChannel = TeamCaptain.GetDMChannel();   
             
         }
 
@@ -88,6 +180,7 @@ namespace big
             this.teamID = teamIDCounter;
             this.game = new Game();
             teamIDCounter++;
+            
         }
         
         
@@ -143,6 +236,19 @@ namespace big
                 }
             }
             return nonCaptainMembers;
+        }
+
+        public bool updateCaptainChannel()
+        {
+            try
+            {
+                CaptainChannel = TeamCaptain.GetDMChannel();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         
 

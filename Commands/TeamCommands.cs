@@ -401,6 +401,12 @@ namespace big
             callUser = team.TeamMembers.Find(x => x.User.Id == ctx.User.Id);
             List<TeamUser> teamUsers;
 
+            if(callUser == null)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not a member of team " + team.TeamName);
+                await ctx.RespondAsync("Something went wrong please try again");
+            }
+
             if(callUser.TrustLevel == TrustLevel.TeamCaptain)
             {
                 teamUsers = team.GetNonCaptainMembers();
@@ -435,6 +441,7 @@ namespace big
             
             userToManage.TrustLevel = trustLevel;
             await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevel}");
+<<<<<<< Updated upstream
             
             return;
 
@@ -470,6 +477,10 @@ namespace big
             await ctx.Client.SendMessageAsync(ctx.Channel, team.ToDiscordString());
             return;
         }  
+=======
+            return; 
+        }    
+>>>>>>> Stashed changes
 
     }
 }

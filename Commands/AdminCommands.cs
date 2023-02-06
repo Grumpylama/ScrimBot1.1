@@ -32,6 +32,7 @@ namespace big
 
         [Command("save")]
         [Description("Saves all data")]
+        [Aliases("saveall", "ForceSave")]
         [Hidden]
         public async Task Save(CommandContext ctx)
         {
@@ -108,6 +109,13 @@ namespace big
 
             // retrieve the command and its arguments from the given string
             var cmd = cmds.FindCommand(command, out var customArgs);
+
+            if(cmd == null)
+            {
+                await ctx.RespondAsync("Command not found");
+                StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " with command " + cmd + " not found");
+                return;
+            }
 
             StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " with command " + cmd);
 

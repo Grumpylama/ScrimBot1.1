@@ -117,6 +117,7 @@ namespace big
 
             //Set Static ID's
             Team.SetStaticID(TeamHandler.Teams.Select(x => x.teamID).Max() + 1);
+            TeamHandler.ForceUpdateCaptainDMChannels();
             
             return;
 

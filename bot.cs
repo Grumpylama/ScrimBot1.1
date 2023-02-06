@@ -5,7 +5,8 @@ namespace big
     public partial class Bot
     {
         
-
+        #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
+        //This is a false positive, since it is initialized when it runs
         public DiscordClient Client { get; private set; }
 
         public CommandsNextExtension Commands { get; private set; }
@@ -25,11 +26,6 @@ namespace big
                 json = await sr.ReadToEndAsync().ConfigureAwait(false);
 
             var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
-            
-
-
-            
-
             
             var config = new DiscordConfiguration
             {

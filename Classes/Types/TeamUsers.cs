@@ -10,16 +10,7 @@ namespace big
         //Refrence To a user Instance
         public DiscordUser User { get; set; }
 
-        public static List<PropertyInfo> GetProperties()
-        {
-            List<PropertyInfo> properties = new List<PropertyInfo>();
-            properties.Add(typeof(TeamUser).GetProperty("User"));
-            properties.Add(typeof(TeamUser).GetProperty("teamID"));
-            properties.Add(typeof(TeamUser).GetProperty("roleID"));
-            properties.Add(typeof(TeamUser).GetProperty("Position"));
-            properties.Add(typeof(TeamUser).GetProperty("TrustLevel"));
-            return properties;
-        }
+        
 
         //What team the user is in, Team will include a list of this class so usually won't be necessary
         public int teamID { get; set; }

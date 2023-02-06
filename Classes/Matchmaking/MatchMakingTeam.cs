@@ -39,9 +39,61 @@ namespace big
             Active = true;
         }
 
-        public async Task<ScrimResponse> PromtCaptainForScrimAsync(MatchMakingTeam opponent)
+        
+
+        public async Task<bool> DMCaptainAsync(string message)
         {
-            throw new NotImplementedException();
+            if(await T.DMCaptainAsync(message))
+                return true;
+           
+            return false;
+        }
+
+        public async Task<DSharpPlus.Interactivity.InteractivityResult<DSharpPlus.Entities.DiscordMessage>> ListenToCaptainAsync(double timeout = 0)
+        {
+            return await T.ListenToCaptainAsync(timeout);
+        }
+
+        public async Task<ScrimResponse> PromtCaptainForScrimAsync(MatchMakingTeam opponent, double timeout)
+        {
+            DiscordClient client = DiscordInterface.Client;
+            DateTime requestTime = DateTime.Now;
+
+            await DMCaptainAsync("You have been matched with " + opponent.T.TeamName + " for a scrim. Do you accept? (yes/no)");
+            while(true)
+            {
+                var t = timeout - (DateTime.Now - requestTime).TotalSeconds;
+
+                if (t <= 0)
+                {
+                    await DMCaptainAsync("You did not respond in time, you have been removed from the queue");
+                    return new ScrimResponse(ScrimResponseCode.NoResponse, this);
+                }
+
+                var message = await ListenToCaptainAsync(t);
+                if(message.TimedOut)
+                {
+                    await DMCaptainAsync("You did not respond in time, you have been removed from the queue");
+                    return new ScrimResponse(ScrimResponseCode.NoResponse, this);
+                }
+                if(message.Result.Content.ToLower() == "yes")
+                {
+                    await DMCaptainAsync("You have accepted the scrim");
+                    return new ScrimResponse(ScrimResponseCode.Accept , this);
+                }
+                else if(message.Result.Content.ToLower() == "no")
+                {
+                    await DMCaptainAsync("You have declined the scrim");
+                    return new ScrimResponse(ScrimResponseCode.Decline, this);
+                }
+                else
+                {
+                    await DMCaptainAsync("Invalid response, please respond with yes or no");
+                }
+
+                
+            }
+            
         } 
 
         public void VarDump()

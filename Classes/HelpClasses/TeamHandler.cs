@@ -59,6 +59,26 @@ namespace big
             return null;
         }
 
+        public static bool ForceUpdateCaptainDMChannels()
+        {
+            bool success = true;
+            foreach (var team in Teams)
+            {
+                if(team.updateCaptainChannel())
+                {
+                    StandardLogging.LogInfo(FilePath, "Updated Captain Channel for team " + team.TeamName);
+                }
+                else
+                {
+                    StandardLogging.LogError(FilePath, "Failed to update Captain Channel for team " + team.TeamName);
+                    success = false;
+                }
+                
+            }
+
+            return success;
+        }
+
         
     }
 }
