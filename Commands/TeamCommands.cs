@@ -441,7 +441,6 @@ namespace big
             
             userToManage.TrustLevel = trustLevel;
             await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevel}");
-<<<<<<< Updated upstream
             
             return;
 
@@ -476,11 +475,9 @@ namespace big
 
             await ctx.Client.SendMessageAsync(ctx.Channel, team.ToDiscordString());
             return;
-        }  
-=======
+          
             return; 
         }    
->>>>>>> Stashed changes
 
     }
 }

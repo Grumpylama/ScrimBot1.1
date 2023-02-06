@@ -142,6 +142,7 @@ namespace big
                         try
                         {
                             m.MMTList.Find(x => x == r.Item2.T).setInactive();
+                            m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
                         }
                         catch
                         {
@@ -165,36 +166,133 @@ namespace big
                         {
                             StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
                         }
-                        try
-                        {
-                            m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
-                        }
-                        catch
-                        {
-                            StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} not found in matchmaking list. Could it have been removed manually?");
-                        }
                         
                         break;
                     case (ScrimResponseCode.Accept, ScrimResponseCode.Accept):
                         //If both teams accept
                         //Create a match
                         //Set both teams as inactive
-                        m.MMTList.Find(x => x == r.Item1.T).setInactive();
-                        m.MMTList.Find(x => x == r.Item2.T).setInactive();
+                        try 
+                        {
+                            m.MMTList.Find(x => x == r.Item1.T).setInactive();
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                                m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+                            }
+                            catch
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} not found in matchmaking list. Could it have been removed manually?");
+                            }
+                            
+                        }
+                        try
+                        {
+                            m.MMTList.Find(x => x == r.Item2.T).setInactive();
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} not found in matchmaking list. Could it have been removed manually?");
+                                m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                                m.MMTList.Find(x => x == r.Item2.T).setActive();
+                            }
+                            catch
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                            }
+                            
+                        }
+                        
                         
                         break;
                     
                     case (ScrimResponseCode.Decline, ScrimResponseCode.Accept):
                         //If the first team declines and the second team accepts
                         //add the second team to the first team's avoid list
-                        m.MMTList.Find(x => x == r.Item1.T).addAvoid(m.MMTList.Find(x => x == r.Item2.T));
+                        try
+                        {
+                            m.MMTList.Find(x => x == r.Item1.T).addAvoid(m.MMTList.Find(x => x == r.Item2.T));
+                            m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                                m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+                            }
+                            catch
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} not found in matchmaking list. Could it have been removed manually?");
+                            }
+                            
+                        }
+                        try
+                        {
+                            m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} not found in matchmaking list. Could it have been removed manually?");
+                                m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                                m.MMTList.Find(x => x == r.Item1.T).addAvoid(m.MMTList.Find(x => x == r.Item2.T));
+                            }
+                            catch
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                            }
+                        }
                         break;
+
                     case(ScrimResponseCode.Accept, ScrimResponseCode.Decline):
                         //If the first team accepts and the second team declines
                         
                         //Add the first team to the second team's avoid list
 
-                        m.MMTList.Find(x => x == r.Item2.T).addAvoid(m.MMTList.Find(x => x == r.Item1.T));
+                        try
+                        {
+                            m.MMTList.Find(x => x == r.Item2.T).addAvoid(m.MMTList.Find(x => x == r.Item1.T));
+                            m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} not found in matchmaking list. Could it have been removed manually?");
+                                m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                            }
+                            catch
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                            }
+                        
+                        }
+                        try
+                        {
+                            m.MMTList.Find(x => x == r.Item1.T).hasActiveRequest = false;
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                                m.MMTList.Find(x => x == r.Item2.T).hasActiveRequest = false;
+                                m.MMTList.Find(x => x == r.Item2.T).addAvoid(m.MMTList.Find(x => x == r.Item1.T));
+                            }
+                            catch(Exception e)
+                            {
+                                StandardLogging.LogError(FilePath, $"MatchFindHelperAsync {r.Item2.T} or {r.Item1.T} not found in matchmaking list. Could it have been removed manually?");
+                            }
+                        }
                         break;
                 }
             }

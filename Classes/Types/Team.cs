@@ -20,11 +20,8 @@ namespace big
         public float MMR { get; set; }
         public Game game { get; private set; }
 
-<<<<<<< Updated upstream
         public DateTime CreationTime { get; set; }
-=======
         public DiscordChannel CaptainChannel { get; set; }
->>>>>>> Stashed changes
 
 
         public SaveableTeam ToSavable()
@@ -86,38 +83,12 @@ namespace big
         }
 
 
-<<<<<<< Updated upstream
         
         
         
-=======
         //Constructor for creating a team with members
-        public Team(Game game, string TeamName, DiscordUser TeamCaptain, List<TeamUser> members)
-        {
-            this.game = game;
-            this.TeamName = TeamName;
-            this.TeamCaptain = TeamCaptain;
-            this.TeamMembers = members;
-
-            //Change this later to actual starting MMR
-            this.MMR = 0;
-            this.teamID = teamIDCounter;           
-            teamIDCounter++;
-            CaptainChannel = TeamCaptain.GetDMChannel();
-        }
-        public Team(string TeamName, DiscordUser TeamCaptain)
-        {
-            this.TeamName = TeamName;
-            this.TeamCaptain = TeamCaptain;
-            this.TeamMembers = new List<TeamUser>();
-            //Change this later to actual starting MMR
-            this.MMR = 0;
-            this.teamID = teamIDCounter;
-            //Dummy game
-            this.game = new Game();
-            teamIDCounter++;    
-            CaptainChannel = TeamCaptain.GetDMChannel();
-        }
+        
+       
 
         public bool changeTrustlevel(DiscordUser user, TrustLevel newTrustLevel)
         {
@@ -144,7 +115,6 @@ namespace big
                 return false;
             }
         }
->>>>>>> Stashed changes
         //Constructor for creating a team with no members
         public Team(Game game, string TeamName, DiscordUser TeamCaptain, bool AddCaptain = true, DateTime CreationTime = default) 
         {
