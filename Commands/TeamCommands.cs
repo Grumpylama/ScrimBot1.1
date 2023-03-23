@@ -159,10 +159,9 @@ namespace big
             }
 
             TeamToTransfer.TeamCaptain = newCaptain;
-
-            var oldCaptainTU = TeamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User);
-            oldCaptainTU.TrustLevel = TrustLevel.Member;
-            oldCaptainTU.Position = "Member";
+            var oldCaptainTeamUser = TeamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User);
+            oldCaptainTeamUser.TrustLevel = TrustLevel.Member;
+            oldCaptainTeamUser.Position = "Member";
             
             var newCaptainTU = TeamToTransfer.GetMembers().Find(x => x.User == newCaptain);
             newCaptainTU.TrustLevel = TrustLevel.TeamCaptain;
@@ -237,8 +236,6 @@ namespace big
                 return;
             }
 
-            
-
 
             //Check if user is trying to add himself/herself to a team
             if(userToAdd.Id == ctx.User.Id)
@@ -297,47 +294,60 @@ namespace big
         [Command("LeaveTeam")]
         public async Task LeaveTeam(CommandContext ctx)
         {
-            
-            StandardLogging.LogInfo(FilePath, "LeaveTeam command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
-            if (!ctx.User.CheckIfValid())
-            {
+            try{
+                StandardLogging.LogInfo(FilePath, "LeaveTeam command was used by " + ctx.User.ToString());
+                UserHandler.CheckIfRegistred(ctx);
+                if (!ctx.User.CheckIfValid())
+                {
+                    return;
+                }
+                
+                //Getting all the teams the user is in
+                var teams = ctx.User.GetTeams();
+                if(teams.Count == 0)
+                {
+                    StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
+                    await ctx.RespondAsync("You are not in any teams");
+                    return;
+                }
+
+
+                //Getting what team the user wants to leave
+                Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+                if (team == null)
+                    return;
+
+                if(team.TeamCaptain.Id == ctx.User.Id)
+                {
+                    await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
+                    return;
+                }
+
+                //Getting confirmation from user
+                if(!await StandardInteractivityHandler.GetConfirmation(ctx, StandardStringBuilder.BuildTeamConfirmationString(team, "Leave")))           
+                return;
+                
+                #pragma warning disable CS8604
+                //Removing user from team and notifying Captain
+                team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
+                
+                var t = team.TeamCaptain.SendDMAsync(ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
+                await ctx.RespondAsync("You have left the team: " + team.TeamName);
+                await t;
                 return;
             }
-            
-            //Getting all the teams the user is in
-            var teams = ctx.User.GetTeams();
-            if(teams.Count == 0)
+            catch (Exception e)
             {
-                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
-                await ctx.RespondAsync("You are not in any teams");
-                return;
+                StandardLogging.LogError(FilePath, e.Message);
+                try {
+                    await ctx.RespondAsync("An error has occured. Please try again later");
+                }
+                catch (Exception e2)
+                {
+                    StandardLogging.LogError(FilePath, "Failed to send error message: " +  e2.Message);
+                }
             }
-
-
-            //Getting what team the user wants to leave
-            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
-            if (team == null)
-                return;
-
-            if(team.TeamCaptain.Id == ctx.User.Id)
-            {
-                await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
-                return;
-            }
-
-            //Getting confirmation from user
-            if(!await StandardInteractivityHandler.GetConfirmation(ctx, StandardStringBuilder.BuildTeamConfirmationString(team, "Leave")))           
-            return;
             
-            #pragma warning disable CS8604
-            //Removing user from team and notifying Captain
-            team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
-            
-            var t = team.TeamCaptain.SendDMAsync(ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
-            await ctx.RespondAsync("You have left the team: " + team.TeamName);
-            await t;
-            return;
         }
 
         [Command("ManageTrust")]
@@ -358,6 +368,7 @@ namespace big
                 await ctx.RespondAsync("You are not in any teams");
                 return;
             }
+            throw new NotImplementedException();
         } 
 
         [Command("Ping")] 

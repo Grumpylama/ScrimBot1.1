@@ -18,7 +18,8 @@ namespace big
 
         public static async Task MoveScrimsToDiskAsync()
         {
-            
+            ITextProcessor textProcessor = new GenericTextFileProcessor();
+
             StandardLogging.LogInfo(FilePath, "Moving scrims to disk");
             var scrimsToMove = ActiveScrims.FindAll
             (x => (x.Finished == true && x.Date < DateTime.Now.AddHours(-4)) || (x.Date < DateTime.Now.AddDays(-1)))
@@ -29,7 +30,7 @@ namespace big
                 ActiveScrims.Remove(ActiveScrims.Find(x => x.ID == scrim.ID));
             }
 
-            GenericTextFileProcessor.SaveToTextFile<SavableScrim>(scrimsToMove, savepath);
+            textProcessor.SaveToTextFile<SavableScrim>(scrimsToMove, savepath);
 
 
             
@@ -39,10 +40,11 @@ namespace big
 
         public static async Task ForceScrimsToDisk()
         {
+            ITextProcessor textProcessor = new GenericTextFileProcessor();
             StandardLogging.LogInfo(FilePath, "Moving scrims to disk");
             var scrimsToMove = ActiveScrims.Select(x => x.ToSavable()).ToList();
 
-            GenericTextFileProcessor.SaveToTextFile<SavableScrim>(scrimsToMove, savepath);
+            textProcessor.SaveToTextFile<SavableScrim>(scrimsToMove, savepath);
         }
 
 

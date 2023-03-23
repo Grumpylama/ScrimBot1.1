@@ -1,7 +1,7 @@
 namespace big
 {
 
-    public class UserMMR : IMMR
+    public class UserMMR : Interfaces.IMMR
     {
 
         public int GameID { get; private set; }
@@ -14,7 +14,7 @@ namespace big
         }
     }
 
-    public class TeamMMR : IMMR
+    public class TeamMMR : Interfaces.IMMR
     {
         public void printinMMR()
         {

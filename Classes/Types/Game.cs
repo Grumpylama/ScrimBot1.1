@@ -1,6 +1,6 @@
 namespace big
 {
-    public class Game : ISavable
+    public class Game : Interfaces.ISavable
     {
 
         private static readonly string FilePath = "Game.cs";

@@ -22,6 +22,8 @@ global using Serilog.Sinks.SystemConsole;
 global using Serilog;
 global using Serilog.Sinks.File;
 global using System.Reflection;
+global using Interfaces;
+
 
 
 
@@ -35,7 +37,12 @@ namespace big
         private static readonly string FilePath = "Program.cs";
         public static void Main(string[] args)
         {
-            //Registering the unhandled exception handler
+
+            
+
+
+
+                      //Registering the unhandled exception handler
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
 

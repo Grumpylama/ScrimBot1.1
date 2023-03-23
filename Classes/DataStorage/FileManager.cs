@@ -5,22 +5,27 @@ namespace big
         public static DateTime LastSave;
 
         public static string FilePath ="FileManager.cs";
+        
+        
         public static async Task StartUpAsync()
         {
             string startpath = Environment.CurrentDirectory;
 
+            ITextProcessor textProcessor = new EncryptedGenericFileProcessor(new AesCrypto());
             
             StandardLogging.LogInfo(FilePath, "Starting File Manager");
             StandardLogging.LogInfo(FilePath, "startpath is : " + startpath);
 
+            
+            
 
             List<Task> tasks = new List<Task>();
-            //Load All files
+            
             
             //Starts userloading
             try
             {
-                 tasks.Add(UserHandler.LoadUsersAsync(GenericTextFileProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
+                tasks.Add(UserHandler.LoadUsersAsync(textProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
 
             }
             catch(Exception e) 
@@ -45,7 +50,7 @@ namespace big
             List<SaveableTeam> SvTs = new List<SaveableTeam>();
             try
             {
-                SvTs = GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv");
+                SvTs = textProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv");
             }
             catch(Exception e)
             {
@@ -71,7 +76,7 @@ namespace big
             List<SavableTeamUser> SvTUs = new List<SavableTeamUser>();
             try
             {
-                SvTUs = GenericTextFileProcessor.LoadFromTextFile<SavableTeamUser>(startpath + "/Data/TeamUsers.csv");
+                SvTUs = textProcessor.LoadFromTextFile<SavableTeamUser>(startpath + "/Data/TeamUsers.csv");
             }
             catch(Exception e)
             {
@@ -100,7 +105,8 @@ namespace big
                 StandardLogging.LogError(FilePath, e.Message);
             }
 
-            try {
+            try 
+            {
                 StandardLogging.LogInfo(FilePath, "Adding admins");
 
                 DiscordInterface.AdminList.Add(UserHandler.GetUserFromID(244135683537502208));
@@ -124,16 +130,12 @@ namespace big
             
 
         }
-
-       
-
-
-
         public static void SaveAll()
         {
             
             string startpath = Environment.CurrentDirectory + "\\Data";
             StandardLogging.LogInfo(FilePath, "saving all files with startpath: " + startpath);
+            ITextProcessor textProcessor = new EncryptedGenericFileProcessor(new AesCrypto());
             
 
             
@@ -158,9 +160,9 @@ namespace big
                     savableTeamUsers.Add(tu.ToSavable());
                 }
             }
-            GenericTextFileProcessor.SaveToTextFile<SavableTeamUser>(savableTeamUsers, startpath + "/TeamUsers.csv");
-            GenericTextFileProcessor.SaveToTextFile<SaveableTeam>(saveableTeams, startpath + "/Teams.csv");
-            GenericTextFileProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
+            textProcessor.SaveToTextFile<SavableTeamUser>(savableTeamUsers, startpath + "/TeamUsers.csv");
+            textProcessor.SaveToTextFile<SaveableTeam>(saveableTeams, startpath + "/Teams.csv");
+            textProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
 
             LastSave = DateTime.Now;
 

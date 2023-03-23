@@ -1,16 +1,15 @@
-
-
-
-
 namespace big
 {
-        
-    
-    public class GenericTextFileProcessor : ITextProcessor
+    public class EncryptedGenericFileProcessor : ITextProcessor
     {
+        private static readonly string FilePath = "EncryptedGenericFileProcessor.cs";
+        public static ICrypto crypto = new AesCrypto();
+        public EncryptedGenericFileProcessor(ICrypto crypto)
+        {
+            //this.crypto = crypto;
+        }
 
-        private static readonly string FilePath = "GenericTextFileProcessor.cs";
-
+        
         public List<T> LoadFromTextFile<T>(string filePath) where T : Interfaces.ISavable, new()
         {
             StandardLogging.LogInfo(FilePath, "Loading from text file: " + filePath);
@@ -33,7 +32,8 @@ namespace big
 
 
             // Splits the header into one column header per entry
-            var headers = lines[0].Split(',');
+
+            var headers = crypto.Decrypt(lines[0]).Split(',');
 
             // Removes the header row from the lines so we don't
             // have to worry about skipping over that first row.
@@ -43,11 +43,12 @@ namespace big
             {
                 entry = new T();
 
+                string decryptedRow = crypto.Decrypt(row);
                 // Splits the row into individual columns. Now the index
                 // of this row matches the index of the header so the
                 // FirstName column header lines up with the FirstName
                 // value in this row.
-                var vals = row.Split(',');
+                var vals = decryptedRow.Split(',');
 
                 // Loops through each header entry so we can compare that
                 // against the list of columns from reflection. Once we get
@@ -71,12 +72,25 @@ namespace big
             return output;
         }
 
+
+
         public void SaveToTextFile<T>(List<T> data, string filePath) where T : Interfaces.ISavable
         {
 
             StandardLogging.LogInfo(FilePath, "Saving to text file: " + filePath);
             List<string> lines = new List<string>();
             StringBuilder line = new StringBuilder();
+
+            if(!crypto.HasSetIV())
+            {
+                StandardLogging.LogError(FilePath, "You must set the IV before saving to a file.");
+                throw new ArgumentNullException("IV", "You must set the IV before saving to a file.");
+            }
+            if(!crypto.HasSetKey())
+            {
+                StandardLogging.LogError(FilePath, "You must set the Key before saving to a file.");
+                throw new ArgumentNullException("Key", "You must set the Key before saving to a file.");
+            }
 
 
 
@@ -97,11 +111,15 @@ namespace big
                 line.Append(",");
             }
 
+            string templine = line.ToString().Substring(0, line.Length - 1);
+            line.Clear();
+            line.Append(crypto.Encrypt(templine));
+            
+
             StandardLogging.LogInfo(FilePath, "Lines: " + lines.Count);
 
-            // Adds the column header entries to the first line (removing
-            // the last comma from the end first).
-            lines.Add(line.ToString().Substring(0, line.Length - 1));
+            // Adds the column header entries to the first line 
+            lines.Add(line.ToString());
 
             foreach (var row in data)
             {
@@ -115,11 +133,16 @@ namespace big
 
                 // Adds the row to the set of lines (removing
                 // the last comma from the end first).
-                lines.Add(line.ToString().Substring(0, line.Length - 1));
+                templine = line.ToString().Substring(0, line.Length - 1);
+                line.Clear();
+                line.Append(crypto.Encrypt(templine));
+
+                lines.Add(line.ToString());
             }
 
             System.IO.File.WriteAllLines(filePath, lines);
             StandardLogging.LogInfo(FilePath, "Saved " + lines.Count + " entries to text file: " + filePath);
         }
+
     }
 }

@@ -39,8 +39,6 @@ namespace big
             Active = true;
         }
 
-        
-
         public async Task<bool> DMCaptainAsync(string message)
         {
             if(await T.DMCaptainAsync(message))

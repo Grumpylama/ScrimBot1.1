@@ -1,4 +1,4 @@
-namespace big
+namespace Interfaces
 {
     public interface IMMR
     {

@@ -18,6 +18,7 @@ namespace big
                 var t2 = (dt2.Second * 1000) - 7200000;
                 //Wait until 2 hours before matchStart
                 await Task.Delay(t2 - t1);
+
             if(m.MMTList.Count > 1) 
             {
                 //Start the MatchMaking
@@ -27,7 +28,7 @@ namespace big
             return false;
         }
         
-        private static async Task MatchFindHelperAsync( MatchMaker m)
+        private static async Task MatchFindHelperAsync( MatchMaker m )
         {
             List<Task<Tuple<ScrimResponse, ScrimResponse>>> tasks = new List<Task<Tuple<ScrimResponse, ScrimResponse>>>();
 

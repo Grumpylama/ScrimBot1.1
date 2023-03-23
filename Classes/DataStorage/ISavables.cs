@@ -128,7 +128,7 @@ namespace big
         
     }
 
-    public class SavableScrim : ISavable
+    public class SavableScrim : Interfaces.ISavable
     {
 
         private static readonly string FilePath = "SaveableScrim.cs";

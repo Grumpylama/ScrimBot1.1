@@ -9,6 +9,8 @@ namespace big
         //This is a false positive, since it is initialized when it runs
         public DiscordClient Client { get; private set; }
 
+        public IAdminInterface AdminInterface = new AdminInterface();
+
         public CommandsNextExtension Commands { get; private set; }
 
         private static readonly string FilePath = "Bot.cs";
@@ -16,16 +18,11 @@ namespace big
         public async Task runAsync()
         {
             
-            
             StandardLogging.LogInfo(FilePath, "Starting Bot");
             
             StandardLogging.LogInfo(FilePath, "Loading Config");
-            var json = String.Empty;
-            using (var fs = File.OpenRead("BotConfig.json"))            
-            using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
-                json = await sr.ReadToEndAsync().ConfigureAwait(false);
-
-            var configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
+            BotConfigExtractor extractor = new BotConfigExtractor();
+            ConfigJson configJson = await extractor.ExtractConfigAsync(AdminInterface);
             
             var config = new DiscordConfiguration
             {
