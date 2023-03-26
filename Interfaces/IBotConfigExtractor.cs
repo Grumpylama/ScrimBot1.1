@@ -2,6 +2,6 @@ namespace Interfaces
 {
     public interface IBotConfigExtractor
     {
-        public Task<ConfigJson> ExtractConfigAsync(IAdminInterface adminInterface);
+        public Task<ConfigJson> ExtractConfigAsync(IAdminInterface adminInterface, ICrypto crypto);
     }
 }

@@ -100,7 +100,7 @@ namespace big
             // users know we're working
             await ctx.TriggerTypingAsync();
 
-            var member = UserHandler.GetUserFromID(memberID);
+            var member = StandardUserHandling.GetUserFromID(memberID);
             StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member);
 
             // get the command service, we need this for

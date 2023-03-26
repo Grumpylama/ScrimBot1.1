@@ -23,15 +23,9 @@ namespace big
 
         public static bool IsTeamNameTaken(string name)
         {
-            foreach (var team in Teams)
-            {
-                if (team.TeamName == name)
-                {
-                    return true;
-                }
-            }
 
-            return false;
+            return Teams.Exists(team => team.TeamName == name);
+            
         }
 
         public static void VarDump()

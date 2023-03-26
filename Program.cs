@@ -83,7 +83,7 @@ namespace big
             // Code to run when an unhandled exception occurs
             try
             {
-                UserHandler.GetUserFromID(244135683537502208).SendDMAsync(e.ExceptionObject.ToString()).GetAwaiter().GetResult();
+                StandardUserHandling.GetUserFromID(244135683537502208).SendDMAsync(e.ExceptionObject.ToString()).GetAwaiter().GetResult();
             }
             catch{
                 

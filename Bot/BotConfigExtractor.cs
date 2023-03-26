@@ -3,7 +3,7 @@ namespace big
     public class BotConfigExtractor : IBotConfigExtractor
     {
         private static readonly string filename = "BotconifgExtractor.cs";
-        public async Task<ConfigJson> ExtractConfigAsync(IAdminInterface adminInterface)
+        public async Task<ConfigJson> ExtractConfigAsync(IAdminInterface adminInterface, ICrypto crypto)
         {
             StandardLogging.LogInfo(filename, "Extracting Config");
             var json = String.Empty;
@@ -32,12 +32,15 @@ namespace big
                 string masterPassword = adminInterface.PromtMasterPassword();
                 
 
-                ICrypto crypto = new AesCrypto();
+                
                 IKeyGenerator keyGenerator = new StandardKeyGenerator();
 
                 string fullkey = keyGenerator.GenerateFullKey(masterPassword, key);
-                EncryptedGenericFileProcessor.crypto.SetIV(configJson.IV);
-                EncryptedGenericFileProcessor.crypto.SetKey(fullkey);
+
+                crypto.SetIV(configJson.IV);
+                crypto.SetKey(fullkey);
+                EncryptedGenericFileProcessor.crypto = crypto;
+                
 
 
                 configJson.Token = crypto.Decrypt(configJson.Token, fullkey, configJson.IV);

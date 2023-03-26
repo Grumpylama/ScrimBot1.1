@@ -13,7 +13,7 @@ namespace big
         {
             
             StandardLogging.LogInfo(FilePath, "DeleteTeam command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 return;
@@ -71,7 +71,7 @@ namespace big
 
             
             StandardLogging.LogInfo(FilePath, "CreateTeam command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {  
                 return;
@@ -106,7 +106,7 @@ namespace big
         {
             
             StandardLogging.LogInfo(FilePath, "TransferCaptain command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is a bot Canceling TransferCaptain");
@@ -180,7 +180,7 @@ namespace big
         {
             
             StandardLogging.LogInfo(FilePath, "JoinTeam command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 return;
@@ -205,7 +205,7 @@ namespace big
           
 
 
-            UserHandler.AddUserHash(hash, ctx.User, ctx.Channel);
+            StandardUserHandling.AddUserHash(hash, ctx.User, ctx.Channel);
             
             await ctx.RespondAsync("A captain can enter the following code to add you to a team: \n " + hash);
         }
@@ -215,7 +215,7 @@ namespace big
         {
             StandardLogging.LogInfo(FilePath, "AddToTeam command was used by " + ctx.User.ToString());
             
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if(!ctx.User.CheckIfValid())
             {          
 
@@ -225,7 +225,7 @@ namespace big
 
             
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is trying to add a user with hash " + hash);
-            DiscordUser userToAdd = UserHandler.GetUserFromHashAsync(hash);
+            DiscordUser userToAdd = StandardUserHandling.GetUserFromHashAsync(hash);
             
             
 
@@ -296,7 +296,7 @@ namespace big
         {
             try{
                 StandardLogging.LogInfo(FilePath, "LeaveTeam command was used by " + ctx.User.ToString());
-                UserHandler.CheckIfRegistred(ctx);
+                StandardUserHandling.CheckIfRegistred(ctx);
                 if (!ctx.User.CheckIfValid())
                 {
                     return;
@@ -354,7 +354,7 @@ namespace big
         public async Task ManageTrust(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "ManageTrust command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 return;
@@ -385,7 +385,7 @@ namespace big
         public async Task ManageMembers(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "ManageTeam command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 return;
@@ -462,7 +462,7 @@ namespace big
         public async Task ViewTeam(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "ViewTeam command was used by " + ctx.User.ToString());
-            UserHandler.CheckIfRegistred(ctx);
+            StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 return;

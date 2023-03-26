@@ -22,7 +22,16 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "Loading Config");
             BotConfigExtractor extractor = new BotConfigExtractor();
-            ConfigJson configJson = await extractor.ExtractConfigAsync(AdminInterface);
+
+            ICrypto crypto = new AesCrypto();
+            ConfigJson configJson = await extractor.ExtractConfigAsync(AdminInterface, crypto);
+
+            if(configJson.Success != "success")
+            {
+                StandardLogging.LogFatal(FilePath, "Config was not decrypted correctly");
+                StandardLogging.LogFatal(FilePath, "Exiting");
+                Environment.Exit(1);
+            }
             
             var config = new DiscordConfiguration
             {
@@ -101,6 +110,7 @@ namespace big
             
             StandardLogging.LogInfo(FilePath, "Attempting to start FileManager");
             await FileManager.StartUpAsync();
+            FileManager.SetUpTimerSave(900000); // 15 minutes
             
             Client.GuildMemberAdded += EventListners.OnGuildMemberAdded;
 

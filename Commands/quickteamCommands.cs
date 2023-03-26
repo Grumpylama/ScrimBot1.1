@@ -12,7 +12,7 @@ namespace big
 
         public static bool QuickAddToTeam(CommandContext ctx, string hash, string TeamName)
         {
-            var UserToAdd = UserHandler.GetUserFromHashAsync(hash);
+            var UserToAdd = StandardUserHandling.GetUserFromHashAsync(hash);
             var TeamToAddTo = TeamHandler.GetTeamFromName(TeamName);
 
             if (UserToAdd == null || TeamToAddTo == null)

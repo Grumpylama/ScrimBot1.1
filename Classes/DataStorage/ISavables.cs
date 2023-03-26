@@ -49,7 +49,7 @@ namespace big
 
         public Team ToTeam()
         {
-            Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, UserHandler.GetUserFromID(this.CaptainID), false);
+            Team team = new Team(GameHandler.GetGameFromID(this.gameID), this.TeamName, StandardUserHandling.GetUserFromID(this.CaptainID), false);
             team.MMR = this.MMR;
             team.teamID = this.ID;
             team.CreationTime = this.CreationTime;
@@ -94,7 +94,7 @@ namespace big
 
         public TeamUser ToTeamUser()
         {
-            TeamUser teamUser = new TeamUser(UserHandler.GetUserFromID(this.UserID), this.TeamID, this.Position, GetTrustLevel(this.TrustLevel), this.JoinDate);
+            TeamUser teamUser = new TeamUser(StandardUserHandling.GetUserFromID(this.UserID), this.TeamID, this.Position, GetTrustLevel(this.TrustLevel), this.JoinDate);
             teamUser.teamID = this.TeamID;
             StandardLogging.LogInfo(FilePath, "TeamUser loaded: " + teamUser.ToString());
             return teamUser;

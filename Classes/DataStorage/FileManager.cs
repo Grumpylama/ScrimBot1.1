@@ -25,7 +25,7 @@ namespace big
             //Starts userloading
             try
             {
-                tasks.Add(UserHandler.LoadUsersAsync(textProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
+                tasks.Add(StandardUserHandling.LoadUsersAsync(textProcessor.LoadFromTextFile<SaveableUser>(startpath + "/Data/Users.csv")));
 
             }
             catch(Exception e) 
@@ -109,8 +109,8 @@ namespace big
             {
                 StandardLogging.LogInfo(FilePath, "Adding admins");
 
-                DiscordInterface.AdminList.Add(UserHandler.GetUserFromID(244135683537502208));
-                DiscordInterface.AdminList.Add(UserHandler.GetUserFromID(214158487712694273));
+                DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(244135683537502208));
+                DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(214158487712694273));
 
             }
         
@@ -142,7 +142,7 @@ namespace big
             //Save All files
             //Saving Users
             List<SaveableUser> saveableUsers = new List<SaveableUser>();
-            foreach (var u in UserHandler.Users)
+            foreach (var u in StandardUserHandling.Users)
             {
                 saveableUsers.Add(u.ToSavableUser());
             }
@@ -168,6 +168,22 @@ namespace big
 
 
 
+        }
+
+        public static void SetUpTimerSave(int interval)
+        {
+            //Registering the save timer
+            var saveTimer = new System.Timers.Timer(interval); 
+            saveTimer.Elapsed += TimerSave;
+            saveTimer.Start();
+            StandardLogging.LogInfo(FilePath, "Save timer started");
+        }
+
+        private static void TimerSave(object sender, ElapsedEventArgs e)
+        {
+            
+            StandardLogging.LogInfo(FilePath, "Timersave, Saving data");
+            FileManager.SaveAll();
         }
     }
 }

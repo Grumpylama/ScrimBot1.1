@@ -1,6 +1,6 @@
 namespace big
 {
-    public static class UserHandler
+    public static class StandardUserHandling
     {
 
         private static readonly string FilePath = "UserHandler.cs";
@@ -124,9 +124,9 @@ namespace big
         private static readonly string filepath = "UserRegistration.cs";
         public static void RegisterUser(DiscordUser user, CommandContext ctx)
         {
-            if(!UserHandler.Users.Contains(user))
+            if(!StandardUserHandling.Users.Contains(user))
             {
-                UserHandler.AddUser(user);
+                StandardUserHandling.AddUser(user);
                 DiscordInterface.AddDmChannel(user, ctx.Channel);
              
                 StandardLogging.LogInfo(filepath,  user + " Registered");
@@ -137,9 +137,9 @@ namespace big
 
         public static void RegisterUser(CommandContext ctx)
         {
-            if(!UserHandler.Users.Contains(ctx.User))
+            if(!StandardUserHandling.Users.Contains(ctx.User))
             {
-                UserHandler.AddUser(ctx.User);
+                StandardUserHandling.AddUser(ctx.User);
                 DiscordInterface.AddDmChannel(ctx.User, ctx.Channel);
                 
                 StandardLogging.LogInfo(filepath,  ctx.User + " Registered");
@@ -150,9 +150,9 @@ namespace big
 
         public static bool RegisterUser(DiscordUser user, DiscordChannel channel)
         {
-            if(!UserHandler.Users.Contains(user))
+            if(!StandardUserHandling.Users.Contains(user))
             {
-                UserHandler.AddUser(user);
+                StandardUserHandling.AddUser(user);
                 DiscordInterface.AddDmChannel(user, channel);
                 
                 StandardLogging.LogInfo(filepath,  user + " Registered");
