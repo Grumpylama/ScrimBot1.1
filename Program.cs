@@ -37,27 +37,9 @@ namespace big
         private static readonly string FilePath = "Program.cs";
         public static void Main(string[] args)
         {
-
-            
-
-
-
-                      //Registering the unhandled exception handler
+            //Registering the unhandled exception handler
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
-
-            
-            
-
-            
-
-
-            //Registering the save timer
-            var saveTimer = new System.Timers.Timer(900000); // 900000 milliseconds = 15 minutes
-            saveTimer.Elapsed += TimerSave;
-            saveTimer.Start();
-            StandardLogging.LogInfo(FilePath, "Save timer started");
-
 
             //Create a new bot
             var bot = new Bot(); 
@@ -71,12 +53,7 @@ namespace big
         }
 
 
-        private static void TimerSave(object sender, ElapsedEventArgs e)
-        {
-            
-            StandardLogging.LogInfo(FilePath, "Timersave, Saving data");
-            FileManager.SaveAll();
-        }
+        
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {

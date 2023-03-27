@@ -233,11 +233,11 @@ namespace big
         public string ToDiscordString()
         {
             string returnString = $" ```{TeamName} playing {game.GameName} Created { CreationTime.ToShortDateString() }\n \n";
-            returnString += $"| Name | Position | Trustlevel | ";
+            returnString += $"| Name            | Position | Trustlevel | ";
             foreach (var item in TeamMembers)
             {
                 if(item.User.Id != TeamCaptain.Id)
-                returnString += $" \n{item.User.Username}#{item.User.Discriminator}";
+                returnString += $" \n| {item.User.Username}#{item.User.Discriminator} | {item.Position} | {item.TrustLevel} |";
             }
             returnString += " ```";
             return returnString;

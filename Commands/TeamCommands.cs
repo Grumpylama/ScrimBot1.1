@@ -409,6 +409,7 @@ namespace big
 
             //Getting what user the user wants to manage
             TeamUser callUser;
+            
             callUser = team.TeamMembers.Find(x => x.User.Id == ctx.User.Id);
             List<TeamUser> teamUsers;
 
@@ -487,7 +488,7 @@ namespace big
             await ctx.Client.SendMessageAsync(ctx.Channel, team.ToDiscordString());
             return;
           
-            return; 
+            
         }    
 
     }
