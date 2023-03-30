@@ -12,7 +12,7 @@ namespace big
             while (true)
             {
                 var m = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
-                if (m.Result.Content.ToLower() == "CONFIRM")
+                if (m.Result.Content.ToLower() == "confirm")
                 {
                     return true;
                 }
@@ -22,7 +22,7 @@ namespace big
                 }
                 else
                 {
-                    await ctx.RespondAsync("Please enter yes or no");
+                    await ctx.RespondAsync("Please enter either \"confirm\" or \"no\"");
                 }
             }
         }

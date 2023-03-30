@@ -50,7 +50,13 @@ namespace big
                 return false;
             }
 
-            var newCaptain = StandardUserHandling.GetUserFromHashAsync(NewCaptainID);
+            if(!ulong.TryParse(NewCaptainID, out ulong NewCaptainIDParsed))
+            {
+                await ctx.RespondAsync("Could not parse ID");
+                return false;
+            }
+
+            var newCaptain = await StandardUserHandling.GetDiscordUserFromIDAsync(NewCaptainIDParsed);
 
             if(newCaptain is null || teamToTransfer.GetMembers().Find(x => x.User == newCaptain) is null)
             {
