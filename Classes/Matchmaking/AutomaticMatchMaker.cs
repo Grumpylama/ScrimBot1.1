@@ -32,7 +32,7 @@ namespace big
         {
             List<Task<Tuple<ScrimResponse, ScrimResponse>>> tasks = new List<Task<Tuple<ScrimResponse, ScrimResponse>>>();
 
-            int timeout = 300;
+            double timeout = 300;
             m.findMatch(); //Make the function so it returns a list of scrimresponses to make tasks equal to it
             //Also make it so that it checks if the mmt is active and has activeRequest                   
 

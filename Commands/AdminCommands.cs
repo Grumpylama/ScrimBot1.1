@@ -1,4 +1,4 @@
-
+using DSharpPlus.CommandsNext.Converters;
 
 namespace big
 {
@@ -83,7 +83,7 @@ namespace big
         [Command("Sudo")]
         [Description("Runs a command as another user")]
         [Hidden]
-        public async Task Sudo(CommandContext ctx, [Description("Member to execute as.")] ulong memberID, [RemainingText, Description("Command text to execute.")] string command)
+        public async Task Sudo(CommandContext ctx, [Description("Member to execute as.")] ulong memberID, [Description("Command text to execute.")] string command, [RemainingText] string args)
         {
             StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User);
 
@@ -101,6 +101,14 @@ namespace big
             await ctx.TriggerTypingAsync();
 
             var member = StandardUserHandling.GetUserFromID(memberID);
+
+            if(member is null)
+            {
+                await ctx.RespondAsync("Member not found");
+                StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " not found");
+                return;
+            }
+            
             StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member);
 
             // get the command service, we need this for
@@ -110,6 +118,7 @@ namespace big
             // retrieve the command and its arguments from the given string
             var cmd = cmds.FindCommand(command, out var customArgs);
 
+            StandardLogging.LogInfo(FilePath, "Customargs are " + customArgs);
             if(cmd == null)
             {
                 await ctx.RespondAsync("Command not found");
@@ -120,7 +129,7 @@ namespace big
             StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " with command " + cmd);
 
             // create a fake CommandContext
-            var fakeContext = cmds.CreateFakeContext(member, ctx.Channel, command, ctx.Prefix, cmd, customArgs);
+            var fakeContext = cmds.CreateFakeContext(member, ctx.Channel, command, ctx.Prefix, cmd, args);
 
             StandardLogging.LogInfo(FilePath, "Sudo used by " + ctx.User + " on " + member + " with command " + cmd + " with fakeContext " + fakeContext);
 

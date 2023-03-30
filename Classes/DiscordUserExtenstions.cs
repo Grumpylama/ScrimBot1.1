@@ -117,7 +117,13 @@ namespace big
             return true;
             else return false;
         }
-
+    	/// <summary>
+        /// Checks a list of teams where the user has at least the provided trust level
+        /// </summary>
+        /// <param name="user">The user to check</param>
+        /// <param name="TrustLevel">The trust level to check for</param>
+        /// <returns>A list of teams where the user has at least the provided trust level</returns>
+        
         public static List<Team> GetTeamsWithTrustLevel(this DiscordUser user, TrustLevel TrustLevel)
         {
             List<Team> teams = new List<Team>();

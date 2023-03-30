@@ -40,7 +40,7 @@ namespace big
             savableTeamUser.TeamID = this.teamID;
             savableTeamUser.Position = this.Position;
             savableTeamUser.JoinDate = this.JoinDate;
-            savableTeamUser.TrustLevel = getIntFromTrustLevel(this.TrustLevel);
+            savableTeamUser.TrustLevel = this.TrustLevel.getIntFromTrustLevel();
             return savableTeamUser;
         }
 
@@ -69,28 +69,9 @@ namespace big
             return this.User;
         }
 
-        private int getIntFromTrustLevel(TrustLevel tl)
-        {
-            switch (tl)
-            {
-                case TrustLevel.Member:
-                    return 0;
-                case TrustLevel.CanMatchMake:
-                    return 1;
-                case TrustLevel.CanAddMembers:
-                    return 2;
-                case TrustLevel.CanRemoveMembers:
-                    return 3;
-                case TrustLevel.CanEditTeam:
-                    return 4;
-                case TrustLevel.CanEditTrustLevels:
-                    return 5;
-                case TrustLevel.TeamCaptain:
-                    return 6;
-                default:
-                    return 0;
-            }
-        }
+        
+
+        
 
         
         
@@ -99,15 +80,83 @@ namespace big
 
     public enum TrustLevel
     {
-        Member = 0,
-        CanMatchMake = 1,
-        CanAddMembers = 2,
-        CanRemoveMembers = 3,
-        CanEditTeam = 4,
-        CanEditTrustLevels = 5,
-        TeamCaptain = 6
+        None = 0,
+        Member = 1,
+        CanMatchMake = 2,
+        CanAddMembers = 3,
+        CanRemoveMembers = 4,
+        CanEditTeam = 5,
+        CanEditTrustLevels = 6,
+        TeamCaptain = 7
 
         
 
     }
+
+    public static class TrustLevelExtensions
+    {
+        public static TrustLevel GetTrustLevelFromInt(int i)
+        {
+            switch(i)
+            {
+                case 0:
+                    return TrustLevel.None;
+                case 1:
+                    return TrustLevel.Member;
+                case 2: 
+                    return TrustLevel.CanMatchMake;
+                case 3: 
+                    return TrustLevel.CanAddMembers;
+                case 4:
+                    return TrustLevel.CanRemoveMembers;
+                case 5: 
+                    return TrustLevel.CanEditTeam;
+                case 6: 
+                    return TrustLevel.CanEditTrustLevels;
+                case 7: 
+                    return TrustLevel.TeamCaptain;
+                default:
+                    return TrustLevel.None;
+            }
+        }
+
+        public static int getIntFromTrustLevel(this TrustLevel tl)
+        {
+            switch (tl)
+            {
+                case TrustLevel.None:
+                    return 0;
+                case TrustLevel.Member:
+                    return 1;
+                case TrustLevel.CanMatchMake:
+                    return 2;
+                case TrustLevel.CanAddMembers:
+                    return 3;
+                case TrustLevel.CanRemoveMembers:
+                    return 4;
+                case TrustLevel.CanEditTeam:
+                    return 5;
+                case TrustLevel.CanEditTrustLevels:
+                    return 6;
+                case TrustLevel.TeamCaptain:
+                    return 7;
+                default:
+                    return 0;
+            }
+        }
+
+        public static TrustLevel ToNonNullable(this TrustLevel? tl)
+        {
+            if (tl == null)
+            {
+                return TrustLevel.None;
+            }
+            else
+            {
+                return tl.Value;
+            }
+        }
+    }
+
+
 }

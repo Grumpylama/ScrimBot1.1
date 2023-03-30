@@ -17,7 +17,6 @@ namespace big
         {
             if(!Users.Contains(u))
                 Users.Add(u);
-            
         }
 
         public static bool CheckIfRegistred(CommandContext ctx)
@@ -55,7 +54,6 @@ namespace big
                     return user;
                 }
             }
-
             return null;
         }
 
@@ -73,6 +71,11 @@ namespace big
             {
                 var user = await task.Item1;
                 var channel = await task.Item2;
+                if(user == null || channel == null)
+                {
+                    StandardLogging.LogError(FilePath, "User or Channel was null");
+                    continue;
+                }
                 AddUser(user);
                 DiscordInterface.AddDmChannel(user, channel);
             }
@@ -81,7 +84,16 @@ namespace big
 
         public static async Task<DiscordUser> GetDiscordUserFromIDAsync(ulong id)
         {
-            return await DiscordInterface.Client.GetUserAsync(id);
+            try
+            {
+                return await DiscordInterface.Client.GetUserAsync(id);
+            }
+            catch(Exception e)
+            {
+                StandardLogging.LogError(FilePath, e.Message);
+                return null;
+            }
+            
         }
 
         public static async Task<DiscordChannel> GetDiscordChannelFromIDAsync(ulong id)

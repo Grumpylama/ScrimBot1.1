@@ -102,7 +102,7 @@ namespace big
         }
        
         [Command("TransferCaptain")]
-        public async Task TransferCaptain(CommandContext ctx)
+        public async Task TransferCaptain(CommandContext ctx, string TeamName = "", string NewCaptainID = "")
         {
             
             StandardLogging.LogInfo(FilePath, "TransferCaptain command was used by " + ctx.User.ToString());
@@ -113,19 +113,27 @@ namespace big
                 return;
             }
 
+            if(TeamName != "" && NewCaptainID != "")
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " used TransferCaptain with parameters. Using Quick version");
+                await QuickCommands.QuickTransferCaptain(ctx, TeamName, NewCaptainID);
+                return;
+            }
+
+
             //Getting all teams that user is captain of
 
             List<Team> teams = ctx.User.GetOwnedTeams();
-            if (teams == null)
+            if (teams is null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " has no teams. Canceling TransferCaptain");
                 await ctx.Channel.SendMessageAsync("You have no teams!").ConfigureAwait(false);
                 return;
             }
 
-            Team TeamToTransfer = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            Team teamToTransfer = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-            if (TeamToTransfer == null)
+            if (teamToTransfer is null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling TransferCaptain");
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
@@ -133,7 +141,7 @@ namespace big
             }
 
             //Getting all users that are not captain of the team
-            var otherMembers = TeamToTransfer.GetNonCaptainMembers().Select(x => x.User).ToList();
+            var otherMembers = teamToTransfer.GetNonCaptainMembers().Select(x => x.User).ToList();
             
 
             if(otherMembers.Count() == 0)
@@ -147,7 +155,7 @@ namespace big
 
             DiscordUser newCaptain = await StandardUserInteraction.ChooseUserAsync(ctx, otherMembers);
 
-            StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " chose " + newCaptain.ToString() + " as new captain of " + TeamToTransfer.TeamName);
+            StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " chose " + newCaptain.ToString() + " as new captain of " + teamToTransfer.TeamName);
 
             #pragma warning disable CS8625
             if(newCaptain == null)
@@ -158,19 +166,33 @@ namespace big
                 return;
             }
 
-            TeamToTransfer.TeamCaptain = newCaptain;
-            var oldCaptainTeamUser = TeamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User);
-            oldCaptainTeamUser.TrustLevel = TrustLevel.Member;
-            oldCaptainTeamUser.Position = "Member";
+            teamToTransfer.TeamCaptain = newCaptain;
+            var oldCaptainTeamUser = teamToTransfer.GetNonCaptainMembers().Find(x => x.User == ctx.User);
+            if(oldCaptainTeamUser is not null)
+            {
+                oldCaptainTeamUser.TrustLevel = TrustLevel.Member;
+                oldCaptainTeamUser.Position = "Member";
+            }
+            else if(oldCaptainTeamUser is null)
+            {
+                StandardLogging.LogError(FilePath, "Could not find old captain in team members");
+            }
             
-            var newCaptainTU = TeamToTransfer.GetMembers().Find(x => x.User == newCaptain);
-            newCaptainTU.TrustLevel = TrustLevel.TeamCaptain;
-            newCaptainTU.Position = "Team Captain";
+            var newCaptainTU = teamToTransfer.GetMembers().Find(x => x.User == newCaptain);
+            if(newCaptainTU is not null)
+            {
+                newCaptainTU.TrustLevel = TrustLevel.TeamCaptain;
+                newCaptainTU.Position = "Team Captain";
+            }
+            else if(newCaptainTU is null)
+            {
+                StandardLogging.LogError(FilePath, "Could not find new captain in team members");
+            }
             
 
-            StandardLogging.LogInfo(FilePath, $"User {ctx.User.ToString()} transfered captainship of {TeamToTransfer} to {TeamToTransfer.TeamCaptain.ToString()}");
-            var t = newCaptain.SendDMAsync("You are now the captain of " + TeamToTransfer);    
-            await ctx.Channel.SendMessageAsync($"Captain was transfered!  {TeamToTransfer.TeamCaptain.ToString() } is now the new captain of {TeamToTransfer.TeamName}").ConfigureAwait(false);
+            StandardLogging.LogInfo(FilePath, $"User {ctx.User.ToString()} transfered captainship of {teamToTransfer} to {teamToTransfer.TeamCaptain.ToString()}");
+            var t = newCaptain.SendDMAsync("You are now the captain of " + teamToTransfer);    
+            await ctx.Channel.SendMessageAsync($"Captain was transfered!  {teamToTransfer.TeamCaptain.ToString() } is now the new captain of {teamToTransfer.TeamName}").ConfigureAwait(false);
             await t;
             return;
         }
@@ -192,7 +214,7 @@ namespace big
             string now = DateTime.Now.ToString("HH::mm::ss:ffffff");
             
             
-            string hash = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(now)));
+            string hash = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(now + ctx.User.ToString())));
 
 
             StandardLogging.LogInfo(FilePath, "Hash generated for " + ctx.User.ToString() + " is " + hash);
@@ -222,6 +244,12 @@ namespace big
                 return;
             }
 
+            if(TeamName != "")
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is trying to add a user to a specific team");
+                QuickCommands.QuickAddToTeam(ctx, hash, TeamName);
+                return;
+            }
 
             
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is trying to add a user with hash " + hash);
@@ -229,7 +257,7 @@ namespace big
             
             
 
-            if(userToAdd == null)
+            if(userToAdd is null)
             {
                 StandardLogging.LogInfo(FilePath, "Could not find a user with hash " + hash);
                 await ctx.RespondAsync("Could not find user with that hash or it has already been used. \n Please have the user try again");
@@ -261,7 +289,7 @@ namespace big
             
             
             Team Team = await StandardUserInteraction.ChooseTeamAsync(ctx, UsersTeams);
-            if (Team == null)
+            if (Team is null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AddToTeam");
                 return;
@@ -314,7 +342,7 @@ namespace big
 
                 //Getting what team the user wants to leave
                 Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
-                if (team == null)
+                if (team is null)
                     return;
 
                 if(team.TeamCaptain.Id == ctx.User.Id)
@@ -404,35 +432,41 @@ namespace big
             
             //Getting what team the user wants to manage
             Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
-            if (team == null)
+            if (team is null)
                 return;
 
             //Getting what user the user wants to manage
-            TeamUser callUser;
+            TeamUser? callUser;
             
             callUser = team.TeamMembers.Find(x => x.User.Id == ctx.User.Id);
-            List<TeamUser> teamUsers;
+            List<TeamUser> teamUsers = new List<TeamUser>();
 
-            if(callUser == null)
+            if(callUser is null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not a member of team " + team.TeamName);
                 await ctx.RespondAsync("Something went wrong please try again");
             }
 
-            if(callUser.TrustLevel == TrustLevel.TeamCaptain)
-            {
-                teamUsers = team.GetNonCaptainMembers();
+
+
+            if(callUser is not null)
+                {
+                    if(callUser.TrustLevel is TrustLevel.TeamCaptain)
+                {
+                    teamUsers = team.GetNonCaptainMembers();
+                }
+                else
+                {
+                    teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
+                }
             }
-            else
-            {
-                teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
-            }
+            
             
             
             
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is managing " + teamUsers.Count + " users in team " + team.TeamName);
 
-            if (teamUsers.Count == 0)
+            if (teamUsers.Count is 0)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to manage any users in team " + team.TeamName);
                 await ctx.RespondAsync("You do not have permission to manage any users in this team");
@@ -442,17 +476,29 @@ namespace big
             //Getting what user the user wants to manage
             TeamUser userToManage = await StandardUserInteraction.ChooseTeamUserAsync(ctx, teamUsers);
             if (userToManage == null)
+            {
                 return;
+            }
+                
 
 
             
 
             //Getting what trust level the user wants to give the user
-            TrustLevel trustLevel = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser.TrustLevel);
+            TrustLevel trustLevelToGive = TrustLevel.None;
+
+            if(callUser is not null)
+            {
+                trustLevelToGive = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser.TrustLevel);
+            }
             
             
-            userToManage.TrustLevel = trustLevel;
-            await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevel}");
+            if(trustLevelToGive is not TrustLevel.None)
+            userToManage.TrustLevel = trustLevelToGive;
+            else return;
+
+
+            await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevelToGive}");
             
             return;
 
@@ -480,7 +526,7 @@ namespace big
 
             //Getting what team the user wants to view
             Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
-            if (team == null)
+            if (team is null)
                 return;
 
             

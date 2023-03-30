@@ -144,6 +144,7 @@ namespace big
 
         public Team()
         {
+            
             this.TeamName = "Default";
             this.CreationTime = DateTime.Now;
             this.TeamMembers = new List<TeamUser>();
@@ -234,10 +235,10 @@ namespace big
         {
             string returnString = $" ```{TeamName} playing {game.GameName} Created { CreationTime.ToShortDateString() }\n \n";
             returnString += $"| Name            | Position | Trustlevel | ";
-            foreach (var item in TeamMembers)
+            foreach (var TeamMember in TeamMembers)
             {
-                if(item.User.Id != TeamCaptain.Id)
-                returnString += $" \n| {item.User.Username}#{item.User.Discriminator} | {item.Position} | {item.TrustLevel} |";
+                if(TeamMember.User.Id != TeamCaptain.Id)
+                returnString += $" \n| {TeamMember.User.Username}#{TeamMember.User.Discriminator} | {TeamMember.Position} | {TeamMember.TrustLevel} |";
             }
             returnString += " ```";
             return returnString;

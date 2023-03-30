@@ -70,7 +70,7 @@ namespace big
 
             };
 
-            StandardLogging.LogInfo(FilePath, $"Command Config is as follows: {CommandsConfig}" );
+            
 
             try
             {
@@ -79,7 +79,7 @@ namespace big
             catch(Exception e)
             {
                 StandardLogging.LogFatal(FilePath, $"Error while starting commands: {e}");
-                StandardLogging.LogFatal(FilePath, $"Command Config is as follows: {CommandsConfig}" );
+                
             }
 
             StandardLogging.LogInfo(FilePath, "Commands are ready");
@@ -91,6 +91,7 @@ namespace big
                 //Commands.RegisterCommands<AdminCommands>();
                 Commands.RegisterCommands<AdminCommands>();
                 Commands.RegisterCommands<Commands>();
+                Commands.RegisterCommands<TestingCommands>();
                 //Commands.RegisterCommands<QuickCommands>();
                 
             }
@@ -106,6 +107,7 @@ namespace big
 
             await Client.ConnectAsync();
             
+            // Set up the discord interface
             big.DiscordInterface.Client = Client;
             
             StandardLogging.LogInfo(FilePath, "Attempting to start FileManager");
