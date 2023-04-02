@@ -85,18 +85,18 @@ namespace big
             }
 
 
-            Game g = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
-            if(g == null)
+            Game game = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
+            if(game == null)
             {
 
                 StandardLogging.LogInfo(FilePath, "User did not choose a game. Canceling CreateTeam");
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
                 return;
             }              
-            var t = new Team(g, TeamName, ctx.User);
+            var t = new Team(game, TeamName, ctx.User);
             StandardLogging.LogInfo(FilePath, "Team " + t.TeamName + " created by " + ctx.User.ToString() + " playing " + t.game.GameName);
             TeamHandler.Teams.Add(t);
-            await ctx.Client.SendMessageAsync(ctx.Channel, "Team named " + TeamName + " playing " + g.GameName + " created!").ConfigureAwait(false);
+            await ctx.Client.SendMessageAsync(ctx.Channel, "Team named " + TeamName + " playing " + game.GameName + " created!").ConfigureAwait(false);
             
         }
        
@@ -377,26 +377,7 @@ namespace big
             
         }
 
-        [Command("ManageTrust")]
-        public async Task ManageTrust(CommandContext ctx)
-        {
-            StandardLogging.LogInfo(FilePath, "ManageTrust command was used by " + ctx.User.ToString());
-            StandardUserHandling.CheckIfRegistred(ctx);
-            if (!ctx.User.CheckIfValid())
-            {
-                return;
-            }
-            
-            //Getting all the teams the user is in
-            var teams = ctx.User.GetTeams();
-            if (teams.Count == 0)
-            {
-                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
-                await ctx.RespondAsync("You are not in any teams");
-                return;
-            }
-            throw new NotImplementedException();
-        } 
+        
 
         [Command("Ping")] 
         public async Task Ping(CommandContext ctx, string s = "")
@@ -409,6 +390,8 @@ namespace big
         } 
 
         [Command("ManageMembers")]
+        [Description("Manage the members of a team")]
+        [Aliases("ManageTeam", "ManageTeamMembers", "ManageTrust", "ManageTrustLevels")]
         public async Task ManageMembers(CommandContext ctx)
         {
             StandardLogging.LogInfo(FilePath, "ManageTeam command was used by " + ctx.User.ToString());
@@ -493,7 +476,7 @@ namespace big
             
             
             if(trustLevelToGive is not TrustLevel.None)
-            userToManage.TrustLevel = trustLevelToGive;
+                userToManage.TrustLevel = trustLevelToGive;
             else return;
 
 
@@ -505,13 +488,21 @@ namespace big
 
 
         [Command("ViewTeam")]
-        public async Task ViewTeam(CommandContext ctx)
+        public async Task ViewTeam(CommandContext ctx, string teamName = "")
         {
+
+
             StandardLogging.LogInfo(FilePath, "ViewTeam command was used by " + ctx.User.ToString());
             StandardUserHandling.CheckIfRegistred(ctx);
             if (!ctx.User.CheckIfValid())
             {
                 return;
+            }
+
+            if(teamName != "")
+            {
+                StandardLogging.LogInfo(FilePath, "ViewTeam command was used by " + ctx.User.ToString() + " with parameter:  " + teamName);
+                await QuickCommands.quickViewTeam(ctx, teamName);
             }
 
             //Getting all the teams the user is in

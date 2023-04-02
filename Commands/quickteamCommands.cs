@@ -103,6 +103,21 @@ namespace big
 
         }
 
+        public static async Task<bool> quickViewTeam(CommandContext ctx, string teamName)
+        {
+            var team = TeamHandler.GetTeamFromName(teamName);
+            if(team is null || !team.GetMembers().Exists(x => x.User == ctx.User))
+            {
+                StandardLogging.LogInfo(FilePath, $"User {ctx.User.ToString()} tried to view team {teamName} but was not in it or it did not exist");
+                await ctx.RespondAsync("Found no team with that name");
+                return false;
+            }
+
+            await ctx.Client.SendMessageAsync(ctx.Channel, team.ToDiscordString());
+            return true;
+
+        }
+
 
         
     }
