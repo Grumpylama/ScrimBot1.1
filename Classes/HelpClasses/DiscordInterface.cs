@@ -4,7 +4,7 @@ namespace big
     {
 
         private static readonly string FilePath = "DiscordInterface.cs";
-        public static DiscordClient Client;
+        public static DiscordClient? Client;
         public static Dictionary<DiscordUser, DiscordChannel> DMChannel = new Dictionary<DiscordUser, DiscordChannel>();
 
         public static List<DiscordUser> AdminList = new List<DiscordUser>();
@@ -18,7 +18,7 @@ namespace big
             }
             else
             {
-
+                
                 return null;
             }
         }

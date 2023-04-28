@@ -94,8 +94,17 @@ namespace big
         {
             if (this.TeamMembers.Exists(x => x.User.Id == user.Id))
             {
-                this.TeamMembers.Find(x => x.User.Id == user.Id).TrustLevel = newTrustLevel;
-                return true;
+                try 
+                {
+                    this.TeamMembers.Find(x => x.User.Id == user.Id).TrustLevel = newTrustLevel;
+                    return true;
+                }
+                catch
+                {
+                    StandardLogging.LogError(FilePath, "Error changing trust level of user " + user.Id + " to " + newTrustLevel.ToString());
+                    return false;
+                }
+                
             }
             else
             {

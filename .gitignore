@@ -7,6 +7,10 @@
 bin/
 obj/
 
+# .NET Core Precompiled Web-Publish folder
+publish/
+.vscode/
+
 # Doesn't include Database files
 *.csv
 

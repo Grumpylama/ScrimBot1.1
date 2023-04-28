@@ -20,7 +20,7 @@ namespace big
         public async Task Matchmake(CommandContext ctx)
         {
             
-            
+            await ctx.RespondAsync("Matchmaking is currently disabled");
             throw new NotImplementedException();
             
 
