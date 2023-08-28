@@ -503,6 +503,7 @@ namespace big
             {
                 StandardLogging.LogInfo(FilePath, "ViewTeam command was used by " + ctx.User.ToString() + " with parameter:  " + teamName);
                 await QuickCommands.quickViewTeam(ctx, teamName);
+                return;
             }
 
             //Getting all the teams the user is in

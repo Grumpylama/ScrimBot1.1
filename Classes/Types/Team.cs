@@ -23,6 +23,8 @@ namespace big
         public DateTime CreationTime { get; set; }
         public DiscordChannel CaptainChannel { get; set; }
 
+        public List<Team> avoidedTeams {get; private set;} = new List<Team>();
+
 
         public SaveableTeam ToSavable()
         {
@@ -47,7 +49,13 @@ namespace big
                 this.TeamCaptain = newCaptain;
                 this.CaptainChannel = newCaptain.GetDMChannel();
 
+                if(this.TeamMembers.Exists(x => x.User.Id == oldCaptain.Id))
+                {
+                    this.TeamMembers.Find(x => x.User.Id == newCaptain.Id).TrustLevel = TrustLevel.TeamCaptain;
+                    this.TeamMembers.Find(x => x.User.Id == oldCaptain.Id).TrustLevel = TrustLevel.Member;
 
+                }
+                
                 return true;
             }
             else
@@ -61,14 +69,14 @@ namespace big
             return await this.TeamCaptain.SendMessageAsync(message);
         }
 
-        public async Task<bool> DMCaptainAsync(string message, int timeout)
+        public async Task<bool> DMCaptainAsync(string message, int timeout = 300)
         {
             return await this.TeamCaptain.SendMessageAsync(message, timeout);
         }
 
         public async Task<DSharpPlus.Interactivity.InteractivityResult<DSharpPlus.Entities.DiscordMessage>> ListenToCaptainAsync(double timeout = 0)
         {
-            DiscordClient client = DiscordInterface.Client;
+            DiscordClient client = DiscordInterface.Client!;
             InteractivityExtension interactivity = client.GetInteractivity();
             if(timeout != 0)
             {
@@ -83,12 +91,32 @@ namespace big
         }
 
 
+        public bool isAvoided(Team team)
+        {
+            return avoidedTeams.Exists(x => x.teamID == team.teamID);
+        }
+
+        public void AddAvoidedTeam(Team team)
+        {
+            StandardLogging.LogInfo(FilePath, "Adding avoided team " + team.teamID + " to team " + this.teamID);
+            avoidedTeams.Add(team);
+        }
+
+        public void RemoveAvoidedTeam(Team team)
+        {
+            try
+            {   
+                StandardLogging.LogInfo(FilePath, "Removing avoided team " + team.teamID + " from team " + this.teamID);
+                avoidedTeams.Remove(team);
+            }
+            catch(Exception e)
+            {
+                StandardLogging.LogError(FilePath, "Error removing avoided team " + team.teamID + " from team " + this.teamID);
+                StandardLogging.LogError(FilePath, e.Message);
+            }
+            
+        }
         
-        
-        
-        //Constructor for creating a team with members
-        
-       
 
         public bool changeTrustlevel(DiscordUser user, TrustLevel newTrustLevel)
         {
@@ -246,7 +274,7 @@ namespace big
             returnString += $"| Name            | Position | Trustlevel | ";
             foreach (var TeamMember in TeamMembers)
             {
-                if(TeamMember.User.Id != TeamCaptain.Id)
+                
                 returnString += $" \n| {TeamMember.User.Username}#{TeamMember.User.Discriminator} | {TeamMember.Position} | {TeamMember.TrustLevel} |";
             }
             returnString += " ```";

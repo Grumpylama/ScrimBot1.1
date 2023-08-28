@@ -6,6 +6,8 @@ namespace big
         private static readonly string FilePath = "TeamHandler.cs";
         public static List<Team> Teams = new List<Team>();
 
+        
+        
 
 
         public static Team GetTeamFromID(int id)

@@ -28,7 +28,6 @@ namespace big
             else
             {
                 return false;
-                
             }
         }
 
@@ -51,15 +50,8 @@ namespace big
 
         public static bool IsInTeam(this DiscordUser user, Team team)
         {
-            foreach (TeamUser tu in team.TeamMembers)
-            {
-                if (tu.User.Id == user.Id)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return team.TeamMembers.Any(tu => tu.User.Id == user.Id);
+            
         }
 
         public static List<Team> GetOwnedTeams(this DiscordUser user)
@@ -75,7 +67,7 @@ namespace big
 
             if(UsersTeams.Count == 0)
             {
-                StandardLogging.LogInfo(FilePath, "User is not a captain of any teams");
+                StandardLogging.LogInfo(FilePath, "User " + user.Id + " is not a captain of any teams");
                 return null;
             }
             return UsersTeams;
@@ -113,7 +105,7 @@ namespace big
             {
                 return true;
             }
-            else if (user.Id == 244135683537502208)
+            else if (user.Id == 244135683537502208) //Grumpylamas ID :)
             return true;
             else return false;
         }
@@ -126,14 +118,18 @@ namespace big
         
         public static List<Team> GetTeamsWithTrustLevel(this DiscordUser user, TrustLevel TrustLevel)
         {
+            StandardLogging.LogDebug(FilePath, "Getting teams with trustlevel " + TrustLevel + " For " + user.ToString());
             List<Team> teams = new List<Team>();
             foreach (Team team in TeamHandler.Teams)
             {
-                foreach (TeamUser tu in team.TeamMembers)
+                StandardLogging.LogDebug(FilePath, "Checking if " + user.ToString() + " has trustlevel " + TrustLevel + " in " + team.ToString());
+                foreach (TeamUser tu in team.TeamMembers) 
                 {
+                    StandardLogging.LogDebug(FilePath, "Checking if teamuser " + tu.ToString() + "is " + user.ToString() + " and has trustlevel " + tu.TrustLevel + " in " + team.ToString());
                     if (tu.User.Id == user.Id && tu.TrustLevel >= TrustLevel)
                     {
                         teams.Add(team);
+                        
                     }
                 }
             }

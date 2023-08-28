@@ -43,12 +43,16 @@ namespace big
             {
                 entry = new T();
 
+                //Decrypts the row
                 string decryptedRow = crypto.Decrypt(row);
-                // Splits the row into individual columns. Now the index
+
+
+                // Splits the row into individual columns. For example now the index
                 // of this row matches the index of the header so the
-                // FirstName column header lines up with the FirstName
-                // value in this row.
+                // UserID column header lines up with the UserID value in
+                // value in this row
                 var vals = decryptedRow.Split(',');
+
 
                 // Loops through each header entry so we can compare that
                 // against the list of columns from reflection. Once we get
@@ -68,6 +72,7 @@ namespace big
 
                 output.Add(entry);
             }
+
             StandardLogging.LogInfo(FilePath, "Loaded " + output.Count + " entries from text file: " + filePath);
             return output;
         }
@@ -94,7 +99,7 @@ namespace big
 
 
 
-            if (data == null || data.Count == 0)
+            if (data is null || data.Count == 0)
             {
                 StandardLogging.LogError(FilePath, "You must populate the data parameter with at least one value.");
                 throw new ArgumentNullException("data", "You must populate the data parameter with at least one value.");
@@ -102,6 +107,7 @@ namespace big
             var cols = data[0].GetType().GetProperties();
 
             StandardLogging.LogInfo(FilePath, "Columns: " + cols.Length);
+
 
             // Loops through each column and gets the name so it can comma 
             // separate it into the header row.

@@ -16,9 +16,6 @@ namespace big
             StandardLogging.LogInfo(FilePath, "Starting File Manager");
             StandardLogging.LogInfo(FilePath, "startpath is : " + startpath);
 
-            
-            
-
             List<Task> tasks = new List<Task>();
             
             
@@ -36,7 +33,7 @@ namespace big
             }
            
             
-            //tasks.Add(Dependecies.LoadTeams(GenericTextFileProcessor.LoadFromTextFile<SaveableTeam>(startpath + "/Data/Teams.csv")));
+           
 
 
             GameHandler.Games.Add(new Game("Overwatch 2", null));
@@ -70,6 +67,36 @@ namespace big
                 
                 StandardLogging.LogError(FilePath, "Error Converting Teams");
                 StandardLogging.LogError(FilePath, e.Message);
+            }
+
+            StandardLogging.LogInfo(FilePath, "Initalzing SvATs");
+            List<SavableAvoidedTeam> SvATs = new List<SavableAvoidedTeam>();
+            try
+            {
+                StandardLogging.LogInfo(FilePath, "Loading Avoided teams");
+               
+                SvATs = textProcessor.LoadFromTextFile<SavableAvoidedTeam>(startpath + "/Data/AvoidedTeams.csv");
+                
+                foreach(var item in SvATs)
+                {
+                    try
+                    {
+                        StandardLogging.LogInfo(FilePath, "Adding " + item.avoiderID + " to " + item.avoidedID);
+                        TeamHandler.GetTeamFromID(item.avoiderID).AddAvoidedTeam(TeamHandler.GetTeamFromID(item.avoidedID));
+                    }
+                    catch(Exception e)
+                    {
+                        StandardLogging.LogError(FilePath, "Error adding " + item.avoiderID + " to " + item.avoidedID);
+                        StandardLogging.LogError(FilePath, e.Message);
+                    }
+                    
+                }
+                
+
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error Loading Avoided Teams");
             }
             
 
@@ -105,6 +132,7 @@ namespace big
                 StandardLogging.LogError(FilePath, e.Message);
             }
 
+            
             try 
             {
                 StandardLogging.LogInfo(FilePath, "Adding admins");
@@ -112,8 +140,7 @@ namespace big
                 DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(244135683537502208));
                 DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(214158487712694273));
 
-            }
-        
+            } 
             catch(Exception e)
             {
                 StandardLogging.LogError(FilePath, "Error adding admins");
@@ -160,6 +187,16 @@ namespace big
                     savableTeamUsers.Add(tu.ToSavable());
                 }
             }
+
+            List<SavableAvoidedTeam> savableAvoidedTeams = new List<SavableAvoidedTeam>();
+            foreach(Team t in TeamHandler.Teams)
+            {
+                foreach(Team at in t.avoidedTeams)
+                {
+                    savableAvoidedTeams.Add(new SavableAvoidedTeam(t.teamID, at.teamID));
+                }
+            }
+            textProcessor.SaveToTextFile<SavableAvoidedTeam>(savableAvoidedTeams, startpath + "/AvoidedTeams.csv");
             textProcessor.SaveToTextFile<SavableTeamUser>(savableTeamUsers, startpath + "/TeamUsers.csv");
             textProcessor.SaveToTextFile<SaveableTeam>(saveableTeams, startpath + "/Teams.csv");
             textProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");

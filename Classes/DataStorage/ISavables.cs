@@ -41,6 +41,8 @@ namespace big
 
         public DateTime CreationTime { get; set; }
 
+        
+
         public SaveableTeam()
         {
 
@@ -58,6 +60,30 @@ namespace big
         }
 
 
+    }
+
+    public class SavableAvoidedTeam : ISavable
+    {
+        public int avoiderID { get; set;}
+
+        public int avoidedID { get; set; }
+
+        public SavableAvoidedTeam(int avoiderID, int avoidedID)
+        {
+            this.avoiderID = avoiderID;
+            this.avoidedID = avoidedID;
+        }
+
+        public SavableAvoidedTeam()
+        {
+            
+        }
+
+        public Tuple<Team, Team> ToTuple()
+        {
+            return new Tuple<Team, Team>(TeamHandler.GetTeamFromID(this.avoiderID), TeamHandler.GetTeamFromID(this.avoidedID));
+        }
+        
     }
 
     

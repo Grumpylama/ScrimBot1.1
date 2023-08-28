@@ -27,7 +27,7 @@ namespace big
 
             foreach (var scrim in scrimsToMove)
             {
-                ActiveScrims.Remove(ActiveScrims.Find(x => x.ID == scrim.ID));
+                ActiveScrims.Remove(ActiveScrims.Find(x => x.ID == scrim.ID)!);
             }
 
             textProcessor.SaveToTextFile<SavableScrim>(scrimsToMove, savepath);
