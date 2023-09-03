@@ -12,9 +12,10 @@ namespace big
 
         public bool Relaxation { get; private set;}
 
-        public AvoidedMatchMakingRule(bool relaxation)
+        public AvoidedMatchMakingRule(IRelaxationRule relaxationRule)
         {
-            
+
+
         }
         
         public bool Evavluate(MatchmakingContext context)

@@ -1,8 +1,12 @@
 namespace big
 {
-    internal class MatchmakingTicket
+    public class MatchmakingTicket
     {
+
+        private static int ticketIDCounter = 1;
         private static readonly string FilePath = "MatchmakingTicket.cs";
+
+        public int ticketID {get; private set;} = 0;
         public DateTime joinTime {get; private set;}
         public Team team {get; private set;}
 
@@ -10,12 +14,23 @@ namespace big
 
         public List<Team> avoidedTeams {get; private set;} = new List<Team>();
 
+        public List<int> checkedTickets{get; private set;} = new List<int>();
+        
+
+
         public MatchmakingTicket(Team team, DiscordUser responsibleUser)
         {
+            ticketID = ticketIDCounter;
+            ticketIDCounter++;
             this.team = team;
             this.ResponsibleUser = responsibleUser;
             joinTime = DateTime.Now;
 
+        }
+
+        public void ResetCheckedTickets()
+        {
+            checkedTickets.Clear();
         }
 
 
