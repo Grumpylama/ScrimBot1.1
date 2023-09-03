@@ -17,6 +17,25 @@ namespace big
             this.Matchtime = matchtime;
         }
 
+        public void AddTicket(MatchmakingTicket ticket)
+        {
+            Tickets.Enqueue(ticket);
+        }
+
+        public void MatchMakingLoop(int index)
+        {
+            if (Tickets.Count < index + 1)
+            return;
+
+            var ticket = Tickets.ElementAt(index);
+            if (ticket == null)
+            return;
+
+            
+
+
+        }
+
 
 
 
