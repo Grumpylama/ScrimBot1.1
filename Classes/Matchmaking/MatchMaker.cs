@@ -123,7 +123,7 @@ namespace big
 
       public void VarDump()
       {
-        StandardLogging.LogInfo(FilePath, "This matchmaker was created for date: " + matchStart);
+        StandardLogging.LogDebug(FilePath, "This matchmaker was created for date: " + matchStart);
         foreach(MatchMakingTeam m in MMTList)
         {
             m.VarDump();

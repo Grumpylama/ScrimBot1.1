@@ -54,7 +54,7 @@ namespace big
 
         public async Task<ScrimResponse> PromtCaptainForScrimAsync(MatchMakingTeam opponent, double timeout)
         {
-            StandardLogging.LogInfo(FilePath, "Promtting captain of " + T.TeamName + " for a scrim with " + opponent.T.TeamName);
+            StandardLogging.LogInfo(FilePath, "Prompting captain of " + T.TeamName + " for a scrim with " + opponent.T.TeamName);
 
             DiscordClient client = DiscordInterface.Client;
             DateTime requestTime = DateTime.Now;
@@ -67,7 +67,7 @@ namespace big
                 if (t <= 0)
                 {
                     await DMCaptainAsync("You did not respond in time, you have been removed from the queue");
-                    StandardLogging.LogInfo(FilePath, "After checking again : Captain of " + T.TeamName + " did not respond in time");
+                    StandardLogging.LogDebug(FilePath, "After checking again : Captain of " + T.TeamName + " did not respond in time");
                     return new ScrimResponse(ScrimResponseCode.NoResponse, this);
                 }
 
@@ -75,13 +75,13 @@ namespace big
                 if(message.TimedOut)
                 {
                     await DMCaptainAsync("You did not respond in time, you have been removed from the queue");
-                    StandardLogging.LogInfo(FilePath, "Captain of " + T.TeamName + " did not respond in time");
+                    StandardLogging.LogDebug(FilePath, "Captain of " + T.TeamName + " did not respond in time");
                     return new ScrimResponse(ScrimResponseCode.NoResponse, this);
                 }
                 if(message.Result.Content.ToLower() == "yes")
                 {
                     await DMCaptainAsync("You have accepted the scrim");
-                    StandardLogging.LogInfo(FilePath, "Captain of " + T.TeamName + " accepted the scrim against " + opponent.T.TeamName);
+                    StandardLogging.LogDebug(FilePath, "Captain of " + T.TeamName + " accepted the scrim against " + opponent.T.TeamName);
                     return new ScrimResponse(ScrimResponseCode.Accept , this);
                 }
                 else if(message.Result.Content.ToLower() == "no")
