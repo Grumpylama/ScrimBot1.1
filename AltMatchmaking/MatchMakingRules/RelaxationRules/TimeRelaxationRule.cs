@@ -23,7 +23,8 @@ namespace big
         
        
 
-        public int GetRelaxationStage(MatchmakingContext context)
+
+        public double GetRelaxationStage(MatchmakingContext context)
         {
             return 0;
         }

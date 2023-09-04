@@ -8,7 +8,7 @@ namespace big
     public interface IRelaxationRule
     {
 
-        public int GetRelaxationStage(MatchmakingContext context);
+        public double GetRelaxationStage(MatchmakingContext context);
 
         
 

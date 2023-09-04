@@ -13,7 +13,7 @@ namespace big
         
         public IRelaxationRule CreateRelaxationRule(RelaxationRuleConfig cfg)
         {
-            switch( cfg.RuleType)
+            switch( cfg.RelaxationType)
             {
                 case "TimeRelaxationRule":
                     return new TimeRelaxationRule(cfg.RuleParameters);

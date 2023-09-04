@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace big
 {
-    public struct MatchMakingConfig
+    public struct RelaxationRuleConfig
     {
-        
 
+        public string RelaxationType;
+
+        public Dictionary<int, double> RuleParameters;
 
         
         

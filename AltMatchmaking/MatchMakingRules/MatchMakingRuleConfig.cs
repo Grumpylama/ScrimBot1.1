@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ScrimBot1._1.AltMatchmaking.MatchMakingRules
+namespace big
 {
     public struct MatchMakingRuleConfig
     {
+        public string RuleType;
+
+        public int StandardValue;
+
+        public List<RelaxationRuleConfig> RelaxationRules;
+
         
     }
 }

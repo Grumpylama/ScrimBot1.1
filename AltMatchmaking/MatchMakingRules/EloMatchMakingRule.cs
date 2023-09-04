@@ -8,13 +8,15 @@ namespace big
     public class EloMatchMakingRule : IMatchMakingRule
     {
         
-        public List<int> Spans {get; private set;}
+        
+        private double StandardValue { get; set;}
 
         private List<IRelaxationRule> RelaxationsRules;
 
-        public EloMatchMakingRule(List<int> spans)
+        public EloMatchMakingRule(int standardValue, List<IRelaxationRule> relaxationsRules)
         {
-            Spans = spans;
+            this.StandardValue = standardValue;
+            this.RelaxationsRules = relaxationsRules;
         }
 
 
