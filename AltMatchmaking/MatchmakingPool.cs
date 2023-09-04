@@ -80,7 +80,7 @@ namespace big
                 }
 
 
-                if(!Rules.Any(x => x.Evavluate(new MatchmakingContext(Matchtime, Tickets.Count, 0,  new List<MatchmakingTicket>(){ticketToCheck, t}))))
+                if(!Rules.Any(x => x.Evaluate(new MatchmakingContext(Matchtime, Tickets.Count, 0,  new List<MatchmakingTicket>(){ticketToCheck, t}))))
                 {
                     StandardLogging.LogInfo(FilePath, "Tickets " + ticketToCheck.ticketID + " and " + t.ticketID + " are a match for the time " + Matchtime + " with the game " + game.GameName);
                     return new Tuple<MatchmakingTicket, MatchmakingTicket>(ticketToCheck, t);
