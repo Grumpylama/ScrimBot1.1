@@ -18,12 +18,12 @@ namespace big
         
 
 
-        public MatchmakingTicket(Team team, DiscordUser responsibleUser)
+        public MatchmakingTicket(Team team, DiscordUser ResponsibleUser)
         {
             ticketID = ticketIDCounter;
             ticketIDCounter++;
             this.team = team;
-            this.ResponsibleUser = responsibleUser;
+            this.ResponsibleUser = ResponsibleUser;
             joinTime = DateTime.Now;
 
         }
