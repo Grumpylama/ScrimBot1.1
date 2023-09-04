@@ -9,6 +9,7 @@ namespace big
     public class RelaxationRuleFactory
     {
 
+        private static readonly string FilePath = "RelaxationRuleFactory.json";
         
         public IRelaxationRule CreateRelaxationRule(RelaxationRuleConfig cfg)
         {
@@ -16,9 +17,12 @@ namespace big
             {
                 case "TimeRelaxationRule":
                     return new TimeRelaxationRule(cfg.RuleParameters);
-                case "QueueSizeRelaxationRule":
-                    return new QueueSizeRelaxationRule(cfg.RuleParameters);
+                default:
+                    StandardLogging.LogFatal(FilePath, "Unknown relaxation rule type!");
+                    throw new Exception("Unknown relaxation rule type!");
+                    
             }
+
         }
 
 

@@ -9,26 +9,16 @@ namespace big
     {
         private static readonly string FilePath = "TimeRelaxationRule.cs";
 
-        private Dictionary<int, int> parameters {get; set;}
+        private Dictionary<int, double> parameters {get; set;}
 
 
-        List<int> timeLeftToRelax = new List<int>();
+        
 
-        public TimeRelaxationRule(Dictionary<string, string> parameters)
+        public TimeRelaxationRule(Dictionary<int, double> parameters)
         {
-            this.parameters = new Dictionary<int, int>();
-            foreach (var parameter in parameters)
-            {
-                try
-                {
-                    this.parameters.Add(int.Parse(parameter.Key), int.Parse(parameter.Value));
-                }
-                catch
-                {
-                    StandardLogging.LogFatal(FilePath, "Error parsing parameters! Check your config file!");
-                }
+            this.parameters = parameters;
                 
-            }
+        
         }
         
        

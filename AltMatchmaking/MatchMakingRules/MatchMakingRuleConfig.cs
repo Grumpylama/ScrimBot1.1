@@ -1,17 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace big
+namespace ScrimBot1._1.AltMatchmaking.MatchMakingRules
 {
-    public struct MatchMakingConfig
+    public struct MatchMakingRuleConfig
     {
-        
-
-
-        
         
     }
 }
