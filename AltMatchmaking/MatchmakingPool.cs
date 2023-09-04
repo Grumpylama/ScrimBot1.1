@@ -14,10 +14,10 @@ namespace big
 
         public Queue<MatchmakingTicket> Tickets {get; private set;} = new Queue<MatchmakingTicket>();
 
-        public MatchmakingPool(Game game, DateTime matchtime)
+        public MatchmakingPool(Game game, DateTime Matchtime)
         {
             this.game = game;
-            this.Matchtime = matchtime;
+            this.Matchtime = Matchtime;
         }
 
         public void AddTicket(MatchmakingTicket ticket)
@@ -33,10 +33,6 @@ namespace big
             var ticket = Tickets.ElementAt(index);
             if (ticket == null)
             return;
-
-            
-
-
         }
 
         public Tuple<MatchmakingTicket, MatchmakingTicket>? MatchTickets(MatchmakingTicket ticketToCheck, List<MatchmakingTicket> tickets)
@@ -45,13 +41,13 @@ namespace big
             {
                 if(tickets == null)
                 {
-                    StandardLogging.LogDebug(FilePath, "Tickets list is null");
+                    StandardLogging.LogDebug(FilePath, "Tickets queue is null");
                     return null;
                 }
 
                 if(tickets.Count == 0)
                 {
-                    StandardLogging.LogDebug(FilePath, "Tickets list is empty");
+                    StandardLogging.LogDebug(FilePath, "Tickets queue is empty");
                     return null;
                 }
 
@@ -63,19 +59,19 @@ namespace big
 
                 if (ticketToCheck.checkedTickets.Contains(t.ticketID))
                 {
-                    StandardLogging.LogDebug(FilePath, "Ticket to check has already been checked with this ticket");
+                    StandardLogging.LogDebug(FilePath, "Ticket to check:" + ticketToCheck.ticketID + " has already been checked with " + t.ticketID);
                     continue;
                 }
 
                 if (t.ticketID == ticketToCheck.ticketID)
                 {
-                    StandardLogging.LogError(FilePath, "Ticket to check is the same as the ticket to match with. Don't know how but well done");
+                    StandardLogging.LogError(FilePath, "Ticket to check is the same as the ticket to match with. Don't know how but well done soldier.");
                     continue;
                 }
 
                 if(ticketToCheck.team == t.team)
                 {
-                    StandardLogging.LogError(FilePath, "Ticket to check has the same team as the ticket to match with");
+                    StandardLogging.LogError(FilePath, "Ticket to check: "+ ticketToCheck.ticketID +" has the same team as: " + t.ticketID);
                     continue;
                 }
 
@@ -88,12 +84,9 @@ namespace big
 
                 ticketToCheck.checkedTickets.Add(t.ticketID);
 
-                
             }
 
-
             return MatchTickets(tickets.ElementAt(0), tickets.Skip(1).ToList());
-
         }
 
 
