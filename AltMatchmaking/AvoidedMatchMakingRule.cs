@@ -18,7 +18,7 @@ namespace big
 
         }
         
-        public bool Evavluate(MatchmakingContext context)
+        public bool Evaluate(MatchmakingContext context)
         {
             throw new NotImplementedException();
         }
