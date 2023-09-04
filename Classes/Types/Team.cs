@@ -124,7 +124,7 @@ namespace big
             {
                 try 
                 {
-                    this.TeamMembers.Find(x => x.User.Id == user.Id).TrustLevel = newTrustLevel;
+                    this.TeamMembers.Find(x => x.User.Id == user.Id)!.TrustLevel = newTrustLevel;
                     return true;
                 }
                 catch
@@ -144,7 +144,7 @@ namespace big
         {
             if (this.TeamMembers.Exists(x => x.User.Id == user.User.Id))
             {
-                this.TeamMembers.Find(x => x.User.Id == user.User.Id).TrustLevel = newTrustLevel;
+                this.TeamMembers.Find(x => x.User.Id == user.User.Id)!.TrustLevel = newTrustLevel;
                 return true;
             }
             else
