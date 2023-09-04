@@ -5,7 +5,8 @@ namespace big
         Elo,
         Region,
         TeamSize,
-        AvoidTeam
+        AvoidTeam,
+        RecentMatches
 
     }
 }
