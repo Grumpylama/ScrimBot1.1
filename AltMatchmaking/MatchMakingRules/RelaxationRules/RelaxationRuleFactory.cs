@@ -10,6 +10,10 @@ namespace big
     {
 
         private static readonly string FilePath = "RelaxationRuleFactory.json";
+
+        private static readonly Lazy<RelaxationRuleFactory> _instance = new Lazy<RelaxationRuleFactory>(() => new RelaxationRuleFactory());
+
+        public static RelaxationRuleFactory Instance => _instance.Value;
         
         public IRelaxationRule CreateRelaxationRule(RelaxationRuleConfig cfg)
         {

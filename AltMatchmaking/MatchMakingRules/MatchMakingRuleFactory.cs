@@ -8,9 +8,18 @@ namespace big
     public class MatchMakingRuleFactory
     {
 
-        private static MatchMakingRuleFactory _instance;
+        private static readonly Lazy<MatchMakingRuleFactory> _instance = new Lazy<MatchMakingRuleFactory>(() => new MatchMakingRuleFactory());
+
+        public static MatchMakingRuleFactory Instance => _instance.Value;
         
         private RelaxationRuleFactory _relaxationRuleFactory;
+
+        public MatchMakingRuleFactory()
+        {
+            
+            _relaxationRuleFactory = RelaxationRuleFactory.Instance;
+
+        }
 
         public IMatchMakingRule GetRule(MatchMakingRuleConfig cfg)
         {

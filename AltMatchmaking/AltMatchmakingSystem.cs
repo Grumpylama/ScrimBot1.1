@@ -12,6 +12,15 @@ namespace big
         private static readonly string FilePath = "AltMatchmakingSystem.cs";
 
         List<MatchmakingPool> pools = new List<MatchmakingPool>();
+
+        
+
+
+
+        List<MatchmakingPoolConfig> poolConfigs = new List<MatchMakingPoolConfig>();
+        
+
+
         
     
 
