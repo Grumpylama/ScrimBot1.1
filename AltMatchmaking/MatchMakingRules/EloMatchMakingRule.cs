@@ -21,10 +21,19 @@ namespace big
 
 
 
-
+        //Evaluates if the teams in the matchmakingcontext are within allowed elo range
         public bool Evaluate(MatchmakingContext context) 
         {
-            throw new NotImplementedException();
+            //Get the average elo of the teams
+            double averageElo = context.Tickets.Average(ticket => ticket.Elo);
+            //Get the difference between the average elo and the standard value
+            double difference = Math.Abs(averageElo - StandardValue);
+            //Get the relaxation stage
+            double relaxationStage = RelaxationsRules.Select(rule => rule.GetRelaxationStage(context)).Max();
+            //Get the allowed difference
+            double allowedDifference = StandardValue * relaxationStage;
+            //Return if the difference is within the allowed difference
+            return difference <= allowedDifference;   
         }
 
         

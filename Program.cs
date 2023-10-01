@@ -23,6 +23,7 @@ global using Serilog;
 global using Serilog.Sinks.File;
 global using System.Reflection;
 global using Interfaces;
+global using System.Text.Json.Serialization;
 
 
 
@@ -40,6 +41,10 @@ namespace big
             //Registering the unhandled exception handler
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+
+            
+            
+
 
             //Create a new bot
             var bot = new Bot(); 
@@ -62,7 +67,8 @@ namespace big
             {
                 StandardUserHandling.GetUserFromID(244135683537502208).SendDMAsync(e.ExceptionObject.ToString()).GetAwaiter().GetResult();
             }
-            catch{
+            catch
+            {
                 
                 StandardLogging.LogError(FilePath, "Failed to send notification message");
             }

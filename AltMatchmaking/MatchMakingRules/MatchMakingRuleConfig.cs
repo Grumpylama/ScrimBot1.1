@@ -7,11 +7,14 @@ namespace big
 {
     public struct MatchMakingRuleConfig
     {
+        [JsonPropertyName("RuleType")]
         public string RuleType;
 
+        [JsonPropertyName("StandardValue")]
         public int StandardValue;
 
-        public List<RelaxationRuleConfig> RelaxationRules;
+        [JsonPropertyName("RelaxationRules")]
+        public List<RelaxationRuleConfig> RelaxationRulesConfigs;
 
         
     }

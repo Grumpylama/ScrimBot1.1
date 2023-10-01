@@ -18,15 +18,22 @@ namespace big
         {
             this.parameters = parameters;
                 
-        
         }
-        
-       
-
-
         public double GetRelaxationStage(MatchmakingContext context)
         {
-            return 0;
+            List<int> ApplicableParamters = new List<int>();
+            foreach(var parameter in parameters)
+            {
+                if(parameter.Key > context.minutesToStart)
+                {
+                    ApplicableParamters.Add(parameter.Key);
+                }
+            }
+            if (ApplicableParamters.Count == 0)
+            {
+                return 1;
+            }
+            return parameters[ApplicableParamters.Min()];
         }
 
 

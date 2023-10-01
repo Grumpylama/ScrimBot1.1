@@ -12,6 +12,8 @@ namespace big
 
         public DiscordUser ResponsibleUser {get; private set;}
 
+        public double Elo {get; set;} 
+
         public List<Team> avoidedTeams {get; private set;} = new List<Team>();
 
         public List<int> checkedTickets{get; private set;} = new List<int>();

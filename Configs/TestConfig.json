@@ -1,0 +1,18 @@
+{
+    "GameName": "YourGameNameMotherfucker",
+    "MatchmakingRuleConfigs": [
+      {
+        "RuleType": "EloMatchMakingRule",
+        "StandardValue": 300,
+        "RelaxationRulesConfigs": [
+          {
+            "RelaxationType": "RelaxationType1",
+            "RuleParameters": {
+              "1": 10,
+              "2": 20
+            }
+          }
+        ]
+      }
+    ]
+  }

@@ -12,9 +12,10 @@ namespace big
         [JsonPropertyName("GameName")]
         public string GameName { get; set; }
 
+        [JsonPropertyName("MatchMakingRuleConfigs")]
         public List<MatchMakingRuleConfig> MatchMakingRuleConfigs { get; set; }
 
-
+        
 
         
         
