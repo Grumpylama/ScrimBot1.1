@@ -11,7 +11,21 @@ namespace big
         {
             string name = username.Split('#')[0];
             string discriminator = username.Split('#')[1];
-            return Users.Find(x => x.Username == name && discriminator == x.Discriminator);
+
+            StandardLogging.LogDebug(FilePath, "Getting user " + username);
+            DiscordUser? user = null;
+
+            if((user = Users.Find(x => x.Username == name && discriminator == x.Discriminator)) is not null)
+            {
+                StandardLogging.LogDebug(FilePath, "User " + username + " found");
+                return user;
+            }
+            else
+            {
+                StandardLogging.LogError(FilePath, "User " + username + " not found");
+                throw new Exception("User not found");
+            }
+            
         }
         public static void AddUser(DiscordUser u)
         {
@@ -47,14 +61,20 @@ namespace big
 
         public static DiscordUser GetUserFromID(ulong id)
         {
-            foreach (var user in Users)
+            
+            StandardLogging.LogDebug(FilePath, "Getting user " + id);
+
+            DiscordUser? user = null;
+            if((user = Users.Find(x => x.Id == id)) is not null)
             {
-                if (user.Id == id)
-                {
-                    return user;
-                }
+                StandardLogging.LogDebug(FilePath, "User " + id + " found");
+                return user;
             }
-            return null;
+            else
+            {
+                StandardLogging.LogError(FilePath, "User " + id + " not found");
+                throw new Exception("User not found");
+            }
         }
 
         public static async Task LoadUsersAsync(List<SaveableUser> users)
@@ -69,9 +89,33 @@ namespace big
 
             foreach (var task in UserGetTasks)
             {
-                var user = await task.Item1;
-                var channel = await task.Item2;
-                if(user == null || channel == null)
+                StandardLogging.LogDebug(FilePath, "Getting DiscordUser and DiscordChannel from ID: " + task.Item1.Id);
+                DiscordChannel? channel;
+                DiscordUser? user;
+                try
+                {
+                    user = await task.Item1;
+                    
+                }
+                catch
+                {
+                    StandardLogging.LogError(FilePath, "User not found");
+                    continue;
+                }
+                try
+                {
+                    channel = await task.Item2;
+                }
+                catch
+                {
+                    StandardLogging.LogError(FilePath, "Channel not found");
+                    continue;
+                }
+                 
+                StandardLogging.LogDebug(FilePath, "Got DiscordUser: " + user + " and ChannelID: " + channel.Id);
+                 
+                StandardLogging.LogDebug(FilePath, "Got DiscordChannel: " + channel);
+                if(user is null || channel is null)
                 {
                     StandardLogging.LogError(FilePath, "User or Channel was null");
                     continue;
@@ -86,19 +130,19 @@ namespace big
         {
             try
             {
-                return await DiscordInterface.Client.GetUserAsync(id);
+                return await DiscordInterface.Client!.GetUserAsync(id);
             }
             catch(Exception e)
             {
                 StandardLogging.LogError(FilePath, e.Message);
-                return null;
+                throw new Exception("User not found");
             }
             
         }
 
         public static async Task<DiscordChannel> GetDiscordChannelFromIDAsync(ulong id)
         {
-            return await DiscordInterface.Client.GetChannelAsync(id);
+            return await DiscordInterface.Client!.GetChannelAsync(id);
         }
 
         
@@ -107,16 +151,20 @@ namespace big
 
         public static DiscordUser GetUserFromHashAsync(string hash)
         {
+
+            StandardLogging.LogDebug(FilePath, "Getting user " + hash);
             
             if(hashes.ContainsKey(hash))
             {
+                
                 var ReturnUser = hashes[hash];
                 hashes.Remove(hash);
+                StandardLogging.LogDebug(FilePath, "User " + hash + " found and is " + ReturnUser.ToString());
                 return ReturnUser;
             }
             
 
-            return null;
+            throw new Exception("Has not found");
         }
 
         public static void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)

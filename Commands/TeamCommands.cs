@@ -32,8 +32,17 @@ namespace big
 
 
             //Chosing what team to delete
-            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            var Response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
+            if(Response.Item1)
+            {
+                
+                StandardLogging.LogInfo(FilePath, "User canceled DeleteTeam");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }
+
+            Team team = Response.Item2;
             if(team == null)
             {
                 
@@ -85,7 +94,17 @@ namespace big
             }
 
 
-            Game game = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
+            var response = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
+            if(response.Item1)
+            {
+                
+                StandardLogging.LogInfo(FilePath, "User canceled CreateTeam");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }
+
+            Game game = response.Item2;
+
             if(game == null)
             {
 
@@ -130,7 +149,16 @@ namespace big
                 return;
             }
 
-            Team teamToTransfer = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if (response.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }
+
+            Team teamToTransfer = response.Item2;
 
             if (teamToTransfer is null)
             {
@@ -152,7 +180,16 @@ namespace big
             }
 
 
-            DiscordUser newCaptain = await StandardUserInteraction.ChooseUserAsync(ctx, otherMembers);
+            var response2 = await StandardUserInteraction.ChooseUserAsync(ctx, otherMembers);
+
+            if (response2.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a user. Canceling TransferCaptain");
+                await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
+                return;
+            }
+
+            DiscordUser newCaptain = response2.Item2;
 
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " chose " + newCaptain.ToString() + " as new captain of " + teamToTransfer.TeamName);
 
@@ -287,7 +324,17 @@ namespace big
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is a captain of " + UsersTeams.Count + " teams");
             
             
-            Team Team = await StandardUserInteraction.ChooseTeamAsync(ctx, UsersTeams);
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, UsersTeams);
+
+            if(response.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AddToTeam");
+                await ctx.RespondAsync("Canceled!");
+                return;
+            }
+
+            Team Team = response.Item2;
+
             if (Team is null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AddToTeam");
@@ -340,15 +387,29 @@ namespace big
 
 
                 //Getting what team the user wants to leave
-                Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+                var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+                if(response.Item1)
+                {
+                    StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling LeaveTeam");
+                    await ctx.RespondAsync("Canceled!");
+                    return;
+                }
+
+                Team team = response.Item2;
+
                 if (team is null)
                     return;
 
-                if(team.TeamCaptain.Id == ctx.User.Id)
+                if(team.TeamCaptain is not null)
                 {
-                    await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
-                    return;
+                    if(team.TeamCaptain.Id == ctx.User.Id)
+                    {
+                        await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
+                        return;
+                    }
                 }
+                
 
                 //Getting confirmation from user
                 if(!await StandardInteractivityHandler.GetConfirmation(ctx, StandardStringBuilder.BuildTeamConfirmationString(team, "Leave")))           
@@ -413,7 +474,17 @@ namespace big
 
             
             //Getting what team the user wants to manage
-            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if(response.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling ManageTeam");
+                await ctx.RespondAsync("Canceled!");
+                return;
+            }
+
+            Team team = response.Item2;
+
             if (team is null)
                 return;
 
@@ -432,14 +503,14 @@ namespace big
 
 
             if(callUser is not null)
-                {
-                    if(callUser.TrustLevel is TrustLevel.TeamCaptain)
+            {
+                if(callUser.TrustLevel is TrustLevel.TeamCaptain)
                 {
                     teamUsers = team.GetNonCaptainMembers();
                 }
                 else
                 {
-                    teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
+                    teamUsers = team.TeamMembers.FindAll(x => x.User.Id != ctx.User.Id && x.User.Id != team.TeamCaptain!.Id && x.TrustLevel < TrustLevel.CanEditTrustLevels);
                 }
             }
             
@@ -456,24 +527,45 @@ namespace big
             }
 
             //Getting what user the user wants to manage
-            TeamUser userToManage = await StandardUserInteraction.ChooseTeamUserAsync(ctx, teamUsers);
+            var response2 = await StandardUserInteraction.ChooseTeamUserAsync(ctx, teamUsers);
+
+            if(response2.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a user. Canceling ManageTeam");
+                await ctx.RespondAsync("Canceled!");
+                return;
+            }
+
+            TeamUser userToManage = response2.Item2;
+
+
             if (userToManage == null)
             {
                 return;
             }
-                
-
-
-            
+   
 
             //Getting what trust level the user wants to give the user
-            TrustLevel trustLevelToGive = TrustLevel.None;
+    
 
-            if(callUser is not null)
+            
+
+            if(callUser is null)
             {
-                trustLevelToGive = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser.TrustLevel);
+                StandardLogging.LogError(FilePath, "Could not find user in team members");
+                return;
             }
             
+            var response3 = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser!.TrustLevel);
+
+            if(response3.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a trustlevel. Canceling ManageTeam");
+                await ctx.RespondAsync("Canceled!");
+                return;
+            }
+
+            TrustLevel trustLevelToGive = response3.Item2;
             
             if(trustLevelToGive is not TrustLevel.None)
                 userToManage.TrustLevel = trustLevelToGive;
@@ -516,7 +608,17 @@ namespace big
             }
 
             //Getting what team the user wants to view
-            Team team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if(response.Item1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling ViewTeam");
+                await ctx.RespondAsync("Canceled!");
+                return;
+            }
+
+            Team team = response.Item2;
+            
             if (team is null)
                 return;
 

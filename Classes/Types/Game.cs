@@ -3,7 +3,6 @@ namespace big
     public class Game : Interfaces.ISavable
     {
 
-        private static readonly string FilePath = "Game.cs";
         
         public string GameName { get; set; }
         public int GameID { get; set; }   

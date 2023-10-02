@@ -1,3 +1,5 @@
+using System.Threading.Channels;
+
 namespace big
 {
     public static class StandardUserInteraction
@@ -58,39 +60,52 @@ namespace big
 
         public static async Task SendDMAsync(DiscordUser user, string message)
         {
-            var Channnel = await DiscordInterface.GetDMChannelAsync(user);
-            await DiscordInterface.Client.SendMessageAsync(Channnel, message);
+            DiscordChannel? channel = null;
+            try
+            {
+                channel = DiscordInterface.GetDMChannelAsync(user);
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Failed to get DM channel for user " + user.Username);
+                throw new Exception("Failed to get DM channel for user " + user.Username);
+            }
+            
+            if(channel is not null)
+            await DiscordInterface.Client!.SendMessageAsync(channel, message);
+            return;
         }
 
-        public static async Task<Team> ChooseTeamAsync(CommandContext ctx, List<Team> teams)
+        public static async Task<Tuple<bool, Team>> ChooseTeamAsync(CommandContext ctx, List<Team> teams)
         {
             string s = StandardStringBuilder.BuildTeamListString(teams);
             await ctx.RespondAsync(s);
-            return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);            
+            return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);
+                     
         }
 
-        public static async Task<Game> ChooseGameAsync(CommandContext ctx, List<Game> games)
+        public static async Task<Tuple<bool, Game>> ChooseGameAsync(CommandContext ctx, List<Game> games)
         {
             string s = StandardStringBuilder.BuildGamePromtString(games);
             await ctx.Client.SendMessageAsync(ctx.Channel, s);
             return await StandardInteractivityHandler.ChooseByNumber<Game>(ctx, games);
         }
 
-        public static async Task<DiscordUser> ChooseUserAsync(CommandContext ctx, List<DiscordUser> users)
+        public static async Task<Tuple<bool, DiscordUser>> ChooseUserAsync(CommandContext ctx, List<DiscordUser> users)
         {
             string s = StandardStringBuilder.BuildUserListString(users);
             await ctx.Client.SendMessageAsync(ctx.Channel, s);
             return await StandardInteractivityHandler.ChooseByNumber<DiscordUser>(ctx, users);
         }
 
-        public static async Task<TeamUser> ChooseTeamUserAsync(CommandContext ctx, List<TeamUser> users)
+        public static async Task<Tuple<bool, TeamUser>> ChooseTeamUserAsync(CommandContext ctx, List<TeamUser> users)
         {
             string s = StandardStringBuilder.BuildTeamUserListString(users);
             await ctx.Client.SendMessageAsync(ctx.Channel, s);
             return await StandardInteractivityHandler.ChooseByNumber<TeamUser>(ctx, users);
         }
 
-        public static async Task<TrustLevel> ChooseTrustLevelAsync(CommandContext ctx, TrustLevel maxTrustLevel)
+        public static async Task<Tuple<bool,TrustLevel>> ChooseTrustLevelAsync(CommandContext ctx, TrustLevel maxTrustLevel)
         {
             List<TrustLevel> trustLevels = new List<TrustLevel>();
             foreach (TrustLevel trustLevel in Enum.GetValues(typeof(TrustLevel)))

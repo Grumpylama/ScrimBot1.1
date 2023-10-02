@@ -15,8 +15,15 @@ namespace big
         public string PromtKey()
         {
             Console.WriteLine("Please enter the key");
-            string key = Console.ReadLine();
+            string? key = Console.ReadLine();
+            if(key is not null)
             return key;
+            else
+            {
+                StandardLogging.LogFatal("AdminInterface.cs", "Key is null");
+                Environment.Exit(1);
+            }
+            throw new Exception("Key is null");
         }
 
         
@@ -24,8 +31,18 @@ namespace big
         public string PromtMasterPassword()
         {
             Console.WriteLine("Please enter the master password");
-            string password = Console.ReadLine();
+            string? password = Console.ReadLine();
+
+            if(password is not null)
             return password;
+            else
+            {
+                StandardLogging.LogFatal("AdminInterface.cs", "Password is null");
+                Environment.Exit(1);
+            }
+
+            throw new Exception("Password is null");
+            
         }
 
         public void PrintAdminInterface()

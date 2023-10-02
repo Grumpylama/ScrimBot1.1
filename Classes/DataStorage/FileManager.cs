@@ -211,7 +211,7 @@ namespace big
         {
             //Registering the save timer
             var saveTimer = new System.Timers.Timer(interval); 
-            saveTimer.Elapsed += TimerSave;
+            saveTimer.Elapsed += TimerSave!;
             saveTimer.Start();
             StandardLogging.LogInfo(FilePath, "Save timer started");
         }

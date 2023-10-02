@@ -6,7 +6,12 @@ namespace big
 
         public static string BuildTeamString(Team t)
         {
-            string s = "Team: " + t.TeamName + "\nCaptain: " + t.TeamCaptain.Username + "\nMembers: ";
+            string s = string.Empty;
+            if(t.TeamCaptain is null)
+                s = "Team: " + t.TeamName + "\nCaptain: None\nMembers: ";
+            else 
+                s = "Team: " + t.TeamName + "\nCaptain: " + t.TeamCaptain.Username + "\nMembers: ";
+
             foreach (TeamUser member in t.TeamMembers)
             {
                 s += member.User.Username + ", ";

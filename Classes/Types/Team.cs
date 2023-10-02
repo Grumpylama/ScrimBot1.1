@@ -12,7 +12,7 @@ namespace big
         private static readonly string FilePath = "Team.cs";
         private static int teamIDCounter = 0;   
         public string TeamName { get; set; }
-        public DiscordUser TeamCaptain { get; set; }
+        public DiscordUser? TeamCaptain { get; set; }
         
         public List<TeamUser> TeamMembers { get; set; }
 
@@ -21,7 +21,7 @@ namespace big
         public Game game { get; private set; }
 
         public DateTime CreationTime { get; set; }
-        public DiscordChannel CaptainChannel { get; set; }
+        public DiscordChannel? CaptainChannel { get; set; }
 
         public List<Team> avoidedTeams {get; private set;} = new List<Team>();
 
@@ -30,6 +30,7 @@ namespace big
         {
             SaveableTeam savableTeam = new SaveableTeam();
             savableTeam.ID = this.teamID;
+            if(this.TeamCaptain is not null)
             savableTeam.CaptainID = this.TeamCaptain.Id;
             savableTeam.MMR = this.MMR;
             savableTeam.gameID = this.game.GameID;
@@ -45,14 +46,22 @@ namespace big
         {
             if (this.TeamMembers.Exists(x => x.User.Id == newCaptain.Id))
             {
+                if(this.TeamCaptain is null)
+                {
+                    StandardLogging.LogInfo(FilePath, "Team didn't have a captain. Setting new captain " + newCaptain.Id);
+                    this.TeamMembers.Find(x => x.User.Id == newCaptain.Id)!.TrustLevel = TrustLevel.TeamCaptain;
+                    this.TeamCaptain = newCaptain;
+                    this.CaptainChannel = newCaptain.GetDMChannel();
+                    return true;
+                }
                 var oldCaptain = this.TeamCaptain;
                 this.TeamCaptain = newCaptain;
                 this.CaptainChannel = newCaptain.GetDMChannel();
 
                 if(this.TeamMembers.Exists(x => x.User.Id == oldCaptain.Id))
                 {
-                    this.TeamMembers.Find(x => x.User.Id == newCaptain.Id).TrustLevel = TrustLevel.TeamCaptain;
-                    this.TeamMembers.Find(x => x.User.Id == oldCaptain.Id).TrustLevel = TrustLevel.Member;
+                    this.TeamMembers.Find(x => x.User.Id == newCaptain.Id)!.TrustLevel = TrustLevel.TeamCaptain;
+                    this.TeamMembers.Find(x => x.User.Id == oldCaptain.Id)!.TrustLevel = TrustLevel.Member;
 
                 }
                 
@@ -63,28 +72,39 @@ namespace big
                 return false;
             }
         }
-
-        public async Task<bool> DMCaptainAsync(string message)
-        {
-            return await this.TeamCaptain.SendMessageAsync(message);
-        }
-
         public async Task<bool> DMCaptainAsync(string message, int timeout = 300)
         {
+            if(this.TeamCaptain is null)
+            {
+                StandardLogging.LogError(FilePath, "Can't DM captain. Captain is null");
+                throw new Exception("Team captain is null");
+            }
             return await this.TeamCaptain.SendMessageAsync(message, timeout);
         }
 
         public async Task<DSharpPlus.Interactivity.InteractivityResult<DSharpPlus.Entities.DiscordMessage>> ListenToCaptainAsync(double timeout = 0)
         {
+            StandardLogging.LogDebug(FilePath, "Listening to captain " + this.TeamCaptain + " From the team " + this.TeamName + " with ID " + this.teamID + " for " + timeout + " seconds" + " in channel " + this.CaptainChannel);
+
+            if(this.TeamCaptain is null)
+            {
+                StandardLogging.LogError(FilePath, "Can't listen to captain. Captain is null");
+                throw new Exception("Team captain is null");
+            }
+            if(this.CaptainChannel is null)
+            {
+                StandardLogging.LogError(FilePath, "Can't listen to captain. CaptainChannel is null");
+                throw new Exception("CaptainChannel is null");
+            }
             DiscordClient client = DiscordInterface.Client!;
             InteractivityExtension interactivity = client.GetInteractivity();
             if(timeout != 0)
             {
-                return await interactivity.WaitForMessageAsync(x => x.Author.Id == this.TeamCaptain.Id && x.ChannelId == this.CaptainChannel.Id, TimeSpan.FromSeconds(timeout)); 
+                return await interactivity.WaitForMessageAsync(x => x.Author.Id == this.TeamCaptain.Id && x.ChannelId == this.CaptainChannel!.Id, TimeSpan.FromSeconds(timeout)); 
             }
             else
             {
-                return await interactivity.WaitForMessageAsync(x => x.Author.Id == this.TeamCaptain.Id && x.ChannelId == this.CaptainChannel.Id);
+                return await interactivity.WaitForMessageAsync(x => x.Author.Id == this.TeamCaptain.Id && x.ChannelId == this.CaptainChannel!.Id);
                 
             }
             
@@ -142,13 +162,17 @@ namespace big
 
         public bool changeTrustlevel(TeamUser user, TrustLevel newTrustLevel)
         {
+            StandardLogging.LogInfo(FilePath, "Changing trust level of user " + user.User.Id + " to " + newTrustLevel.ToString() + " in team " + this.teamID);
+
             if (this.TeamMembers.Exists(x => x.User.Id == user.User.Id))
             {
                 this.TeamMembers.Find(x => x.User.Id == user.User.Id)!.TrustLevel = newTrustLevel;
+                
                 return true;
             }
             else
             {
+                StandardLogging.LogError(FilePath, "Error changing trust level of user " + user.User.Id + " to " + newTrustLevel.ToString() + " in team " + this.teamID + " because user is not in team");
                 return false;
             }
         }
@@ -237,6 +261,12 @@ namespace big
 
         public List<TeamUser> GetNonCaptainMembers()
         {
+            StandardLogging.LogDebug(FilePath, "Getting non captain members of team " + teamID);
+            if(this.TeamCaptain is null)
+            {
+                StandardLogging.LogDebug(FilePath, "No captain is set. Returning all members");
+                return TeamMembers;
+            }
             List<TeamUser> nonCaptainMembers = new List<TeamUser>();
             foreach (var item in TeamMembers)
             {
@@ -250,6 +280,12 @@ namespace big
 
         public bool updateCaptainChannel()
         {
+            StandardLogging.LogDebug(FilePath, "Updating captain channel for team " + teamID);
+            if(this.TeamCaptain is null)
+            {
+                StandardLogging.LogError(FilePath, "Can't update captain channel. Captain is null");
+                return false;
+            }
             try
             {
                 CaptainChannel = TeamCaptain.GetDMChannel();

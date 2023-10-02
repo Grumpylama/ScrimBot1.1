@@ -16,7 +16,7 @@ namespace big
 
         public bool Evaluate(MatchmakingContext context)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
 

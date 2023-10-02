@@ -12,20 +12,24 @@ namespace big
 
         public static Team GetTeamFromID(int id)
         {
-            foreach (var team in Teams)
-            {
-                if (team.teamID == id)
-                {
-                    return team;
-                }
-            }
+            StandardLogging.LogDebug(FilePath, "Getting team " + id);
+            Team? t = null;
 
-            return null;
+            if((t = Teams.Find(x => x.teamID == id)) is not null)
+            {
+                StandardLogging.LogDebug(FilePath, "Team " + id + " found. Team is: " + t.TeamName);
+                return t;
+            }
+            else
+            {
+                StandardLogging.LogError(FilePath, "Team " + id + " not found");
+                throw new Exception("Team not found");
+            }
         }
 
         public static bool IsTeamNameTaken(string name)
         {
-
+            StandardLogging.LogDebug(FilePath, "Checking if team name " + name + " is taken");
             return Teams.Exists(team => team.TeamName == name);
             
         }
@@ -44,15 +48,18 @@ namespace big
 
         public static Team GetTeamFromName(string name)
         {
-            foreach (var team in Teams)
-            {
-                if (team.TeamName == name)
-                {
-                    return team;
-                }
-            }
+            StandardLogging.LogDebug(FilePath, "Getting team " + name);
 
-            return null;
+            if(Teams.Exists(x => x.TeamName == name))
+            {
+                StandardLogging.LogDebug(FilePath, "Team " + name + " found");
+                return Teams.Find(x => x.TeamName == name)!;
+            }
+            else
+            {
+                StandardLogging.LogError(FilePath, "Team " + name + " not found");
+                throw new Exception("Team not found");
+            }
         }
 
         public static bool ForceUpdateCaptainDMChannels()

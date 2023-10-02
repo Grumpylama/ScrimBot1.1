@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace big
 {
-    internal class MatchmakingPool
+    public class MatchmakingPool
     {
         private static readonly string FilePath = "MatchmakingPool.cs";
         public DateTime Matchtime {get; private set;}
@@ -14,11 +14,13 @@ namespace big
 
         public Queue<MatchmakingTicket> Tickets {get; private set;} = new Queue<MatchmakingTicket>();
 
-        public MatchmakingPool(Game game, DateTime Matchtime)
+        public MatchmakingPool(Game game, DateTime Matchtime, List<IMatchMakingRule> rules)
         {
             this.game = game;
             this.Matchtime = Matchtime;
+            this.Rules = rules;
         }
+        
 
         public void AddTicket(MatchmakingTicket ticket)
         {

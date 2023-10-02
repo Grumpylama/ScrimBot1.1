@@ -7,7 +7,7 @@ namespace big
 {
     public class TimeRelaxationRule : IRelaxationRule
     {
-        private static readonly string FilePath = "TimeRelaxationRule.cs";
+
 
         private Dictionary<int, double> parameters {get; set;}
 

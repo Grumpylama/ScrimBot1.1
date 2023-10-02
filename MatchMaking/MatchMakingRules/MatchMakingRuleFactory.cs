@@ -27,7 +27,7 @@ namespace big
             {
                 case "EloMatchMakingRule":
                     List<IRelaxationRule> relaxations = new List<IRelaxationRule>();
-                    foreach(RelaxationRuleConfig relaxationRuleConfig in cfg.RelaxationRules)
+                    foreach(RelaxationRuleConfig relaxationRuleConfig in cfg.RelaxationRulesConfigs)
                     {
                         relaxations.Add(_relaxationRuleFactory.CreateRelaxationRule(relaxationRuleConfig));
                     }

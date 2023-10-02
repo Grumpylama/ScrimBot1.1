@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace big
 {
-    public class AltMatchmakingSystem
+    public class MatchMakingSystem
     {
         
-        private static readonly string FilePath = "AltMatchmakingSystem.cs";
+        private static readonly string FilePath = "MatchmakingSystem.cs";
 
-        List<MatchmakingPool> pools = new List<MatchmakingPool>();
+        private List<MatchmakingPool> pools = new List<MatchmakingPool>();
 
         
-        public AltMatchmakingSystem()
+        public MatchMakingSystem()
         {
             StandardLogging.LogInfo(FilePath, "Initalizing MatchMakingSystem");
-
-
-
+            LoadPoolConfigs();
+            StandardLogging.LogInfo(FilePath, "MatchMakingSystem Initalized");
         }
 
 
@@ -39,6 +38,14 @@ namespace big
                 }
             }
             StandardLogging.LogInfo(FilePath, "Pool Configs Loaded");
+        }
+
+        public void VarDump()
+        {
+            foreach (var pool in pools)
+            {
+                StandardLogging.LogInfo(FilePath, "Pool: " + pool.game.GameName + " " + pool.Matchtime.ToString());
+            }
         }
         
 

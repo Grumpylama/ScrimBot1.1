@@ -10,16 +10,18 @@ namespace big
         public static List<DiscordUser> AdminList = new List<DiscordUser>();
         
 
-        public static async Task<DiscordChannel> GetDMChannelAsync(DiscordUser user)
+        public static DiscordChannel GetDMChannelAsync(DiscordUser user)
         {
+            StandardLogging.LogDebug(FilePath, "Getting DM channel for " + user.Username);
             if (DMChannel.ContainsKey(user))
             {
                 return DMChannel[user];
             }
             else
             {
+                StandardLogging.LogError(FilePath, "DM channel for " + user.Username + " not found");
+                throw new Exception("DM channel not found");
                 
-                return null;
             }
         }
 

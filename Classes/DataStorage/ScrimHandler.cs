@@ -16,7 +16,7 @@ namespace big
         }
 
 
-        public static async Task MoveScrimsToDiskAsync()
+        public static void MoveScrimsToDiskAsync()
         {
             ITextProcessor textProcessor = new GenericTextFileProcessor();
 
@@ -38,7 +38,7 @@ namespace big
             
         }
 
-        public static async Task ForceScrimsToDisk()
+        public static void ForceScrimsToDisk()
         {
             ITextProcessor textProcessor = new GenericTextFileProcessor();
             StandardLogging.LogInfo(FilePath, "Moving scrims to disk");

@@ -40,7 +40,7 @@ namespace big
         {
             //Registering the unhandled exception handler
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+            
 
             
             
@@ -65,7 +65,7 @@ namespace big
             // Code to run when an unhandled exception occurs
             try
             {
-                StandardUserHandling.GetUserFromID(244135683537502208).SendDMAsync(e.ExceptionObject.ToString()).GetAwaiter().GetResult();
+                StandardUserHandling.GetUserFromID(244135683537502208).SendDMAsync(e.ExceptionObject.ToString()!).GetAwaiter().GetResult();
             }
             catch
             {
@@ -76,22 +76,7 @@ namespace big
             
         }
 
-        private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
-        {
-            StandardLogging.LogInfo(FilePath, "Process exit, saving data");
-            try{
-                StandardLogging.VarDump();
-                FileManager.SaveAll();
-            }
-            catch(Exception ex)
-            {
-                StandardLogging.LogError(FilePath, "Failed to save data");
-                StandardLogging.LogError(FilePath, "Last Save: " + FileManager.LastSave);
-                StandardLogging.LogError(FilePath, ex.Message);
-            }
-            
-            // Code to run when the application exits
-        }
+        
 
     }
    

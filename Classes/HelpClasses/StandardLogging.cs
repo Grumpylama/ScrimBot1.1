@@ -3,7 +3,6 @@ namespace big
     public static class StandardLogging
     {
 
-        private static readonly string FilePath = "StandardLogging.cs";
 
         private static readonly Serilog.Core.Logger logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -55,8 +54,6 @@ namespace big
             DiscordInterface.VarDump();
             logger.Information("Scrim:");
             ScrimHandler.VarDump();
-            logger.Information("Matchmaking:");
-            MatchMakingSystem.varDump();
             logger.Information("VarDumping done");
         }
 

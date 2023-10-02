@@ -171,7 +171,7 @@ namespace big
             await ctx.RespondAsync("Starting scrim between " + team1 + " and " + team2);
 
             ScrimHandler.RegisterScrim(new Scrim(team1, team2, team1.game, DateTime.Now));
-            await ScrimHandler.ForceScrimsToDisk();
+            ScrimHandler.ForceScrimsToDisk();
 
         }
         

@@ -4,8 +4,7 @@ namespace big
     {
 
         private static int ticketIDCounter = 1;
-        private static readonly string FilePath = "MatchmakingTicket.cs";
-
+        
         public int ticketID {get; private set;} = 0;
         public DateTime joinTime {get; private set;}
         public Team team {get; private set;}

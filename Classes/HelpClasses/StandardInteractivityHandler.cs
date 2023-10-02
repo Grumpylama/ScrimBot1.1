@@ -1,9 +1,10 @@
+using System.Net.Security;
+
 namespace big
 {
     public static class StandardInteractivityHandler
     {
 
-        private static readonly string FilePath = "StandardInteractivityHandler.cs";
        
 
         public static async Task<bool> GetConfirmation(CommandContext ctx, string message)
@@ -27,7 +28,7 @@ namespace big
             }
         }
 
-        public static async Task<T> ChooseByNumber<T>(CommandContext ctx, List<T> l)
+        public static async Task<Tuple<bool, T>> ChooseByNumber<T>(CommandContext ctx, List<T> l)
         {
             while(true)
             {
@@ -36,7 +37,7 @@ namespace big
                 {
                     if (i > 0 && i <= l.Count)
                     {
-                        return l[i - 1];
+                        return new Tuple<bool, T>(false, l[i - 1]);
                     }
                     else
                     {
@@ -45,7 +46,7 @@ namespace big
                 }
                 else if (message.Result.Content.ToLower() == "cancel")
                 {
-                    return default(T);
+                    return new Tuple<bool, T>(true, l[0]);
                 }
                 else 
                 {

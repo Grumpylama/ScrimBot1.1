@@ -6,7 +6,6 @@ namespace big
     {
         public static ulong IDCounter = 0;
         public ulong ID;
-        private static readonly string FilePath = "Scrim.cs";
 
 
         public Team Team1 {get; private set;}

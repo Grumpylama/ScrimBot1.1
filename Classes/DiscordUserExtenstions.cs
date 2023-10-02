@@ -59,10 +59,14 @@ namespace big
             List<Team> UsersTeams = new List<Team>();
             foreach (Team team in TeamHandler.Teams)
             {
-                if (team.TeamCaptain.Id == user.Id)
+                if(team.TeamCaptain is not null)
                 {
-                    UsersTeams.Add(team);
+                    if (team.TeamCaptain.Id == user.Id)
+                    {
+                        UsersTeams.Add(team);
+                    }
                 }
+                 
             }
 
             if(UsersTeams.Count == 0)

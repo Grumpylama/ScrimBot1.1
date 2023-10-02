@@ -64,7 +64,9 @@ namespace big
                 return false;
             }
 
-            if(teamToTransfer.TeamCaptain == newCaptain)
+            
+            
+            if(teamToTransfer.TeamCaptain! == newCaptain)
             {
                 await ctx.RespondAsync("You can't transfer the captain role to yourself");
                 return false;
