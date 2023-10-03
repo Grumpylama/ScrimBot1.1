@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace big
@@ -22,6 +23,7 @@ namespace big
         public double GetRelaxationStage(MatchmakingContext context)
         {
             List<int> ApplicableParamters = new List<int>();
+          
             foreach(var parameter in parameters)
             {
                 if(parameter.Key > context.minutesToStart)

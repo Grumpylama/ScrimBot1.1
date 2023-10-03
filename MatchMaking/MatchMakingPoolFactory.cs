@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using big;
 
-namespace ScrimBot1._1.AltMatchmaking
+namespace big
 {
     public class MatchMakingPoolFactory
     {
