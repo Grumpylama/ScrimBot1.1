@@ -23,8 +23,7 @@ namespace big
                     return new TimeRelaxationRule(cfg.RuleParameters);
                 default:
                     StandardLogging.LogFatal(FilePath, "Unknown relaxation rule type!");
-                    throw new Exception("Unknown relaxation rule type!");
-                    
+                    throw new Exception("Unknown relaxation rule type!");   
             }
 
         }

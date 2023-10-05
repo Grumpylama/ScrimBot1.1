@@ -51,7 +51,7 @@ namespace big
                 
                 else return false;
             }
-            StandardLogging.LogError(FilePath, "Invalid avoidedMatchmakingRule. No relaxation rules. Please your config file");
+            StandardLogging.LogError(FilePath, "Invalid avoidedMatchmakingRule. No relaxation rules. Please check your config file");
             return true;
         }
 

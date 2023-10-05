@@ -34,12 +34,40 @@ namespace big
             {
                 if (file.EndsWith(".json"))
                 {
+                    MatchMakingPoolConfig config;
                     StandardLogging.LogInfo(FilePath, $"Loading {file}");
-                    MatchMakingPoolConfig config = MatchMakingConfigExtracor.Instance.ExtractMatchMakingPoolConfig(file).GetAwaiter().GetResult();
+                    try
+                    {
+                        config = MatchMakingConfigExtracor.Instance.ExtractMatchMakingPoolConfig(file).GetAwaiter().GetResult();
+                    }
+                    catch
+                    {
+                        StandardLogging.LogError(FilePath, $"Error loading {file}");
+                        continue;
+                    }
+                    
                     poolConfigs.Add(config);
                 }
             }
             StandardLogging.LogInfo(FilePath, "Pool Configs Loaded");
+        }
+
+        public bool AddTeamToMatchMaking(Team team, DateTime matchTime, DiscordUser responsibleUser)
+        {
+            StandardLogging.LogInfo(FilePath, "Adding team " + team.TeamName + " to matchmaking");
+            try
+            {
+                LoadPool(team.game, matchTime).AddTicket(new MatchmakingTicket(team, responsibleUser));
+                StandardLogging.LogInfo(FilePath, "Team " + team.TeamName + " added to matchmaking");
+                return true;
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error adding team " + team.TeamName + " to matchmaking");
+                return false;
+            }
+            
+            
         }
 
         

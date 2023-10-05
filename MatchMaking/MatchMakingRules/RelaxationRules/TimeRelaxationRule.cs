@@ -9,11 +9,7 @@ namespace big
     public class TimeRelaxationRule : IRelaxationRule
     {
 
-
         private Dictionary<int, double> parameters {get; set;}
-
-
-        
 
         public TimeRelaxationRule(Dictionary<int, double> parameters)
         {

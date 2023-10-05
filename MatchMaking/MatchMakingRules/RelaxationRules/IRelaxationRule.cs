@@ -7,10 +7,6 @@ namespace big
 {
     public interface IRelaxationRule
     {
-
         public double GetRelaxationStage(MatchmakingContext context);
-
-        
-
     }
 }
