@@ -206,6 +206,9 @@ namespace big
                     savableAvoidedTeams.Add(new SavableAvoidedTeam(t.teamID, at.teamID));
                 }
             }
+
+
+            
             try
             {
                 StandardLogging.LogDebug(FilePath, "Saving AvoidedTeams");
