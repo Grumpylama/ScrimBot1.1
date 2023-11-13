@@ -26,6 +26,8 @@ namespace big
             throw new Exception("Key is null");
         }
 
+       
+
         
 
         public string PromtMasterPassword()

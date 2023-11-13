@@ -24,7 +24,8 @@ namespace big
         }
     }
 
-
+    //Warning for saying that the class is doesn't populate all parameters since the constructor is empty. This is however the intended use of the class and will not cause any issues.
+    //The parameters are populated when the class is loaded from the database.
     #pragma warning disable CS8618
     
 
@@ -131,18 +132,20 @@ namespace big
             switch (trustLevel)
             {
                 case 0:
-                    return big.TrustLevel.Member;
+                    return big.TrustLevel.None;
                 case 1:
-                    return big.TrustLevel.CanMatchMake;
+                    return big.TrustLevel.Member;
                 case 2:
-                    return big.TrustLevel.CanAddMembers;
+                    return big.TrustLevel.CanMatchMake;
                 case 3:
-                    return big.TrustLevel.CanRemoveMembers;
+                    return big.TrustLevel.CanAddMembers;
                 case 4:
-                    return big.TrustLevel.CanEditTeam;
+                    return big.TrustLevel.CanRemoveMembers;
                 case 5:
-                    return big.TrustLevel.CanEditTrustLevels;
+                    return big.TrustLevel.CanEditTeam;
                 case 6:
+                    return big.TrustLevel.CanEditTrustLevels;
+                case 7:
                     return big.TrustLevel.TeamCaptain;
                 default:
                     return big.TrustLevel.Member;

@@ -276,7 +276,6 @@ namespace big
             StandardUserHandling.CheckIfRegistred(ctx);
             if(!ctx.User.CheckIfValid())
             {          
-
                 return;
             }
 
@@ -289,14 +288,14 @@ namespace big
 
             
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is trying to add a user with hash " + hash);
-            DiscordUser userToAdd = StandardUserHandling.GetUserFromHashAsync(hash);
+            DiscordUser? userToAdd = StandardUserHandling.GetUserFromHashAsync(hash);
             
             
 
             if(userToAdd is null)
             {
                 StandardLogging.LogInfo(FilePath, "Could not find a user with hash " + hash);
-                await ctx.RespondAsync("Could not find user with that hash or it has already been used. \n Please have the user try again");
+                await ctx.RespondAsync("Could not find user with that hash. Note that each hash can only be used once");
                 return;
             }
 

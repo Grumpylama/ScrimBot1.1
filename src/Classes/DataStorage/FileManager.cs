@@ -11,7 +11,7 @@ namespace big
         {
             string startpath = Environment.CurrentDirectory;
 
-            ITextProcessor textProcessor = new EncryptedGenericFileProcessor(new AesCrypto());
+            ITextProcessor textProcessor = new GenericTextFileProcessor();
             
             StandardLogging.LogInfo(FilePath, "Starting File Manager");
             StandardLogging.LogInfo(FilePath, "startpath is : " + startpath);
@@ -138,7 +138,7 @@ namespace big
                 StandardLogging.LogInfo(FilePath, "Adding admins");
 
                 DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(244135683537502208));
-                DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(214158487712694273));
+                //DiscordInterface.AdminList.Add(StandardUserHandling.GetUserFromID(214158487712694273));
 
             } 
             catch(Exception e)
@@ -148,8 +148,18 @@ namespace big
             }
 
 
-            //Set Static ID's
+            StandardLogging.LogInfo(FilePath, "Done Loading Data");
+            StandardLogging.LogDebug(FilePath, "Starting to set static ID's");
+
+            if(TeamHandler.Teams is not null && TeamHandler.Teams.Count > 0)
             Team.SetStaticID(TeamHandler.Teams.Select(x => x.teamID).Max() + 1);
+            else
+            {
+                Team.SetStaticID(0);
+                StandardLogging.LogDebug(FilePath, "Teams list empty. Setting Static ID to 0");
+            }
+            //Set Static ID's
+            
             TeamHandler.ForceUpdateCaptainDMChannels();
             
             return;
@@ -162,7 +172,7 @@ namespace big
             
             string startpath = Environment.CurrentDirectory + "\\Data";
             StandardLogging.LogInfo(FilePath, "saving all files with startpath: " + startpath);
-            ITextProcessor textProcessor = new EncryptedGenericFileProcessor(new AesCrypto());
+            ITextProcessor textProcessor = new GenericTextFileProcessor();
             
 
             
@@ -196,10 +206,43 @@ namespace big
                     savableAvoidedTeams.Add(new SavableAvoidedTeam(t.teamID, at.teamID));
                 }
             }
-            textProcessor.SaveToTextFile<SavableAvoidedTeam>(savableAvoidedTeams, startpath + "/AvoidedTeams.csv");
-            textProcessor.SaveToTextFile<SavableTeamUser>(savableTeamUsers, startpath + "/TeamUsers.csv");
-            textProcessor.SaveToTextFile<SaveableTeam>(saveableTeams, startpath + "/Teams.csv");
-            textProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
+            try
+            {
+                StandardLogging.LogDebug(FilePath, "Saving AvoidedTeams");
+                textProcessor.SaveToTextFile<SavableAvoidedTeam>(savableAvoidedTeams, startpath + "/AvoidedTeams.csv");
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error saving AvoidedTeams");
+            }
+            try
+            {
+                StandardLogging.LogDebug(FilePath, "Saving TeamUsers");
+                textProcessor.SaveToTextFile<SavableTeamUser>(savableTeamUsers, startpath + "/TeamUsers.csv");
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error saving TeamUsers");
+            }
+            try
+            {
+                StandardLogging.LogDebug(FilePath, "Saving Teams");
+                textProcessor.SaveToTextFile<SaveableTeam>(saveableTeams, startpath + "/Teams.csv");
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error saving Teams");
+            }
+            try
+            {
+                StandardLogging.LogDebug(FilePath, "Saving Users");
+                textProcessor.SaveToTextFile<SaveableUser>(saveableUsers, startpath + "/Users.csv");
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error saving Users");
+            }
+            
 
             LastSave = DateTime.Now;
 

@@ -82,7 +82,7 @@ namespace big
             return await this.TeamCaptain.SendMessageAsync(message, timeout);
         }
 
-        public async Task<DSharpPlus.Interactivity.InteractivityResult<DSharpPlus.Entities.DiscordMessage>> ListenToCaptainAsync(double timeout = 0)
+        public async Task<InteractivityResult<DSharpPlus.Entities.DiscordMessage>> ListenToCaptainAsync(double timeout = 0)
         {
             StandardLogging.LogDebug(FilePath, "Listening to captain " + this.TeamCaptain + " From the team " + this.TeamName + " with ID " + this.teamID + " for " + timeout + " seconds" + " in channel " + this.CaptainChannel);
 

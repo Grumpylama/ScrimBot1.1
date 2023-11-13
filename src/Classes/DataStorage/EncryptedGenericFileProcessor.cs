@@ -10,7 +10,7 @@ namespace big
         }
 
         
-        public List<T> LoadFromTextFile<T>(string filePath) where T : Interfaces.ISavable, new()
+        public List<T> LoadFromTextFile<T>(string filePath) where T : ISavable, new()
         {
             StandardLogging.LogInfo(FilePath, "Loading from text file: " + filePath);
             var lines = System.IO.File.ReadAllLines(filePath).ToList();

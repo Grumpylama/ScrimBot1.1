@@ -28,16 +28,16 @@ namespace big
             }
         }
 
-        public static async Task<Tuple<bool, T>> ChooseByNumber<T>(CommandContext ctx, List<T> l)
+        public static async Task<Tuple<bool, T>> ChooseByNumber<T>(CommandContext ctx, List<T> list)
         {
             while(true)
             {
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
                 if (int.TryParse(message.Result.Content, out int i))
                 {
-                    if (i > 0 && i <= l.Count)
+                    if (i > 0 && i <= list.Count)
                     {
-                        return new Tuple<bool, T>(false, l[i - 1]);
+                        return new Tuple<bool, T>(false, list[i - 1]);
                     }
                     else
                     {
@@ -46,7 +46,7 @@ namespace big
                 }
                 else if (message.Result.Content.ToLower() == "cancel")
                 {
-                    return new Tuple<bool, T>(true, l[0]);
+                    return new Tuple<bool, T>(true, list[0]);
                 }
                 else 
                 {

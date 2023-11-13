@@ -12,7 +12,7 @@ namespace big
             string name = username.Split('#')[0];
             string discriminator = username.Split('#')[1];
 
-            StandardLogging.LogDebug(FilePath, "Getting user " + username);
+            StandardLogging.LogDebug(FilePath, "Getting user " + username + "From username");
             DiscordUser? user = null;
 
             if((user = Users.Find(x => x.Username == name && discriminator == x.Discriminator)) is not null)
@@ -149,7 +149,7 @@ namespace big
 
         public static Dictionary<String, DiscordUser> hashes = new Dictionary<String, DiscordUser>();
 
-        public static DiscordUser GetUserFromHashAsync(string hash)
+        public static DiscordUser? GetUserFromHashAsync(string hash)
         {
 
             StandardLogging.LogDebug(FilePath, "Getting user " + hash);
@@ -164,7 +164,8 @@ namespace big
             }
             
 
-            throw new Exception("Has not found");
+            StandardLogging.LogInfo(FilePath, "User " + hash + " not found");
+            return null;
         }
 
         public static void AddUserHash(string hash , DiscordUser user, DiscordChannel channel)

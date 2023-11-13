@@ -34,18 +34,16 @@ namespace big
             }
             while(true)
             {
-                await ctx.RespondAsync("What time will you be playing? \n Please Enter in the format HH:MM \n Please matchmake at either xx:00 or xx:30 \n Enter \"ASAP\" if you are looking for a game ASAP");
+                await ctx.RespondAsync("What time will you be playing? \n Please Enter in the format HH:MM \n Please matchmake at either xx:00 or xx:30");
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
                 switch (message.Result.Content.ToLower())
                 {
                     case "cancel":
                         return null;
-                    case "asap":
-                        return new EDate(GetNearestHour(DateTime.Now), true);
                     default:
                         if (DateTime.TryParse(message.Result.Content, out DateTime date))
                         {                   
-                            return new EDate(GetNearestHour(date), false);
+                            return new EDate(GetNearestHour(date));
                         }
                         else
                         {

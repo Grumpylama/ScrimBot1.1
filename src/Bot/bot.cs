@@ -23,19 +23,15 @@ namespace big
             StandardLogging.LogInfo(FilePath, "Loading Config");
             BotConfigExtractor extractor = new BotConfigExtractor();
 
-            ICrypto crypto = new AesCrypto();
-            ConfigJson configJson = await extractor.ExtractConfigAsync(AdminInterface, crypto);
+            
+            string token = AdminInterface.PromtKey();
 
-            if(configJson.Success != "success")
-            {
-                StandardLogging.LogFatal(FilePath, "Config was not decrypted correctly");
-                StandardLogging.LogFatal(FilePath, "Exiting");
-                Environment.Exit(1);
-            }
+            
+            
             
             var config = new DiscordConfiguration
             {
-                Token = configJson.Token,
+                Token = token,
                 TokenType = TokenType.Bot,
                 
             };
@@ -64,7 +60,7 @@ namespace big
 
             var CommandsConfig = new CommandsNextConfiguration
             {    
-                StringPrefixes = new string[] { configJson.Prefix },
+                StringPrefixes = new string[] { "!" },
                 EnableMentionPrefix = true,
                 EnableDms = true
 
