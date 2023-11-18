@@ -7,25 +7,19 @@ using System.Threading.Tasks;
 
 namespace big
 {
-    public class MatchMakingSystem
+    public static class MatchMakingSystem
     {
         
         private static readonly string FilePath = "MatchmakingSystem.cs";
 
-        private List<MatchmakingPool> pools = new List<MatchmakingPool>();
+        private static List<MatchmakingPool> pools = new List<MatchmakingPool>();
 
         
-        public MatchMakingSystem()
-        {
-            StandardLogging.LogInfo(FilePath, "Initalizing MatchMakingSystem");
-            LoadPoolConfigs();
-            StandardLogging.LogInfo(FilePath, "MatchMakingSystem Initalized");
-        }
+        
 
+        private static List<MatchMakingPoolConfig> poolConfigs = new List<MatchMakingPoolConfig>();
 
-        List<MatchMakingPoolConfig> poolConfigs = new List<MatchMakingPoolConfig>();
-
-        private void LoadPoolConfigs()
+        public static void LoadPoolConfigs()
         {
             StandardLogging.LogInfo(FilePath, "Loading Pool Configs");
             string[] files = Directory.GetFiles("MatchMakingConfigs");
@@ -52,11 +46,16 @@ namespace big
             StandardLogging.LogInfo(FilePath, "Pool Configs Loaded");
         }
 
-        public bool AddTeamToMatchMaking(Team team, DateTime matchTime, DiscordUser responsibleUser)
+        public static bool AddTeamToMatchMaking(Team team, DateTime matchTime, DiscordUser responsibleUser)
         {
             StandardLogging.LogInfo(FilePath, "Adding team " + team.TeamName + " to matchmaking");
             try
             {
+                if(LoadPool(team.game, matchTime).Tickets.Any(x => x.team.teamID == team.teamID))
+                {
+                    StandardLogging.LogError(FilePath, "Team " + team.TeamName + " already in matchmaking");
+                    return false;
+                }
                 LoadPool(team.game, matchTime).AddTicket(new MatchmakingTicket(team, responsibleUser));
                 StandardLogging.LogInfo(FilePath, "Team " + team.TeamName + " added to matchmaking");
                 return true;
@@ -74,7 +73,7 @@ namespace big
 
         
 
-        private MatchmakingPool LoadPool(Game game, DateTime matchTime)
+        private static MatchmakingPool LoadPool(Game game, DateTime matchTime)
         {
             
             MatchmakingPool? pool;
@@ -104,7 +103,7 @@ namespace big
 
         }
 
-        public void VarDump()
+        public static void VarDump()
         {
             foreach (var pool in pools)
             {

@@ -10,8 +10,7 @@ using DSharpPlus.Interactivity.Enums;
 
 namespace big
 {
-    [Group("matchmaking")]
-    [Description("Matchmaking commands")]
+    
 
     public partial class MatchmakingCommands : BaseCommandModule
     {        
@@ -34,7 +33,7 @@ namespace big
             await ctx.RespondAsync("Which team would you like to matchmake for?");
             var team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-            if(team.Item1)
+            if(team.Success == false)
             {
                 await ctx.RespondAsync("Matchmaking cancelled");
                 return;
@@ -43,9 +42,21 @@ namespace big
             
             var time = await StandardUserInteraction.PromtDateAsync(ctx);
 
-            if(time is null)
+            if(time.Success == false)
             {
                 await ctx.RespondAsync("Matchmaking cancelled");
+                return;
+            }
+
+            
+            if(MatchMakingSystem.AddTeamToMatchMaking(team.ResponseItem, (DateTime)time.ResponseItem, ctx.User))
+            {
+                await ctx.RespondAsync("Team added to matchmaking");
+                return;
+            }
+            else
+            {
+                await ctx.RespondAsync("Error adding team to matchmaking");
                 return;
             }
             

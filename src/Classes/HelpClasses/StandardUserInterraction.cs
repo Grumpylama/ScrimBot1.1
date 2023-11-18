@@ -1,4 +1,6 @@
 using System.Threading.Channels;
+using Microsoft.VisualBasic;
+using ScrimBot1._1.src.Classes.Types;
 
 namespace big
 {
@@ -13,41 +15,80 @@ namespace big
             await ctx.RespondAsync(message);
         }
 
-        public static async Task<Nullable<EDate>> PromtDateAsync(CommandContext ctx)
+        
+
+        public static async Task<InteractionResponse<string>> PromtStringAsync(CommandContext ctx, string promt)
         {
-            
-            
-            while(true)
+            try
             {
-                await ctx.RespondAsync("What day will you be playing? \n 1:Tonight \n 2:Tomorrow \n 3:Other");
+                await ctx.RespondAsync(promt);
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
                 if (message.Result.Content.ToLower().Contains("cancel"))
                 {
-                    return null;
+                    return new InteractionResponse<string>("", InteractionOutcome.Cancelled);
                 }
-                if(message.Result.Content != "1" && message.Result.Content != "2" && message.Result.Content != "3")
-                {
-                    await ctx.RespondAsync("Please enter a valid number");
-                    continue;
-                }
-                break;
+                return new InteractionResponse<string>(message.Result.Content, InteractionOutcome.Success); 
             }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error getting string from user");
+                return new InteractionResponse<string>("", InteractionOutcome.Error);
+            }
+        }
+        public static async Task<InteractionResponse<DateTime>> PromtDateAsync(CommandContext ctx)
+        {
+            
+            DateTime timeToPlay;
             while(true)
             {
-                await ctx.RespondAsync("What time will you be playing? \n Please Enter in the format HH:MM \n Please matchmake at either xx:00 or xx:30");
+                await ctx.Channel.SendMessageAsync("What day will you be playing? \n 1:Tonight \n 2:Tomorrow");
+                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+                if (message.Result.Content.ToLower().Contains("cancel"))
+                {
+                    return new InteractionResponse<DateTime>(DateTime.MinValue, InteractionOutcome.Cancelled);
+                }
+                if(message.Result.Content != "1" && message.Result.Content != "2")
+                {
+                    await ctx.Channel.SendMessageAsync("Please enter a valid number");
+                    continue;
+                }
+                else
+                {
+                    switch (message.Result.Content)
+                    {
+                        case "1":
+                            timeToPlay = DateTime.Today;
+                            break;
+                        case "2":
+                            timeToPlay = DateTime.Today.AddDays(1);
+                            break;
+                        default:
+                            await ctx.Channel.SendMessageAsync("Please enter a valid number");
+                            continue;
+                    }
+                    break;
+                }
+
+                
+            }
+
+            while(true)
+            {
+                await ctx.Channel.SendMessageAsync("What time will you be playing? \n Please Enter in the format HH:MM \n Please matchmake at either xx:00 or xx:30");
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
                 switch (message.Result.Content.ToLower())
                 {
                     case "cancel":
-                        return null;
+                        return new InteractionResponse<DateTime>(DateTime.MinValue, InteractionOutcome.Cancelled);
                     default:
                         if (DateTime.TryParse(message.Result.Content, out DateTime date))
                         {                   
-                            return new EDate(GetNearestHour(date));
+                            timeToPlay = new DateTime(timeToPlay.Year, timeToPlay.Month, timeToPlay.Day, date.Hour, date.Minute, 0);
+                            return new InteractionResponse<DateTime>(timeToPlay, InteractionOutcome.Success);
                         }
                         else
                         {
-                            await ctx.RespondAsync("Please enter a valid time");
+                            await ctx.Channel.SendMessageAsync("Please enter a valid time");
                             continue;
                         }
                         
@@ -74,36 +115,37 @@ namespace big
             return;
         }
 
-        public static async Task<Tuple<bool, Team>> ChooseTeamAsync(CommandContext ctx, List<Team> teams)
+        public static async Task<InteractionResponse<Team>> ChooseTeamAsync(CommandContext ctx, List<Team> teams)
         {
             string s = StandardStringBuilder.BuildTeamListString(teams);
             await ctx.RespondAsync(s);
+
             return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);
                      
         }
 
-        public static async Task<Tuple<bool, Game>> ChooseGameAsync(CommandContext ctx, List<Game> games)
+        public static async Task<InteractionResponse<Game>> ChooseGameAsync(CommandContext ctx, List<Game> games)
         {
             string s = StandardStringBuilder.BuildGamePromtString(games);
             await ctx.Client.SendMessageAsync(ctx.Channel, s);
             return await StandardInteractivityHandler.ChooseByNumber<Game>(ctx, games);
         }
 
-        public static async Task<Tuple<bool, DiscordUser>> ChooseUserAsync(CommandContext ctx, List<DiscordUser> users)
+        public static async Task<InteractionResponse<DiscordUser>> ChooseUserAsync(CommandContext ctx, List<DiscordUser> users)
         {
             string s = StandardStringBuilder.BuildUserListString(users);
             await ctx.Client.SendMessageAsync(ctx.Channel, s);
             return await StandardInteractivityHandler.ChooseByNumber<DiscordUser>(ctx, users);
         }
 
-        public static async Task<Tuple<bool, TeamUser>> ChooseTeamUserAsync(CommandContext ctx, List<TeamUser> users)
+        public static async Task<InteractionResponse<TeamUser>> ChooseTeamUserAsync(CommandContext ctx, List<TeamUser> users)
         {
             string s = StandardStringBuilder.BuildTeamUserListString(users);
             await ctx.Client.SendMessageAsync(ctx.Channel, s);
             return await StandardInteractivityHandler.ChooseByNumber<TeamUser>(ctx, users);
         }
 
-        public static async Task<Tuple<bool,TrustLevel>> ChooseTrustLevelAsync(CommandContext ctx, TrustLevel maxTrustLevel)
+        public static async Task<InteractionResponse<TrustLevel>> ChooseTrustLevelAsync(CommandContext ctx, TrustLevel maxTrustLevel)
         {
             List<TrustLevel> trustLevels = new List<TrustLevel>();
             foreach (TrustLevel trustLevel in Enum.GetValues(typeof(TrustLevel)))

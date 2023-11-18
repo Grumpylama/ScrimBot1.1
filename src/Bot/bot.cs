@@ -88,6 +88,7 @@ namespace big
                 Commands.RegisterCommands<AdminCommands>();
                 Commands.RegisterCommands<Commands>();
                 Commands.RegisterCommands<TestingCommands>();
+                Commands.RegisterCommands<MatchmakingCommands>();
                 //Commands.RegisterCommands<QuickCommands>();
                 
             }

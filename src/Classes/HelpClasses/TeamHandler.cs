@@ -58,6 +58,7 @@ namespace big
             else
             {
                 StandardLogging.LogError(FilePath, "Team " + name + " not found");
+                return null!;
                 throw new Exception("Team not found");
             }
         }

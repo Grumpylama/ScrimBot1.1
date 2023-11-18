@@ -1,4 +1,6 @@
 using System.Net.Security;
+using Microsoft.VisualBasic;
+using ScrimBot1._1.src.Classes.Types;
 
 namespace big
 {
@@ -23,37 +25,45 @@ namespace big
                 }
                 else
                 {
-                    await ctx.RespondAsync("Please enter either \"confirm\" or \"no\"");
+                    await ctx.Channel.SendMessageAsync("Please enter either \"confirm\" or \"no\"");
                 }
             }
         }
 
-        public static async Task<Tuple<bool, T>> ChooseByNumber<T>(CommandContext ctx, List<T> list)
+        public static async Task<InteractionResponse<T>> ChooseByNumber<T>(CommandContext ctx, List<T> list)
         {
-            while(true)
+            try
             {
-                var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
-                if (int.TryParse(message.Result.Content, out int i))
+                while(true)
                 {
-                    if (i > 0 && i <= list.Count)
+                    var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
+                    if (int.TryParse(message.Result.Content, out int i))
                     {
-                        return new Tuple<bool, T>(false, list[i - 1]);
+                        if (i > 0 && i <= list.Count)
+                        {
+                            return new InteractionResponse<T>(list[i - 1], InteractionOutcome.Success);
+                        }
+                        else
+                        {
+                            await ctx.Channel.SendMessageAsync("Please enter a valid number");
+                        }
                     }
-                    else
+                    else if (message.Result.Content.ToLower() == "cancel")
                     {
-                        await ctx.RespondAsync("Please enter a valid number");
+                        return new InteractionResponse<T>(default(T), InteractionOutcome.Cancelled);                
                     }
-                }
-                else if (message.Result.Content.ToLower() == "cancel")
-                {
-                    return new Tuple<bool, T>(true, list[0]);
-                }
-                else 
-                {
-                    await ctx.RespondAsync("Please enter a valid number");
-                }
+                    else 
+                    {
+                        await ctx.Channel.SendMessageAsync("Please enter a valid number");
+                    }
 
+                }
             }
+            catch
+            {
+                return new InteractionResponse<T>(default(T), InteractionOutcome.Error);
+            }
+            
         }
 
 

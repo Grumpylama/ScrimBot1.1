@@ -23,7 +23,7 @@ namespace big
         public DateTime CreationTime { get; set; }
         public DiscordChannel? CaptainChannel { get; set; }
 
-        public List<Team> avoidedTeams {get; private set;} = new List<Team>();
+        public List<Team> AvoidedTeams {get; private set;} = new List<Team>();
 
 
         public SaveableTeam ToSavable()
@@ -113,13 +113,13 @@ namespace big
 
         public bool isAvoided(Team team)
         {
-            return avoidedTeams.Exists(x => x.teamID == team.teamID);
+            return AvoidedTeams.Exists(x => x.teamID == team.teamID);
         }
 
         public void AddAvoidedTeam(Team team)
         {
             StandardLogging.LogInfo(FilePath, "Adding avoided team " + team.teamID + " to team " + this.teamID);
-            avoidedTeams.Add(team);
+            AvoidedTeams.Add(team);
         }
 
         public void RemoveAvoidedTeam(Team team)
@@ -127,7 +127,7 @@ namespace big
             try
             {   
                 StandardLogging.LogInfo(FilePath, "Removing avoided team " + team.teamID + " from team " + this.teamID);
-                avoidedTeams.Remove(team);
+                AvoidedTeams.Remove(team);
             }
             catch(Exception e)
             {

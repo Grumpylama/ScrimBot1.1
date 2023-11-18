@@ -34,7 +34,7 @@ namespace big
             //Chosing what team to delete
             var Response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-            if(Response.Item1)
+            if(Response.Success == false)
             {
                 
                 StandardLogging.LogInfo(FilePath, "User canceled DeleteTeam");
@@ -42,7 +42,7 @@ namespace big
                 return;
             }
 
-            Team team = Response.Item2;
+            Team team = Response.ResponseItem;
             if(team == null)
             {
                 
@@ -95,7 +95,7 @@ namespace big
 
 
             var response = await StandardUserInteraction.ChooseGameAsync(ctx, GameHandler.Games);
-            if(response.Item1)
+            if(response.Success == false)
             {
                 
                 StandardLogging.LogInfo(FilePath, "User canceled CreateTeam");
@@ -103,7 +103,7 @@ namespace big
                 return;
             }
 
-            Game game = response.Item2;
+            Game game = response.ResponseItem;
 
             if(game == null)
             {
@@ -151,14 +151,14 @@ namespace big
 
             var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-            if (response.Item1)
+            if (response.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling TransferCaptain");
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
                 return;
             }
 
-            Team teamToTransfer = response.Item2;
+            Team teamToTransfer = response.ResponseItem;
 
             if (teamToTransfer is null)
             {
@@ -182,14 +182,14 @@ namespace big
 
             var response2 = await StandardUserInteraction.ChooseUserAsync(ctx, otherMembers);
 
-            if (response2.Item1)
+            if (response2.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a user. Canceling TransferCaptain");
                 await ctx.Channel.SendMessageAsync("Canceled!").ConfigureAwait(false);
                 return;
             }
 
-            DiscordUser newCaptain = response2.Item2;
+            DiscordUser newCaptain = response2.ResponseItem;
 
             StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " chose " + newCaptain.ToString() + " as new captain of " + teamToTransfer.TeamName);
 
@@ -265,7 +265,7 @@ namespace big
 
             StandardUserHandling.AddUserHash(hash, ctx.User, ctx.Channel);
             
-            await ctx.RespondAsync("A captain can enter the following code to add you to a team: \n " + hash);
+            await ctx.Channel.SendMessageAsync("A captain can enter the following code to add you to a team: \n " + hash);
         }
 
         [Command("AddToTeam")]
@@ -295,7 +295,7 @@ namespace big
             if(userToAdd is null)
             {
                 StandardLogging.LogInfo(FilePath, "Could not find a user with hash " + hash);
-                await ctx.RespondAsync("Could not find user with that hash. Note that each hash can only be used once");
+                await ctx.Channel.SendMessageAsync("Could not find user with that hash. Note that each hash can only be used once");
                 return;
             }
 
@@ -304,7 +304,7 @@ namespace big
             if(userToAdd.Id == ctx.User.Id)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is trying to add himself/herself to a team");
-                await ctx.RespondAsync("You cannot add yourself to a team");
+                await ctx.Channel.SendMessageAsync("You cannot add yourself to a team");
                 return;
             }
 
@@ -316,7 +316,7 @@ namespace big
             if(UsersTeams.Count == 0)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not a captain of any teams");
-                await ctx.RespondAsync("You are not a captain of any teams");
+                await ctx.Channel.SendMessageAsync("You are not a captain of any teams");
                 return;
             }
             
@@ -325,14 +325,14 @@ namespace big
             
             var response = await StandardUserInteraction.ChooseTeamAsync(ctx, UsersTeams);
 
-            if(response.Item1)
+            if(response.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AddToTeam");
-                await ctx.RespondAsync("Canceled!");
+                await ctx.Channel.SendMessageAsync("Canceled!");
                 return;
             }
 
-            Team Team = response.Item2;
+            Team Team = response.ResponseItem;
 
             if (Team is null)
             {
@@ -345,7 +345,7 @@ namespace big
             if (userToAdd.IsInTeam(Team))
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is already in team " + Team);
-                await ctx.RespondAsync("User is already in team");
+                await ctx.Channel.SendMessageAsync("User is already in team");
                 return;
             }
             
@@ -354,7 +354,7 @@ namespace big
 
             Team.TeamMembers.Add(new TeamUser(userToAdd, Team.teamID, "Member"));
             var t = userToAdd.SendDMAsync("You were added to the team: " + Team.TeamName + " By " + ctx.User.Username + "#" + ctx.User.Discriminator);
-            await ctx.RespondAsync("User was added to team: " + Team.TeamName);
+            await ctx.Channel.SendMessageAsync("User was added to team: " + Team.TeamName);
             if(!await t)
             {
                 StandardLogging.LogInfo(FilePath, "Could not send DM to " + userToAdd.ToString());
@@ -380,7 +380,7 @@ namespace big
                 if(teams.Count == 0)
                 {
                     StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
-                    await ctx.RespondAsync("You are not in any teams");
+                    await ctx.Channel.SendMessageAsync("You are not in any teams");
                     return;
                 }
 
@@ -388,14 +388,14 @@ namespace big
                 //Getting what team the user wants to leave
                 var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-                if(response.Item1)
+                if(response.Success == false)
                 {
                     StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling LeaveTeam");
-                    await ctx.RespondAsync("Canceled!");
+                    await ctx.Channel.SendMessageAsync("Canceled!");
                     return;
                 }
 
-                Team team = response.Item2;
+                Team team = response.ResponseItem;
 
                 if (team is null)
                     return;
@@ -404,7 +404,7 @@ namespace big
                 {
                     if(team.TeamCaptain.Id == ctx.User.Id)
                     {
-                        await ctx.RespondAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
+                        await ctx.Channel.SendMessageAsync("You are the captain of this team. You cannot leave the team. \n If you want to leave the team you must transfer the captain role to another member of the team or delete the team");
                         return;
                     }
                 }
@@ -419,7 +419,7 @@ namespace big
                 team.TeamMembers.Remove(team.TeamMembers.Find(x => x.User.Id == ctx.User.Id));
                 
                 var t = team.TeamCaptain.SendDMAsync(ctx.User.Username + "#" + ctx.User.Discriminator + " has left the team: " + team.TeamName);
-                await ctx.RespondAsync("You have left the team: " + team.TeamName);
+                await ctx.Channel.SendMessageAsync("You have left the team: " + team.TeamName);
                 await t;
                 return;
             }
@@ -427,7 +427,7 @@ namespace big
             {
                 StandardLogging.LogError(FilePath, e.Message);
                 try {
-                    await ctx.RespondAsync("An error has occured. Please try again later");
+                    await ctx.Channel.SendMessageAsync("An error has occured. Please try again later");
                 }
                 catch (Exception e2)
                 {
@@ -467,7 +467,7 @@ namespace big
             if (teams.Count == 0)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to manage any teams");
-                await ctx.RespondAsync("You do not have permission to manage any teams");
+                await ctx.Channel.SendMessageAsync("You do not have permission to manage any teams");
                 return;
             }
 
@@ -475,14 +475,14 @@ namespace big
             //Getting what team the user wants to manage
             var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-            if(response.Item1)
+            if(response.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling ManageTeam");
-                await ctx.RespondAsync("Canceled!");
+                await ctx.Channel.SendMessageAsync("Canceled!");
                 return;
             }
 
-            Team team = response.Item2;
+            Team team = response.ResponseItem;
 
             if (team is null)
                 return;
@@ -496,7 +496,7 @@ namespace big
             if(callUser is null)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not a member of team " + team.TeamName);
-                await ctx.RespondAsync("Something went wrong please try again");
+                await ctx.Channel.SendMessageAsync("Something went wrong please try again");
             }
 
 
@@ -521,21 +521,21 @@ namespace big
             if (teamUsers.Count is 0)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to manage any users in team " + team.TeamName);
-                await ctx.RespondAsync("You do not have permission to manage any users in this team");
+                await ctx.Channel.SendMessageAsync("You do not have permission to manage any users in this team");
                 return;
             }
 
             //Getting what user the user wants to manage
             var response2 = await StandardUserInteraction.ChooseTeamUserAsync(ctx, teamUsers);
 
-            if(response2.Item1)
+            if(response2.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a user. Canceling ManageTeam");
-                await ctx.RespondAsync("Canceled!");
+                await ctx.Channel.SendMessageAsync("Canceled!");
                 return;
             }
 
-            TeamUser userToManage = response2.Item2;
+            TeamUser userToManage = response2.ResponseItem;
 
 
             if (userToManage == null)
@@ -557,21 +557,21 @@ namespace big
             
             var response3 = await StandardUserInteraction.ChooseTrustLevelAsync(ctx, callUser!.TrustLevel);
 
-            if(response3.Item1)
+            if(response3.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a trustlevel. Canceling ManageTeam");
-                await ctx.RespondAsync("Canceled!");
+                await ctx.Channel.SendMessageAsync("Canceled!");
                 return;
             }
 
-            TrustLevel trustLevelToGive = response3.Item2;
+            TrustLevel trustLevelToGive = response3.ResponseItem;
             
             if(trustLevelToGive is not TrustLevel.None)
                 userToManage.TrustLevel = trustLevelToGive;
             else return;
 
 
-            await ctx.RespondAsync($" { userToManage } trustlevel was set to {trustLevelToGive}");
+            await ctx.Channel.SendMessageAsync($" { userToManage } trustlevel was set to {trustLevelToGive}");
             
             return;
 
@@ -602,21 +602,21 @@ namespace big
             if (teams.Count == 0)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not in any teams");
-                await ctx.RespondAsync("You are not in any teams");
+                await ctx.Channel.SendMessageAsync("You are not in any teams");
                 return;
             }
 
             //Getting what team the user wants to view
             var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
-            if(response.Item1)
+            if(response.Success == false)
             {
                 StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling ViewTeam");
-                await ctx.RespondAsync("Canceled!");
+                await ctx.Channel.SendMessageAsync("Canceled!");
                 return;
             }
 
-            Team team = response.Item2;
+            Team team = response.ResponseItem;
             
             if (team is null)
                 return;
@@ -627,7 +627,188 @@ namespace big
             return;
           
             
-        }    
+        }
+
+        [Command("AvoidTeam")]
+        public async Task AvoidTeam(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, "AvoidTeam command was used by " + ctx.User.ToString());
+            StandardUserHandling.CheckIfRegistred(ctx);
+
+            if (!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+
+            //Getting all the teams the user is in where they can avoid teams
+            var teams = ctx.User.GetTeamsWithTrustLevel(TrustLevel.CanEditTeam);
+
+            if(teams is null)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to avoid any teams");
+                await ctx.Channel.SendMessageAsync("You do not have permission to avoid any teams in any of the teams you are in");
+                return;
+            }
+
+            if(teams.Count < 1)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " is not allowed to avoid any teams");
+                await ctx.Channel.SendMessageAsync("You do not have permission to avoid any teams in any of the teams you are in");
+                return;
+            }
+
+            //Getting what team the user wants to avoid FROM
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if(response.Success == false)
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AvoidTeam");
+                await ctx.Channel.SendMessageAsync("Canceled!");
+                return;
+            }
+
+            Team team = response.ResponseItem;
+
+            if (team is null)
+            {
+                StandardLogging.LogError(FilePath, "Team is null");
+                return;
+            }
+                
+            StandardLogging.LogDebug(FilePath, "Chosen team is " + team.TeamName + " with ID " + team.teamID);
+            
+
+            //Getting what team the user wants to avoid
+            var response2  = await StandardUserInteraction.PromtStringAsync(ctx, "What team do you want to avoid?");
+
+            if(response2.Success == false )
+            {
+                StandardLogging.LogInfo(FilePath, "User " + ctx.User.ToString() + " did not choose a team. Canceling AvoidTeam");
+                await ctx.Channel.SendMessageAsync("Canceled!");
+                return;
+            }
+
+            Team teamToAvoid = TeamHandler.GetTeamFromName(response2.ResponseItem);
+
+            if(teamToAvoid is null)
+            {
+                StandardLogging.LogInfo(FilePath, "Could not find team with name " + response2.ResponseItem);
+                await ctx.Channel.SendMessageAsync("Could not find team with name " + response2.ResponseItem);
+                return;
+            }
+
+            StandardLogging.LogDebug(FilePath, "Chosen team to avoid is " + teamToAvoid.TeamName + " with ID " + teamToAvoid.teamID);
+            team.AddAvoidedTeam(teamToAvoid);
+
+            await ctx.Channel.SendMessageAsync("Team " + teamToAvoid.TeamName + " was added to the avoid list of team " + team.TeamName);
+            return;
+
+        }
+
+        [Command("UnavoidTeam")]
+        public async Task UnAvoidTeam(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, "UnAvoidTeam command was used by " + ctx.User.ToString());
+            StandardUserHandling.CheckIfRegistred(ctx);
+
+            if(!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+
+            //Getting all the teams the user is in where they can avoid teams
+            var teams = ctx.User.GetTeamsWithTrustLevel(TrustLevel.CanEditTeam);
+
+            if(teams.Count < 1)
+            {
+                await ctx.Channel.SendMessageAsync("You do not have permission to avoid any teams in any of the teams you are in");
+                return;
+            }
+
+            //Getting what team the user wants to avoid FROM
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if(response.Success == false)
+            {
+                await ctx.Channel.SendMessageAsync("Canceled!");
+                return;
+            }
+
+            Team team = response.ResponseItem;
+
+            if (team is null)
+                return;
+
+            //Getting what team the user wants to unAvoid
+
+            var response2  = await StandardUserInteraction.ChooseTeamAsync(ctx, team.AvoidedTeams);
+
+            if(response2.Success == false )
+            {
+                await ctx.Channel.SendMessageAsync("Canceled!");
+                return;
+            }
+
+            Team teamToUnAvoid = response2.ResponseItem;
+
+
+            if(teamToUnAvoid is null)
+            {
+                await ctx.Channel.SendMessageAsync("Canceled!");
+                return;
+            }
+
+            team.RemoveAvoidedTeam(teamToUnAvoid);
+
+            await ctx.Channel.SendMessageAsync("Team " + teamToUnAvoid.TeamName + " was removed from the avoid list of team " + team.TeamName);
+            return;
+        }
+
+        [Command("ViewAvoidedTeams")]
+        public async Task ViewAvoidedTeams(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, "ViewAvoidedTeams command was used by " + ctx.User.ToString());
+            StandardUserHandling.CheckIfRegistred(ctx);
+
+            if(!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+
+            //Getting all the teams the user is in where they can avoid teams
+            var teams = ctx.User.GetTeams();
+
+            if(teams.Count < 1)
+            {
+                await ctx.Channel.SendMessageAsync("You are not in any teams");
+                return;
+            }
+
+            //Getting what team the user wants to avoid FROM
+            var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if(response.Success == false)
+            {
+                await ctx.Channel.SendMessageAsync("Canceled!");
+                return;
+            }
+
+            Team team = response.ResponseItem;
+
+            if (team is null)
+                return;
+
+            if(team.AvoidedTeams.Count < 1)
+            {
+                await ctx.Channel.SendMessageAsync("Team " + team.TeamName + " is not avoiding any teams");
+                return;
+            }
+
+            string s = StandardStringBuilder.BuildTeamListString(team.AvoidedTeams);
+
+            await ctx.Channel.SendMessageAsync("Team " + team.TeamName + " is avoiding the following teams: \n" + s);
+            return;
+        }
 
     }
 }

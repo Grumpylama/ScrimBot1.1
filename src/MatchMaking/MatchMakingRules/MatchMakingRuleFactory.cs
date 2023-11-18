@@ -23,15 +23,20 @@ namespace big
 
         public IMatchMakingRule GetRule(MatchMakingRuleConfig cfg)
         {
+            List<IRelaxationRule> relaxations = new List<IRelaxationRule>();
+            foreach(RelaxationRuleConfig relaxationRuleConfig in cfg.RelaxationRulesConfigs)
+            {
+                relaxations.Add(_relaxationRuleFactory.CreateRelaxationRule(relaxationRuleConfig));
+            }
+
             switch(cfg.RuleType)
             {
                 case "EloMatchMakingRule":
-                    List<IRelaxationRule> relaxations = new List<IRelaxationRule>();
-                    foreach(RelaxationRuleConfig relaxationRuleConfig in cfg.RelaxationRulesConfigs)
-                    {
-                        relaxations.Add(_relaxationRuleFactory.CreateRelaxationRule(relaxationRuleConfig));
-                    }
                     return new EloMatchMakingRule(cfg.StandardValue, relaxations); 
+                case "AvoidedTeamMatchMakingRule" :
+                    return new AvoidedMatchMakingRule(relaxations);
+                case "RecentGameMatchMakingRule":
+                    return new RecentMatchMatchmakingRule(cfg.StandardValue, relaxations);  
                 default:
                     throw new Exception("Unknown rule type");
             }

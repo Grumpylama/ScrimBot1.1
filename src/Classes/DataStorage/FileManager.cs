@@ -18,7 +18,10 @@ namespace big
 
             List<Task> tasks = new List<Task>();
             
-            
+            //Tells matchmakingsystem to load pool configs
+            MatchMakingSystem.LoadPoolConfigs();
+
+
             //Starts userloading
             try
             {
@@ -201,7 +204,7 @@ namespace big
             List<SavableAvoidedTeam> savableAvoidedTeams = new List<SavableAvoidedTeam>();
             foreach(Team t in TeamHandler.Teams)
             {
-                foreach(Team at in t.avoidedTeams)
+                foreach(Team at in t.AvoidedTeams)
                 {
                     savableAvoidedTeams.Add(new SavableAvoidedTeam(t.teamID, at.teamID));
                 }

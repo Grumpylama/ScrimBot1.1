@@ -9,7 +9,7 @@ namespace big
     {
         public List<IRelaxationRule> RelaxationsRules;
 
-        public RecentMatchMatchmakingRule(List<IRelaxationRule> relaxationsRules)
+        public RecentMatchMatchmakingRule(float standardvalue, List<IRelaxationRule> relaxationsRules)
         {
             RelaxationsRules = relaxationsRules;
         }
