@@ -24,13 +24,13 @@ namespace big
 
             if(!ctx.User.GetTeamsWithTrustLevel(TrustLevel.CanAddMembers).Contains(TeamToAddTo))
             {
-                ctx.RespondAsync("Found no team with that name where you have the permission to add members");
+                ctx.Channel.SendMessageAsync("Found no team with that name where you have the permission to add members");
                 return false;
             }
             
             if(TeamToAddTo.GetMembers().Exists(x => x.User == UserToAdd))
             {
-                ctx.RespondAsync("User is already in that team");
+                ctx.Channel.SendMessageAsync("User is already in that team");
                 return false;
             }
 
@@ -46,13 +46,13 @@ namespace big
             Team? teamToTransfer = ctx.User.GetOwnedTeams().Find(x => x.TeamName == TeamName);
             if(teamToTransfer is null)
             {
-                await ctx.RespondAsync("Found no team with that name where you are captain");
+                await ctx.Channel.SendMessageAsync("Found no team with that name where you are captain");
                 return false;
             }
 
             if(!ulong.TryParse(NewCaptainID, out ulong NewCaptainIDParsed))
             {
-                await ctx.RespondAsync("Could not parse ID");
+                await ctx.Channel.SendMessageAsync("Could not parse ID");
                 return false;
             }
 
@@ -60,7 +60,7 @@ namespace big
 
             if(newCaptain is null || teamToTransfer.GetMembers().Find(x => x.User == newCaptain) is null)
             {
-                await ctx.RespondAsync("Found no user with that ID in your team");
+                await ctx.Channel.SendMessageAsync("Found no user with that ID in your team");
                 return false;
             }
 
@@ -68,7 +68,7 @@ namespace big
             
             if(teamToTransfer.TeamCaptain! == newCaptain)
             {
-                await ctx.RespondAsync("You can't transfer the captain role to yourself");
+                await ctx.Channel.SendMessageAsync("You can't transfer the captain role to yourself");
                 return false;
             }
 
@@ -111,7 +111,7 @@ namespace big
             if(team is null || !team.GetMembers().Exists(x => x.User == ctx.User))
             {
                 StandardLogging.LogInfo(FilePath, $"User {ctx.User.ToString()} tried to view team {teamName} but was not in it or it did not exist");
-                await ctx.RespondAsync("Found no team with that name");
+                await ctx.Channel.SendMessageAsync("Found no team with that name");
                 return false;
             }
 

@@ -439,15 +439,7 @@ namespace big
 
         
 
-        [Command("Ping")] 
-        public async Task Ping(CommandContext ctx, string s = "")
-        {
-            StandardLogging.LogInfo(FilePath, "Ping command was used by " + ctx.User.ToString());
-            if(s == "pong")
-                await ctx.RespondAsync("Ping!");
-            else
-                await ctx.RespondAsync("Pong!");
-        } 
+        
 
         [Command("ManageMembers")]
         [Description("Manage the members of a team")]
@@ -658,6 +650,7 @@ namespace big
             }
 
             //Getting what team the user wants to avoid FROM
+            await ctx.Channel.SendMessageAsync("Which of your teams do you want to avoid a team with");
             var response = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
 
             if(response.Success == false)

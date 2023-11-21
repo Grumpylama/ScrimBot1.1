@@ -10,12 +10,12 @@ namespace big
         {
             if(ctx.User.IsAdmin() == false)
             {
-                await ctx.RespondAsync("You are not an admin");
+                await ctx.Channel.SendMessageAsync("You are not an admin");
                 return;
             }
 
             
-            await ctx.RespondAsync("Test");
+            await ctx.Channel.SendMessageAsync("Test");
         }
 
 

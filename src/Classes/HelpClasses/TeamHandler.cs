@@ -30,7 +30,7 @@ namespace big
         public static bool IsTeamNameTaken(string name)
         {
             StandardLogging.LogDebug(FilePath, "Checking if team name " + name + " is taken");
-            return Teams.Exists(team => team.TeamName == name);
+            return Teams.Exists(team => team.TeamName.ToLower() == name.ToLower());
             
         }
 
@@ -50,10 +50,10 @@ namespace big
         {
             StandardLogging.LogDebug(FilePath, "Getting team " + name);
 
-            if(Teams.Exists(x => x.TeamName == name))
+            if(Teams.Exists(x => x.TeamName.ToLower() == name.ToLower()))
             {
                 StandardLogging.LogDebug(FilePath, "Team " + name + " found");
-                return Teams.Find(x => x.TeamName == name)!;
+                return Teams.Find(x => x.TeamName.ToLower() == name.ToLower())!;
             }
             else
             {

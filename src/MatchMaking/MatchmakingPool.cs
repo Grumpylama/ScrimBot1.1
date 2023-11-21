@@ -27,15 +27,18 @@ namespace big
             Tickets.Enqueue(ticket);
         }
 
-        public void MatchMakingLoop(int index)
+        public async Task MatchMakingLoop()
         {
-            if (Tickets.Count < index + 1)
-            return;
+            StandardLogging.LogInfo(FilePath, "Starting Matchmaking Loop for the game " + game.GameName + " at the time " + Matchtime);
 
-            var ticket = Tickets.ElementAt(index);
-            if (ticket == null)
-            return;
+            Queue<MatchmakingTicket> Tickets = new Queue<MatchmakingTicket>(this.Tickets);
+
+            List<Tuple<MatchmakingTicket, MatchmakingTicket>> PotentialMatchesmatches = new List<Tuple<MatchmakingTicket, MatchmakingTicket>>();
+            
         }
+
+        
+        
 
         public Tuple<MatchmakingTicket, MatchmakingTicket>? MatchTickets(MatchmakingTicket ticketToCheck, List<MatchmakingTicket> tickets)
         {

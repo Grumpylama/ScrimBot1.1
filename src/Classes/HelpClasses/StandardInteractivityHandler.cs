@@ -11,7 +11,7 @@ namespace big
 
         public static async Task<bool> GetConfirmation(CommandContext ctx, string message)
         {
-            await ctx.RespondAsync(message);
+            await ctx.Channel.SendMessageAsync(message);
             while (true)
             {
                 var m = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);

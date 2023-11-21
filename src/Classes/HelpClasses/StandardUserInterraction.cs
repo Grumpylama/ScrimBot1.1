@@ -10,10 +10,7 @@ namespace big
         private static readonly string FilePath = "StandardUserInteraction.cs";
         
         
-        public static async Task RespondAsync(CommandContext ctx, string message)
-        {
-            await ctx.RespondAsync(message);
-        }
+        
 
         
 
@@ -21,7 +18,7 @@ namespace big
         {
             try
             {
-                await ctx.RespondAsync(promt);
+                await ctx.Channel.SendMessageAsync(promt);
                 var message = await ctx.Client.GetInteractivity().WaitForMessageAsync(x => x.Author.Id == ctx.User.Id && x.Channel.Id == ctx.Channel.Id);
                 if (message.Result.Content.ToLower().Contains("cancel"))
                 {
@@ -35,6 +32,8 @@ namespace big
                 return new InteractionResponse<string>("", InteractionOutcome.Error);
             }
         }
+
+        
         public static async Task<InteractionResponse<DateTime>> PromtDateAsync(CommandContext ctx)
         {
             
@@ -118,7 +117,7 @@ namespace big
         public static async Task<InteractionResponse<Team>> ChooseTeamAsync(CommandContext ctx, List<Team> teams)
         {
             string s = StandardStringBuilder.BuildTeamListString(teams);
-            await ctx.RespondAsync(s);
+            await ctx.Channel.SendMessageAsync(s);
 
             return await StandardInteractivityHandler.ChooseByNumber<Team>(ctx, teams);
                      

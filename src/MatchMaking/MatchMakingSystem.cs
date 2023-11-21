@@ -13,11 +13,24 @@ namespace big
         private static readonly string FilePath = "MatchmakingSystem.cs";
 
         private static List<MatchmakingPool> pools = new List<MatchmakingPool>();
-
         
         
-
+    	
         private static List<MatchMakingPoolConfig> poolConfigs = new List<MatchMakingPoolConfig>();
+
+        public static List<DateTime> GetDateTimes(Team team)
+        {
+            List<DateTime> tickets = new List<DateTime>();
+            foreach (var pool in pools)
+            {
+                if(pool.Tickets.Any(x => x.team.teamID == team.teamID))
+                {
+                    tickets.Add(pool.Matchtime);
+                }
+            }
+
+            return tickets;
+        }
 
         public static void LoadPoolConfigs()
         {
@@ -44,6 +57,19 @@ namespace big
                 }
             }
             StandardLogging.LogInfo(FilePath, "Pool Configs Loaded");
+        }
+
+        public static async Task MatchmakingCycle()
+        {
+            StandardLogging.LogInfo(FilePath, "Starting Matchmaking Cycle");
+
+            var Tasks = new List<Task>();
+            foreach (var pool in pools)
+            {
+                Tasks.Add(pool.MatchMakingLoop());
+            }
+            
+            await Task.WhenAll(Tasks);
         }
 
         public static bool AddTeamToMatchMaking(Team team, DateTime matchTime, DiscordUser responsibleUser)

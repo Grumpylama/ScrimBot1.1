@@ -15,6 +15,7 @@ namespace big
     public partial class MatchmakingCommands : BaseCommandModule
     {        
 
+        private static readonly string FilePath = "MatchmakingCommands.cs";
         [Command("matchmake")]
         public async Task Matchmake(CommandContext ctx)
         {
@@ -63,6 +64,49 @@ namespace big
 
 
             //d.MatchMakerHandler.addMatchMakingTeam(new MatchMakingTeam());
+
+        }
+
+        [Command("viewTickets")]
+        public async Task ViewTickets(CommandContext ctx)
+        {
+            StandardLogging.LogInfo(FilePath, ctx.User + " is viewing their matchmaking tickets");
+
+            StandardUserHandling.CheckIfRegistred(ctx);
+
+            if(!ctx.User.CheckIfValid())
+            {
+                return;
+            }
+
+            var teams = ctx.User.GetTeamsWithTrustLevel(TrustLevel.CanMatchMake);
+
+            if (teams.Count == 0)
+            {
+                await ctx.RespondAsync("You don't have the right to matchmake for any teams");
+                return;
+            }
+
+            await ctx.RespondAsync("Which team would you like to view tickets for?");
+            var team = await StandardUserInteraction.ChooseTeamAsync(ctx, teams);
+
+            if(team.Success == false)
+            {
+                await ctx.RespondAsync("Viewing tickets cancelled");
+                return;
+            }
+
+            var dateTimes = MatchMakingSystem.GetDateTimes(team.ResponseItem);
+            if(dateTimes.Count == 0)
+            {
+                await ctx.RespondAsync("No tickets found");
+                return;
+            }
+
+            
+
+
+
 
         }
     }
