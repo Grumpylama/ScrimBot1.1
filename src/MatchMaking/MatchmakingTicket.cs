@@ -2,6 +2,7 @@ namespace big
 {
     public class MatchmakingTicket
     {
+        private static readonly string FilePath = "MatchmakingTicket.cs";
 
         private static int ticketIDCounter = 1;
         
@@ -27,6 +28,16 @@ namespace big
             this.ResponsibleUser = ResponsibleUser;
             joinTime = DateTime.Now;
 
+        }
+
+        public bool PromtTeamOfScrim(MatchmakingPool pool, MatchmakingTicket opponentTicket)
+        {
+            StandardLogging.LogDebug(FilePath, "Confirming Scrim between " + team.TeamName + " and " + opponentTicket.team.TeamName);
+            if(opponentTicket is null)
+            {
+                StandardLogging.LogError(FilePath, "Opponent ticket is null");
+                return false;
+            }
         }
 
         public void ResetCheckedTickets()

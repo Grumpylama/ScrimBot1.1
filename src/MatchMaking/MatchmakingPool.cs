@@ -7,7 +7,7 @@ namespace big
     {
         private static readonly string FilePath = "MatchmakingPool.cs";
         public DateTime Matchtime {get; private set;}
-
+        private System.Timers.Timer MatchmakingLoopTimer;
         public Game game {get; private set;}
 
         public List<IMatchMakingRule> Rules = new List<IMatchMakingRule>();
@@ -19,6 +19,11 @@ namespace big
             this.game = game;
             this.Matchtime = Matchtime;
             this.Rules = rules;
+            this.MatchmakingLoopTimer = new System.Timers.Timer(300000);
+            this.MatchmakingLoopTimer.Elapsed += TriggerMatchMakingLoopOnTimer;
+            this.MatchmakingLoopTimer.AutoReset = true;
+            this.MatchmakingLoopTimer.Start();
+
         }
         
 
@@ -27,13 +32,16 @@ namespace big
             Tickets.Enqueue(ticket);
         }
 
+        private void TriggerMatchMakingLoopOnTimer(object? sender, ElapsedEventArgs e)
+        {
+            MatchMakingLoop().GetAwaiter().GetResult();
+        }
+
         public async Task MatchMakingLoop()
         {
             StandardLogging.LogInfo(FilePath, "Starting Matchmaking Loop for the game " + game.GameName + " at the time " + Matchtime);
 
-            Queue<MatchmakingTicket> Tickets = new Queue<MatchmakingTicket>(this.Tickets);
-
-            List<Tuple<MatchmakingTicket, MatchmakingTicket>> PotentialMatchesmatches = new List<Tuple<MatchmakingTicket, MatchmakingTicket>>();
+            
             
         }
 
