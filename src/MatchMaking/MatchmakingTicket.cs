@@ -38,6 +38,9 @@ namespace big
                 StandardLogging.LogError(FilePath, "Opponent ticket is null");
                 return false;
             }
+
+            this.ResponsibleUser.
+
         }
 
         public void ResetCheckedTickets()

@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace big
 {
     public static class DiscordUserExtensions
@@ -153,6 +155,18 @@ namespace big
 
             return true;
         }
+
+        public async Task<bool> PromtForScrim(this DiscordUser user, DateTime time, MatchmakingTicket opponentTicket)
+        {
+            StandardLogging.LogDebug(FilePath, "Promting user " + user.Username + " for a scrim against " + opponentTicket.team.TeamName + " at the time " + time);
+
+            if(opponentTicket is null)
+            {
+                opponentTicket I
+            }
+            
+        }
+
 
         
 
