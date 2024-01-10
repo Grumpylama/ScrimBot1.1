@@ -20,16 +20,33 @@ namespace big
             }
         }
 
-        public static async Task<bool> SendDMAsync(this DiscordUser user, string message)
+
+        /// <summary>
+        /// Sends a message to the user
+        /// </summary>
+        /// <param name="user">The user to send the message to</param>
+        /// <param name="message">The message to send</param>
+        /// <returns>The message that was sent</returns>
+        /// <exception cref="Exception">Thrown when the user does not have a DM channel</exception>
+        /// <exception cref="Exception">Thrown when the user is a bot</exception>
+        /// <exception cref="Exception">Thrown when the user is null</exception>
+        /// <exception cref="Exception">Thrown when the message is null</exception>
+        /// 
+        public static async Task<DiscordMessage> SendDMAsync(this DiscordUser user, string message)
         {
+            if (user is null)
+            {
+                throw new Exception("User is null");
+            }
+
             if (DiscordInterface.DMChannel.ContainsKey(user))
             {
-                await DiscordInterface.DMChannel[user].SendMessageAsync(message);
-                return true;
+                return await DiscordInterface.DMChannel[user].SendMessageAsync(message);
+                
             }
             else
             {
-                return false;
+                throw new Exception("User does not have a DM channel");
             }
         }
 
@@ -156,15 +173,59 @@ namespace big
             return true;
         }
 
-        public async Task<bool> PromtForScrim(this DiscordUser user, DateTime time, MatchmakingTicket opponentTicket)
+        public static async Task<bool> PromtForScrim(this DiscordUser user, DateTime time, MatchmakingTicket opponentTicket)
         {
             StandardLogging.LogDebug(FilePath, "Promting user " + user.Username + " for a scrim against " + opponentTicket.team.TeamName + " at the time " + time);
 
             if(opponentTicket is null)
             {
-                opponentTicket I
+                StandardLogging.LogError(FilePath, "Opponent ticket is null");
+                return false;
+            }
+
+            if(user.GetDMChannel() is null)
+            {
+                StandardLogging.LogError(FilePath, "User " + user.Username + " does not have a DM channel");
+                return false;
             }
             
+            var msg = await user.GetDMChannel().SendMessageAsync("You have been matched with " + opponentTicket.team.TeamName + " for a scrim at the time " + time + ". Would you like to confirm this scrim?");
+            try
+            {
+                await msg.CreateReactionAsync(DiscordEmoji.FromName(DiscordInterface.Client!, ":white_check_mark:"));
+                await msg.CreateReactionAsync(DiscordEmoji.FromName(DiscordInterface.Client!, ":x:"));
+            }
+            catch
+            {
+                StandardLogging.LogError(FilePath, "Error creating reactions for message");
+                return false;
+            }
+            
+            var interactivity = DiscordInterface.Client!.GetInteractivity();
+            var reactionResult = await interactivity.WaitForReactionAsync(x => x.Message == msg && x.User == user && (x.Emoji == DiscordEmoji.FromName(DiscordInterface.Client!, ":white_check_mark:") || x.Emoji == DiscordEmoji.FromName(DiscordInterface.Client!, ":x:")), TimeSpan.FromSeconds(600));
+
+            if(reactionResult.Result is null)
+            {
+                StandardLogging.LogError(FilePath, "User " + user.Username + " did not respond to scrim promt");
+                await user.SendDMAsync("You did not respond to the scrim promt in time. The scrim has been cancelled. If you still want to scrim, please rejoin the matchmaking queue");
+                return false;
+            }
+
+            if(reactionResult.Result.Emoji == DiscordEmoji.FromName(DiscordInterface.Client!, ":white_check_mark:"))
+            {
+                StandardLogging.LogInfo(FilePath, "User " + user.Username + " accepted scrim against " + opponentTicket.team.TeamName + " at the time " + time);
+                await user.SendDMAsync("You have accepeted the scrim against " + opponentTicket.team.TeamName + " at the time " + time);
+                return true;
+            }
+            else
+            {
+                StandardLogging.LogInfo(FilePath, "User " + user.Username + " declined scrim against " + opponentTicket.team.TeamName + " at the time " + time);
+                await user.SendDMAsync("You have declined the scrim against " + opponentTicket.team.TeamName + " at the time " + time);
+                await user.SendDMAsync("If you still want to scrim, please rejoin the matchmaking queue");
+                return false;
+            }
+
+
         }
 
 

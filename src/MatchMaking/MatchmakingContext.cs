@@ -31,6 +31,10 @@ namespace big
 
         }
 
+        public MatchmakingContext(DateTime startTime, int TicketsInQueue, int ticketsMatched, MatchmakingTicket ticket1, MatchmakingTicket ticket2) 
+        : this(startTime, TicketsInQueue, ticketsMatched, new List<MatchmakingTicket> { ticket1, ticket2 }) {}
+        
+
 
     }
 }
